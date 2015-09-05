@@ -1,0 +1,14 @@
+html, body {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	background: #000;
+}
+
+video {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
