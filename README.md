@@ -2,7 +2,8 @@
 
 ### todolist
 ###### Le *minimal viable product* :
-- [ ] **`JS`** Permettre de drop un **sous-titre**.
+- [x] **`JS`** Permettre de drop un **sous-titre** WebVTT.
+- [ ] **`JS`** Permettre de drop un **sous-titre** SubRip Text.
 - [ ] **`JS`** Permettre de drop **plusieurs fichiers** en même temps (un mp4 et son sous-titre par exemple).
 - [ ] **`JS`** Permettre de drop un **dossier** (un dossier comportant un mp4 et le sous-titre correspondant qui a le même nom).
 - [ ] **`JS`** Investiguer ce que nous pourrions faire pour lire les **mkv** (apparemment l'audio ne vient pas avec).
