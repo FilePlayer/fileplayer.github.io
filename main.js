@@ -42,10 +42,10 @@ elBody.ondrop = function( e ) {
 						// Set this track to be the active one
 						this.mode =
 						elVideo.textTracks[ 0 ].mode = "showing";
-					}); 
+					});
 				break;
 			}
 	}
-	
+
 	return false;
 };
