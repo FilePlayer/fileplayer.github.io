@@ -8,24 +8,23 @@ var
 ;
 
 $.extend( controls, {
-	mute: function() {
-		elVideo.muted = true;
-		return this;
-	},
-	unmute: function() {
-		elVideo.muted = false;
-		if ( !elVideo.volume ) {
+	mute: function( b ) {
+		if ( !arguments.length ) {
+			return elVideo.muted;
+		}
+		elVideo.muted = b;
+		if ( !b && !elVideo.volume ) {
 			elVideo.volume = 1;
 		}
 		return this;
 	},
 	muteToggle: function() {
-		return elVideo.muted || !elVideo.volume
-			? this.unmute()
-			: this.mute()
-		;
+		return this.mute( !elVideo.muted && !!elVideo.volume );
 	},
 	volume: function( v ) {
+		if ( !arguments.length ) {
+			return elVideo.volume;
+		}
 		elVideo.volume = v;
 		return this;
 	}

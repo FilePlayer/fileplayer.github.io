@@ -30,7 +30,7 @@ elBody.ondrop = function( e ) {
 
 		case "video" :
 			elVideo.src = dropFileUrl;
-			player.controls.play();
+			player.controls.play( true );
 		break;
 
 		default :

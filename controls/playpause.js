@@ -7,19 +7,19 @@ var
 ;
 
 $.extend( controls, {
-	play: function() {
-		elVideo.play();
-		return this;
-	},
-	pause: function() {
-		elVideo.pause();
+	play: function( b ) {
+		if ( !arguments.length ) {
+			return !elVideo.paused;
+		}
+		if ( b ) {
+			elVideo.play();
+		} else {
+			elVideo.pause();
+		}
 		return this;
 	},
 	playToggle: function() {
-		return elVideo.paused
-			? this.play()
-			: this.pause()
-		;
+		return this.play( elVideo.paused );
 	}
 });
 
