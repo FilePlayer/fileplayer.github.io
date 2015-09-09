@@ -12,3 +12,13 @@ video {
 	width: 100%;
 	height: 100%;
 }
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+a,
+input {
+	outline: 0; /* Firefox */
+}
