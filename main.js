@@ -1,5 +1,10 @@
 function lg(s) { console.log(s); }
 
+// Global object
+window.player = {
+	controls: {}
+};
+
 var
 	elBody = document.body,
 	elVideo = document.querySelector( "video" )
@@ -25,7 +30,7 @@ elBody.ondrop = function( e ) {
 
 		case "video" :
 			elVideo.src = dropFileUrl;
-			elVideo.play();
+			player.controls.play();
 		break;
 
 		default :
