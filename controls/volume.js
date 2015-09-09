@@ -26,6 +26,9 @@ $.extend( controls, {
 			return elVideo.volume;
 		}
 		elVideo.volume = v;
+		if ( v ) {
+			elVideo.muted = false;
+		}
 		return this;
 	}
 });
