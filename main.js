@@ -1,7 +1,9 @@
-function lg(s) { console.log(s); }
+// Debug
+function lg( s ) { console.log( s ); }
 
 // Global object
 window.player = {
+	subtitles: {},
 	controls: {}
 };
 
@@ -37,17 +39,7 @@ elBody.ondrop = function( e ) {
 			switch ( dropFile.name.substr( dropFile.name.lastIndexOf( "." ) + 1 ) ) {
 
 				case "vtt" :
-					var elTrack = document.createElement( "track" );
-					elTrack.kind = "subtitles";
-					elTrack.src = dropFileUrl;
-					elTrack.label = "Subtitles " + ( elVideo.textTracks ? elVideo.textTracks.length + 1 : 1 );
-					elTrack.srclang = "en"; // TODO: We must find a way to made it generically
-					elVideo.appendChild( elTrack );
-					elTrack.addEventListener( "load", function() {
-						// Set this track to be the active one
-						this.mode =
-						elVideo.textTracks[ 0 ].mode = "showing";
-					});
+					player.subtitles.addTrack( dropFileUrl );
 				break;
 			}
 	}
