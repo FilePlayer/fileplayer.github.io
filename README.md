@@ -4,7 +4,7 @@
 ###### Le *minimal viable product* :
 - [x] [**`JS`** Permettre de drop un **sous-titre** WebVTT.](https://github.com/FilePlayer/fileplayer.github.io/pull/1)
 - [ ] **`JS`** Permettre de drop un **sous-titre** SubRip Text.
-- [ ] **`JS`** Permettre de drop **plusieurs fichiers** en même temps (un mp4 et son sous-titre par exemple).
+- [x] [**`JS`** Permettre de drop **plusieurs fichiers** en même temps (un mp4 et son sous-titre par exemple).](https://github.com/FilePlayer/fileplayer.github.io/pull/3)
 - [ ] **`JS`** Permettre de drop un **dossier** (un dossier comportant un mp4 et le sous-titre correspondant qui a le même nom).
 - [ ] **`JS`** Coder un système de **raccourcis-clavier**.
 - [ ] **`JS`** Ajouter **tous les raccourcis imaginables** (en imitant VLC, au hasard).
