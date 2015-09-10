@@ -1,18 +1,23 @@
 (function() {
 
+var
+	tracks = elVideo.textTracks
+;
+
 $.extend( playerAPI, {
 	addSubtitles: function( url ) {
-		var elTrack = document.createElement( "track" );
-		elTrack.kind = "subtitles";
-		elTrack.src = url;
-		elTrack.label = "Subtitles " + ( elVideo.textTracks ? elVideo.textTracks.length + 1 : 1 );
-		elTrack.srclang = "en"; // TODO: We must find a way to made it generically
-		elVideo.appendChild( elTrack );
-		elTrack.addEventListener( "load", function() {
-			// Set this track to be the active one
-			this.mode =
-			elVideo.textTracks[ 0 ].mode = "showing";
-		});
+		$( "<track>", {
+			kind: "subtitles",
+			src: url,
+			srclang: "en",
+			label: "Subtitles " + ( tracks ? tracks.length + 1 : 1 ),
+			on: {
+				load: function() {
+					// Set this track to be the active one
+					tracks[ 0 ].mode = "showing";
+				}
+			}
+		}).appendTo( elVideo );
 		return this;
 	}
 });
