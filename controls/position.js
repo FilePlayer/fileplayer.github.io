@@ -1,7 +1,7 @@
 (function() {
 
 var
-	jqVideo = $( "video" ),
+	elVideo = playerAPI.videoElement,
 	jqSliderPosition = $( "#ctrl .slider.position" ),
 	jqTxtPosition = $( "#ctrl .text.position" ),
 	jqCurrent = $( ".current", jqTxtPosition ),
@@ -71,7 +71,7 @@ jqTxtPosition.click( function() {
 });
 
 // Update the currentTime, remainingTime and the duration.
-jqVideo
+playerAPI.jqVideoElement
 	.on( "timeupdate", timeUpdate )
 	.on( "durationchange", durationUpdate )
 ;

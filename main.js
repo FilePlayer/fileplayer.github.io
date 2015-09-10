@@ -1,45 +1,51 @@
 // Debug
 function lg( s ) { console.log( s ); }
 
-// Global object for the API
-window.playerAPI = {};
+(function() {
 
 var
-	elBody = document.body,
-	elVideo = document.querySelector( "video" )
+	jqVideo = $( "video" )
 ;
 
-elBody.ondragover = function() {
-	lg( "body:ondragover" );
-	return false;
+// Global object for the API
+window.playerAPI = {
+	jqVideoElement: jqVideo,
+	videoElement: jqVideo[ 0 ]
 };
 
-elBody.ondrop = function( e ) {
-	lg( "body:ondrop" );
+$( document.body )
+	.on( "dragover", function() {
+		return false;
+	})
+	.on( "drop", function( e ) {
+		e = e.originalEvent;
 
-	var
-		// Save file's informations
-		dropFile = e.dataTransfer.files[ 0 ],
-		// Create a temporary fake absolute path to the dropped file
-		dropFileUrl = URL.createObjectURL( dropFile )
-	;
+		var
+			// Save file's informations
+			dropFile = e.dataTransfer.files[ 0 ],
+			// Create a temporary fake absolute path to the dropped file
+			dropFileUrl = URL.createObjectURL( dropFile )
+		;
 
-	// Check type file, eg : "video/mp4" -> "video"
-	switch ( dropFile.type.substr( 0, dropFile.type.indexOf( "/" ) ) ) {
+		// Check type file, eg : "video/mp4" -> "video"
+		switch ( dropFile.type.substr( 0, dropFile.type.indexOf( "/" ) ) ) {
 
-		case "video" :
-			elVideo.src = dropFileUrl;
-			playerAPI.play( true );
-		break;
+			case "video" :
+				playerAPI.videoElement.src = dropFileUrl;
+				playerAPI.play( true );
+			break;
 
-		default :
-			switch ( dropFile.name.substr( dropFile.name.lastIndexOf( "." ) + 1 ) ) {
+			default :
+				switch ( dropFile.name.substr( dropFile.name.lastIndexOf( "." ) + 1 ) ) {
 
-				case "vtt" :
-					playerAPI.addSubtitles( dropFileUrl );
-				break;
-			}
-	}
+					case "vtt" :
+						playerAPI.addSubtitles( dropFileUrl );
+					break;
+				}
+		}
 
-	return false;
-};
+		return false;
+	})
+;
+
+})();

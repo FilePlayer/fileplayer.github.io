@@ -1,7 +1,7 @@
 (function() {
 
 var
-	tracks = elVideo.textTracks
+	tracks = playerAPI.videoElement.textTracks
 ;
 
 $.extend( playerAPI, {
@@ -17,7 +17,7 @@ $.extend( playerAPI, {
 					tracks[ 0 ].mode = "showing";
 				}
 			}
-		}).appendTo( elVideo );
+		}).appendTo( playerAPI.videoElement );
 		return this;
 	}
 });

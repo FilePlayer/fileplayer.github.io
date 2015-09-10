@@ -1,7 +1,7 @@
 (function() {
 
 var
-	jqVideo = $( elVideo ),
+	elVideo = playerAPI.videoElement,
 	jqBtnPlay = $( "#ctrl .play" )
 ;
 
@@ -28,7 +28,7 @@ jqBtnPlay.click( function() {
 });
 
 // Update the UI/controls in live
-jqVideo
+playerAPI.jqVideoElement
 	.on( "play pause", function() {
 		jqBtnPlay
 			.removeClass( "fa-play fa-pause" )

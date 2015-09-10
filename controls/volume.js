@@ -1,7 +1,7 @@
 (function() {
 
 var
-	jqVideo = $( elVideo ),
+	elVideo = playerAPI.videoElement,
 	jqBtnVol = $( "#ctrl .btn.volume"),
 	jqSliderVol = $( "#ctrl .slider.volume" )
 ;
@@ -42,7 +42,7 @@ jqSliderVol.on( "input", function() {
 });
 
 // Update the UI/controls in live
-jqVideo
+playerAPI.jqVideoElement
 	.on( "volumechange", function() {
 		jqBtnVol
 			.removeClass( "fa-volume-off fa-volume-down fa-volume-up" )
