@@ -1,11 +1,7 @@
 (function() {
 
-var
-	subtitles = window.player.subtitles
-;
-
-$.extend( subtitles, {
-	addTrack: function( url ) {
+$.extend( playerAPI, {
+	addSubtitles: function( url ) {
 		var elTrack = document.createElement( "track" );
 		elTrack.kind = "subtitles";
 		elTrack.src = url;

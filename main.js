@@ -1,11 +1,8 @@
 // Debug
 function lg( s ) { console.log( s ); }
 
-// Global object
-window.player = {
-	subtitles: {},
-	controls: {}
-};
+// Global object for the API
+window.playerAPI = {};
 
 var
 	elBody = document.body,
@@ -32,14 +29,14 @@ elBody.ondrop = function( e ) {
 
 		case "video" :
 			elVideo.src = dropFileUrl;
-			player.controls.play( true );
+			playerAPI.play( true );
 		break;
 
 		default :
 			switch ( dropFile.name.substr( dropFile.name.lastIndexOf( "." ) + 1 ) ) {
 
 				case "vtt" :
-					player.subtitles.addTrack( dropFileUrl );
+					playerAPI.addSubtitles( dropFileUrl );
 				break;
 			}
 	}

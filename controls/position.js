@@ -1,7 +1,6 @@
 (function() {
 
 var
-	controls = window.player.controls,
 	jqVideo = $( "video" ),
 	jqSliderPosition = $( "#ctrl .slider.position" ),
 	jqTxtPosition = $( "#ctrl .text.position" ),
@@ -44,7 +43,7 @@ function durationUpdate() {
 	jqDuration.text( convertSecondes( elVideo.duration ) );
 }
 
-$.extend( controls, {
+$.extend( playerAPI, {
 	position: function( p ) {
 		if ( !arguments.length ) {
 			return elVideo.currentTime;
@@ -62,7 +61,7 @@ jqSliderPosition
 		sliderClicked = false;
 	})
 	.on( "input", function() {
-		controls.position( this.value * elVideo.duration );
+		playerAPI.position( this.value * elVideo.duration );
 	})
 ;
 

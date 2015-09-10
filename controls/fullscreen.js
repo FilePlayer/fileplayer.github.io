@@ -2,7 +2,6 @@
 
 var
 	elDoc = document.documentElement,
-	controls = window.player.controls,
 	jqDocument = $( document ),
 	jqBtnFScr = $( "#ctrl .btn.fullscreen" )
 ;
@@ -20,7 +19,7 @@ document.cancelFullscreen =
 	$.noop
 ;
 
-$.extend( controls, {
+$.extend( playerAPI, {
 	fullscreen: function( b ) {
 		if ( !arguments.length ) {
 			return (
@@ -43,14 +42,14 @@ $.extend( controls, {
 });
 
 jqBtnFScr.click( function() {
-	controls.fullscreenToggle();
+	playerAPI.fullscreenToggle();
 	return false;
 });
 
 jqDocument
 	.keydown( function( e ) {
 		if ( e.keyCode === 122 ) { // 122: F11
-			controls.fullscreenToggle();
+			playerAPI.fullscreenToggle();
 			return false;
 		}
 	})
@@ -58,7 +57,7 @@ jqDocument
 		jqBtnFScr
 			.removeClass( "fa-expand fa-compress" )
 			.addClass(
-				controls.fullscreen()
+				playerAPI.fullscreen()
 					? "fa-compress"
 					: "fa-expand"
 			)

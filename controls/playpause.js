@@ -1,12 +1,11 @@
 (function() {
 
 var
-	controls = window.player.controls,
 	jqVideo = $( elVideo ),
 	jqBtnPlay = $( "#ctrl .play" )
 ;
 
-$.extend( controls, {
+$.extend( playerAPI, {
 	play: function( b ) {
 		if ( !arguments.length ) {
 			return !elVideo.paused;
@@ -24,7 +23,7 @@ $.extend( controls, {
 });
 
 jqBtnPlay.click( function() {
-	controls.playToggle();
+	playerAPI.playToggle();
 	return false;
 });
 

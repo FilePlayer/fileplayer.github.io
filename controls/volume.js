@@ -1,13 +1,12 @@
 (function() {
 
 var
-	controls = window.player.controls,
 	jqVideo = $( elVideo ),
 	jqBtnVol = $( "#ctrl .btn.volume"),
 	jqSliderVol = $( "#ctrl .slider.volume" )
 ;
 
-$.extend( controls, {
+$.extend( playerAPI, {
 	mute: function( b ) {
 		if ( !arguments.length ) {
 			return elVideo.muted;
@@ -34,12 +33,12 @@ $.extend( controls, {
 });
 
 jqBtnVol.click( function() {
-	controls.muteToggle();
+	playerAPI.muteToggle();
 	return false;
 });
 
 jqSliderVol.on( "input", function() {
-	controls.volume( this.value );
+	playerAPI.volume( this.value );
 });
 
 // Update the UI/controls in live
@@ -63,6 +62,6 @@ jqVideo
 ;
 
 // Force the volume to the max by default
-controls.volume( 1 );
+playerAPI.volume( 1 );
 
 })();
