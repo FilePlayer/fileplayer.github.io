@@ -1,8 +1,17 @@
 (function() {
 
 var
+	trackCurrent,
 	tracks = playerAPI.videoElement.textTracks
 ;
+
+function activeSubtitles( ind ) {
+	if ( trackCurrent ) {
+		trackCurrent.mode = "disabled";
+	}
+	trackCurrent = tracks[ ind ];
+	trackCurrent.mode = "showing";
+}
 
 $.extend( playerAPI, {
 	addSubtitles: function( url ) {
@@ -13,11 +22,18 @@ $.extend( playerAPI, {
 			label: "Subtitles " + ( tracks ? tracks.length + 1 : 1 ),
 			on: {
 				load: function() {
-					// Set this track to be the active one
-					tracks[ 0 ].mode = "showing";
+					activeSubtitles( 0 );
 				}
 			}
-		}).appendTo( playerAPI.videoElement );
+		}).prependTo( playerAPI.videoElement );
+
+		// Chrome will start loading the track only
+		// after the `mode` attribute is set to "showing".
+		// The `if` is necessary for Firefox.
+		if ( tracks[ 0 ] ) {
+			tracks[ 0 ].mode = "showing";
+		}
+
 		return this;
 	}
 });
