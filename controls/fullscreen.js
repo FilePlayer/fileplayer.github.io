@@ -41,16 +41,20 @@ $.extend( playerAPI, {
 	}
 });
 
-jqBtnFScr.click( function() {
+function fsToggle() {
 	playerAPI.fullscreenToggle();
 	return false;
-});
+}
+
+jqBtnFScr.click( fsToggle );
+
+// Toggle fullscreen by double clicking on the video.
+playerAPI.jqVideoElement.dblclick( fsToggle );
 
 jqDocument
 	.keydown( function( e ) {
-		if ( e.keyCode === 122 ) { // 122: F11
-			playerAPI.fullscreenToggle();
-			return false;
+		if ( e.keyCode === 122 ) { // 122 -> F11 key
+			return fsToggle();
 		}
 	})
 	.on( "fullscreenchange mozfullscreenchange webkitfullscreenchange", function() {
