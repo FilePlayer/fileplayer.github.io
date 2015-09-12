@@ -10,6 +10,7 @@
 - [ ] **`JS`** Ajouter **tous les raccourcis possibles** en s'inspirant de VLC.
 - [x] [**`JS`** Ré-écrire chaque éléments de l'UI pour pouvoir **désactiver les contrôles par défaut** qui différent selon les navigateurs.](https://github.com/FilePlayer/fileplayer.github.io/pull/2)
 - [ ] [**`HTML/CSS`** Redessiner correctement les **contrôles** (play, pause, stop, slider, ...).](https://github.com/FilePlayer/fileplayer.github.io/pull/4)
+- [x] [**`JS`** Afficher le titre du fichier sur l'écran lors du drop.](https://github.com/FilePlayer/fileplayer.github.io/pull/5)
 
 ###### Encore plus loin :
 - [ ] **`JS`** Investiguer ce que nous pourrions faire pour lire les **mkv** (apparemment l'audio ne vient pas avec).

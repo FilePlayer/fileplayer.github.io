@@ -1,0 +1,17 @@
+#title-file {
+    position: absolute;
+    top: 50px;
+    overflow: hidden;
+    width: 100%;
+    font-family: "Helvetica";
+    font-size: 1.5em;
+    color: white;
+    text-align: center;
+    text-overflow: ellipsis;
+    transition: opacity 1s;
+    opacity: 0;
+}
+
+#title-file.visible {
+    opacity: 1;
+}
