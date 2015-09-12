@@ -1,5 +1,9 @@
 (function() {
 
+var
+	jqTitleFile = $( "#title-file" )
+;
+
 $( document.body )
 	.on( "dragover", false )
 	.on( "drop", function( e ) {
@@ -28,6 +32,15 @@ $( document.body )
 					break;
 				}
 		}
+
+		// Show the title's file on the screen
+		jqTitleFile
+			.text( dropFile.name )
+			.addClass( "visible" )
+		;
+		setTimeout( function() {
+			jqTitleFile.removeClass( "visible" );
+		}, 2000 );
 
 		return false;
 	})
