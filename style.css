@@ -22,3 +22,7 @@ a,
 input {
 	outline: 0; /* Firefox */
 }
+
+input {
+	margin: 0;
+}

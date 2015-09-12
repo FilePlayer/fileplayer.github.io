@@ -14,17 +14,22 @@
 
 <div id="ctrl">
 	<input class="slider position" type="range" value="0" min="0" max="1" step=".0001"/>
-	<br/>
-	<a class="btn play fa fa-fw fa-play" href="#"></a>
-	<a class="btn volume fa fa-fw fa-volume-up" href="#"></a>
-	<input class="slider volume" type="range" value="1" min="0" max="1" step=".01"/>
-	<span class="text position">
-		<span class="time current"></span
-		><span class="delimiter"></span
-		><span class="time duration"></span
-		><span class="time remaining"></span>
-	</span>
-	<a class="btn fullscreen fa fa-fw fa-expand" href="#"></a>
+	<div class="bottom">
+		<div class="left">
+			<a class="btn play fa fa-fw fa-play" href="/"></a>
+			<a class="btn volume fa fa-fw fa-volume-up" href="/"></a>
+			<input class="slider volume" type="range" value="1" min="0" max="1" step=".01"/>
+			<span class="text position">
+				<span class="time current"></span
+				><span class="delimiter"></span
+				><span class="time duration"></span
+				><span class="time remaining"></span>
+			</span>
+		</div
+		><div class="right">
+			<a class="btn fullscreen fa fa-fw fa-expand" href="/"></a>
+		</div>
+	</div>
 </div>
 
 <script src="main.js"></script>
