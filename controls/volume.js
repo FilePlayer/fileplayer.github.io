@@ -2,8 +2,8 @@
 
 var
 	elVideo = playerAPI.videoElement,
-	jqBtnVol = $( "#ctrl .btn.volume"),
-	jqSliderVol = $( "#ctrl .slider.volume" )
+	jqBtnVol = $( ".btn.volume", playerAPI.jqControls ),
+	jqSliderVol = $( ".slider.volume", playerAPI.jqControls )
 ;
 
 $.extend( playerAPI, {

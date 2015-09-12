@@ -2,8 +2,7 @@
 
 var
 	elDoc = document.documentElement,
-	jqDocument = $( document ),
-	jqBtnFScr = $( "#ctrl .btn.fullscreen" )
+	jqBtnFScr = $( ".btn.fullscreen", playerAPI.jqControls )
 ;
 
 elDoc.requestFullscreen =
@@ -51,7 +50,7 @@ jqBtnFScr.click( fsToggle );
 // Toggle fullscreen by double clicking on the video.
 playerAPI.jqVideoElement.dblclick( fsToggle );
 
-jqDocument
+playerAPI.jqDocument
 	.keydown( function( e ) {
 		if ( e.keyCode === 122 ) { // 122 -> F11 key
 			return fsToggle();

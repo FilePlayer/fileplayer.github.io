@@ -4,9 +4,11 @@
 	<title>FilePlayer</title>
 	<meta charset="UTF-8"/>
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="style.css"/>
+	<link rel="stylesheet" href="reset.css"/>
+	<link rel="stylesheet" href="video/video.css"/>
 	<link rel="stylesheet" href="files/files.css"/>
 	<link rel="stylesheet" href="controls/controls.css"/>
+	<link rel="stylesheet" href="subtitles/subtitles.css"/>
 	<script src="//code.jquery.com/jquery-3.0.0-alpha1.min.js"></script>
 </head>
 <body>
@@ -17,22 +19,28 @@
 
 <div id="ctrl">
 	<input class="slider position" type="range" value="0" min="0" max="1" step=".0001"/>
-	<br/>
-	<a class="btn play fa fa-fw fa-play" href="#"></a>
-	<a class="btn volume fa fa-fw fa-volume-up" href="#"></a>
-	<input class="slider volume" type="range" value="1" min="0" max="1" step=".01"/>
-	<span class="text position">
-		<span class="time current"></span
-		><span class="delimiter"></span
-		><span class="time duration"></span
-		><span class="time remaining"></span>
-	</span>
-	<a class="btn fullscreen fa fa-fw fa-expand" href="#"></a>
+	<div class="bottom">
+		<div class="left">
+			<a class="btn play fa fa-fw fa-play" href="/"></a>
+			<a class="btn volume fa fa-fw fa-volume-up" href="/"></a>
+			<input class="slider volume" type="range" value="1" min="0" max="1" step=".01"/>
+			<span class="text position">
+				<span class="time current"></span
+				><span class="delimiter"></span
+				><span class="time duration"></span
+				><span class="time remaining"></span>
+			</span>
+		</div
+		><div class="right">
+			<a class="btn fullscreen fa fa-fw fa-expand" href="/"></a>
+		</div>
+	</div>
 </div>
 
 <script src="main.js"></script>
 <script src="files/drop.js"></script>
 <script src="subtitles/subtitles.js"></script>
+<script src="controls/controls.js"></script>
 <script src="controls/playpause.js"></script>
 <script src="controls/volume.js"></script>
 <script src="controls/fullscreen.js"></script>

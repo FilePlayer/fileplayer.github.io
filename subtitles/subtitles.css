@@ -1,0 +1,11 @@
+/* All the subtitles will be rewrite to have infinite possibility */
+
+/* Move the subtitles 80px upper from the bottom (on Chrome) */
+video::-webkit-media-text-track-container {
+	top: -80px;
+}
+
+.ctrlHidden video::-webkit-media-text-track-container {
+	top: 0;
+}
+
