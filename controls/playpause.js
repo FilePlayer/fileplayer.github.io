@@ -2,7 +2,7 @@
 
 var
 	elVideo = playerAPI.videoElement,
-	jqBtnPlay = $( "#ctrl .play" )
+	jqBtnPlay = $( ".play", playerAPI.jqControls )
 ;
 
 $.extend( playerAPI, {

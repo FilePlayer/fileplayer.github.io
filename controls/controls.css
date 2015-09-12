@@ -6,6 +6,13 @@
 	padding: 10px;
 	color: #ddd;
 	background: rgba( 255, 255, 255, .1 );
+	transition: all .25s;
+}
+
+.ctrlHiding #ctrl {
+	transition-duration: 2s;
+	visibility: hidden;
+	opacity: 0;
 }
 
 #ctrl * {
