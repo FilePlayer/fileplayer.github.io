@@ -27,11 +27,8 @@ function convertSecondes( sec ) {
 	return h + ":" + m + ":" + s;
 }
 
-function timeUpdate() {
-	var
-		cur = elVideo.currentTime,
-		dur = elVideo.duration
-	;
+function timeUpdate( cur ) {
+	var dur = elVideo.duration;
 	jqCurrent.text( convertSecondes( cur ) );
 	jqRemaining.text( convertSecondes( dur - cur ) );
 	if ( dur && !sliderClicked ) {
@@ -48,6 +45,7 @@ $.extend( playerAPI, {
 		if ( !arguments.length ) {
 			return elVideo.currentTime;
 		}
+		timeUpdate( p );
 		elVideo.currentTime = p;
 		return this;
 	}
@@ -72,7 +70,9 @@ jqTxtPosition.click( function() {
 
 // Update the currentTime, remainingTime and the duration.
 playerAPI.jqVideoElement
-	.on( "timeupdate", timeUpdate )
+	.on( "timeupdate", function() {
+		timeUpdate( elVideo.currentTime );
+	})
 	.on( "durationchange", durationUpdate )
 ;
 
