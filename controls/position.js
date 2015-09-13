@@ -27,12 +27,13 @@ function convertSecondes( sec ) {
 	return h + ":" + m + ":" + s;
 }
 
-function timeUpdate( cur ) {
+function timeUpdate( sec ) {
 	var dur = elVideo.duration;
-	jqCurrent.text( convertSecondes( cur ) );
-	jqRemaining.text( convertSecondes( dur - cur ) );
+	playerAPI.subtitlesUpdate( sec );
+	jqCurrent.text( convertSecondes( sec ) );
+	jqRemaining.text( convertSecondes( dur - sec ) );
 	if ( dur && !sliderClicked ) {
-		jqSliderPosition.val( cur / dur );
+		jqSliderPosition.val( sec / dur );
 	}
 }
 

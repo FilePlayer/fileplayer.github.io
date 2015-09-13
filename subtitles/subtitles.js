@@ -1,17 +1,8 @@
 (function() {
 
 var
-	trackCurrent,
 	tracks = playerAPI.videoElement.textTracks
 ;
-
-function activeSubtitles( ind ) {
-	if ( trackCurrent ) {
-		trackCurrent.mode = "disabled";
-	}
-	trackCurrent = tracks[ ind ];
-	trackCurrent.mode = "showing";
-}
 
 $.extend( playerAPI, {
 	addSubtitles: function( url ) {
@@ -22,7 +13,11 @@ $.extend( playerAPI, {
 			label: "Subtitles " + ( tracks ? tracks.length + 1 : 1 ),
 			on: {
 				load: function() {
-					activeSubtitles( 0 );
+					tracks[ 0 ].mode = "hidden";
+					playerAPI
+						.subtitlesSelect( 0 )
+						.subtitlesEnable( true )
+					;
 				}
 			}
 		}).prependTo( playerAPI.videoElement );

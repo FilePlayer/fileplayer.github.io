@@ -4,6 +4,8 @@ html, body {
 
 body {
 	margin: 0;
+	color: #ddd;
+	font: 12px sans-serif;
 	background: #000;
 }
 
