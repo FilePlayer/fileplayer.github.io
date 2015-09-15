@@ -49,24 +49,28 @@ jqSliderVol.on( "input", function() {
 	playerAPI.volume( this.value );
 });
 
-// Update the UI/controls in live
-playerAPI.jqVideoElement
-	.on( "volumechange", function() {
-		jqBtnVol
-			.removeClass( "fa-volume-off fa-volume-down fa-volume-up" )
-			.addClass(
-				elVideo.muted || elVideo.volume === 0
-					? "fa-volume-off"
-					: elVideo.volume < .5
-						? "fa-volume-down"
-						: "fa-volume-up"
-			)
-		;
-		jqSliderVol.val( elVideo.muted
-			? 0
-			: elVideo.volume
-		);
-	})
+playerAPI
+	// Control the volume with the keyboard.
+	.addKeys( "ctrl+down", function() { playerAPI.volumeRelative( -.05 ); })
+	.addKeys( "ctrl+up",   function() { playerAPI.volumeRelative( +.05 ); })
+	// Update the UI/controls in live
+	.jqVideoElement
+		.on( "volumechange", function() {
+			jqBtnVol
+				.removeClass( "fa-volume-off fa-volume-down fa-volume-up" )
+				.addClass(
+					elVideo.muted || elVideo.volume === 0
+						? "fa-volume-off"
+						: elVideo.volume < .5
+							? "fa-volume-down"
+							: "fa-volume-up"
+				)
+			;
+			jqSliderVol.val( elVideo.muted
+				? 0
+				: elVideo.volume
+			);
+		})
 ;
 
 // Force the volume to the max by default

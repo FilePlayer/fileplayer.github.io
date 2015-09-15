@@ -77,12 +77,20 @@ jqTxtPosition.click( function() {
 	jqTxtPosition.toggleClass( "remaining" );
 });
 
-// Update the currentTime, remainingTime and the duration.
-playerAPI.jqVideoElement
-	.on( "timeupdate", function() {
-		timeUpdate( elVideo.currentTime );
-	})
-	.on( "durationchange", durationUpdate )
+playerAPI
+	// Control the position with the keyboard.
+	.addKeys( "shift+left",  function() { playerAPI.positionRelative(  -3 ); })
+	.addKeys( "shift+right", function() { playerAPI.positionRelative(  +3 ); })
+	.addKeys( "alt+left",    function() { playerAPI.positionRelative( -10 ); return false; })
+	.addKeys( "alt+right",   function() { playerAPI.positionRelative( +10 ); return false; })
+	.addKeys( "ctrl+left",   function() { playerAPI.positionRelative( -60 ); })
+	.addKeys( "ctrl+right",  function() { playerAPI.positionRelative( +60 ); })
+	// Update the currentTime, remainingTime and the duration.
+	.jqVideoElement
+		.on( "timeupdate", function() {
+			timeUpdate( elVideo.currentTime );
+		})
+		.on( "durationchange", durationUpdate )
 ;
 
 // Write 00:00:00 by default.

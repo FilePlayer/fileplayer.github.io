@@ -22,23 +22,28 @@ $.extend( playerAPI, {
 	}
 });
 
-jqBtnPlay.click( function() {
+function playToggle() {
 	playerAPI.playToggle();
 	return false;
-});
+}
 
-// Update the UI/controls in live
-playerAPI.jqVideoElement
-	.on( "play pause", function() {
-		jqBtnPlay
-			.removeClass( "fa-play fa-pause" )
-			.addClass(
-				elVideo.paused
-					? "fa-play"
-					: "fa-pause"
-			)
-		;
-	})
+jqBtnPlay.click( playToggle );
+
+playerAPI
+	// Play/pause the file by pressing the space bar.
+	.addKeys( " ", playToggle )
+	// Update the play/pause button via the standard play/pause events.
+	.jqVideoElement
+		.on( "play pause", function() {
+			jqBtnPlay
+				.removeClass( "fa-play fa-pause" )
+				.addClass(
+					elVideo.paused
+						? "fa-play"
+						: "fa-pause"
+				)
+			;
+		})
 ;
 
 })();
