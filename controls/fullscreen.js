@@ -47,15 +47,13 @@ function fsToggle() {
 
 jqBtnFScr.click( fsToggle );
 
+// Rewrite the F11-native fullscreen.
+playerAPI.addKeys( "F11", fsToggle );
+
 // Toggle fullscreen by double clicking on the video.
 playerAPI.jqVideoElement.dblclick( fsToggle );
 
 playerAPI.jqDocument
-	.keydown( function( e ) {
-		if ( e.keyCode === 122 ) { // 122 -> F11 key
-			return fsToggle();
-		}
-	})
 	.on( "fullscreenchange mozfullscreenchange webkitfullscreenchange", function() {
 		jqBtnFScr
 			.removeClass( "fa-expand fa-compress" )
