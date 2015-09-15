@@ -46,9 +46,17 @@ $.extend( playerAPI, {
 		if ( !arguments.length ) {
 			return elVideo.currentTime;
 		}
+		if ( p < 0 ) {
+			p = 0;
+		} else if ( p > elVideo.duration ) {
+			p = elVideo.duration;
+		}
 		timeUpdate( p );
 		elVideo.currentTime = p;
 		return this;
+	},
+	positionRelative: function( p ) {
+		return this.position( this.position() + p );
 	}
 });
 

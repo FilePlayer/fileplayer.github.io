@@ -24,11 +24,19 @@ $.extend( playerAPI, {
 		if ( !arguments.length ) {
 			return elVideo.volume;
 		}
+		if ( v < 0 ) {
+			v = 0;
+		} else if ( v > 1 ) {
+			v = 1;
+		}
 		elVideo.volume = v;
 		if ( v ) {
 			elVideo.muted = false;
 		}
 		return this;
+	},
+	volumeRelative: function( v ) {
+		return this.volume( this.volume() + v );
 	}
 });
 
