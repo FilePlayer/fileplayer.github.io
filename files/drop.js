@@ -6,24 +6,24 @@ var
 	reader = new FileReader()
 ;
 
-function treatFile( dropFile ) {
+function treatFile( file ) {
 	// Create a temporary fake absolute path to the dropped file
-	var dropFileUrl = URL.createObjectURL( dropFile );
+	var url = URL.createObjectURL( file );
 
-	switch ( dropFile.type ) {
+	switch ( file.type ) {
 		case "video/mp4" :
-			playerAPI.videoElement.src = dropFileUrl;
+			playerAPI.videoElement.src = url;
 			playerAPI.play( true );
 		break;
 
 		case "text/subtitles" :
-			playerAPI.addSubtitles( dropFileUrl );
+			playerAPI.addSubtitles( url );
 		break;
 	}
 
 	// Show the title's file on the screen
 	jqTitleFile
-		.text( dropFile.name )
+		.text( file.name )
 		.addClass( "visible" )
 	;
 	setTimeout( function() {
@@ -34,11 +34,11 @@ function treatFile( dropFile ) {
 function encodeToWebVTT( fileContent ) {
 	return (
 		"WEBVTT\n\n" +
-			fileContent
-				// Delete special encoded characters then make VTT coding style
-				.substr( fileContent.indexOf( "1" ) )
-				// Replace "," in SRT files by "." in VTT files
-				.replace( /(\d{2}),(\d{3})/g, "$1.$2" )
+		fileContent
+			// Delete special encoded characters then make VTT coding style
+			.substr( fileContent.indexOf( "1" ) )
+			// Replace "," in SRT files by "." in VTT files
+			.replace( /(\d{2}),(\d{3})/g, "$1.$2" )
 	);
 }
 
@@ -47,27 +47,34 @@ $( document.body )
 	.on( "drop", function( e ) {
 		e = e.originalEvent;
 
-		// Save file's informations
-		var dropFile = e.dataTransfer.files[ 0 ];
+		var
+			blob,
+			file = e.dataTransfer.files[ 0 ],
+			name = file.name,
+			extension = name.substr( name.lastIndexOf( "." ) + 1 )
+		;
 
-		switch ( dropFile.name.substr( dropFile.name.lastIndexOf( "." ) + 1 ).toLowerCase() ) {
+		switch ( extension.toLowerCase() ) {
 			// Handle subtitles files
 			case "vtt" :
 			case "srt" :
 				reader.onloadend = function () {
-					treatFile(
-						new Blob(
-							[ encodeToWebVTT( reader.result ) ],
-							{ type: "text/subtitles" }
-						)
+					blob = new Blob(
+						[ encodeToWebVTT( reader.result ) ],
+						{
+							type: "text/subtitles",
+							endings: "transparent",
+						}
 					);
+					blob.name = name;
+					treatFile( blob );
 				}
-				reader.readAsBinaryString( dropFile );
+				reader.readAsText( file );
 			break;
 
-			// Handles all files
+			// Handles all others files
 			default :
-				treatFile( dropFile );
+				treatFile( file );
 		}
 
 		return false;
