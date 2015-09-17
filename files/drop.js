@@ -50,7 +50,7 @@ $( document.body )
 		// Save file's informations
 		var dropFile = e.dataTransfer.files[ 0 ];
 
-		switch ( dropFile.name.substr( dropFile.name.lastIndexOf( "." ) + 1 ) ) {
+		switch ( dropFile.name.substr( dropFile.name.lastIndexOf( "." ) + 1 ).toLowerCase() ) {
 			// Handle subtitles files
 			case "vtt" :
 			case "srt" :
