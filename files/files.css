@@ -1,4 +1,4 @@
-#title-file {
+#titleFile {
     position: absolute;
     top: 50px;
     overflow: hidden;
@@ -12,6 +12,6 @@
     opacity: 0;
 }
 
-#title-file.visible {
+#titleFile.visible {
     opacity: 1;
 }

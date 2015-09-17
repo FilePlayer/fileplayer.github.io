@@ -1,35 +1,7 @@
 (function() {
 
-var
-	jqTitleFile = $( "#title-file" )
-	// New instance to read the blob's content
-	reader = new FileReader()
-;
-
-function treatFile( file ) {
-	// Create a temporary fake absolute path to the dropped file
-	var url = URL.createObjectURL( file );
-
-	switch ( file.type ) {
-		case "video/mp4" :
-			playerAPI.videoElement.src = url;
-			playerAPI.play( true );
-		break;
-
-		case "text/subtitles" :
-			playerAPI.addSubtitles( url );
-		break;
-	}
-
-	// Show the title's file on the screen
-	jqTitleFile
-		.text( file.name )
-		.addClass( "visible" )
-	;
-	setTimeout( function() {
-		jqTitleFile.removeClass( "visible" );
-	}, 2000 );
-}
+// New instance to read the blob's content
+var reader = new FileReader();
 
 function encodeToWebVTT( fileContent ) {
 	return (
@@ -67,14 +39,14 @@ $( document.body )
 						}
 					);
 					blob.name = name;
-					treatFile( blob );
+					playerAPI.addFile( blob );
 				}
 				reader.readAsText( file );
 			break;
 
 			// Handles all others files
 			default :
-				treatFile( file );
+				playerAPI.addFile( file );
 		}
 
 		return false;
