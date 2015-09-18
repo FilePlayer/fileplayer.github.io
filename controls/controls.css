@@ -24,6 +24,10 @@
 	display: inline-block;
 }
 
+#ctrl .btn.disable {
+	opacity: .3;
+}
+
 #ctrl .bottom .right {
 	text-align: right;
 }

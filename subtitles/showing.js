@@ -23,7 +23,8 @@ var
 	currentCue,
 	enable = false,
 	textTracks = playerAPI.videoElement.textTracks,
-	jqSubCtn = $( "#subtitlesContainer" )
+	jqSubCtn = $( "#subtitlesContainer" ),
+	jqBtnSubtitles = $( ".btn.subtitles", playerAPI.jqControls )
 ;
 
 function initCuesMap() {
@@ -76,6 +77,7 @@ $.extend( playerAPI, {
 		} else {
 			jqSubCtn.empty();
 		}
+		jqBtnSubtitles.toggleClass( "disable", !b );
 		return this;
 	},
 	subtitlesToggle: function() {
