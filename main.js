@@ -12,7 +12,11 @@ window.playerAPI = {
 	jqDocument: $( document ),
 	jqBody: $( document.body ),
 	jqVideoElement: jqVideo,
-	videoElement: jqVideo[ 0 ]
+	videoElement: jqVideo[ 0 ],
+    playlist: {
+        content: [],
+        curr: 0
+    }
 };
 
 })();

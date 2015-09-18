@@ -2,6 +2,7 @@
 
 var
 	elVideo = playerAPI.videoElement,
+	elPlaylist = playerAPI.playlist,
 	jqBtnPlay = $( ".play", playerAPI.jqControls )
 ;
 
@@ -18,6 +19,7 @@ $.extend( playerAPI, {
 		return this;
 	},
 	playToggle: function() {
+		lg( "1" );
 		return this.play( elVideo.paused );
 	}
 });

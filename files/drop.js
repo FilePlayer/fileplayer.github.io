@@ -1,52 +1,40 @@
 (function() {
 
-// New instance to read the blob's content
-var reader = new FileReader();
-
-function encodeToWebVTT( fileContent ) {
-	return (
-		"WEBVTT\n\n" +
-		fileContent
-			// Delete special encoded characters then make VTT coding style
-			.substr( fileContent.indexOf( "1" ) )
-			// Replace "," in SRT files by "." in VTT files
-			.replace( /(\d{2}),(\d{3})/g, "$1.$2" )
-	);
+function isFileOrDirectory( item ) {
+	if ( item.isFile ){
+		item.file( function( file ) {
+			playerAPI.checkExtension( file );
+		});
+	}
+	else if ( item.isDirectory ) {
+		var dirReader = item.createReader();
+		dirReader.readEntries( function( entries ) {
+			$.each( entries, function( key, entry ) {
+					isFileOrDirectory( entry );
+			});
+		});
+	}
 }
 
 $( document.body )
 	.on( "dragover", false )
 	.on( "drop", function( e ) {
 		e = e.originalEvent;
+		data = e.dataTransfer;
 
-		var
-			blob,
-			file = e.dataTransfer.files[ 0 ],
-			name = file.name,
-			extension = name.substr( name.lastIndexOf( "." ) + 1 )
-		;
-
-		switch ( extension.toLowerCase() ) {
-			// Handle subtitles files
-			case "vtt" :
-			case "srt" :
-				reader.onloadend = function () {
-					blob = new Blob(
-						[ encodeToWebVTT( reader.result ) ],
-						{
-							type: "text/subtitles",
-							endings: "transparent",
-						}
-					);
-					blob.name = name;
-					playerAPI.addFile( blob );
+		// Chrome support
+		if ( data.items ){
+			$.each( data.items, function( key, item ) {
+				if ( ( item = item.webkitGetAsEntry() ) ) {
+					isFileOrDirectory( item );
 				}
-				reader.readAsText( file );
-			break;
-
-			// Handles all others files
-			default :
-				playerAPI.addFile( file );
+			});
+		}
+		// Firefox does not support directories, so I don't handle it.
+		else if ( data.files ) {
+			$.each( data.files, function( key, file ) {
+				playerAPI.checkExtension( file );
+			});
 		}
 
 		return false;

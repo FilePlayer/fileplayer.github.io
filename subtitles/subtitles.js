@@ -5,12 +5,15 @@ var
 ;
 
 $.extend( playerAPI, {
-	addSubtitles: function( url ) {
+	addSubtitles: function( file ) {
+		// playerAPI.tracks[]
+		// return this;
 		$( "<track>", {
 			kind: "subtitles",
-			src: url,
+			src: file.url,
 			srclang: "en",
 			label: "Subtitles " + ( tracks ? tracks.length + 1 : 1 ),
+			name: file.name,
 			on: {
 				load: function() {
 					tracks[ 0 ].mode = "hidden";
@@ -28,8 +31,24 @@ $.extend( playerAPI, {
 		if ( tracks[ 0 ] ) {
 			tracks[ 0 ].mode = "showing";
 		}
+		return this;
+	},
+	trackOn: function( file ) {
 
 		return this;
+	},
+	trackOff: function( file ) {
+		return this;
+	},
+	encodeToWebVTT: function( fileContent ) {
+		return (
+			"WEBVTT\n\n" +
+			fileContent
+				// Delete special encoded characters then make VTT coding style
+				.substr( fileContent.indexOf( "1" ) )
+				// Replace "," in SRT files by "." in VTT files
+				.replace( /(\d{2}),(\d{3})/g, "$1.$2" )
+		);
 	}
 });
 
