@@ -11,7 +11,7 @@ $.extend( playerAPI, {
 
 		switch ( file.type ) {
 			case "video/mp4" :
-				playerAPI.playlist.content.unshift( file );
+				playerAPI.playlist.content.push( file );
 				playerAPI.videoElement.src = playerAPI.playlist.content[playerAPI.playlist.curr].url;
 				playerAPI.play( true );
 			break;

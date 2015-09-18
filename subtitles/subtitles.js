@@ -6,8 +6,6 @@ var
 
 $.extend( playerAPI, {
 	addSubtitles: function( file ) {
-		// playerAPI.tracks[]
-		// return this;
 		$( "<track>", {
 			kind: "subtitles",
 			src: file.url,
@@ -31,13 +29,6 @@ $.extend( playerAPI, {
 		if ( tracks[ 0 ] ) {
 			tracks[ 0 ].mode = "showing";
 		}
-		return this;
-	},
-	trackOn: function( file ) {
-
-		return this;
-	},
-	trackOff: function( file ) {
 		return this;
 	},
 	encodeToWebVTT: function( fileContent ) {
