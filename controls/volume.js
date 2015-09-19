@@ -24,12 +24,10 @@ $.extend( playerAPI, {
 		if ( !arguments.length ) {
 			return elVideo.volume;
 		}
-		if ( v < 0 ) {
-			v = 0;
-		} else if ( v > 1 ) {
-			v = 1;
-		}
-		elVideo.volume = v;
+		elVideo.volume = v =
+			v < 0 ? 0 :
+			v < 1 ? v : 1
+		;
 		if ( v ) {
 			elVideo.muted = false;
 		}
@@ -53,8 +51,16 @@ playerAPI
 	// Control the volume with the keyboard.
 	.addKeys( "ctrl+down", function() { playerAPI.volumeRelative( -.05 ); })
 	.addKeys( "ctrl+up",   function() { playerAPI.volumeRelative( +.05 ); })
-	// Update the UI/controls in live
 	.jqVideoElement
+		// Control the volume with the vertical mouse scroll.
+		.on( "wheel", function( e ) {
+			playerAPI.volumeRelative(
+				e.originalEvent.deltaY < 0
+					? +.05
+					: -.05
+			);
+		})
+		// Sync the UI/controls with `elVideo.volume`.
 		.on( "volumechange", function() {
 			jqBtnVol
 				.removeClass( "fa-volume-off fa-volume-down fa-volume-up" )
