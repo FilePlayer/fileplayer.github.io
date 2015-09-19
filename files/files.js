@@ -1,9 +1,5 @@
 (function() {
 
-var
-	jqTitleFile = $( "#titleFile" )
-;
-
 $.extend( playerAPI, {
 	addFile: function( file ) {
 		var
@@ -14,25 +10,19 @@ $.extend( playerAPI, {
 		switch ( extension.toLowerCase() ) {
 			case "vtt" :
 			case "srt" :
-				playerAPI.createSubtitles( file );
+				this.createSubtitles( file );
 			break;
 
 			case "mp4" :
-				playerAPI.videoElement.src = URL.createObjectURL( file );
-				playerAPI.play( true );
+				this.videoElement.src = URL.createObjectURL( file );
+				this.play( true );
 			break;
+
+			default :
+			return this;
 		}
 
-		// Show the title's file on the screen
-		jqTitleFile
-			.text( name )
-			.addClass( "visible" )
-		;
-		setTimeout( function() {
-			jqTitleFile.removeClass( "visible" );
-		}, 2000 );
-
-		return this;
+		return this.showTitle( name );
 	}
 });
 
