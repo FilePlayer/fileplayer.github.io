@@ -48,7 +48,14 @@ jqSliderVol.on( "input", function() {
 });
 
 function volRel( v ) {
-	playerAPI.volumeRelative( v );
+	playerAPI
+		.volumeRelative( v )
+		.shortcutDesc(
+			"Volume : " +
+			Math.round( playerAPI.volume() * 100 ) +
+			" %"
+		)
+	;
 	return false;
 }
 

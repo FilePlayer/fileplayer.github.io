@@ -13,32 +13,18 @@ var
 	sliderClicked = false
 ;
 
-// convertSecondes( 4041 ) -> "01:07:21"
-// ~~21.7 === 21
-function convertSecondes( sec ) {
-	var
-		s = ~~( sec % 60 ),
-		m = ~~( sec / 60 ) % 60,
-		h = ~~( sec / 3600 )
-	;
-	if ( s < 10 ) { s = "0" + s; }
-	if ( m < 10 ) { m = "0" + m; }
-	if ( h < 10 ) { h = "0" + h; }
-	return h + ":" + m + ":" + s;
-}
-
 function timeUpdate( sec ) {
 	var dur = elVideo.duration;
 	playerAPI.subtitlesUpdate( sec );
-	jqCurrent.text( convertSecondes( sec ) );
-	jqRemaining.text( convertSecondes( dur - sec ) );
+	jqCurrent.text( playerAPI.secondsToString( sec ) );
+	jqRemaining.text( playerAPI.secondsToString( dur - sec ) );
 	if ( dur && !sliderClicked ) {
 		jqSliderPosition.val( sec / dur );
 	}
 }
 
 function durationUpdate() {
-	jqDuration.text( convertSecondes( elVideo.duration ) );
+	jqDuration.text( playerAPI.secondsToString( elVideo.duration ) );
 }
 
 $.extend( playerAPI, {
@@ -57,6 +43,18 @@ $.extend( playerAPI, {
 	},
 	positionRelative: function( p ) {
 		return this.position( this.position() + p );
+	},
+	// playerAPI.secondsToString( 4041 ); -> "01:07:21"
+	secondsToString: function( sec ) {
+		var
+			s = ~~( sec % 60 ),
+			m = ~~( sec / 60 ) % 60,
+			h = ~~( sec / 3600 )
+		;
+		if ( s < 10 ) { s = "0" + s; }
+		if ( m < 10 ) { m = "0" + m; }
+		if ( h < 10 ) { h = "0" + h; }
+		return h + ":" + m + ":" + s;
 	}
 });
 
@@ -78,7 +76,13 @@ jqTxtPosition.click( function() {
 });
 
 function posRel( p ) {
-	playerAPI.positionRelative( p );
+	playerAPI
+		.positionRelative( p )
+		.shortcutDesc(
+			playerAPI.secondsToString( playerAPI.position() ) + " / " +
+			playerAPI.secondsToString( elVideo.duration )
+		)
+	;
 	return false;
 }
 

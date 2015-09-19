@@ -1,21 +1,31 @@
 (function() {
 
 var
-	jqTitle = $( "#titleFile" )
+	jqTxt = $( "#titleFile, #shortcutDesc" ),
+	timeoutIds = []
 ;
 
+function show( i, txt ) {
+	clearTimeout( timeoutIds[ i ] );
+
+	jqTxt.eq( i )
+		.text( txt )
+		.removeClass( "hidden" )
+	;
+
+	// Start to fadeout the element after 2s.
+	timeoutIds[ i ] = setTimeout( function() {
+		jqTxt.eq( i ).addClass( "hidden" );
+	}, 2000 );
+}
+
 $.extend( playerAPI, {
-	showTitle: function( title ) {
-		jqTitle
-			.text( title )
-			.addClass( "visible" )
-		;
-
-		// Start to fadeout the title after 2s.
-		setTimeout( function() {
-			jqTitle.removeClass( "visible" );
-		}, 2000 );
-
+	showTitle: function( txt ) {
+		show( 0, txt );
+		return this;
+	},
+	shortcutDesc: function( txt ) {
+		show( 1, txt );
 		return this;
 	}
 });

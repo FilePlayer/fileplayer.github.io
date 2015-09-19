@@ -31,7 +31,13 @@ jqBtnPlay.click( playToggle );
 
 playerAPI
 	// Play/pause the file by pressing the space bar.
-	.addKeys( " ", playToggle )
+	.addKeys( " ", function() {
+		playToggle();
+		playerAPI.shortcutDesc( playerAPI.play()
+			? "Play"
+			: "Pause"
+		);
+	})
 	// Update the play/pause button via the standard play/pause events.
 	.jqVideoElement
 		.on( "play pause", function() {

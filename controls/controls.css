@@ -1,3 +1,30 @@
+#ctrl,
+#titleFile,
+#shortcutDesc {
+	transition: all .25s;
+}
+
+.ctrlHiding #ctrl,
+#titleFile.hidden,
+#shortcutDesc.hidden {
+	transition-duration: 2s;
+	visibility: hidden;
+	opacity: 0;
+}
+
+#titleFile,
+#shortcutDesc {
+	position: absolute;
+	top: 50px;
+	left: 20px;
+	font-size: 20px;
+}
+
+#shortcutDesc {
+	left: auto;
+	right: 20px;
+}
+
 #ctrl {
 	position: absolute;
 	bottom: 0;
@@ -6,13 +33,6 @@
 	padding: 10px;
 	color: #ddd;
 	background: rgba( 255, 255, 255, .1 );
-	transition: all .25s;
-}
-
-.ctrlHiding #ctrl {
-	transition-duration: 2s;
-	visibility: hidden;
-	opacity: 0;
 }
 
 #ctrl * {
