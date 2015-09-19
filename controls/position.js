@@ -44,7 +44,6 @@ $.extend( playerAPI, {
 	positionRelative: function( p ) {
 		return this.position( this.position() + p );
 	},
-	// playerAPI.secondsToString( 4041 ); -> "01:07:21"
 	secondsToString: function( sec ) {
 		var
 			s = ~~( sec % 60 ),
@@ -53,8 +52,13 @@ $.extend( playerAPI, {
 		;
 		if ( s < 10 ) { s = "0" + s; }
 		if ( m < 10 ) { m = "0" + m; }
-		if ( h < 10 ) { h = "0" + h; }
-		return h + ":" + m + ":" + s;
+
+		// 3600 -> "1:00:00"
+		//   60 ->   "01:00"
+		return (
+			( h ? h + ":" : "" ) +
+			m + ":" + s
+		);
 	}
 });
 
