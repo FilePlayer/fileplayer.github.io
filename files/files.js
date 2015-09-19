@@ -6,24 +6,26 @@ var
 
 $.extend( playerAPI, {
 	addFile: function( file ) {
+		var
+			name = file.name,
+			extension = name.substr( name.lastIndexOf( "." ) + 1 )
+		;
 
-		// Create a temporary fake absolute path to the dropped file
-		var url = URL.createObjectURL( file );
-
-		switch ( file.type ) {
-			case "video/mp4" :
-				playerAPI.videoElement.src = url;
-				playerAPI.play( true );
+		switch ( extension.toLowerCase() ) {
+			case "vtt" :
+			case "srt" :
+				playerAPI.createSubtitles( file );
 			break;
 
-			case "text/subtitles" :
-				playerAPI.addSubtitles( url );
+			case "mp4" :
+				playerAPI.videoElement.src = URL.createObjectURL( file );
+				playerAPI.play( true );
 			break;
 		}
 
 		// Show the title's file on the screen
 		jqTitleFile
-			.text( file.name )
+			.text( name )
 			.addClass( "visible" )
 		;
 		setTimeout( function() {
