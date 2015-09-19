@@ -77,20 +77,27 @@ jqTxtPosition.click( function() {
 	jqTxtPosition.toggleClass( "remaining" );
 });
 
+function posRel( p ) {
+	playerAPI.positionRelative( p );
+	return false;
+}
+
 playerAPI
 	// Control the position with the keyboard.
-	.addKeys( "shift+left",  function() { playerAPI.positionRelative(  -3 ); })
-	.addKeys( "shift+right", function() { playerAPI.positionRelative(  +3 ); })
-	.addKeys( "alt+left",    function() { playerAPI.positionRelative( -10 ); return false; })
-	.addKeys( "alt+right",   function() { playerAPI.positionRelative( +10 ); return false; })
-	.addKeys( "ctrl+left",   function() { playerAPI.positionRelative( -60 ); })
-	.addKeys( "ctrl+right",  function() { playerAPI.positionRelative( +60 ); })
-	// Update the currentTime, remainingTime and the duration.
+	.addKeys( "shift+left",  posRel.bind( null,  -3 ) )
+	.addKeys( "shift+right", posRel.bind( null,  +3 ) )
+	.addKeys( "alt+left",    posRel.bind( null, -10 ) )
+	.addKeys( "alt+right",   posRel.bind( null, +10 ) )
+	.addKeys( "ctrl+left",   posRel.bind( null, -60 ) )
+	.addKeys( "ctrl+right",  posRel.bind( null, +60 ) )
+	// Sync the currentTime, remainingTime and the duration.
 	.jqVideoElement
-		.on( "timeupdate", function() {
-			timeUpdate( elVideo.currentTime );
+		.on( {
+			durationchange: durationUpdate,
+			timeupdate: function() {
+				timeUpdate( elVideo.currentTime );
+			}
 		})
-		.on( "durationchange", durationUpdate )
 ;
 
 // Write 00:00:00 by default.

@@ -47,17 +47,21 @@ jqSliderVol.on( "input", function() {
 	playerAPI.volume( this.value );
 });
 
+function volRel( v ) {
+	playerAPI.volumeRelative( v );
+	return false;
+}
+
 playerAPI
 	// Control the volume with the keyboard.
-	.addKeys( "ctrl+down", function() { playerAPI.volumeRelative( -.05 ); })
-	.addKeys( "ctrl+up",   function() { playerAPI.volumeRelative( +.05 ); })
+	.addKeys( "ctrl+down", volRel.bind( null, -.05 ) )
+	.addKeys( "ctrl+up",   volRel.bind( null, +.05 ) )
 	.jqVideoElement
 		// Control the volume with the vertical mouse scroll.
 		.on( "wheel", function( e ) {
-			playerAPI.volumeRelative(
-				e.originalEvent.deltaY < 0
-					? +.05
-					: -.05
+			volRel( e.originalEvent.deltaY < 0
+				? +.05
+				: -.05
 			);
 		})
 		// Sync the UI/controls with `elVideo.volume`.
