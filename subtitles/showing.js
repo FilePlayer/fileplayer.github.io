@@ -76,6 +76,7 @@ $.extend( playerAPI, {
 			this.subtitlesUpdate( this.position() );
 		} else {
 			jqSubCtn.empty();
+			currentCue = null;
 		}
 		jqBtnSubtitles.toggleClass( "disable", !b );
 		return this;
