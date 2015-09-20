@@ -32,7 +32,12 @@
 	right: 0;
 	padding: 10px;
 	color: #ddd;
-	background: rgba( 255, 255, 255, .1 );
+	background: rgba( 20, 20, 20, .8 );
+	cursor: default;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
 }
 
 #ctrl * {
@@ -42,6 +47,11 @@
 #ctrl .bottom > * {
 	width: 50%;
 	display: inline-block;
+}
+
+#ctrl .btn {
+	font-size: 18px;
+	cursor: pointer;
 }
 
 #ctrl .btn.disable {
@@ -58,9 +68,11 @@
 
 #ctrl .slider.position {
 	width: 100%;
+	margin-bottom: 5px;
 }
 
-#ctrl .position {
+#ctrl .text.position {
+	margin-left: 10px;
 	font-family: monospace;
 	cursor: pointer;
 }
