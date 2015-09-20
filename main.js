@@ -10,7 +10,7 @@ var
 // Global object for the API
 window.playerAPI = {
 	jqDocument: $( document ),
-	jqBody: $( document.body ),
+	jqPlayer: $( "#player" ),
 	jqVideoElement: jqVideo,
 	videoElement: jqVideo[ 0 ]
 };

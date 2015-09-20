@@ -2,7 +2,7 @@
 
 var
 	timeoutId,
-	jqBody = playerAPI.jqBody
+	jqPlayer = playerAPI.jqPlayer
 ;
 
 $.extend( playerAPI, {
@@ -11,13 +11,13 @@ $.extend( playerAPI, {
 
 function showCtrl() {
 	clearTimeout( timeoutId );
-	jqBody.removeClass( "ctrlHiding ctrlHidden" );
+	jqPlayer.removeClass( "ctrlHiding ctrlHidden" );
 }
 
 function hideCtrl() {
-	jqBody.addClass( "ctrlHiding" );
+	jqPlayer.addClass( "ctrlHiding" );
 	timeoutId = setTimeout( function() {
-		jqBody.addClass( "ctrlHidden" );
+		jqPlayer.addClass( "ctrlHidden" );
 	}, 2000 );
 }
 
