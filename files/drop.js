@@ -5,7 +5,11 @@ $( document.body )
 	.on( "drop", function( e ) {
 		e = e.originalEvent;
 
-		playerAPI.addFile( e.dataTransfer.files[ 0 ] );
+		var file = e.dataTransfer.files[ 0 ];
+
+		if ( file ) {
+			playerAPI.addFile( file );
+		}
 
 		return false;
 	})
