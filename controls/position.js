@@ -2,15 +2,11 @@
 
 var
 	elVideo = playerAPI.videoElement,
-	jqSliderPosition = $( ".slider.position", playerAPI.jqControls ),
+	jqElement_cuteSlider = $( ".cuteSlider.position", playerAPI.jqControls ),
 	jqTxtPosition = $( ".text.position", playerAPI.jqControls ),
 	jqCurrent = $( ".current", jqTxtPosition ),
 	jqDuration = $( ".duration", jqTxtPosition ),
-	jqRemaining = $( ".remaining", jqTxtPosition ),
-
-	// This boolean prevent to not update automatically
-	// the position's slider when the user click on it.
-	sliderClicked = false
+	jqRemaining = $( ".remaining", jqTxtPosition )
 ;
 
 function timeUpdate( sec ) {
@@ -18,8 +14,8 @@ function timeUpdate( sec ) {
 	playerAPI.subtitlesUpdate( sec );
 	jqCurrent.text( playerAPI.secondsToString( sec ) );
 	jqRemaining.text( playerAPI.secondsToString( dur - sec ) );
-	if ( dur && !sliderClicked ) {
-		jqSliderPosition.val( sec / dur );
+	if ( dur ) {
+		jqElement_cuteSlider.element().val( sec / dur );
 	}
 }
 
@@ -62,17 +58,9 @@ $.extend( playerAPI, {
 	}
 });
 
-jqSliderPosition
-	.mousedown( function() {
-		sliderClicked = true;
-	})
-	.mouseup( function() {
-		sliderClicked = false;
-	})
-	.on( "input", function() {
-		playerAPI.position( this.value * elVideo.duration );
-	})
-;
+jqElement_cuteSlider.on( "change", function() {
+	playerAPI.position( this.value * elVideo.duration );
+});
 
 // Switch between showing the duration or the remaining time.
 jqTxtPosition.click( function() {
