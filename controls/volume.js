@@ -3,7 +3,7 @@
 var
 	elVideo = playerAPI.videoElement,
 	jqBtnVol = $( ".btn.volume", playerAPI.jqControls ),
-	jqSliderVol = $( ".slider.volume", playerAPI.jqControls )
+	jqElement_cuteSlider = $( ".cuteSlider.volume", playerAPI.jqControls )
 ;
 
 $.extend( playerAPI, {
@@ -43,7 +43,7 @@ jqBtnVol.click( function() {
 	return false;
 });
 
-jqSliderVol.on( "input", function() {
+jqElement_cuteSlider.change( function() {
 	playerAPI.volume( this.value );
 });
 
@@ -83,7 +83,7 @@ playerAPI
 							: "fa-volume-up"
 				)
 			;
-			jqSliderVol.val( elVideo.muted
+			jqElement_cuteSlider.element().val( elVideo.muted
 				? 0
 				: elVideo.volume
 			);

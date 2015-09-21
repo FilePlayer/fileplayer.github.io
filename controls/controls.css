@@ -62,8 +62,10 @@
 	text-align: right;
 }
 
-#ctrl .slider.volume {
+#ctrl .cuteSlider.volume {
+	margin: 0 7px;
 	width: 50px;
+	height: 14px;
 }
 
 #ctrl .slider.position {
@@ -72,7 +74,6 @@
 }
 
 #ctrl .text.position {
-	margin-left: 10px;
 	font-family: monospace;
 	cursor: pointer;
 }
