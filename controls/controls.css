@@ -31,7 +31,7 @@
 	left: 0;
 	right: 0;
 	padding: 15px;
-	color: #ddd;
+	color: rgba( 255, 255, 255, .6 );
 	background: linear-gradient( to bottom, rgba( 0, 0, 0, 0 ), #000 );
 	cursor: default;
 	-webkit-user-select: none;
@@ -52,10 +52,15 @@
 #ctrl .btn {
 	font-size: 18px;
 	cursor: pointer;
+	transition: color .2s;
 }
 
 #ctrl .btn.disable {
-	opacity: .3;
+	color: rgba( 255, 255, 255, .3 );
+}
+
+#ctrl .btn:hover {
+	color: #fff;
 }
 
 #ctrl .cuteSlider.position {
@@ -69,14 +74,13 @@
 }
 
 #ctrl .cuteSlider.volume {
-	margin: 0 7px;
+	margin: 0 11px 0 7px;
 	width: 50px;
 	height: 14px;
 }
 
-#ctrl .text.position {
-	font-family: monospace;
-	cursor: pointer;
+#ctrl .txt.position {
+	font-size: 12px;
 }
 
 #ctrl .position .delimiter:after {

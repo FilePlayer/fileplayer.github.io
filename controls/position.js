@@ -3,7 +3,7 @@
 var
 	elVideo = playerAPI.videoElement,
 	jqElement_cuteSlider = $( ".cuteSlider.position", playerAPI.jqControls ),
-	jqTxtPosition = $( ".text.position", playerAPI.jqControls ),
+	jqTxtPosition = $( ".txt.position", playerAPI.jqControls ),
 	jqCurrent = $( ".current", jqTxtPosition ),
 	jqDuration = $( ".duration", jqTxtPosition ),
 	jqRemaining = $( ".remaining", jqTxtPosition )
