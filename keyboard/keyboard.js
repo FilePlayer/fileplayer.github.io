@@ -17,7 +17,9 @@ var
 		LEFT: 37,
 		UP: 38,
 		RIGHT: 39,
-		DOWN: 40
+		DOWN: 40,
+		PLUS: 107,
+		MINUS: 109
 	}
 ;
 
@@ -38,10 +40,7 @@ $.extend( playerAPI, {
 					case "SHIFT" : shift = true; break;
 					case "ALT"   : alt   = true; break;
 					default :
-						key = that.length === 1
-							? that.charCodeAt( 0 )
-							: keysCodes[ that ]
-						;
+						key = keysCodes[ that ] || that.charCodeAt( 0 );
 					break;
 				}
 			})
