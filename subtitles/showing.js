@@ -23,7 +23,7 @@ var
 	currentCue,
 	enable = false,
 	textTracks = playerAPI.videoElement.textTracks,
-	jqSubCtn = $( "#subtitlesContainer" ),
+	jqSubCtn = $( "#cues > *" ),
 	jqBtnSubtitles = $( ".btn.subtitles", playerAPI.jqControls )
 ;
 
@@ -39,7 +39,7 @@ function initCuesMap() {
 		;
 		textTrack.cuesMap = cuesMap;
 		for ( i = 0; cue = cues[ i ]; ++i ) {
-			cue.text = cue.text.replace( /\n/g, "<br/>" );
+			cue.text = "&nbsp;" + cue.text.replace( /\n/g, "&nbsp;<br/>&nbsp;" ) + "&nbsp;";
 			sA = ~~cue.startTime;
 			sB = ~~cue.endTime;
 			for ( ; sA <= sB; ++sA ) {

@@ -1,13 +1,21 @@
-#subtitlesContainer {
+#cues {
 	position: absolute;
 	bottom: 70px;
 	width: 100%;
-	font-size: 22px;
-	color: #fff;
 	text-align: center;
-	text-shadow: 0 0 6px #000;
 }
 
-.ctrlHidden #subtitlesContainer {
+.ctrlHidden #cues {
 	bottom: 5px;
+}
+
+#cues > span {
+	padding: 3px 1px;
+	color: #fff;
+	font: 22px/31px sans-serif;
+	background: rgba( 0, 0, 0, .8 );
+}
+
+#cues > span:empty {
+	visibility: hidden;
 }
