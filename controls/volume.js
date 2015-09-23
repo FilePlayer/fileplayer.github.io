@@ -3,7 +3,8 @@
 var
 	elVideo = playerAPI.videoElement,
 	jqBtnVol = $( ".btn.volume", playerAPI.jqControls ),
-	jqElement_cuteSlider = $( ".cuteSlider.volume", playerAPI.jqControls )
+	jqIconVol = $( ".fa", jqBtnVol ),
+	jqElement_cuteSlider = $( ".cuteSlider", jqBtnVol )
 ;
 
 $.extend( playerAPI, {
@@ -38,7 +39,7 @@ $.extend( playerAPI, {
 	}
 });
 
-jqBtnVol.click( function() {
+jqIconVol.click( function() {
 	playerAPI.muteToggle();
 	return false;
 });
@@ -72,7 +73,7 @@ playerAPI
 		})
 		// Sync the UI/controls with `elVideo.volume`.
 		.on( "volumechange", function() {
-			jqBtnVol
+			jqIconVol
 				.removeClass( "fa-volume-off fa-volume-down fa-volume-up" )
 				.addClass(
 					elVideo.muted || elVideo.volume === 0

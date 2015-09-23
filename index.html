@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="reset.css"/>
 	<link rel="stylesheet" href="video/video.css"/>
 	<link rel="stylesheet" href="controls/controls.css"/>
+	<link rel="stylesheet" href="controls/cuteSlider.css"/>
 	<link rel="stylesheet" href="subtitles/subtitles.css"/>
 	<script src="//code.jquery.com/jquery-3.0.0-alpha1.min.js"></script>
 	<script src="//jquery-element.github.io/dist/jquery-element-1.7.0.js"></script>
@@ -23,19 +24,20 @@
 		<input
 			type="range"
 			data-jquery-element="cuteSlider"
-			data-jquery-element-class="cuteSlider position"
+			data-jquery-element-class="position"
 			value="0" min="0" max="1" step=".0001"
 		/>
 		<div class="bottom">
 			<div class="left">
 				<i class="btn play fa fa-fw fa-play"></i
-				><i class="btn volume fa fa-fw fa-volume-up"></i
-				><input
-					type="range"
-					data-jquery-element="cuteSlider"
-					data-jquery-element-class="cuteSlider volume"
-					value="1" min="0" max="1" step=".01"
-				/><span class="txt btn position">
+				><span class="btn volume"
+					><i class="fa fa-fw fa-volume-up"></i
+					><input
+						type="range"
+						data-jquery-element="cuteSlider"
+						value="1" min="0" max="1" step=".01"
+				/></span
+				><span class="txt btn position">
 					<span class="time current"></span
 					><span class="delimiter"></span
 					><span class="time duration"></span
