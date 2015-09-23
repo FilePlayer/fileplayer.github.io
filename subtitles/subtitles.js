@@ -18,11 +18,15 @@ function encodeToWebVTT( fileContent ) {
 $.extend( playerAPI, {
 	createSubtitles: function( file ) {
 		var
-			blob,
 			reader = new FileReader()
 		;
 
 		reader.onloadend = function () {
+			var
+				blob,
+				tracksLen = tracks ? tracks.length : 0
+			;
+
 			blob = new Blob(
 				[ encodeToWebVTT( reader.result ) ],
 				{
@@ -37,24 +41,26 @@ $.extend( playerAPI, {
 				kind: "subtitles",
 				src: blob.url,
 				srclang: "en",
-				label: "Subtitles " + ( tracks ? tracks.length + 1 : 1 ),
+				label: "Subtitles " + ( tracksLen + 1 ),
 				name: file.name,
 				on: {
-					load: function() {
-						tracks[ 0 ].mode = "hidden";
-						playerAPI
-							.subtitlesSelect( 0 )
-							.subtitlesEnable( true )
-						;
-					}
+					load: ( function( len ) {
+						return function( e ) {
+							tracks[ len ].mode = "hidden";
+							playerAPI
+								.subtitlesSelect( len )
+								.subtitlesEnable( true )
+							;
+						};
+					})( tracksLen )
 				}
-			}).prependTo( playerAPI.videoElement );
+			}).appendTo( playerAPI.videoElement );
 
 			// Chrome will start loading the track only
 			// after the `mode` attribute is set to "showing".
 			// The `if` is necessary for Firefox.
-			if ( tracks[ 0 ] ) {
-				tracks[ 0 ].mode = "showing";
+			if ( tracks[ tracksLen ] ) {
+				tracks[ tracksLen ].mode = "showing";
 			}
 		};
 
