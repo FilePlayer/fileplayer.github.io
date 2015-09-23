@@ -19,7 +19,7 @@ videoElement = {
 
 var
 	textTrack,
-	cues,
+	cuesCopies,
 	currentCue,
 	enable = false,
 	textTracks = playerAPI.videoElement.textTracks,
@@ -27,24 +27,32 @@ var
 	jqBtnSubtitles = $( ".btn.subtitles", playerAPI.jqControls )
 ;
 
-function initCuesMap() {
+function initCuesMap( cues ) {
 	if ( !textTrack.cuesMap ) {
 		var
 			cue,
 			sA,
 			sB,
 			i = 0,
-			cuesMapLen = ~~cues[ cues.length - 1 ].endTime + 1,
+			cuesLen = cues.length,
+			cuesMapLen = ~~cues[ cuesLen - 1 ].endTime + 1,
 			cuesMap = new Array( cuesMapLen )
 		;
+		cuesCopies = new Array( cuesLen );
 		textTrack.cuesMap = cuesMap;
-		for ( i = 0; cue = cues[ i ]; ++i ) {
-			cue.text = "&nbsp;" + cue.text.replace( /\n/g, "&nbsp;<br/>&nbsp;" ) + "&nbsp;";
+		for ( i = 0; i < cuesLen; ++i ) {
+			cue = cues[ i ];
+			cuesCopies[ i ] = {
+				id: +cue.id,
+				startTime: cue.startTime,
+				endTime: cue.endTime,
+				text: "&nbsp;" + cue.text.replace( /\n/g, "&nbsp;<br/>&nbsp;" ) + "&nbsp;"
+			};
 			sA = ~~cue.startTime;
 			sB = ~~cue.endTime;
 			for ( ; sA <= sB; ++sA ) {
 				if ( !cuesMap[ sA ] ) {
-					cuesMap[ sA ] = cue;
+					cuesMap[ sA ] = cuesCopies[ i ];
 				}
 			}
 		}
@@ -62,7 +70,7 @@ function findCue( sec ) {
 				if ( sec <= cue.endTime ) {
 					return cue;
 				}
-			} while ( cue = cues[ +cue.id ] );
+			} while ( cue = cuesCopies[ cue.id ] );
 		}
 	}
 }
@@ -89,8 +97,7 @@ $.extend( playerAPI, {
 			return textTrack;
 		}
 		textTrack = textTracks[ ind ];
-		cues = textTrack.cues;
-		initCuesMap();
+		initCuesMap( textTrack.cues );
 		return this.subtitlesUpdate( this.position() );
 	},
 	subtitlesUpdate: function( sec ) {
