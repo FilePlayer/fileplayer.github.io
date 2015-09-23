@@ -1,11 +1,3 @@
-/*
-	playerAPI
-		.addKeys(
-			"ctrl+o"
-		)
-	;
-*/
-
 (function() {
 
 var
@@ -65,7 +57,8 @@ playerAPI.jqDocument
 				sc.shift === e.shiftKey &&
 				sc.alt === e.altKey
 			) {
-				return sc.fn();
+				sc.fn();
+				return false;
 			}
 		}
 	})

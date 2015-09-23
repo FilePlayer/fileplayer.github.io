@@ -48,11 +48,9 @@ function setSpd( lvl ) {
 playerAPI
 	.addKeys( "minus", function() {
 		setSpd( spdLvlCurrent - 1 );
-		return false;
 	})
 	.addKeys( "plus", function() {
 		setSpd( spdLvlCurrent + 1 );
-		return false;
 	})
 ;
 

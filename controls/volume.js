@@ -56,7 +56,6 @@ function volRel( v ) {
 			" %"
 		)
 	;
-	return false;
 }
 
 playerAPI

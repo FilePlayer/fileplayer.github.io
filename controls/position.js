@@ -75,7 +75,6 @@ function posRel( p ) {
 			playerAPI.secondsToString( elVideo.duration )
 		)
 	;
-	return false;
 }
 
 playerAPI
