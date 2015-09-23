@@ -40,6 +40,30 @@
 	        user-select: none;
 }
 
+#ctrl .cuteSlider-track {
+	background: #666;
+}
+
+#ctrl .cuteSlider-track-lower {
+	background: #f22;
+}
+
+#ctrl .cuteSlider-thumb {
+	background: #999;
+	transition: all .1s ease;
+	transition-property: color, width, height, margin;
+	width: 8px;
+	height: 8px;
+	margin: -4px 0 0 -4px;
+}
+
+#ctrl .cuteSlider:hover .cuteSlider-thumb {
+	background: #fff;
+	width: 14px;
+	height: 14px;
+	margin: -7px 0 0 -7px;
+}
+
 #ctrl * {
 	vertical-align: middle;
 }
@@ -52,7 +76,7 @@
 #ctrl .btn {
 	font-size: 18px;
 	cursor: pointer;
-	transition: color .2s;
+	transition: color .1s;
 }
 
 #ctrl .btn.disable {
