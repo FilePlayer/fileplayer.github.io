@@ -28,7 +28,7 @@
 }
 
 #ctrl .btn .cuteSlider {
-	transition: all .1s;
+	transition: all .25s;
 	margin: 0;
 	width: 0;
 	opacity: 0;
