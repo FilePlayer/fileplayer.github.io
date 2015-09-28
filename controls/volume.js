@@ -10,7 +10,7 @@ var
 $.extend( playerAPI, {
 	mute: function( b ) {
 		if ( !arguments.length ) {
-			return elVideo.muted;
+			return elVideo.muted || !elVideo.volume;
 		}
 		elVideo.muted = b;
 		if ( !b && !elVideo.volume ) {
@@ -19,7 +19,7 @@ $.extend( playerAPI, {
 		return this;
 	},
 	muteToggle: function() {
-		return this.mute( !elVideo.muted && !!elVideo.volume );
+		return this.mute( !this.mute() );
 	},
 	volume: function( v ) {
 		if ( !arguments.length ) {
