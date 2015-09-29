@@ -59,11 +59,30 @@ function volRel( v ) {
 	;
 }
 
+function onvolumechange() {
+	var isMuted = playerAPI.mute();
+	// Update the icon with 3 different levels.
+	jqIconVol
+		.removeClass( "fa-volume-off fa-volume-down fa-volume-up" )
+		.addClass(
+			isMuted
+				? "fa-volume-off"
+				: elVideo.volume < .5
+					? "fa-volume-down"
+					: "fa-volume-up"
+		)
+	;
+	// Put the slider at 0 when is muted.
+	jqElement_cuteSlider.element().val( isMuted ? 0 : elVideo.volume );
+}
+
 playerAPI
 	// Control the volume with the keyboard.
 	.addKeys( "ctrl+down", volRel.bind( null, -.05 ) )
 	.addKeys( "ctrl+up",   volRel.bind( null, +.05 ) )
 	.jqVideoElement
+		// Sync the UI/controls with `elVideo.volume/muted`.
+		.on( "volumechange", onvolumechange )
 		// Control the volume with the vertical mouse scroll.
 		.on( "wheel", function( e ) {
 			volRel( e.originalEvent.deltaY < 0
@@ -71,26 +90,13 @@ playerAPI
 				: -.05
 			);
 		})
-		// Sync the UI/controls with `elVideo.volume`.
-		.on( "volumechange", function() {
-			jqIconVol
-				.removeClass( "fa-volume-off fa-volume-down fa-volume-up" )
-				.addClass(
-					elVideo.muted || elVideo.volume === 0
-						? "fa-volume-off"
-						: elVideo.volume < .5
-							? "fa-volume-down"
-							: "fa-volume-up"
-				)
-			;
-			jqElement_cuteSlider.element().val( elVideo.muted
-				? 0
-				: elVideo.volume
-			);
-		})
 ;
 
 // Force the volume to the max by default
 playerAPI.volume( 1 );
+
+// Setting the volume to 1 will not trigger the `onvolumechange` event
+// if the browser has already set the volume to 1.
+onvolumechange();
 
 })();
