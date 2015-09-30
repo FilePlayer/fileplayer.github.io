@@ -3,6 +3,7 @@
 var
 	elVideo = playerAPI.videoElement,
 	jqElement_cuteSlider = $( ".cuteSlider.position", playerAPI.jqControls ),
+	jqCuteSliderContainer = jqElement_cuteSlider.parent(),
 	jqTxtPosition = $( ".txt.position", playerAPI.jqControls ),
 	jqCurrent = $( ".current", jqTxtPosition ),
 	jqDuration = $( ".duration", jqTxtPosition ),
@@ -58,9 +59,22 @@ $.extend( playerAPI, {
 	}
 });
 
-jqElement_cuteSlider.on( "change", function() {
-	playerAPI.position( this.value * elVideo.duration );
-});
+jqElement_cuteSlider
+	.on( "change", function() {
+		playerAPI.position( this.value * elVideo.duration );
+	})
+	.mousemove( function(e) {
+		var
+			margin = jqElement_cuteSlider.offset().left,
+			width = jqElement_cuteSlider.width(),
+			x = ( e.pageX - margin ) / width
+		;
+		jqCuteSliderContainer.attr(
+			"data-tooltip-content",
+			playerAPI.secondsToString( x * elVideo.duration )
+		)
+	})
+;
 
 // Switch between showing the duration or the remaining time.
 jqTxtPosition.click( function() {

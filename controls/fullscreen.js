@@ -53,17 +53,21 @@ playerAPI.addKeys( "F11", fsToggle );
 // Toggle fullscreen by double clicking on the video.
 playerAPI.jqVideoElement.dblclick( fsToggle );
 
+function fsChange() {
+	var isFs = playerAPI.fullscreen();
+	jqBtnFScr
+		.removeClass( "fa-expand fa-compress" )
+		.addClass( isFs ? "fa-compress" : "fa-expand" )
+		// Update the mouse's helper.
+		.attr( "data-tooltip-content", isFs ? "Exit full screen" : "Full screen" )
+	;
+}
+
 playerAPI.jqDocument
-	.on( "fullscreenchange mozfullscreenchange webkitfullscreenchange", function() {
-		jqBtnFScr
-			.removeClass( "fa-expand fa-compress" )
-			.addClass(
-				playerAPI.fullscreen()
-					? "fa-compress"
-					: "fa-expand"
-			)
-		;
-	})
+	.on( "fullscreenchange mozfullscreenchange webkitfullscreenchange", fsChange )
 ;
+
+// Continue the initialisation by simulate a `onfullscreenchange` event.
+fsChange();
 
 })();

@@ -4,7 +4,8 @@ var
 	elVideo = playerAPI.videoElement,
 	jqBtnVol = $( ".btn.volume", playerAPI.jqControls ),
 	jqIconVol = $( ".fa", jqBtnVol ),
-	jqElement_cuteSlider = $( ".cuteSlider", jqBtnVol )
+	jqElement_cuteSlider = $( ".cuteSlider", jqBtnVol ),
+	jqCuteSliderContainer = jqElement_cuteSlider.parent()
 ;
 
 $.extend( playerAPI, {
@@ -48,32 +49,38 @@ jqElement_cuteSlider.change( function() {
 	playerAPI.volume( this.value );
 });
 
+function volStr() {
+	return "Volume : " + Math.round( playerAPI.volume() * 100 ) + " %";
+}
+
 function volRel( v ) {
 	playerAPI
 		.volumeRelative( v )
-		.shortcutDesc(
-			"Volume : " +
-			Math.round( playerAPI.volume() * 100 ) +
-			" %"
-		)
+		.shortcutDesc( volStr() )
 	;
 }
 
 function onvolumechange() {
-	var isMuted = playerAPI.mute();
+	var
+		isMuted = playerAPI.mute(),
+		volume = playerAPI.volume()
+	;
 	// Update the icon with 3 different levels.
 	jqIconVol
 		.removeClass( "fa-volume-off fa-volume-down fa-volume-up" )
 		.addClass(
 			isMuted
 				? "fa-volume-off"
-				: elVideo.volume < .5
+				: volume < .5
 					? "fa-volume-down"
 					: "fa-volume-up"
 		)
 	;
 	// Put the slider at 0 when is muted.
-	jqElement_cuteSlider.element().val( isMuted ? 0 : elVideo.volume );
+	jqElement_cuteSlider.element().val( isMuted ? 0 : volume );
+	// Update the mouse's helper.
+	jqIconVol.attr( "data-tooltip-content", isMuted ? "Unmute" : "Mute" );
+	jqCuteSliderContainer.attr( "data-tooltip-content", volStr() );
 }
 
 playerAPI

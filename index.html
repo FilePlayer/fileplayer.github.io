@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="video/video.css"/>
 	<link rel="stylesheet" href="controls/controls.css"/>
 	<link rel="stylesheet" href="controls/cuteSlider.css"/>
+	<link rel="stylesheet" href="controls/tooltip.css"/>
 	<link rel="stylesheet" href="subtitles/subtitles.css"/>
 	<script src="//code.jquery.com/jquery-3.0.0-alpha1.min.js"></script>
 	<script src="//jquery-element.github.io/dist/jquery-element-1.7.0.js"></script>
@@ -21,22 +22,34 @@
 	<div id="shortcutDesc"></div>
 	<div id="cues"><span></span></div>
 	<div id="ctrl">
-		<input
-			type="range"
-			data-jquery-element="cuteSlider"
-			data-jquery-element-class="position"
-			value="0" min="0" max="1" step=".0001"
-		/>
+		<span
+			data-jquery-element="tooltip"
+			data-tooltip-followmouse
+			><input
+				type="range"
+				data-jquery-element="cuteSlider"
+				data-jquery-element-class="position"
+				value="0" min="0" max="1" step=".0001"
+		/></span>
 		<div class="bottom">
 			<div class="left">
-				<i class="btn play fa fa-fw fa-play"></i
+				<i
+					class="btn play fa fa-fw"
+					data-jquery-element="tooltip"
+				></i
 				><span class="btn volume"
-					><i class="fa fa-fw fa-volume-up"></i
-					><input
-						type="range"
-						data-jquery-element="cuteSlider"
-						value="1" min="0" max="1" step=".01"
-				/></span
+					><i
+						class="fa fa-fw"
+						data-jquery-element="tooltip"
+					></i
+					><span
+						data-jquery-element="tooltip"
+						><input
+							type="range"
+							data-jquery-element="cuteSlider"
+							min="0" max="1" step=".01"
+					/></span
+				></span
 				><span class="txt btn position">
 					<span class="time current"></span
 					><span class="delimiter"></span
@@ -45,20 +58,33 @@
 				</span>
 			</div
 			><div class="right"
-				><i class="disable btn subtitles fa fa-fw fa-cc"></i
+				><i
+					class="disable btn subtitles fa fa-fw fa-cc"
+					data-jquery-element="tooltip"
+				></i
 				><span class="btn opacity"
-					><input
-						type="range"
-						data-jquery-element="cuteSlider"
-						value="1" min="0" max="1" step=".01"
-					/><i class="fa fa-fw"></i
+					><span
+						data-jquery-element="tooltip"
+						><input
+							type="range"
+							data-jquery-element="cuteSlider"
+							value="1" min="0" max="1" step=".01"
+					/></span><i
+						class="fa fa-fw"
+						data-jquery-element="tooltip"
+						data-tooltip-content="Brightness"
+					></i
 				></span
-				><i class="btn fullscreen fa fa-fw fa-expand"></i
+				><i
+					class="btn fullscreen fa fa-fw"
+					data-jquery-element="tooltip"
+				></i
 			></div>
 		</div>
 	</div>
 </div>
 
+<script src="//jquery-element.github.io/dist/tooltip-1.0.0.js"></script>
 <script src="//jquery-element.github.io/dist/cuteslider-1.1.1.js"></script>
 
 <script src="main.js"></script>

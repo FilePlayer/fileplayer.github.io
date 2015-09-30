@@ -18,10 +18,10 @@ videoElement = {
 (function() {
 
 var
-	textTrack,
-	cuesCopies,
+	enable,
 	currentCue,
-	enable = false,
+	cuesCopies,
+	textTrack,
 	textTracks = playerAPI.videoElement.textTracks,
 	jqSubCtn = $( "#cues > *" ),
 	jqBtnSubtitles = $( ".btn.subtitles", playerAPI.jqControls )
@@ -86,7 +86,11 @@ $.extend( playerAPI, {
 			jqSubCtn.empty();
 			currentCue = null;
 		}
-		jqBtnSubtitles.toggleClass( "disable", !b );
+		jqBtnSubtitles
+			.toggleClass( "disable", !b )
+			// Update the mouse's helper.
+			.attr( "data-tooltip-content", b ? "Disable subtitles" : "Enable subtitles" )
+		;
 		return this;
 	},
 	subtitlesToggle: function() {
@@ -114,5 +118,8 @@ $.extend( playerAPI, {
 		return this;
 	}
 });
+
+// Continue the initialisation by disable the subtitles by default.
+playerAPI.subtitlesEnable( false );
 
 })();
