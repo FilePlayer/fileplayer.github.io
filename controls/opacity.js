@@ -10,7 +10,12 @@ var
 ;
 
 function setOpacity( o ) {
-	jqVideo.css( "opacity", opacity = o );
+	opacity =
+		o < 0 ? 0 :
+		o < 1 ? o : 1
+	;
+	jqVideo.css( "opacity", opacity );
+	jqElement_cuteSlider.element().val( opacity );
 	jqIcon
 		.removeClass( "fa-moon-o fa-lightbulb-o" )
 		.addClass( opacity < .5 ? "fa-moon-o" : "fa-lightbulb-o" )
