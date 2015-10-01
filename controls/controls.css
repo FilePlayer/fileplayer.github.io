@@ -49,11 +49,6 @@
 	display: inline-block;
 }
 
-#ctrl .cuteSlider.position {
-	width: 100%;
-	margin-bottom: 10px;
-}
-
 #ctrl .btn {
 	font-size: 18px;
 	cursor: pointer;

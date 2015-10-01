@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="video/video.css"/>
 	<link rel="stylesheet" href="controls/controls.css"/>
 	<link rel="stylesheet" href="controls/cuteSlider.css"/>
+	<link rel="stylesheet" href="controls/position.css"/>
 	<link rel="stylesheet" href="controls/tooltip.css"/>
 	<link rel="stylesheet" href="subtitles/subtitles.css"/>
 	<script src="//code.jquery.com/jquery-3.0.0-alpha1.min.js"></script>
@@ -17,12 +18,14 @@
 <body>
 
 <div id="player">
-	<video></video>
+	<video class="main"></video>
+	<video class="thumbnail"></video>
 	<div id="titleFile"></div>
 	<div id="shortcutDesc"></div>
 	<div id="cues"><span></span></div>
 	<div id="ctrl">
 		<span
+			class="cuteSlider-container"
 			data-jquery-element="tooltip"
 			data-tooltip-followmouse
 			><input
@@ -30,7 +33,8 @@
 				data-jquery-element="cuteSlider"
 				data-jquery-element-class="position"
 				value="0" min="0" max="1" step=".0001"
-		/></span>
+			/><canvas></canvas
+		></span>
 		<div class="bottom">
 			<div class="left">
 				<i

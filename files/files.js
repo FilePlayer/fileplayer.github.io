@@ -14,6 +14,7 @@ $.extend( playerAPI, {
 			break;
 
 			case "mp4" :
+				this.videoThumbnail.src =
 				this.videoElement.src = URL.createObjectURL( file );
 				this.play( true );
 			break;

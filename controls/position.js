@@ -2,6 +2,15 @@
 
 var
 	elVideo = playerAPI.videoElement,
+	elVideoThumbnail = playerAPI.videoThumbnail,
+
+	jqCanvas = playerAPI.jqPlayer.find( "canvas" ),
+	elCanvas = jqCanvas[ 0 ],
+	canvasCtx = elCanvas.getContext( "2d" ),
+	canvasOW2 = jqCanvas.outerWidth() / 2,
+	canvasW = jqCanvas.width(),
+	canvasH = jqCanvas.height(),
+
 	jqElement_cuteSlider = $( ".cuteSlider.position", playerAPI.jqControls ),
 	jqCuteSliderContainer = jqElement_cuteSlider.parent(),
 	jqTxtPosition = $( ".txt.position", playerAPI.jqControls ),
@@ -9,6 +18,9 @@ var
 	jqDuration = $( ".duration", jqTxtPosition ),
 	jqRemaining = $( ".remaining", jqTxtPosition )
 ;
+
+elCanvas.width = canvasW;
+elCanvas.height = canvasH;
 
 function timeUpdate( sec ) {
 	var dur = elVideo.duration;
@@ -63,16 +75,26 @@ jqElement_cuteSlider
 	.on( "change", function() {
 		playerAPI.position( this.value * elVideo.duration );
 	})
-	.mousemove( function(e) {
+	.mousemove( function( e ) {
 		var
 			margin = jqElement_cuteSlider.offset().left,
 			width = jqElement_cuteSlider.width(),
-			x = ( e.pageX - margin ) / width
+			left = ( e.pageX - margin ),
+			sec = ( left / width ) * elVideo.duration,
+			limit = canvasOW2 - margin
 		;
+		jqCanvas.css(
+			"left",
+			left < limit ? limit :
+			left < width - limit ? left : width - limit
+		);
+		if ( elVideo.duration ) {
+			elVideoThumbnail.currentTime = sec;
+		}
 		jqCuteSliderContainer.attr(
 			"data-tooltip-content",
-			playerAPI.secondsToString( x * elVideo.duration )
-		)
+			playerAPI.secondsToString( sec )
+		);
 	})
 ;
 
@@ -108,6 +130,10 @@ playerAPI
 			}
 		})
 ;
+
+playerAPI.jqVideoThumbnail.on( "timeupdate", function() {
+	canvasCtx.drawImage( elVideoThumbnail, 0, 0, canvasW, canvasH );
+});
 
 // Write 00:00:00 by default.
 timeUpdate();
