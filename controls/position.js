@@ -22,14 +22,15 @@ var
 elCanvas.width = canvasW;
 elCanvas.height = canvasH;
 
-function timeUpdate( sec ) {
-	var dur = elVideo.duration;
+function timeUpdate() {
+	var
+		sec = elVideo.currentTime,
+		dur = elVideo.duration
+	;
 	playerAPI.subtitlesUpdate( sec );
 	jqCurrent.text( playerAPI.secondsToString( sec ) );
 	jqRemaining.text( playerAPI.secondsToString( dur - sec ) );
-	if ( dur ) {
-		jqElement_cuteSlider.element().val( sec / dur );
-	}
+	jqElement_cuteSlider.element().val( sec / dur );
 }
 
 function durationUpdate() {
@@ -37,17 +38,18 @@ function durationUpdate() {
 }
 
 $.extend( playerAPI, {
+	positionReset: function() {
+		durationUpdate();
+		return this
+			.position( 0 )
+		;
+	},
 	position: function( p ) {
 		if ( !arguments.length ) {
 			return elVideo.currentTime;
 		}
-		if ( elVideo.duration ) {
-			timeUpdate(
-				elVideo.currentTime =
-					p < 0 ? 0 :
-					p < elVideo.duration ? p : elVideo.duration
-			);
-		}
+		elVideo.currentTime = Math.min( Math.max( 0, p ), elVideo.duration || 0 );
+		timeUpdate();
 		return this;
 	},
 	positionRelative: function( p ) {
@@ -61,7 +63,6 @@ $.extend( playerAPI, {
 		;
 		if ( s < 10 ) { s = "0" + s; }
 		if ( m < 10 ) { m = "0" + m; }
-
 		// 3600 -> "1:00:00"
 		//   60 ->   "01:00"
 		return (
@@ -125,9 +126,7 @@ playerAPI
 	.jqVideoElement
 		.on( {
 			durationchange: durationUpdate,
-			timeupdate: function() {
-				timeUpdate( elVideo.currentTime );
-			}
+			timeupdate: timeUpdate
 		})
 ;
 
@@ -135,8 +134,7 @@ playerAPI.jqVideoThumbnail.on( "timeupdate", function() {
 	canvasCtx.drawImage( elVideoThumbnail, 0, 0, canvasW, canvasH );
 });
 
-// Write 00:00:00 by default.
-timeUpdate();
-durationUpdate();
+// Write "00:00 / 00:00" by default.
+playerAPI.positionReset();
 
 })();

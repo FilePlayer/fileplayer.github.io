@@ -1,6 +1,14 @@
 (function() {
 
 $.extend( playerAPI, {
+	getSource: function() {
+		return this.videoElement.getAttribute( "src" );
+	},
+	setSource: function( src ) {
+		this.videoThumbnail.setAttribute( "src", src );
+		this.videoElement.setAttribute( "src", src );
+		return this;
+	},
 	addFile: function( file ) {
 		var
 			name = file.name,
@@ -14,9 +22,10 @@ $.extend( playerAPI, {
 			break;
 
 			case "mp4" :
-				this.videoThumbnail.src =
-				this.videoElement.src = URL.createObjectURL( file );
-				this.play( true );
+				this
+					.setSource( URL.createObjectURL( file ) )
+					.play( true )
+				;
 			break;
 
 			default :

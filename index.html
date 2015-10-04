@@ -32,12 +32,17 @@
 				type="range"
 				data-jquery-element="cuteSlider"
 				data-jquery-element-class="position"
-				value="0" min="0" max="1" step=".0001"
+				min="0" max="1" step=".0001"
 			/><canvas></canvas
 		></span>
 		<div class="bottom">
 			<div class="left">
 				<i
+					class="btn stop fa fa-fw fa-stop"
+					data-jquery-element="tooltip"
+					data-tooltip-content="Stop"
+				></i
+				><i
 					class="btn play fa fa-fw"
 					data-jquery-element="tooltip"
 				></i
@@ -89,7 +94,7 @@
 </div>
 
 <script src="//jquery-element.github.io/dist/tooltip-1.0.1.js"></script>
-<script src="//jquery-element.github.io/dist/cuteslider-1.1.1.js"></script>
+<script src="//jquery-element.github.io/dist/cuteslider-1.1.2.js"></script>
 
 <script src="main.js"></script>
 <script src="files/drop.js"></script>
@@ -99,7 +104,7 @@
 <script src="subtitles/showing.js"></script>
 <script src="controls/hud.js"></script>
 <script src="controls/controls.js"></script>
-<script src="controls/playpause.js"></script>
+<script src="controls/playpausestop.js"></script>
 <script src="controls/volume.js"></script>
 <script src="controls/speed.js"></script>
 <script src="controls/fullscreen.js"></script>
