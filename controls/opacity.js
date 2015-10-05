@@ -10,10 +10,7 @@ var
 ;
 
 function setOpacity( o ) {
-	opacity =
-		o < 0 ? 0 :
-		o < 1 ? o : 1
-	;
+	opacity = utils.range( 0, o, 1 );
 	jqVideo.css( "opacity", opacity );
 	jqElement_cuteSlider.element().val( opacity );
 	jqIcon

@@ -6,16 +6,11 @@ var
 
 jqBtnSubtitles.click( function() {
 	playerAPI.subtitlesToggle();
-	return false;
 });
 
 playerAPI
-	.addKeys( "g", function() {
-		playerAPI.subtitlesDelayRelative( -.05 );
-	})
-	.addKeys( "h", function() {
-		playerAPI.subtitlesDelayRelative( +.05 );
-	})
+	.addKeys( "g", playerAPI.subtitlesDelay.bind( playerAPI, "-=.05" ) )
+	.addKeys( "h", playerAPI.subtitlesDelay.bind( playerAPI, "+=.05" ) )
 ;
 
 })();

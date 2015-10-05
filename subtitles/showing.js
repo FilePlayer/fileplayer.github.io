@@ -122,18 +122,15 @@ $.extend( playerAPI, {
 		if ( !arguments.length ) {
 			return cuesDelay;
 		}
-		cuesDelay = sec;
+		cuesDelay = utils.range( -Infinity, sec, +Infinity, cuesDelay );
 		return this
 			.subtitlesUpdate()
 			.shortcutDesc(
 				"Subtitles delay : " +
-				~~( cuesDelay * 1000 )
+				Math.round( cuesDelay * 1000 )
 				+ " ms"
 			)
 		;
-	},
-	subtitlesDelayRelative: function( sec ) {
-		return this.subtitlesDelay( this.subtitlesDelay() + sec );
 	}
 });
 

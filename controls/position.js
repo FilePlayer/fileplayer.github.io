@@ -28,47 +28,27 @@ function timeUpdate() {
 		dur = elVideo.duration
 	;
 	playerAPI.subtitlesUpdate();
-	jqCurrent.text( playerAPI.secondsToString( sec ) );
-	jqRemaining.text( playerAPI.secondsToString( dur - sec ) );
+	jqCurrent.text( utils.secondsToString( sec ) );
+	jqRemaining.text( utils.secondsToString( dur - sec ) );
 	jqElement_cuteSlider.element().val( sec / dur );
 }
 
 function durationUpdate() {
-	jqDuration.text( playerAPI.secondsToString( elVideo.duration ) );
+	jqDuration.text( utils.secondsToString( elVideo.duration ) );
 }
 
 $.extend( playerAPI, {
 	positionReset: function() {
 		durationUpdate();
-		return this
-			.position( 0 )
-		;
+		return this.position( 0 );
 	},
 	position: function( p ) {
 		if ( !arguments.length ) {
 			return elVideo.currentTime;
 		}
-		elVideo.currentTime = Math.min( Math.max( 0, p ), elVideo.duration || 0 );
+		elVideo.currentTime = utils.range( 0, p, elVideo.duration || 0, elVideo.currentTime );
 		timeUpdate();
 		return this;
-	},
-	positionRelative: function( p ) {
-		return this.position( this.position() + p );
-	},
-	secondsToString: function( sec ) {
-		var
-			s = ~~( sec % 60 ),
-			m = ~~( sec / 60 ) % 60,
-			h = ~~( sec / 3600 )
-		;
-		if ( s < 10 ) { s = "0" + s; }
-		if ( m < 10 ) { m = "0" + m; }
-		// 3600 -> "1:00:00"
-		//   60 ->   "01:00"
-		return (
-			( h ? h + ":" : "" ) +
-			m + ":" + s
-		);
 	}
 });
 
@@ -86,15 +66,14 @@ jqElement_cuteSlider
 		;
 		jqCanvas.css(
 			"left",
-			left < limit ? limit :
-			left < width - limit ? left : width - limit
+			utils.range( limit, left, width - limit )
 		);
 		if ( elVideo.duration ) {
 			elVideoThumbnail.currentTime = sec;
 		}
 		jqCuteSliderContainer.attr(
 			"data-tooltip-content",
-			playerAPI.secondsToString( sec )
+			utils.secondsToString( sec )
 		);
 	})
 ;
@@ -104,24 +83,24 @@ jqTxtPosition.click( function() {
 	jqTxtPosition.toggleClass( "remaining" );
 });
 
-function posRel( p ) {
+function position( p ) {
 	playerAPI
-		.positionRelative( p )
+		.position( p )
 		.shortcutDesc(
-			playerAPI.secondsToString( playerAPI.position() ) + " / " +
-			playerAPI.secondsToString( elVideo.duration )
+			utils.secondsToString( playerAPI.position() ) + " / " +
+			utils.secondsToString( elVideo.duration )
 		)
 	;
 }
 
 playerAPI
 	// Control the position with the keyboard.
-	.addKeys( "shift+left",  posRel.bind( null,  -3 ) )
-	.addKeys( "shift+right", posRel.bind( null,  +3 ) )
-	.addKeys( "alt+left",    posRel.bind( null, -10 ) )
-	.addKeys( "alt+right",   posRel.bind( null, +10 ) )
-	.addKeys( "ctrl+left",   posRel.bind( null, -60 ) )
-	.addKeys( "ctrl+right",  posRel.bind( null, +60 ) )
+	.addKeys( "shift+left",  position.bind( null,  "-=3" ) )
+	.addKeys( "shift+right", position.bind( null,  "+=3" ) )
+	.addKeys( "alt+left",    position.bind( null, "-=10" ) )
+	.addKeys( "alt+right",   position.bind( null, "+=10" ) )
+	.addKeys( "ctrl+left",   position.bind( null, "-=60" ) )
+	.addKeys( "ctrl+right",  position.bind( null, "+=60" ) )
 	// Sync the currentTime, remainingTime and the duration.
 	.jqVideoElement
 		.on( {

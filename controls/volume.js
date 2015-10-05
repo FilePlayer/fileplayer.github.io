@@ -26,17 +26,10 @@ $.extend( playerAPI, {
 		if ( !arguments.length ) {
 			return elVideo.volume;
 		}
-		elVideo.volume = v =
-			v < 0 ? 0 :
-			v < 1 ? v : 1
-		;
-		if ( v ) {
+		if ( elVideo.volume = utils.range( 0, v, 1, elVideo.volume ) ) {
 			elVideo.muted = false;
 		}
 		return this;
-	},
-	volumeRelative: function( v ) {
-		return this.volume( this.volume() + v );
 	}
 });
 
@@ -53,9 +46,9 @@ function volStr() {
 	return "Volume : " + Math.round( playerAPI.volume() * 100 ) + " %";
 }
 
-function volRel( v ) {
+function volume( v ) {
 	playerAPI
-		.volumeRelative( v )
+		.volume( v )
 		.shortcutDesc( volStr() )
 	;
 }
@@ -85,16 +78,16 @@ function onvolumechange() {
 
 playerAPI
 	// Control the volume with the keyboard.
-	.addKeys( "ctrl+down", volRel.bind( null, -.05 ) )
-	.addKeys( "ctrl+up",   volRel.bind( null, +.05 ) )
+	.addKeys( "ctrl+down", volume.bind( null, "-=.05" ) )
+	.addKeys( "ctrl+up",   volume.bind( null, "+=.05" ) )
 	.jqVideoElement
 		// Sync the UI/controls with `elVideo.volume/muted`.
 		.on( "volumechange", onvolumechange )
 		// Control the volume with the vertical mouse scroll.
 		.on( "wheel", function( e ) {
-			volRel( e.originalEvent.deltaY < 0
-				? +.05
-				: -.05
+			volume( e.originalEvent.deltaY < 0
+				? "+=.05"
+				: "-=.05"
 			);
 		})
 ;

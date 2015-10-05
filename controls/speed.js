@@ -27,31 +27,24 @@ $.extend( playerAPI, {
 		elVideo.playbackRate =
 		spdCurrent = s;
 		return this;
-	},
-	speedRelative: function( s ) {
-		return this.speed( this.speed() + s );
 	}
 });
 
 function setSpd( lvl ) {
-	spdLvlCurrent = Math.min( Math.max( 0, lvl ), spdLvls.length - 1 );
+	spdLvlCurrent = utils.range( 0, lvl, spdLvls.length - 1, spdLvlCurrent );
 	playerAPI
 		.speed( spdLvls[ spdLvlCurrent ] )
 		.shortcutDesc(
 			"Vitesse : " +
-			~~(playerAPI.speed() * 100) / 100 +
+			~~( playerAPI.speed() * 100 ) / 100 +
 			"x"
 		)
 	;
 }
 
 playerAPI
-	.addKeys( "minus", function() {
-		setSpd( spdLvlCurrent - 1 );
-	})
-	.addKeys( "plus", function() {
-		setSpd( spdLvlCurrent + 1 );
-	})
+	.addKeys( "minus", setSpd.bind( null, "-=1" ) )
+	.addKeys( "plus",  setSpd.bind( null, "+=1" ) )
 ;
 
 })();
