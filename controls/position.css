@@ -11,7 +11,13 @@
 	position: absolute;
 	left: 0;
 	bottom: 100%;
+	width: 160px;
+	height: 90px;
 	margin: 0 0 15px -82px;
+	border: 2px solid rgba( 255, 255, 255, .2 );
+	border-radius: 4px;
+	overflow: hidden;
+	background: #000;
 	transition-duration: .1s;
 	transition-property: visibility, opacity;
 	visibility: hidden;
@@ -23,13 +29,17 @@
 	opacity: 1;
 }
 
-#ctrl .thumbnail canvas {
-	width: 160px;
-	height: 90px;
-	border: 2px solid rgba( 255, 255, 255, .2 );
-	border-radius: 4px;
-	background: #000;
+#ctrl .thumbnail video {
+	width: 100%;
+	height: 100%;
 }
+
+/*#ctrl .thumbnail canvas {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}*/
 
 #ctrl .thumbnail .loading {
 	position: absolute;

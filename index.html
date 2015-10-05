@@ -19,7 +19,6 @@
 
 <div id="player">
 	<video class="main"></video>
-	<video class="thumbnail"></video>
 	<div id="titleFile"></div>
 	<div id="shortcutDesc"></div>
 	<div id="cues"><span></span></div>
@@ -35,7 +34,8 @@
 				min="0" max="1" step=".0001"
 			/>
 			<div class="thumbnail">
-				<canvas></canvas>
+				<!-- <canvas></canvas> -->
+				<video></video>
 				<div class="loading"></div>
 			</div
 		></span>
@@ -113,6 +113,7 @@
 <script src="controls/volume.js"></script>
 <script src="controls/speed.js"></script>
 <script src="controls/fullscreen.js"></script>
+<script src="controls/thumbnail.js"></script>
 <script src="controls/position.js"></script>
 <script src="controls/subtitles.js"></script>
 <script src="controls/opacity.js"></script>

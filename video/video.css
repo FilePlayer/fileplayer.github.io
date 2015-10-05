@@ -7,7 +7,3 @@ video.main {
 .ctrlHidden video.main {
 	cursor: none;
 }
-
-video.thumbnail {
-	display: none;
-}

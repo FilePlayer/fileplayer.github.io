@@ -2,17 +2,6 @@
 
 var
 	elVideo = playerAPI.videoElement,
-	elVideoThumbnail = playerAPI.videoThumbnail,
-
-	jqThumbnail = $( ".thumbnail", playerAPI.jqPlayer ),
-	jqThumbLoading = $( ".loading", jqThumbnail ),
-	jqCanvas = $( "canvas", jqThumbnail ),
-	elCanvas = jqCanvas[ 0 ],
-	canvasCtx = elCanvas.getContext( "2d" ),
-	canvasOW2 = jqCanvas.outerWidth() / 2,
-	canvasW = jqCanvas.width(),
-	canvasH = jqCanvas.height(),
-
 	jqElement_cuteSlider = $( ".cuteSlider.position", playerAPI.jqControls ),
 	jqCuteSliderContainer = jqElement_cuteSlider.parent(),
 	jqTxtPosition = $( ".txt.position", playerAPI.jqControls ),
@@ -21,8 +10,6 @@ var
 	jqRemaining = $( ".remaining", jqTxtPosition )
 ;
 
-elCanvas.width = canvasW;
-elCanvas.height = canvasH;
 
 function timeUpdate() {
 	var
@@ -41,10 +28,11 @@ function durationUpdate() {
 
 $.extend( playerAPI, {
 	positionReset: function() {
-		canvasCtx.clearRect( 0, 0, canvasW, canvasH );
-		jqThumbLoading.addClass( "hidden" );
 		durationUpdate();
-		return this.position( 0 );
+		return this
+			.thumbnailClear()
+			.position( 0 )
+		;
 	},
 	position: function( p ) {
 		if ( !arguments.length ) {
@@ -58,28 +46,10 @@ $.extend( playerAPI, {
 
 jqElement_cuteSlider
 	.on( "change", function() {
-		playerAPI.position( this.value * elVideo.duration );
-	})
-	.mousemove( function( e ) {
-		var
-			margin = jqElement_cuteSlider.offset().left,
-			width = jqElement_cuteSlider.width(),
-			left = ( e.pageX - margin ),
-			sec = ( left / width ) * elVideo.duration,
-			limit = canvasOW2 - margin
-		;
-		jqThumbnail.css(
-			"left",
-			utils.range( limit, left, width - limit )
-		);
 		if ( elVideo.duration ) {
-			jqThumbLoading.removeClass( "hidden" );
-			elVideoThumbnail.currentTime = sec;
+			playerAPI.position( this.value * elVideo.duration );
 		}
-		jqCuteSliderContainer.attr(
-			"data-tooltip-content",
-			utils.secondsToString( sec )
-		);
+		// jqElement_cuteSlider.element().val( 0 );
 	})
 ;
 
@@ -113,11 +83,6 @@ playerAPI
 			timeupdate: timeUpdate
 		})
 ;
-
-playerAPI.jqVideoThumbnail.on( "timeupdate", function() {
-	canvasCtx.drawImage( elVideoThumbnail, 0, 0, canvasW, canvasH );
-	jqThumbLoading.addClass( "hidden" );
-});
 
 // Write "00:00 / 00:00" by default.
 playerAPI.positionReset();

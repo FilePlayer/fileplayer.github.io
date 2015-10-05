@@ -5,7 +5,7 @@ function lg( s ) { console.log( s ); }
 
 var
 	jqVideo = $( "video.main" ),
-	jqVideoThumbnail = $( "video.thumbnail" )
+	jqVideoThumbnail = $( ".thumbnail video" )
 ;
 
 // Global object for the API
