@@ -29,10 +29,7 @@ function durationUpdate() {
 $.extend( playerAPI, {
 	positionReset: function() {
 		durationUpdate();
-		return this
-			.thumbnailClear()
-			.position( 0 )
-		;
+		return this.position( 0 );
 	},
 	position: function( p ) {
 		if ( !arguments.length ) {
@@ -41,6 +38,9 @@ $.extend( playerAPI, {
 		elVideo.currentTime = utils.range( 0, p, elVideo.duration || 0, elVideo.currentTime );
 		timeUpdate();
 		return this;
+	},
+	duration: function() {
+		return elVideo.duration || 0;
 	}
 });
 

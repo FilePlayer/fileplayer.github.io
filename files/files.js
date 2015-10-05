@@ -24,6 +24,7 @@ $.extend( playerAPI, {
 			case "mp4" :
 				this
 					.setSource( URL.createObjectURL( file ) )
+					.thumbnailInit()
 					.play( true )
 				;
 			break;

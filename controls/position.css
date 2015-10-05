@@ -7,6 +7,12 @@
 	padding-bottom: 10px;
 }
 
+#ctrl .thumbnail,
+#ctrl .thumbnail video,
+#ctrl .thumbnail:after {
+	transition: all .1s;
+}
+
 #ctrl .thumbnail {
 	position: absolute;
 	left: 0;
@@ -18,7 +24,6 @@
 	border-radius: 4px;
 	overflow: hidden;
 	background: #000;
-	transition-duration: .1s;
 	transition-property: visibility, opacity;
 	visibility: hidden;
 	opacity: 0;
@@ -34,33 +39,34 @@
 	height: 100%;
 }
 
-/*#ctrl .thumbnail canvas {
-	position: absolute;
-	top: 0;
-	width: 100%;
-	height: 100%;
-}*/
-
-#ctrl .thumbnail .loading {
-	position: absolute;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	background: rgba( 0, 0, 0, .8 );
-	transition: all .1s;
-}
-
-#ctrl .thumbnail .loading.hidden {
+#ctrl .thumbnail.loading video {
 	opacity: 0;
 }
 
-#ctrl .thumbnail .loading:after {
+#ctrl .thumbnail canvas {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+}
+
+#ctrl .thumbnail.loading canvas {
+	opacity: 1;
+}
+
+#ctrl .thumbnail:after {
 	content: "";
 	position: absolute;
-	top: 50%;
-	left: 50%;
-	margin: -25px 0 0 -12px;
-	width: 24px;
-	height: 24px;
-	background: url( "../loader.gif" );
+	top: 10px;
+	left: 10px;
+	width: 14px;
+	height: 14px;
+	background: url( "../loading.gif" );
+	opacity: 0;
+}
+
+#ctrl .thumbnail.loading:after {
+	opacity: .5;
 }
