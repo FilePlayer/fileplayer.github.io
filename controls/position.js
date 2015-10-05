@@ -27,7 +27,7 @@ function timeUpdate() {
 		sec = elVideo.currentTime,
 		dur = elVideo.duration
 	;
-	playerAPI.subtitlesUpdate( sec );
+	playerAPI.subtitlesUpdate();
 	jqCurrent.text( playerAPI.secondsToString( sec ) );
 	jqRemaining.text( playerAPI.secondsToString( dur - sec ) );
 	jqElement_cuteSlider.element().val( sec / dur );

@@ -22,6 +22,7 @@ var
 	currentCue,
 	cuesCopies,
 	textTrack,
+	cuesDelay = 0,
 	textTracks = playerAPI.videoElement.textTracks,
 	jqSubCtn = $( "#cues > *" ),
 	jqBtnSubtitles = $( ".btn.subtitles", playerAPI.jqControls )
@@ -81,7 +82,7 @@ $.extend( playerAPI, {
 			return enable;
 		}
 		if ( enable = b ) {
-			this.subtitlesUpdate( this.position() );
+			this.subtitlesUpdate();
 		} else {
 			jqSubCtn.empty();
 			currentCue = null;
@@ -102,11 +103,11 @@ $.extend( playerAPI, {
 		}
 		textTrack = textTracks[ ind ];
 		initCuesMap( textTrack.cues );
-		return this.subtitlesUpdate( this.position() );
+		return this.subtitlesUpdate();
 	},
-	subtitlesUpdate: function( sec ) {
+	subtitlesUpdate: function() {
 		if ( enable ) {
-			var cue = findCue( sec );
+			var cue = findCue( this.position() + cuesDelay );
 			if ( cue !== currentCue ) {
 				if ( currentCue = cue ) {
 					jqSubCtn.html( cue.text );
@@ -116,6 +117,23 @@ $.extend( playerAPI, {
 			}
 		}
 		return this;
+	},
+	subtitlesDelay: function( sec ) {
+		if ( !arguments.length ) {
+			return cuesDelay;
+		}
+		cuesDelay = sec;
+		return this
+			.subtitlesUpdate()
+			.shortcutDesc(
+				"Subtitles delay : " +
+				~~( cuesDelay * 1000 )
+				+ " ms"
+			)
+		;
+	},
+	subtitlesDelayRelative: function( sec ) {
+		return this.subtitlesDelay( this.subtitlesDelay() + sec );
 	}
 });
 

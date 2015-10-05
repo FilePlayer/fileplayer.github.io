@@ -9,4 +9,13 @@ jqBtnSubtitles.click( function() {
 	return false;
 });
 
+playerAPI
+	.addKeys( "g", function() {
+		playerAPI.subtitlesDelayRelative( -.05 );
+	})
+	.addKeys( "h", function() {
+		playerAPI.subtitlesDelayRelative( +.05 );
+	})
+;
+
 })();
