@@ -4,7 +4,9 @@ var
 	elVideo = playerAPI.videoElement,
 	elVideoThumbnail = playerAPI.videoThumbnail,
 
-	jqCanvas = playerAPI.jqPlayer.find( "canvas" ),
+	jqThumbnail = $( ".thumbnail", playerAPI.jqPlayer ),
+	jqThumbLoading = $( ".loading", jqThumbnail ),
+	jqCanvas = $( "canvas", jqThumbnail ),
 	elCanvas = jqCanvas[ 0 ],
 	canvasCtx = elCanvas.getContext( "2d" ),
 	canvasOW2 = jqCanvas.outerWidth() / 2,
@@ -39,6 +41,8 @@ function durationUpdate() {
 
 $.extend( playerAPI, {
 	positionReset: function() {
+		canvasCtx.clearRect( 0, 0, canvasW, canvasH );
+		jqThumbLoading.addClass( "hidden" );
 		durationUpdate();
 		return this.position( 0 );
 	},
@@ -64,11 +68,12 @@ jqElement_cuteSlider
 			sec = ( left / width ) * elVideo.duration,
 			limit = canvasOW2 - margin
 		;
-		jqCanvas.css(
+		jqThumbnail.css(
 			"left",
 			utils.range( limit, left, width - limit )
 		);
 		if ( elVideo.duration ) {
+			jqThumbLoading.removeClass( "hidden" );
 			elVideoThumbnail.currentTime = sec;
 		}
 		jqCuteSliderContainer.attr(
@@ -111,6 +116,7 @@ playerAPI
 
 playerAPI.jqVideoThumbnail.on( "timeupdate", function() {
 	canvasCtx.drawImage( elVideoThumbnail, 0, 0, canvasW, canvasH );
+	jqThumbLoading.addClass( "hidden" );
 });
 
 // Write "00:00 / 00:00" by default.
