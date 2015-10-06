@@ -35,7 +35,9 @@ $.extend( playerAPI, {
 		if ( !arguments.length ) {
 			return elVideo.currentTime;
 		}
-		elVideo.currentTime = utils.range( 0, p, elVideo.duration || 0, elVideo.currentTime );
+		if ( elVideo.duration ) {
+			elVideo.currentTime = utils.range( 0, p, elVideo.duration, elVideo.currentTime );
+		}
 		timeUpdate();
 		return this;
 	},
@@ -49,7 +51,6 @@ jqElement_cuteSlider
 		if ( elVideo.duration ) {
 			playerAPI.position( this.value * elVideo.duration );
 		}
-		// jqElement_cuteSlider.element().val( 0 );
 	})
 ;
 
