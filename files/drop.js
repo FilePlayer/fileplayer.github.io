@@ -29,7 +29,7 @@ $( document.body )
 			}
 			else if ( data.files ) {
 				$.each( data.files, function( key, file ) {
-					playerAPI.addFile( files );
+					playerAPI.addFile( file );
 				});
 			}
 		}
