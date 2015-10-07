@@ -1,7 +1,7 @@
 (function() {
 
 var
-	jqBtnSubtitles = $( ".btn.subtitles", playerAPI.jqControls )
+	jqBtnSubtitles = $( ".menu .subtitles .slidebutton", playerAPI.jqControls )
 ;
 
 jqBtnSubtitles.click( function() {

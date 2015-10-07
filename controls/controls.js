@@ -6,7 +6,8 @@ var
 ;
 
 $.extend( playerAPI, {
-	jqControls: $( "#ctrl" )
+	jqControls: $( "#ctrl" ),
+	jqControlsMenu : $(".menu")
 });
 
 function showCtrl() {
@@ -35,5 +36,8 @@ playerAPI.jqVideoElement
 		timeoutId = setTimeout( hideCtrl, 500 );
 	})
 ;
+
+// Set positions of controls' menus
+playerAPI.jqControlsMenu.css({ "bottom" : playerAPI.jqControls.outerHeight() })
 
 })();

@@ -25,7 +25,8 @@ var
 	cuesDelay = 0,
 	textTracks = playerAPI.videoElement.textTracks,
 	jqSubCtn = $( "#cues > *" ),
-	jqBtnSubtitles = $( ".btn.subtitles", playerAPI.jqControls )
+	jqBtnSubtitlesTooltip = $( ".menu-list-slidebtn", playerAPI.jqControls ),
+	jqBtnSubtitles = $( ".menu.subtitles .slidebutton input", playerAPI.jqControls )
 ;
 
 function initCuesMap( cues ) {
@@ -83,12 +84,13 @@ $.extend( playerAPI, {
 		}
 		if ( enable = b ) {
 			this.subtitlesUpdate();
+			jqBtnSubtitles.attr("checked", "checked");
 		} else {
 			jqSubCtn.empty();
 			currentCue = null;
+			jqBtnSubtitles.removeAttr("checked");
 		}
-		jqBtnSubtitles
-			.toggleClass( "disable", !b )
+		jqBtnSubtitlesTooltip
 			// Update the mouse's helper.
 			.attr( "data-tooltip-content", b ? "Disable subtitles" : "Enable subtitles" )
 		;
