@@ -10,7 +10,6 @@ var
 	jqRemaining = $( ".remaining", jqTxtPosition )
 ;
 
-
 function timeUpdate() {
 	var
 		sec = elVideo.currentTime,

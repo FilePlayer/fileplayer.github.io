@@ -5,13 +5,13 @@
 	<meta charset="UTF-8"/>
 	<link rel="icon" type="image/x-icon" href="favicon.png"/>
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
-	<link rel="stylesheet" href="reset.css"/>
-	<link rel="stylesheet" href="video/video.css"/>
-	<link rel="stylesheet" href="controls/controls.css"/>
-	<link rel="stylesheet" href="controls/cuteSlider.css"/>
-	<link rel="stylesheet" href="controls/position.css"/>
-	<link rel="stylesheet" href="controls/tooltip.css"/>
-	<link rel="stylesheet" href="subtitles/subtitles.css"/>
+	<link rel="stylesheet" href="global/reset.css"/>
+	<link rel="stylesheet" href="global/overwrite-cuteslider.css"/>
+	<link rel="stylesheet" href="global/overwrite-tooltip.css"/>
+	<link rel="stylesheet" href="player/video/video.css"/>
+	<link rel="stylesheet" href="player/controls/controls.css"/>
+	<link rel="stylesheet" href="player/position/position.css"/>
+	<link rel="stylesheet" href="player/subtitles/subtitles.css"/>
 	<script src="//code.jquery.com/jquery-3.0.0-alpha1.min.js"></script>
 	<script src="//jquery-element.github.io/dist/jquery-element-1.7.0.js"></script>
 </head>
@@ -100,23 +100,25 @@
 <script src="//jquery-element.github.io/dist/tooltip-1.0.1.js"></script>
 <script src="//jquery-element.github.io/dist/cuteslider-1.1.2.js"></script>
 
-<script src="utils.js"></script>
+<script src="global/utils.js"></script>
 <script src="main.js"></script>
 <script src="keyboard/keyboard.js"></script>
-<script src="controls/hud.js"></script>
+
 <script src="files/drop.js"></script>
 <script src="files/files.js"></script>
-<script src="subtitles/subtitles.js"></script>
-<script src="subtitles/showing.js"></script>
-<script src="controls/controls.js"></script>
-<script src="controls/playpausestop.js"></script>
-<script src="controls/volume.js"></script>
-<script src="controls/speed.js"></script>
-<script src="controls/fullscreen.js"></script>
-<script src="controls/thumbnail.js"></script>
-<script src="controls/position.js"></script>
-<script src="controls/subtitles.js"></script>
-<script src="controls/opacity.js"></script>
+
+<script src="player/hud.js"></script>
+<script src="player/controls/controls.js"></script>
+<script src="player/controls/playpausestop.js"></script>
+<script src="player/controls/volume.js"></script>
+<script src="player/controls/speed.js"></script>
+<script src="player/controls/fullscreen.js"></script>
+<script src="player/controls/opacity.js"></script>
+<script src="player/subtitles/files.js"></script>
+<script src="player/subtitles/cues.js"></script>
+<script src="player/subtitles/dom.js"></script>
+<script src="player/position/thumbnail.js"></script>
+<script src="player/position/position.js"></script>
 
 </body>
 </html>

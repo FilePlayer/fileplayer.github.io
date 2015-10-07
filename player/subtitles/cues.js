@@ -41,7 +41,7 @@ function initCuesMap( cues ) {
 		;
 		cuesCopies = new Array( cuesLen );
 		textTrack.cuesMap = cuesMap;
-		for ( i = 0; i < cuesLen; ++i ) {
+		for ( ; i < cuesLen; ++i ) {
 			cue = cues[ i ];
 			cuesCopies[ i ] = {
 				id: +cue.id,

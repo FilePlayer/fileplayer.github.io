@@ -63,7 +63,7 @@
 	left: 10px;
 	width: 14px;
 	height: 14px;
-	background: url( "../loading.gif" );
+	background: url( "../../global/loading.gif" );
 	opacity: 0;
 }
 
