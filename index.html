@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="reset.css"/>
 	<link rel="stylesheet" href="video/video.css"/>
 	<link rel="stylesheet" href="controls/controls.css"/>
+	<link rel="stylesheet" href="controls/controls-subtitles.css"/>
 	<link rel="stylesheet" href="controls/cuteSlider.css"/>
 	<link rel="stylesheet" href="controls/position.css"/>
 	<link rel="stylesheet" href="controls/tooltip.css"/>
@@ -18,7 +19,7 @@
 <body>
 
 <div id="player">
-	<video class="main"></video>
+	<video class="main" poster="poster.jpg"></video>
 	<div id="titleFile"></div>
 	<div id="shortcutDesc"></div>
 	<div id="cues"><span></span></div>
@@ -71,10 +72,26 @@
 				</span>
 			</div
 			><div class="right"
-				><i
-					class="btn subtitles fa fa-fw fa-cc"
-					data-jquery-element="tooltip"
-				></i
+				><span class="btn subtitles"
+					><input id="subtitles-check" type="checkbox" /
+					><label
+						for="subtitles-check"
+						class="fa fa-fw fa-cc"
+					></label
+					><div class="menu subtitles">
+						<ul class="menu-list">
+							<li
+								class="menu-list-slidebtn"
+								data-jquery-element="tooltip" >
+								<span>Subtitles</span>
+								<input
+									type="checkbox"
+									data-jquery-element="slidebutton"
+								/>
+							</li>
+						</ul>
+					</div
+				></span
 				><span class="btn opacity"
 					><span
 						data-jquery-element="tooltip"
@@ -99,6 +116,7 @@
 
 <script src="//jquery-element.github.io/dist/tooltip-1.0.1.js"></script>
 <script src="//jquery-element.github.io/dist/cuteslider-1.1.2.js"></script>
+<script src="//jquery-element.github.io/dist/slidebutton-1.1.0.js"></script>
 
 <script src="utils.js"></script>
 <script src="main.js"></script>

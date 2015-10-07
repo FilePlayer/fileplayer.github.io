@@ -1,7 +1,8 @@
 (function() {
 
 var
-	tracks = playerAPI.videoElement.textTracks
+	tracks = playerAPI.videoElement.textTracks,
+	jqSubtitlesList = $(".menu.subtitles .menu-list");
 ;
 
 function encodeToWebVTT( fileContent ) {
@@ -25,6 +26,7 @@ $.extend( playerAPI, {
 			var
 				blob,
 				tracksLen = tracks ? tracks.length : 0
+				menulistLen = jqSubtitlesList.children().length
 			;
 
 			blob = new Blob(
@@ -55,6 +57,27 @@ $.extend( playerAPI, {
 					})( tracksLen )
 				}
 			}).appendTo( playerAPI.videoElement );
+
+			jqSubtitlesList.children().removeClass( "selected" )
+
+			// Add file name in subtitles list
+			jqSubtitlesList.append(
+				$( "<li>", {
+					text: file.name,
+					"data-jquery-element": "tooltip",
+					"data-tooltip-content": file.name,
+					"data-tooltip-side": "left",
+					on: {
+						click: ( function( id ) {
+							return function ( e ) {
+								playerAPI.subtitlesSelect( id - 1 )
+								jqSubtitlesList.children().removeClass( "selected" )
+								$( jqSubtitlesList.children()[ id ] ).addClass( "selected" )
+							}
+						})( menulistLen )
+					}
+				}).addClass( "selected" )
+			);
 
 			// Chrome will start loading the track only
 			// after the `mode` attribute is set to "showing".
