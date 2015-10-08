@@ -50,7 +50,7 @@ $.extend( playerAPI, {
 		imagesCache = new Array( Math.ceil( playerAPI.duration() ) );
 		currentImg = undefined;
 		imagesCacheSize = 0;
-		clearCanvas()
+		clearCanvas();
 		return this;
 	}
 });
@@ -71,6 +71,8 @@ function searchImageInCache( sec ) {
 
 jqVideo.on( "timeupdate", function() {
 	var
+		x, y, w, h,
+		videoRatio,
 		sec = ~~elVideo.currentTime,
 		cache = imagesCache,
 		img = cache && cache[ sec ]
@@ -78,8 +80,20 @@ jqVideo.on( "timeupdate", function() {
 	loading( false );
 	if ( cache ) {
 		if ( !img ) {
-			canvasCtx.drawImage( elVideo, 0, 0, canvasW, canvasH );
-			cache[ sec ] = canvasCtx.getImageData( 0, 0, canvasW, canvasH );
+			videoRatio = elVideo.videoWidth / elVideo.videoHeight;
+			if ( videoRatio > 1 ) {
+				w = canvasW;
+				h = canvasW / videoRatio;
+				x = 0;
+				y = ( canvasH - h ) / 2;
+			} else {
+				w = canvasH * videoRatio;
+				h = canvasH;
+				x = ( canvasW - w ) / 2;
+				y = 0;
+			}
+			canvasCtx.drawImage( elVideo, x, y, w, h );
+			cache[ sec ] = canvasCtx.getImageData( x, y, w, h );
 			++imagesCacheSize;
 		}
 	}
@@ -116,7 +130,11 @@ jqElement_cuteSlider
 					clearCanvas();
 				} else if ( img !== currentImg ) {
 					cleared = false;
-					canvasCtx.putImageData( currentImg = img, 0, 0 );
+					canvasCtx.putImageData(
+						currentImg = img,
+						( canvasW - img.width ) / 2,
+						( canvasH - img.height ) / 2
+					);
 				}
 				elVideo.currentTime = sec;
 			}
