@@ -19,6 +19,7 @@ $.extend( playerAPI, {
 			}
 			if ( this.getSource() ) {
 				isStopped = false;
+				this.jqPlayer.addClass( "cinema" );
 				elVideo.play();
 			}
 		} else {
@@ -30,21 +31,21 @@ $.extend( playerAPI, {
 		return this.play( elVideo.paused );
 	},
 	stop: function() {
-		if ( !isStopped ) {
-			isStopped = true;
-			oldSource = this.getSource();
-			elVideo.pause();
-			onPlay();
-			this
-				.setSource( "" )
-				.positionReset()
-			;
-		}
+		isStopped = true;
+		elVideo.pause();
+		playpause();
+		oldSource = this.getSource();
+		this
+			.setSource( "" )
+			.positionReset()
+			.jqPlayer
+				.removeClass( "cinema" )
+		;
 		return this;
 	}
 });
 
-function onPlay() {
+function playpause() {
 	var isPlaying = playerAPI.play();
 	jqBtnPlay
 		.removeClass( "fa-play fa-pause" )
@@ -76,10 +77,14 @@ playerAPI
 		;
 	})
 	// Update the play/pause button via the standard play/pause events.
-	.jqVideoElement.on( "play pause", onPlay )
+	.jqVideoElement.on( {
+		"play pause": playpause,
+		"ended" : playerAPI.stop.bind( playerAPI )
+	})
 ;
 
-// Continue the initialisation by simulate a `onplay` event.
-onPlay();
+// Continue the initialisation by simulate a `onplay` and `ended` event.
+playpause();
+playerAPI.stop();
 
 })();

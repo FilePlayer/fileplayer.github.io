@@ -8,6 +8,8 @@
 	<link rel="stylesheet" href="global/reset.css"/>
 	<link rel="stylesheet" href="global/overwrite-cuteslider.css"/>
 	<link rel="stylesheet" href="global/overwrite-tooltip.css"/>
+	<link rel="stylesheet" href="player/player.css"/>
+	<link rel="stylesheet" href="player/placeholder.css"/>
 	<link rel="stylesheet" href="player/video/video.css"/>
 	<link rel="stylesheet" href="player/controls/controls.css"/>
 	<link rel="stylesheet" href="player/position/position.css"/>
@@ -18,6 +20,13 @@
 <body>
 
 <div id="player">
+	<div class="placeholder">
+		<h1 class="title">
+			<i class="logo fa fa-eject"></i>
+			FilePlayer
+		</h1>
+		<span>Drop files here…</span>
+	</div>
 	<video class="main"></video>
 	<div id="titleFile"></div>
 	<div id="shortcutDesc"></div>
@@ -109,16 +118,16 @@
 
 <script src="player/hud.js"></script>
 <script src="player/controls/controls.js"></script>
-<script src="player/controls/playpausestop.js"></script>
-<script src="player/controls/volume.js"></script>
-<script src="player/controls/speed.js"></script>
-<script src="player/controls/fullscreen.js"></script>
-<script src="player/controls/opacity.js"></script>
 <script src="player/subtitles/files.js"></script>
 <script src="player/subtitles/cues.js"></script>
 <script src="player/subtitles/dom.js"></script>
 <script src="player/position/thumbnail.js"></script>
 <script src="player/position/position.js"></script>
+<script src="player/controls/playpausestop.js"></script>
+<script src="player/controls/volume.js"></script>
+<script src="player/controls/speed.js"></script>
+<script src="player/controls/fullscreen.js"></script>
+<script src="player/controls/opacity.js"></script>
 
 </body>
 </html>

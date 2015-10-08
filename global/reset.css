@@ -6,8 +6,8 @@ body {
 	margin: 0;
 	color: #fff;
 	font: 12px sans-serif;
-	background: #000;
-	
+	background: #111;
+
 	/* To prevent the "scroll too much" effect on Mac. */
 	overflow: hidden;
 }

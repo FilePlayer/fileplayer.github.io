@@ -1,0 +1,33 @@
+#player .placeholder {
+	position: absolute;
+	width: 100%;
+	top: 50%;
+	margin: -60px 0 0;
+	text-align: center;
+}
+
+#player.cinema .placeholder {
+	display: none;
+}
+
+#player .placeholder .title {
+	display: inline-block;
+	margin: 0;
+	font-size: 50px;
+	font-style: italic;
+	opacity: .3;
+}
+
+#player .placeholder span {
+	display: block;
+	margin-top: 40px;
+	font-size: 12px;
+	font-weight: bold;
+	animation: placeholderSpan 2s ease infinite;
+}
+
+@keyframes placeholderSpan {
+	  0% { opacity: .1; }
+	 50% { opacity: 1; }
+	100% { opacity: .1; }
+}
