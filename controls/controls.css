@@ -141,12 +141,12 @@
 	font-weight: 500;
 }
 
-#ctrl .menu-list-slidebtn > div {
+#ctrl .menu-list-checkbox > div {
 	display: inline-block;
 	width: 50%;
 }
 
-#ctrl .menu-list-slidebtn .slidebutton {
+#ctrl .menu-list-checkbox .slidebutton {
 	float: right;
 	width: 28px;
 	height: 13px;

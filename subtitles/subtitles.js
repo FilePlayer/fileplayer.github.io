@@ -26,7 +26,7 @@ $.extend( playerAPI, {
 			var
 				blob,
 				tracksLen = tracks ? tracks.length : 0,
-				menulistLen = jqSubtitlesList.children().length
+				menulistLen = jqSubtitlesList.children().length - 1
 			;
 
 			blob = new Blob(
@@ -70,9 +70,9 @@ $.extend( playerAPI, {
 				on: {
 					click: ( function( id ) {
 						return function () {
-							playerAPI.subtitlesSelect( id - 1 );
+							playerAPI.subtitlesSelect( id );
 							jqSubtitlesList.children().removeClass( "selected" );
-							$( jqSubtitlesList.children().eq( id ) ).addClass( "selected" );
+							jqSubtitlesList.children().eq( id ).addClass( "selected" );
 						}
 					})( menulistLen )
 				}
