@@ -7,12 +7,15 @@ var
 
 elDoc.requestFullscreen =
 	elDoc      .requestFullscreen ||
+	elDoc    .msRequestFullscreen ||
 	elDoc   .mozRequestFullScreen ||
 	elDoc.webkitRequestFullscreen ||
 	$.noop
 ;
-document.cancelFullscreen =
-	document.      cancelFullscreen ||
+
+document.exitFullscreen =
+	document.        exitFullscreen ||
+	document.      msExitFullscreen ||
 	document.   mozCancelFullScreen ||
 	document.webkitCancelFullScreen ||
 	$.noop
@@ -25,13 +28,14 @@ $.extend( playerAPI, {
 				document.fullScreen ||
 				document.mozFullScreen ||
 				document.webkitIsFullScreen ||
+				document.msFullscreenElement != null ||
 				false
 			);
 		}
 		if ( b ) {
 			elDoc.requestFullscreen();
 		} else {
-			document.cancelFullscreen();
+			document.exitFullscreen();
 		}
 		return this;
 	},
@@ -64,7 +68,13 @@ function fsChange() {
 }
 
 playerAPI.jqDocument
-	.on( "fullscreenchange mozfullscreenchange webkitfullscreenchange", fsChange )
+	.on(
+		      "fullscreenchange " +
+		    "MSFullscreenChange " +
+		   "mozfullscreenchange " +
+		"webkitfullscreenchange",
+		fsChange
+	)
 ;
 
 // Continue the initialisation by simulate a `onfullscreenchange` event.

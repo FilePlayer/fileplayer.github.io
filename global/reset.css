@@ -1,5 +1,8 @@
 html, body {
 	height: 100%;
+
+	/* IE need it for fullscreen mode. */
+	width: 100%;
 }
 
 body {
@@ -19,6 +22,7 @@ a {
 
 a,
 input {
+
 	/* For Firefox. */
 	outline: 0;
 }
