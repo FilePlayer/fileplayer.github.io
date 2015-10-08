@@ -37,7 +37,4 @@ playerAPI.jqVideoElement
 	})
 ;
 
-// Set positions of controls' menus
-playerAPI.jqControlsMenu.css({ "bottom" : playerAPI.jqControls.outerHeight() })
-
 })();

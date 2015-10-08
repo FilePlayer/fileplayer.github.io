@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="reset.css"/>
 	<link rel="stylesheet" href="video/video.css"/>
 	<link rel="stylesheet" href="controls/controls.css"/>
-	<link rel="stylesheet" href="controls/controls-subtitles.css"/>
+	<link rel="stylesheet" href="controls/menu-subtitles.css"/>
 	<link rel="stylesheet" href="controls/cuteSlider.css"/>
 	<link rel="stylesheet" href="controls/position.css"/>
 	<link rel="stylesheet" href="controls/tooltip.css"/>
@@ -19,7 +19,7 @@
 <body>
 
 <div id="player">
-	<video class="main" poster="poster.jpg"></video>
+	<video class="main"></video>
 	<div id="titleFile"></div>
 	<div id="shortcutDesc"></div>
 	<div id="cues"><span></span></div>
@@ -83,11 +83,15 @@
 							<li
 								class="menu-list-slidebtn"
 								data-jquery-element="tooltip" >
-								<span>Subtitles</span>
-								<input
-									type="checkbox"
-									data-jquery-element="slidebutton"
-								/>
+								<div>
+									Subtitles
+								</div
+								><div>
+									<input
+										type="checkbox"
+										data-jquery-element="slidebutton"
+									/>
+								</div>
 							</li>
 						</ul>
 					</div

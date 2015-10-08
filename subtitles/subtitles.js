@@ -2,7 +2,7 @@
 
 var
 	tracks = playerAPI.videoElement.textTracks,
-	jqSubtitlesList = $(".menu.subtitles .menu-list");
+	jqSubtitlesList = $( ".menu.subtitles .menu-list", playerAPI.jqControls );
 ;
 
 function encodeToWebVTT( fileContent ) {
@@ -25,7 +25,7 @@ $.extend( playerAPI, {
 		reader.onloadend = function () {
 			var
 				blob,
-				tracksLen = tracks ? tracks.length : 0
+				tracksLen = tracks ? tracks.length : 0,
 				menulistLen = jqSubtitlesList.children().length
 			;
 
@@ -58,26 +58,25 @@ $.extend( playerAPI, {
 				}
 			}).appendTo( playerAPI.videoElement );
 
-			jqSubtitlesList.children().removeClass( "selected" )
+			jqSubtitlesList.children().removeClass( "selected" );
 
 			// Add file name in subtitles list
-			jqSubtitlesList.append(
-				$( "<li>", {
-					text: file.name,
-					"data-jquery-element": "tooltip",
-					"data-tooltip-content": file.name,
-					"data-tooltip-side": "left",
-					on: {
-						click: ( function( id ) {
-							return function ( e ) {
-								playerAPI.subtitlesSelect( id - 1 )
-								jqSubtitlesList.children().removeClass( "selected" )
-								$( jqSubtitlesList.children()[ id ] ).addClass( "selected" )
-							}
-						})( menulistLen )
-					}
-				}).addClass( "selected" )
-			);
+			$( "<li>", {
+				text: file.name,
+				class: "selected",
+				"data-jquery-element": "tooltip",
+				"data-tooltip-content": file.name,
+				"data-tooltip-side": "left",
+				on: {
+					click: ( function( id ) {
+						return function () {
+							playerAPI.subtitlesSelect( id - 1 );
+							jqSubtitlesList.children().removeClass( "selected" );
+							$( jqSubtitlesList.children().eq( id ) ).addClass( "selected" );
+						}
+					})( menulistLen )
+				}
+			}).appendTo( jqSubtitlesList );
 
 			// Chrome will start loading the track only
 			// after the `mode` attribute is set to "showing".
