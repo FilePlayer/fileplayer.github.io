@@ -19,6 +19,13 @@ spdLvls.some( function( n, i ) {
 	}
 });
 
+function speedStr() {
+	return (
+		"Speed : " +
+		playerAPI.speed().toFixed( 2 ) + "x"
+	);
+}
+
 $.extend( playerAPI, {
 	speed: function( s ) {
 		if ( !arguments.length ) {
@@ -34,11 +41,7 @@ function setSpd( lvl ) {
 	spdLvlCurrent = utils.range( 0, lvl, spdLvls.length - 1, spdLvlCurrent );
 	playerAPI
 		.speed( spdLvls[ spdLvlCurrent ] )
-		.shortcutDesc(
-			"Vitesse : " +
-			~~( playerAPI.speed() * 100 ) / 100 +
-			"x"
-		)
+		.shortcutDesc( speedStr() )
 	;
 }
 

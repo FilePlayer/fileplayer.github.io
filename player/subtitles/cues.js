@@ -127,8 +127,7 @@ $.extend( playerAPI, {
 			.subtitlesUpdate()
 			.shortcutDesc(
 				"Subtitles delay : " +
-				Math.round( cuesDelay * 1000 )
-				+ " ms"
+				cuesDelay.toFixed( 3 ) + " s"
 			)
 		;
 	}
