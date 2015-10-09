@@ -47,10 +47,16 @@ function clearCanvas() {
 
 $.extend( playerAPI, {
 	thumbnailInit: function() {
+		this.thumbnailClear();
 		imagesCache = new Array( Math.ceil( playerAPI.duration() ) );
-		currentImg = undefined;
+		return this;
+	},
+	thumbnailClear: function() {
+		imagesCache = undefined;
 		imagesCacheSize = 0;
 		clearCanvas();
+		jqCuteSliderContainer.attr( "data-tooltip-content", null );
+		lg("thumbnailClear: "+jqCuteSliderContainer.attr( "data-tooltip-content"))
 		return this;
 	}
 });
@@ -100,43 +106,45 @@ jqVideo.on( "timeupdate", function() {
 });
 
 jqElement_cuteSlider
-	.mouseenter( function() { elVideo.play();  } )
-	.mouseleave( function() { elVideo.pause(); } )
+	.mouseenter( function() { if ( elVideo.duration ) { elVideo.play();  } } )
+	.mouseleave( function() { if ( elVideo.duration ) { elVideo.pause(); } } )
 	.mousemove( function( e ) {
-		var
-			margin = jqElement_cuteSlider.offset().left,
-			left = ( e.pageX - margin )
-		;
-		if ( left !== oldLeft ) {
+		if ( elVideo.duration ) {
 			var
-				img,
-				width = jqElement_cuteSlider.width(),
-				sec = ( left / width ) * elVideo.duration,
-				limit = thumbnailOW2 - margin
+				margin = jqElement_cuteSlider.offset().left,
+				left = ( e.pageX - margin )
 			;
-			oldLeft = left;
-			jqThumbnail.css(
-				"left",
-				utils.range( limit, left, width - limit )
-			);
-			jqCuteSliderContainer.attr(
-				"data-tooltip-content",
-				utils.secondsToString( sec )
-			);
-			if ( elVideo.duration ) {
-				loading( true );
-				img = searchImageInCache( sec );
-				if ( !img ) {
-					clearCanvas();
-				} else if ( img !== currentImg ) {
-					cleared = false;
-					canvasCtx.putImageData(
-						currentImg = img,
-						( canvasW - img.width ) / 2,
-						( canvasH - img.height ) / 2
-					);
+			if ( left !== oldLeft ) {
+				var
+					img,
+					width = jqElement_cuteSlider.width(),
+					sec = ( left / width ) * elVideo.duration,
+					limit = thumbnailOW2 - margin
+				;
+				oldLeft = left;
+				jqThumbnail.css(
+					"left",
+					utils.range( limit, left, width - limit )
+				);
+				jqCuteSliderContainer.attr(
+					"data-tooltip-content",
+					utils.secondsToString( sec )
+				);
+				if ( elVideo.duration ) {
+					loading( true );
+					img = searchImageInCache( sec );
+					if ( !img ) {
+						clearCanvas();
+					} else if ( img !== currentImg ) {
+						cleared = false;
+						canvasCtx.putImageData(
+							currentImg = img,
+							( canvasW - img.width ) / 2,
+							( canvasH - img.height ) / 2
+						);
+					}
+					elVideo.currentTime = sec;
 				}
-				elVideo.currentTime = sec;
 			}
 		}
 	})

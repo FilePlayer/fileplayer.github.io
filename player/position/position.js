@@ -28,7 +28,10 @@ function durationUpdate() {
 $.extend( playerAPI, {
 	positionReset: function() {
 		durationUpdate();
-		return this.position( 0 );
+		return this
+			.position( 0 )
+			.thumbnailClear()
+		;
 	},
 	position: function( p ) {
 		if ( !arguments.length ) {
