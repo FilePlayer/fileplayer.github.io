@@ -1,0 +1,40 @@
+(function() {
+
+var
+	jqBtnVol = $( ".btn.volume", dom.jqPlayerCtrl ),
+	jqIconVol = $( ".fa", jqBtnVol ),
+	jqElement_cuteSlider = $( ".cuteSlider", jqBtnVol )
+;
+
+jqIconVol.click( function() {
+	api.video.muteToggle();
+	return false;
+});
+
+jqElement_cuteSlider.change( function() {
+	api.video.volume( this.value );
+});
+
+function volumeKeys( v ) {
+	api.video.volume( v )
+	api.shortcutDesc( "Volume : " + Math.round( api.video.volume() * 100 ) + " %" );
+}
+
+// Control the volume with the keyboard.
+api.keyboard
+	.shortcut( "ctrl+down", volumeKeys.bind( null, "-=.05" ) )
+	.shortcut( "ctrl+up",   volumeKeys.bind( null, "+=.05" ) )
+;
+
+// Control the volume with the vertical mouse scroll.
+dom.jqPlayerVideo.on( "wheel", function( e ) {
+	volumeKeys( e.originalEvent.deltaY < 0
+		? "+=.05"
+		: "-=.05"
+	);
+});
+
+// Force the volume to the max by default
+api.video.volume( 1 );
+
+})();

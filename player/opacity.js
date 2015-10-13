@@ -1,8 +1,8 @@
 (function() {
 
 var
-	jqVideo = playerAPI.jqVideoElement,
-	jqBtn = $( ".btn.opacity", playerAPI.jqControls ),
+	jqVideo = dom.jqPlayerVideo,
+	jqBtn = $( ".btn.opacity", dom.jqPlayerCtrl ),
 	jqIcon = $( ".fa", jqBtn ),
 	jqElement_cuteSlider = $( ".cuteSlider", jqBtn ),
 	jqCuteSliderContainer = jqElement_cuteSlider.parent(),

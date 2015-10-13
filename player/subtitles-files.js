@@ -1,7 +1,7 @@
 (function() {
 
 var
-	tracks = playerAPI.videoElement.textTracks
+	tracks = dom.elPlayerVideo.textTracks
 ;
 
 function encodeToWebVTT( fileContent ) {
@@ -15,7 +15,7 @@ function encodeToWebVTT( fileContent ) {
 	);
 }
 
-$.extend( playerAPI, {
+$.extend( api, {
 	createSubtitles: function( file ) {
 		var
 			reader = new FileReader()
@@ -47,14 +47,14 @@ $.extend( playerAPI, {
 					load: ( function( len ) {
 						return function( e ) {
 							tracks[ len ].mode = "hidden";
-							playerAPI
-								.subtitlesSelect( len )
-								.subtitlesEnable( true )
+							api.subtitles
+								.select( tracks[ len ] )
+								.enable( true )
 							;
 						};
 					})( tracksLen )
 				}
-			}).appendTo( playerAPI.videoElement );
+			}).appendTo( dom.elPlayerVideo );
 
 			// Chrome will start loading the track only
 			// after the `mode` attribute is set to "showing".

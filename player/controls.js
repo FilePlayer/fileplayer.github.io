@@ -2,12 +2,8 @@
 
 var
 	timeoutId,
-	jqPlayer = playerAPI.jqPlayer
+	jqPlayer = dom.jqPlayer
 ;
-
-$.extend( playerAPI, {
-	jqControls: $( "#ctrl" )
-});
 
 function showCtrl() {
 	clearTimeout( timeoutId );
@@ -22,18 +18,16 @@ function hideCtrl() {
 }
 
 // Never hide the controls when the mouse is on it.
-playerAPI.jqControls.mouseenter( showCtrl );
+dom.jqPlayerCtrl.mouseenter( showCtrl );
 
 // Start hiding the controls just after the mouse leave the window.
-playerAPI.jqDocument.mouseleave( hideCtrl );
+dom.jqDoc.mouseleave( hideCtrl );
 
-playerAPI.jqVideoElement
-	.mousemove( function() {
-		// Show the controls when the mouse move.
-		// The controls will hide again after the mouse stop moving.
-		showCtrl();
-		timeoutId = setTimeout( hideCtrl, 500 );
-	})
-;
+// Show the controls when the mouse move.
+// The controls will hide again after the mouse stop moving.
+dom.jqPlayerVideo.mousemove( function() {
+	showCtrl();
+	timeoutId = setTimeout( hideCtrl, 500 );
+});
 
 })();

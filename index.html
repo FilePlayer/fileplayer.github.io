@@ -4,18 +4,22 @@
 	<title>FilePlayer</title>
 	<meta charset="UTF-8"/>
 	<link rel="icon" type="image/x-icon" href="favicon.png"/>
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
-	<link rel="stylesheet" href="global/reset.css"/>
-	<link rel="stylesheet" href="global/overwrite-cuteslider.css"/>
-	<link rel="stylesheet" href="global/overwrite-tooltip.css"/>
+	<!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>-->
+	<link rel="stylesheet" href="../../_/fa/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="tools/reset.css"/>
+	<link rel="stylesheet" href="tools/overwrite-cuteslider.css"/>
+	<link rel="stylesheet" href="tools/overwrite-tooltip.css"/>
 	<link rel="stylesheet" href="player/player.css"/>
 	<link rel="stylesheet" href="player/placeholder.css"/>
-	<link rel="stylesheet" href="player/video/video.css"/>
-	<link rel="stylesheet" href="player/controls/controls.css"/>
-	<link rel="stylesheet" href="player/position/position.css"/>
-	<link rel="stylesheet" href="player/subtitles/subtitles.css"/>
-	<script src="//code.jquery.com/jquery-3.0.0-alpha1.min.js"></script>
-	<script src="//jquery-element.github.io/dist/jquery-element-1.7.0.js"></script>
+	<link rel="stylesheet" href="player/video.css"/>
+	<link rel="stylesheet" href="player/controls.css"/>
+	<link rel="stylesheet" href="player/position.css"/>
+	<link rel="stylesheet" href="player/subtitles.css"/>
+	<!--<script src="//code.jquery.com/jquery-3.0.0-alpha1.min.js"></script>-->
+	<!--<script src="//jquery-element.github.io/dist/jquery-element-1.7.0.js"></script>-->
+	<script src="../../_/jquery.min.js"></script>
+	<script src="../../jquery-element/dist/jquery-element-1.7.0.js"></script>
+	<script>function lg( s ) { console.log( s ); }</script>
 </head>
 <body>
 
@@ -106,28 +110,39 @@
 	</div>
 </div>
 
-<script src="//jquery-element.github.io/dist/tooltip-1.0.2.js"></script>
-<script src="//jquery-element.github.io/dist/cuteslider-1.1.2.js"></script>
+<!--<script src="//jquery-element.github.io/dist/tooltip-1.0.2.js"></script>
+<script src="//jquery-element.github.io/dist/cuteslider-1.1.2.js"></script>-->
+<script src="../../jquery-element/dist/tooltip-1.0.2.js"></script>
+<script src="../../jquery-element/dist/cuteslider-1.1.2.js"></script>
 
-<script src="global/utils.js"></script>
-<script src="main.js"></script>
-<script src="keyboard/keyboard.js"></script>
+<script src="tools/utils.js"></script>
 
-<script src="files/drop.js"></script>
-<script src="files/files.js"></script>
+<script src="dom.js"></script>
 
-<script src="player/hud.js"></script>
-<script src="player/controls/controls.js"></script>
-<script src="player/subtitles/files.js"></script>
-<script src="player/subtitles/cues.js"></script>
-<script src="player/subtitles/dom.js"></script>
-<script src="player/position/thumbnail.js"></script>
-<script src="player/position/position.js"></script>
-<script src="player/controls/playpausestop.js"></script>
-<script src="player/controls/volume.js"></script>
-<script src="player/controls/speed.js"></script>
-<script src="player/controls/fullscreen.js"></script>
-<script src="player/controls/opacity.js"></script>
+<script src="api/api.js"></script>
+<script src="api/fullscreen.js"></script>
+<script src="api/hud.js"></script>
+<script src="api/keyboard.js"></script>
+<script src="api/subtitles.js"></script>
+<script src="api/thumbnail/cache.js"></script>
+<script src="api/thumbnail/canvas.js"></script>
+<script src="api/video.js"></script>
+<script src="api/files.js"></script>
+
+<script src="video-data-binding.js"></script>
+<script src="player-ui.js"></script>
+
+<script src="player/drop.js"></script>
+<script src="player/controls.js"></script>
+<script src="player/subtitles-files.js"></script>
+<script src="player/subtitles-dom.js"></script>
+<script src="player/thumbnail.js"></script>
+<script src="player/position.js"></script>
+<script src="player/playpausestop.js"></script>
+<script src="player/volume.js"></script>
+<script src="player/speed.js"></script>
+<script src="player/fullscreen.js"></script>
+<script src="player/opacity.js"></script>
 
 </body>
 </html>

@@ -1,7 +1,7 @@
 /*
-Here, the representation of a videoElement.textTracks:
+Here, the representation of a video.textTracks:
 
-videoElement = {
+video = {
 	textTracks: [ {
 		kind,          // "subtitles"
 		mode,          // "disabled", hidden" or "showing"
@@ -18,14 +18,14 @@ videoElement = {
 (function() {
 
 var
+	that,
 	enable,
+	textTrack,
 	currentCue,
 	cuesCopies,
-	textTrack,
 	cuesDelay = 0,
-	textTracks = playerAPI.videoElement.textTracks,
-	jqSubCtn = $( "#cues > *" ),
-	jqBtnSubtitles = $( ".btn.subtitles", playerAPI.jqControls )
+	jqCue = dom.jqPlayerCue,
+	jqBtnSubtitles = $( ".btn.subtitles", dom.jqPlayerCtrl )
 ;
 
 function initCuesMap( cues ) {
@@ -76,64 +76,65 @@ function findCue( sec ) {
 	}
 }
 
-$.extend( playerAPI, {
-	subtitlesEnable: function( b ) {
-		if ( !arguments.length ) {
-			return enable;
-		}
-		if ( enable = b ) {
-			this.subtitlesUpdate();
-		} else {
-			jqSubCtn.empty();
-			currentCue = null;
-		}
+api.subtitles = that = {
+	isEnable: function() {
+		return enable;
+	},
+	enable: function() {
+		enable = true;
 		jqBtnSubtitles
-			.toggleClass( "disable", !b )
-			// Update the mouse's helper.
-			.attr( "data-tooltip-content", b ? "Disable subtitles" : "Enable subtitles" )
+			.removeClass( "disable" )
+			.attr( "data-tooltip-content", "Disable subtitles" )
 		;
-		return this;
+		return that.update();
 	},
-	subtitlesToggle: function() {
-		return this.subtitlesEnable( !enable );
+	disable: function() {
+		enable = false;
+		currentCue = null;
+		jqCue.empty();
+		jqBtnSubtitles
+			.addClass( "disable" )
+			.attr( "data-tooltip-content", "Enable subtitles" )
+		;
+		return that;
 	},
-	subtitlesSelect: function( ind ) {
+	toggle: function( b ) {
+		if ( arguments.length === 0 ) {
+			b = !enable;
+		}
+		return b ? that.enable() : that.disable();
+	},
+	select: function( track ) {
 		if ( !arguments.length ) {
 			return textTrack;
 		}
-		textTrack = textTracks[ ind ];
-		initCuesMap( textTrack.cues );
-		return this.subtitlesUpdate();
+		textTrack = track;
+		initCuesMap( track.cues );
+		return that.update();
 	},
-	subtitlesUpdate: function() {
+	update: function() {
 		if ( enable ) {
-			var cue = findCue( this.position() + cuesDelay );
+			var cue = findCue( api.video.currentTime() + cuesDelay );
 			if ( cue !== currentCue ) {
 				if ( currentCue = cue ) {
-					jqSubCtn.html( cue.text );
+					jqCue.html( cue.text );
 				} else {
-					jqSubCtn.empty();
+					jqCue.empty();
 				}
 			}
 		}
-		return this;
+		return that;
 	},
-	subtitlesDelay: function( sec ) {
+	delay: function( sec ) {
 		if ( !arguments.length ) {
 			return cuesDelay;
 		}
 		cuesDelay = utils.range( -Infinity, sec, +Infinity, cuesDelay );
-		return this
-			.subtitlesUpdate()
-			.shortcutDesc(
-				"Subtitles delay : " +
-				cuesDelay.toFixed( 3 ) + " s"
-			)
-		;
+		api.shortcutDesc( "Subtitles delay : " + cuesDelay.toFixed( 3 ) + " s" );
+		return that.update();
 	}
-});
+};
 
-// Continue the initialisation by disable the subtitles by default.
-playerAPI.subtitlesEnable( false );
+that.disable();
 
 })();

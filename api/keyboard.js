@@ -1,6 +1,7 @@
 (function() {
 
 var
+	that,
 	i,
 	ctrl, shift, alt, key,
 	shortcuts = [],
@@ -20,8 +21,8 @@ for ( i = 0; i < 12; ++i ) {
 	keysCodes[ "F" + ( i + 1 ) ] = 112 + i;
 }
 
-$.extend( playerAPI, {
-	addKeys: function( keys, fn ) {
+api.keyboard = that = {
+	shortcut: function( keys, fn ) {
 		ctrl = shift = alt = false;
 		keys
 			.toUpperCase()
@@ -44,24 +45,22 @@ $.extend( playerAPI, {
 			key: key,
 			fn: fn
 		});
-		return this;
+		return that;
+	}
+};
+
+dom.jqDoc.keydown( function( e ) {
+	for ( var sc, i = 0; sc = shortcuts[ i ]; ++i ) {
+		if (
+			sc.key === e.keyCode &&
+			sc.ctrl === e.ctrlKey &&
+			sc.shift === e.shiftKey &&
+			sc.alt === e.altKey
+		) {
+			sc.fn();
+			return false;
+		}
 	}
 });
-
-playerAPI.jqDocument
-	.keydown( function( e ) {
-		for ( var sc, i = 0; sc = shortcuts[ i ]; ++i ) {
-			if (
-				sc.key === e.keyCode &&
-				sc.ctrl === e.ctrlKey &&
-				sc.shift === e.shiftKey &&
-				sc.alt === e.altKey
-			) {
-				sc.fn();
-				return false;
-			}
-		}
-	})
-;
 
 })();
