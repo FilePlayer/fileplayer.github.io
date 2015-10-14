@@ -1,10 +1,6 @@
 (function() {
 
-var
-	jqBtnSubtitles = $( ".btn.subtitles", dom.jqPlayerCtrl )
-;
-
-jqBtnSubtitles.click( function() {
+dom.jqPlayerSubtitlesBtn.click( function() {
 	api.subtitles.toggle();
 });
 

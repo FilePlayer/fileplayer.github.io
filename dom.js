@@ -1,7 +1,5 @@
 (function() {
 
-var v;
-
 window.dom = {
 	jqDoc: $( document ),
 	jqBody: $( document.body ),
@@ -10,13 +8,28 @@ window.dom = {
 	jqPlayerShortcutDesc: $( "#shortcutDesc" ),
 	jqPlayerCue: $( "#cues > *" ),
 	jqPlayerCtrl: $( "#ctrl" ),
-	jqPlayerVideo: v = $( "#player video.main" ),
-	elPlayerVideo: v[ 0 ],
+	jqPlayerSliderCurrentTime: $( "#ctrl .cuteSlider.position" ),
+	jqPlayerSubtitlesBtn: $( "#ctrl .btn.subtitles" ),
+	jqPlayerPlayBtn: $( "#ctrl .play" ),
+	jqPlayerStopBtn: $( "#ctrl .stop" ),
+	jqPlayerFullscreenBtn: $( "#ctrl .btn.fullscreen" ),
+	jqPlayerVolumeIcon: $( "#ctrl .volume .fa" ),
+	jqPlayerVolumeSlider: $( "#ctrl .volume .cuteSlider" ),
+	jqPlayerTimeText: $( "#player .txt.position" ),
+	jqPlayerTimeCurrent: $( "#player .position .current" ),
+	jqPlayerTimeRemaining: $( "#player .position .remaining" ),
+	jqPlayerTimeDuration: $( "#player .position .duration" ),
+	jqPlayerVideo: $( "#player video.main" ),
 	jqPlayerThumbnail: $( "#player .thumbnail" ),
-	jqPlayerThumbnailVideo: v = $( "#player .thumbnail video" ),
-	elPlayerThumbnailVideo: v[ 0 ],
-	jqPlayerThumbnailCanvas: v = $( "#player .thumbnail canvas" ),
-	elPlayerThumbnailCanvas: v[ 0 ]
+	jqPlayerThumbnailVideo: $( "#player .thumbnail video" ),
+	jqPlayerThumbnailCanvas: $( "#player .thumbnail canvas" )
 };
+
+// Make sure all the selections above works.
+for ( var key in window.dom ) {
+	if ( window.dom[ key ].length === 0 ) {
+		console.error( "dom." + key + " is empty." );
+	}
+}
 
 })();

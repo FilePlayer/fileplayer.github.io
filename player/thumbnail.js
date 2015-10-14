@@ -5,16 +5,12 @@ var
 	thumbnailOW2 = jqThumbnail.outerWidth() / 2,
 	
 	// video
-	jqVideo = dom.jqPlayerThumbnailVideo,
-	elVideo = dom.elPlayerThumbnailVideo,
+	elVideo = dom.jqPlayerThumbnailVideo[ 0 ],
 	oldLeft,
 
-	// loading
-	jqLoading = $( ".loading", jqThumbnail ),
-
 	// slider.position
-	jqElement_cuteSlider = $( ".cuteSlider.position", dom.jqControls ),
-	jqCuteSliderContainer = jqElement_cuteSlider.parent()
+	jqSliderTime = dom.jqPlayerSliderCurrentTime,
+	jqSliderTimeContainer = jqSliderTime.parent()
 ;
 
 elVideo.muted = true;
@@ -23,7 +19,7 @@ function loading( b ) {
 	jqThumbnail.toggleClass( "loading", b );
 }
 
-jqVideo.on( "timeupdate", function() {
+dom.jqPlayerThumbnailVideo.on( "timeupdate", function() {
 	var sec = ~~elVideo.currentTime;
 	loading( false );
 	if (
@@ -34,18 +30,18 @@ jqVideo.on( "timeupdate", function() {
 	}
 });
 
-jqElement_cuteSlider
+jqSliderTime
 	.mouseenter( function() { if ( elVideo.duration ) { elVideo.play();  } } )
 	.mouseleave( function() { if ( elVideo.duration ) { elVideo.pause(); } } )
 	.mousemove( function( e ) {
 		if ( elVideo.duration ) {
 			var
-				margin = jqElement_cuteSlider.offset().left,
+				margin = jqSliderTime.offset().left,
 				left = ( e.pageX - margin )
 			;
 			if ( left !== oldLeft ) {
 				var
-					width = jqElement_cuteSlider.width(),
+					width = jqSliderTime.width(),
 					sec = ( left / width ) * elVideo.duration,
 					limit = thumbnailOW2 - margin
 				;
@@ -54,7 +50,7 @@ jqElement_cuteSlider
 					"left",
 					utils.range( limit, left, width - limit )
 				);
-				jqCuteSliderContainer.attr(
+				jqSliderTimeContainer.attr(
 					"data-tooltip-content",
 					utils.secondsToString( sec )
 				);

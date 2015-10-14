@@ -1,17 +1,11 @@
 (function() {
 
-var
-	jqBtnVol = $( ".btn.volume", dom.jqPlayerCtrl ),
-	jqIconVol = $( ".fa", jqBtnVol ),
-	jqElement_cuteSlider = $( ".cuteSlider", jqBtnVol )
-;
-
-jqIconVol.click( function() {
+dom.jqPlayerVolumeIcon.click( function() {
 	api.video.muteToggle();
 	return false;
 });
 
-jqElement_cuteSlider.change( function() {
+dom.jqPlayerVolumeSlider.change( function() {
 	api.video.volume( this.value );
 });
 

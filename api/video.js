@@ -3,7 +3,7 @@
 var
 	that,
 	oldSource,
-	video = dom.elPlayerVideo,
+	video = dom.jqPlayerVideo[ 0 ],
 	jqVideo = dom.jqPlayerVideo,
 	jqVideoThumb = dom.jqPlayerThumbnailVideo
 ;

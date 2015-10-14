@@ -1,15 +1,10 @@
 (function() {
 
-var
-	jqBtnPlay = $( ".play", dom.jqPlayerCtrl ),
-	jqBtnStop = $( ".stop", dom.jqPlayerCtrl )
-;
-
-jqBtnPlay.click( function() {
+dom.jqPlayerPlayBtn.click( function() {
 	api.video.playToggle();
 });
 
-jqBtnStop.click( function() {
+dom.jqPlayerStopBtn.click( function() {
 	api.video.stop();
 });
 

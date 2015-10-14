@@ -1,15 +1,11 @@
 (function() {
 
-var
-	jqBtnFScr = $( ".btn.fullscreen", dom.jqPlayerCtrl )
-;
-
 function fsToggle() {
 	document.toggleFullscreen( document.documentElement );
 	return false;
 }
 
-jqBtnFScr.click( fsToggle );
+dom.jqPlayerFullscreenBtn.click( fsToggle );
 
 // Rewrite the F11-native fullscreen.
 api.keyboard.shortcut( "F11", fsToggle );

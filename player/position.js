@@ -1,15 +1,11 @@
 (function() {
 
 var
-	elVideo = dom.elPlayerVideo,
-	jqElement_cuteSlider = $( ".cuteSlider.position", dom.jqControls ),
-
-	jqTxtPosition = $( ".txt.position", dom.jqControls )
-	jqCurrent = $( ".current", jqTxtPosition ),
-	jqRemaining = $( ".remaining", jqTxtPosition )
+	elVideo = dom.jqPlayerVideo[ 0 ],
+	jqTxtPosition = dom.jqPlayerTimeText
 ;
 
-jqElement_cuteSlider.change( function() {
+dom.jqPlayerSliderCurrentTime.change( function() {
 	if ( elVideo.duration ) {
 		var val = this.value * elVideo.duration;
 		playerUI.currentTime( val );

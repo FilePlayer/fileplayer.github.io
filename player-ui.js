@@ -4,24 +4,22 @@ var
 	that,
 
 	// Buttons: play/pause.
-	jqPlayBtn = $( ".play", dom.jqPlayerCtrl ),
+	jqPlayBtn = dom.jqPlayerPlayBtn,
 
 	// Buttons, slider: volume.
-	jqVolumeBtn = $( ".btn.volume", dom.jqPlayerCtrl ),
-	jqVolumeIcon = $( ".fa", jqVolumeBtn ),
-	jqVolumeSlider = $( ".cuteSlider", jqVolumeBtn ),
+	jqVolumeIcon = dom.jqPlayerVolumeIcon,
+	jqVolumeSlider = dom.jqPlayerVolumeSlider,
 	jqVolumeSliderParent = jqVolumeSlider.parent(),
 
 	// Texts, slider: position/duration.
-	jqTimeTxt = $( ".txt.position", dom.jqPlayerCtrl )
-	jqTimeTxtCurrent = $( ".current", jqTimeTxt ),
-	jqTimeTxtRemaining = $( ".remaining", jqTimeTxt ),
-	jqTimeTxtDuration = $( ".duration", jqTimeTxt ),
-	jqTimeSlider = $( ".cuteSlider.position", dom.jqPlayerCtrl ),
+	jqTimeTxtCurrent = dom.jqPlayerTimeCurrent,
+	jqTimeTxtRemaining = dom.jqPlayerTimeRemaining,
+	jqTimeTxtDuration = dom.jqPlayerTimeDuration,
+	jqTimeSlider = dom.jqPlayerSliderCurrentTime,
 	jqTimeSliderParent = jqTimeSlider.parent(),
 
 	// Button: fullscreen.
-	jqBtnFScr = $( ".btn.fullscreen", dom.jqPlayerCtrl ),
+	jqBtnFScr = dom.jqPlayerFullscreenBtn,
 
 	// Texts: texts on screen.
 	jqScreenTexts = [

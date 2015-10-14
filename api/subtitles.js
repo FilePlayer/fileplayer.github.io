@@ -25,8 +25,8 @@ var
 	cuesCopies,
 	cuesDelay = 0,
 	jqCue = dom.jqPlayerCue,
-	jqBtnSubtitles = $( ".btn.subtitles", dom.jqPlayerCtrl ),
-	tracks = dom.elPlayerVideo.textTracks
+	jqBtnSubtitles = dom.jqPlayerSubtitlesBtn,
+	tracks = dom.jqPlayerVideo[ 0 ].textTracks
 ;
 
 function initCuesMap( cues ) {
@@ -121,7 +121,7 @@ api.subtitles = that = {
 						};
 					})( tracksLen )
 				}
-			}).appendTo( dom.elPlayerVideo );
+			}).appendTo( dom.jqPlayerVideo );
 
 			// Chrome will start loading the track only
 			// after the `mode` attribute is set to "showing".
