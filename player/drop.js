@@ -3,7 +3,7 @@
 function isFileOrDirectory( item ) {
 	if ( item.isFile ) {
 		item.file( function( file ) {
-			playerAPI.addFile( file );
+			api.files.add( file );
 		});
 	} else if ( item.isDirectory ) {
 		var dirReader = item.createReader();
@@ -15,9 +15,9 @@ function isFileOrDirectory( item ) {
 	}
 }
 
-$( document.body )
-	.on( "dragover", false )
-	.on( "drop", function( e ) {
+dom.jqBody.on( {
+	dragover: false,
+	drop: function( e ) {
 		if ( ( data = e.originalEvent.dataTransfer ) ) {
 			// Drop folders only on Chrome
 			if ( data.items ) {
@@ -29,13 +29,12 @@ $( document.body )
 			}
 			else if ( data.files ) {
 				$.each( data.files, function( key, file ) {
-					playerAPI.addFile( file );
+					api.files.add( file );
 				});
 			}
 		}
-
 		return false;
-	})
-;
+	}
+});
 
 })();
