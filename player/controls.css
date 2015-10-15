@@ -91,3 +91,67 @@
 #ctrl .position .remaining:before {
 	content: "-";
 }
+
+/* default controls' menu style */
+#ctrl .menu {
+	opacity: 0;
+	visibility: hidden;
+	display: inline-block;
+	position: absolute;
+	bottom: 100%;
+	/* Temporary margin : need to position it genericaly  */
+	margin-left: -50px;
+	border-radius: 4px;
+	background-color: rgba( 13, 13, 13, 0.80 );
+	text-align: left;
+	font-size: 11px;
+	font-weight: lighter;
+	color: rgba( 255, 255, 255, 0.6 );
+	transition: all .2s;
+}
+
+#ctrl .menu-activator > * {
+	display: inline-block;
+	width: 50%;
+}
+
+#ctrl .menu-activator .slidebutton {
+	float: right;
+	width: 28px;
+	height: 13px;
+}
+
+#ctrl .menu-list {
+	display: block;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	border-radius: 4px;
+}
+
+#ctrl .menu-activator,
+#ctrl .menu-list li {
+	padding:7px;
+}
+
+#ctrl .menu-list li {
+	overflow: hidden;
+	display: block;
+	cursor: pointer;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+#ctrl .menu-list li + li {
+	border-top: 1px solid rgba( 255, 255, 255, 0.1 );
+}
+
+#ctrl .menu-list li:hover {
+	background-color: rgba( 12, 12, 12, 0.80 );
+}
+
+#ctrl .menu-list li.selected {
+	color: rgba( 255, 255, 255, 0.9 );
+	font-weight: 500;
+}
+

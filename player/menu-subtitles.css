@@ -1,0 +1,21 @@
+.btn.subtitles .fa {
+	cursor:pointer;
+}
+
+#subtitles-check {
+	position: absolute;
+	visibility: hidden;
+}
+
+.menu.subtitles {
+	width: 100px;
+}
+
+#subtitles-check:checked ~ label {
+	color: #fff;
+}
+
+#subtitles-check:checked ~ .menu.subtitles {
+	visibility: visible !important;
+	opacity: 1 !important;
+}

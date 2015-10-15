@@ -25,7 +25,7 @@ var
 	cuesCopies,
 	cuesDelay = 0,
 	jqCue = dom.jqPlayerCue,
-	jqBtnSubtitles = $( ".btn.subtitles", dom.jqPlayerCtrl )
+	jqSubtitlesActivator = $( ".menu.subtitles .menu-activator", dom.jqPlayerCtrl )
 ;
 
 function initCuesMap( cues ) {
@@ -82,20 +82,14 @@ api.subtitles = that = {
 	},
 	enable: function() {
 		enable = true;
-		jqBtnSubtitles
-			.removeClass( "disable" )
-			.attr( "data-tooltip-content", "Disable subtitles" )
-		;
+		jqSubtitlesActivator.attr( "data-tooltip-content", "Disable subtitles" );
 		return that.update();
 	},
 	disable: function() {
 		enable = false;
 		currentCue = null;
 		jqCue.empty();
-		jqBtnSubtitles
-			.addClass( "disable" )
-			.attr( "data-tooltip-content", "Enable subtitles" )
-		;
+		jqSubtitlesActivator.attr( "data-tooltip-content", "Enable subtitles" );
 		return that;
 	},
 	toggle: function( b ) {

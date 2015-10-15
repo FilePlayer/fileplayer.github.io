@@ -2,6 +2,7 @@
 
 var
 	tracks = dom.elPlayerVideo.textTracks
+	jqSubtitlesList = $( ".menu.subtitles .menu-list", dom.jqPlayerCtrl );
 ;
 
 function encodeToWebVTT( fileContent ) {
@@ -24,7 +25,8 @@ $.extend( api, {
 		reader.onloadend = function () {
 			var
 				blob,
-				tracksLen = tracks ? tracks.length : 0
+				tracksLen = tracks ? tracks.length : 0,
+				menulistLen = jqSubtitlesList.children().length
 			;
 
 			blob = new Blob(
@@ -56,6 +58,25 @@ $.extend( api, {
 				}
 			}).appendTo( dom.elPlayerVideo );
 
+			jqSubtitlesList.children().removeClass( "selected" );
+
+			// Add file name in subtitles list
+			$( "<li>", {
+				text: file.name,
+				class: "selected",
+				"data-jquery-element": "tooltip",
+				"data-tooltip-content": file.name,
+				"data-tooltip-side": "left",
+				on: {
+					click: ( function( id ) {
+						return function () {
+							api.subtitles.select( tracks[ id ] );
+							jqSubtitlesList.children().removeClass( "selected" )
+							$( this ).addClass( "selected" );
+						}
+					})( menulistLen )
+				}
+			}).appendTo( jqSubtitlesList );
 			// Chrome will start loading the track only
 			// after the `mode` attribute is set to "showing".
 			// The `if` is necessary for Firefox.

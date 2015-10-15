@@ -4,8 +4,8 @@
 	<title>FilePlayer</title>
 	<meta charset="UTF-8"/>
 	<link rel="icon" type="image/x-icon" href="favicon.png"/>
-	<!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>-->
-	<link rel="stylesheet" href="../../_/fa/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
+	<!-- <link rel="stylesheet" href="../../_/fa/css/font-awesome.min.css"/> -->
 	<link rel="stylesheet" href="tools/reset.css"/>
 	<link rel="stylesheet" href="tools/overwrite-cuteslider.css"/>
 	<link rel="stylesheet" href="tools/overwrite-tooltip.css"/>
@@ -15,10 +15,11 @@
 	<link rel="stylesheet" href="player/controls.css"/>
 	<link rel="stylesheet" href="player/position.css"/>
 	<link rel="stylesheet" href="player/subtitles.css"/>
-	<!--<script src="//code.jquery.com/jquery-3.0.0-alpha1.min.js"></script>-->
-	<!--<script src="//jquery-element.github.io/dist/jquery-element-1.7.0.js"></script>-->
-	<script src="../../_/jquery.min.js"></script>
-	<script src="../../jquery-element/dist/jquery-element-1.7.0.js"></script>
+	<link rel="stylesheet" href="player/menu-subtitles.css"/>
+	<script src="//code.jquery.com/jquery-3.0.0-alpha1.min.js"></script>
+	<script src="//jquery-element.github.io/dist/jquery-element-1.7.0.js"></script>
+	<!-- // <script src="../../_/jquery.min.js"></script> -->
+	<!-- // <script src="../../jquery-element/dist/jquery-element-1.7.0.js"></script> -->
 	<script>function lg( s ) { console.log( s ); }</script>
 </head>
 <body>
@@ -84,10 +85,29 @@
 				</span>
 			</div
 			><div class="right"
-				><i
-					class="btn subtitles fa fa-fw fa-cc"
-					data-jquery-element="tooltip"
-				></i
+				><span class="btn subtitles"
+					><input id="subtitles-check" type="checkbox" /
+					><label
+						for="subtitles-check"
+						class="fa fa-fw fa-cc"
+					></label
+					><div class="menu subtitles">
+						<div
+							class="menu-activator"
+							data-jquery-element="tooltip"
+							data-tooltip-content="Enable subtitles" >
+							<span>Subtitles</span
+							><span>
+								<input
+									type="checkbox"
+									data-jquery-element="slidebutton"
+								/>
+							</span>
+						</div>
+						<ul class="menu-list">
+						</ul>
+					</div
+				></span
 				><span class="btn opacity"
 					><span
 						data-jquery-element="tooltip"
@@ -110,10 +130,11 @@
 	</div>
 </div>
 
-<!--<script src="//jquery-element.github.io/dist/tooltip-1.0.2.js"></script>
-<script src="//jquery-element.github.io/dist/cuteslider-1.1.2.js"></script>-->
-<script src="../../jquery-element/dist/tooltip-1.0.2.js"></script>
-<script src="../../jquery-element/dist/cuteslider-1.1.2.js"></script>
+<script src="//jquery-element.github.io/dist/tooltip-1.0.2.js"></script>
+<script src="//jquery-element.github.io/dist/cuteslider-1.1.2.js"></script>
+<script src="//jquery-element.github.io/dist/slidebutton-1.1.0.js"></script>
+<!-- <script src="../../jquery-element/dist/tooltip-1.0.2.js"></script>
+<script src="../../jquery-element/dist/cuteslider-1.1.2.js"></script> -->
 
 <script src="tools/utils.js"></script>
 
