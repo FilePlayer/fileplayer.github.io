@@ -1,5 +1,16 @@
 (function() {
 
+dom.jqDoc.on(
+	      "fullscreenchange " +
+	    "MSFullscreenChange " +
+	   "mozfullscreenchange " +
+	"webkitfullscreenchange",
+	function() {
+		lg( "ON: fullscreenchange" );
+		playerUI.toggleFullscreen( document.isFullscreen() );
+	}
+);
+
 dom.jqPlayerVideo.on( {
 	loadedmetadata: function() {
 		lg( "ON: loadedmetadata" );
