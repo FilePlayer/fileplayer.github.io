@@ -1,8 +1,6 @@
 (function() {
 
-dom.jqPlayerSubtitlesBtn.click( function() {
-	api.subtitles.toggle();
-});
+dom.jqPlayerSubtitlesBtn.click( api.subtitles.toggle );
 
 // Synchronisation's subtitles keyboard.
 api.keyboard

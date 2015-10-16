@@ -1,16 +1,13 @@
 (function() {
 
-dom.jqPlayerVolumeIcon.click( function() {
-	api.video.muteToggle();
-	return false;
-});
+dom.jqPlayerVolumeIcon.click( api.video.muteToggle );
 
 dom.jqPlayerVolumeSlider.change( function() {
 	api.video.volume( this.value );
 });
 
 function volumeKeys( v ) {
-	api.video.volume( v )
+	api.video.volume( v );
 	playerUI.actionDesc( "Volume : " + Math.round( api.video.volume() * 100 ) + " %" );
 }
 

@@ -1,12 +1,7 @@
 (function() {
 
-dom.jqPlayerPlayBtn.click( function() {
-	api.video.playToggle();
-});
-
-dom.jqPlayerStopBtn.click( function() {
-	api.video.stop();
-});
+dom.jqPlayerPlayBtn.click( api.video.playToggle );
+dom.jqPlayerStopBtn.click( api.video.stop );
 
 // Keyboard shortcup to: stop, play/pause.
 api.keyboard
