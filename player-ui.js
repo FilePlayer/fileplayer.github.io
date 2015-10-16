@@ -29,6 +29,11 @@ var
 	jqOpacitySlider = dom.jqPlayerOpacitySlider,
 	jqOpacitySliderParent = jqOpacitySlider.parent(),
 
+	// Subtitles.
+	currentCue,
+	jqSubtitlesCue = dom.jqPlayerCue,
+	jqSubtitlesBtn = dom.jqPlayerSubtitlesBtn,
+
 	// Texts: texts on screen.
 	jqScreenTexts = [
 		dom.jqPlayerTitle,
@@ -123,7 +128,7 @@ window.playerUI = that = {
 	},
 	currentTime: function( sec ) {
 		var dur = api.video.duration();
-		api.subtitles.update();
+		that.subtitlesCue( api.subtitles.findCue() );
 		jqTimeSlider.element().val( sec / dur );
 		jqTimeTxtCurrent.text( utils.secondsToString( sec ) );
 		jqTimeTxtRemaining.text( utils.secondsToString( dur - sec ) );
@@ -161,6 +166,28 @@ window.playerUI = that = {
 			"Brightness : " + Math.round( op * 100 ) + " %"
 		);
 		return that;
+	},
+	subtitlesToggle: function( b ) {
+		that.subtitlesCue( b
+			? api.subtitles.findCue()
+			: null
+		);
+		jqSubtitlesBtn
+			.removeClass( "enable disable" )
+			.addClass( b ? "enable" : "disable" )
+			.attr( "data-tooltip-content", b ? "Disable subtitles" : "Enable subtitles" )
+		;
+		return that;
+	},
+	subtitlesCue: function( cue ) {
+		if ( cue !== currentCue ) {
+			if ( currentCue = cue ) {
+				jqSubtitlesCue.html( cue.text );
+			} else {
+				jqSubtitlesCue.empty();
+			}
+		}
+		return that;
 	}
 };
 
@@ -168,6 +195,7 @@ playerUI
 	.pause()
 	.currentTime( 0 )
 	.duration( 0 )
+	.subtitlesToggle( false )
 	.volume( api.video.volume() )
 	.opacity( api.video.opacity() )
 	.exitFullscreen()

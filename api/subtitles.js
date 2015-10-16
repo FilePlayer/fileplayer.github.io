@@ -19,13 +19,10 @@ video = {
 
 var
 	that,
-	enable,
 	textTrack,
-	currentCue,
 	cuesCopies,
+	enable = false,
 	cuesDelay = 0,
-	jqCue = dom.jqPlayerCue,
-	jqBtnSubtitles = dom.jqPlayerSubtitlesBtn,
 	tracks = dom.jqPlayerVideo[ 0 ].textTracks
 ;
 
@@ -57,22 +54,6 @@ function initCuesMap( cues ) {
 					cuesMap[ sA ] = cuesCopies[ i ];
 				}
 			}
-		}
-	}
-}
-
-function findCue( sec ) {
-	if ( textTrack ) {
-		var cue = textTrack.cuesMap[ ~~sec ];
-		if ( cue ) {
-			do {
-				if ( sec < cue.startTime ) {
-					return;
-				}
-				if ( sec <= cue.endTime ) {
-					return cue;
-				}
-			} while ( cue = cuesCopies[ cue.id ] );
 		}
 	}
 }
@@ -139,25 +120,15 @@ api.subtitles = that = {
 		return enable;
 	},
 	enable: function() {
-		enable = true;
-		jqBtnSubtitles
-			.removeClass( "disable" )
-			.attr( "data-tooltip-content", "Disable subtitles" )
-		;
-		return that.update();
+		playerUI.subtitlesToggle( enable = true );
+		return that;
 	},
 	disable: function() {
-		enable = false;
-		currentCue = null;
-		jqCue.empty();
-		jqBtnSubtitles
-			.addClass( "disable" )
-			.attr( "data-tooltip-content", "Enable subtitles" )
-		;
+		playerUI.subtitlesToggle( enable = false );
 		return that;
 	},
 	toggle: function( b ) {
-		if ( arguments.length === 0 ) {
+		if ( typeof b !== "boolean" ) {
 			b = !enable;
 		}
 		return b ? that.enable() : that.disable();
@@ -168,31 +139,39 @@ api.subtitles = that = {
 		}
 		textTrack = track;
 		initCuesMap( track.cues );
-		return that.update();
-	},
-	update: function() {
-		if ( enable ) {
-			var cue = findCue( api.video.currentTime() + cuesDelay );
-			if ( cue !== currentCue ) {
-				if ( currentCue = cue ) {
-					jqCue.html( cue.text );
-				} else {
-					jqCue.empty();
-				}
-			}
-		}
+		playerUI.subtitlesCue( that.findCue() );
 		return that;
+	},
+	findCue: function() {
+		if ( enable && textTrack ) {
+			var
+				sec = api.video.currentTime() + cuesDelay,
+				cue = textTrack.cuesMap[ ~~sec ]
+			;
+			if ( cue ) {
+				do {
+					if ( sec < cue.startTime ) {
+						return;
+					}
+					if ( sec <= cue.endTime ) {
+						return cue;
+					}
+				} while ( cue = cuesCopies[ cue.id ] );
+			}
+			return cue;
+		}
 	},
 	delay: function( sec ) {
 		if ( !arguments.length ) {
 			return cuesDelay;
 		}
 		cuesDelay = utils.range( -Infinity, sec, +Infinity, cuesDelay );
-		playerUI.actionDesc( "Subtitles delay : " + cuesDelay.toFixed( 3 ) + " s" );
-		return that.update();
+		playerUI
+			.actionDesc( "Subtitles delay : " + cuesDelay.toFixed( 3 ) + " s" )
+			.subtitlesCue( that.findCue() );
+		;
+		return that;
 	}
 };
-
-that.disable();
 
 })();

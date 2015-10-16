@@ -42,7 +42,7 @@ api.video = that = {
 		return video.paused && !video.currentTime;
 	},
 	playToggle: function( b ) {
-		if ( arguments.length === 0 ) {
+		if ( typeof b !== "boolean" ) {
 			b = !that.isPlaying();
 		}
 		return b ? that.play() : that.pause();
@@ -98,7 +98,7 @@ api.video = that = {
 		return video.muted || video.volume === 0;
 	},
 	muteToggle: function( b ) {
-		if ( arguments.length === 0 ) {
+		if ( typeof b !== "boolean" ) {
 			b = !that.isMuted();
 		}
 		return b ? that.mute() : that.unMute();
