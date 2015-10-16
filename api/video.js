@@ -3,6 +3,7 @@
 var
 	that,
 	oldSource,
+	opacity = 1,
 	video = dom.jqPlayerVideo[ 0 ],
 	jqVideo = dom.jqPlayerVideo,
 	jqVideoThumb = dom.jqPlayerThumbnailVideo
@@ -109,6 +110,17 @@ api.video = that = {
 			return video.playbackRate;
 		}
 		video.playbackRate = rate;
+		return that;
+	},
+
+	// Brightness: opacity.
+	opacity: function( o ) {
+		if ( arguments.length === 0 ) {
+			return opacity;
+		}
+		if ( opacity = utils.range( 0, o, 1, opacity ) ) {
+			jqVideo.trigger( "opacitychange" );
+		}
 		return that;
 	}
 };

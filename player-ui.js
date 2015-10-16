@@ -3,10 +3,13 @@
 var
 	that,
 
-	// Buttons: play/pause.
+	// Video.
+	jqVideo = dom.jqPlayerVideo,
+
+	// Button: play/pause.
 	jqPlayBtn = dom.jqPlayerPlayBtn,
 
-	// Buttons, slider: volume.
+	// Button, slider: volume.
 	jqVolumeIcon = dom.jqPlayerVolumeIcon,
 	jqVolumeSlider = dom.jqPlayerVolumeSlider,
 	jqVolumeSliderParent = jqVolumeSlider.parent(),
@@ -20,6 +23,11 @@ var
 
 	// Button: fullscreen.
 	jqBtnFScr = dom.jqPlayerFullscreenBtn,
+
+	// Button, slider: opacity.
+	jqOpacityIcon = dom.jqPlayerOpacityIcon,
+	jqOpacitySlider = dom.jqPlayerOpacitySlider,
+	jqOpacitySliderParent = jqOpacitySlider.parent(),
 
 	// Texts: texts on screen.
 	jqScreenTexts = [
@@ -140,6 +148,19 @@ window.playerUI = that = {
 		jqVolumeIcon.attr( "data-tooltip-content", vol ? "Mute" : "Unmute" );
 		jqVolumeSliderParent.attr( "data-tooltip-content", volStr( vol ) );
 		return that;
+	},
+	opacity: function( op ) {
+		jqVideo.css( "opacity", op );
+		jqOpacitySlider.element().val( op );
+		jqOpacityIcon
+			.removeClass( "fa-moon-o fa-lightbulb-o" )
+			.addClass( op < .5 ? "fa-moon-o" : "fa-lightbulb-o" )
+		;
+		jqOpacitySliderParent.attr(
+			"data-tooltip-content",
+			"Brightness : " + Math.round( op * 100 ) + " %"
+		);
+		return that;
 	}
 };
 
@@ -148,6 +169,7 @@ playerUI
 	.currentTime( 0 )
 	.duration( 0 )
 	.volume( api.video.volume() )
+	.opacity( api.video.opacity() )
 	.exitFullscreen()
 ;
 

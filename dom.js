@@ -13,6 +13,8 @@ window.dom = {
 	jqPlayerPlayBtn: $( "#ctrl .play" ),
 	jqPlayerStopBtn: $( "#ctrl .stop" ),
 	jqPlayerFullscreenBtn: $( "#ctrl .btn.fullscreen" ),
+	jqPlayerOpacityIcon: $( "#ctrl .opacity .fa" ),
+	jqPlayerOpacitySlider: $( "#ctrl .opacity .cuteSlider" ),
 	jqPlayerVolumeIcon: $( "#ctrl .volume .fa" ),
 	jqPlayerVolumeSlider: $( "#ctrl .volume .cuteSlider" ),
 	jqPlayerTimeText: $( "#player .txt.position" ),

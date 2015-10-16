@@ -16,21 +16,6 @@ dom.jqPlayerVideo.on( {
 		lg( "ON: loadedmetadata" );
 		playerUI.loaded();
 	},
-	volumechange: function() {
-		lg( "ON: volumechange" );
-		playerUI.volume( this.muted ? 0 : this.volume );
-	},
-	ratechange: function() {
-		lg( "ON: ratechange" );
-	},
-	timeupdate: function() {
-		lg( "ON: timeupdate" );
-		playerUI.currentTime( this.currentTime );
-	},
-	durationchange: function() {
-		lg( "ON: durationchange" );
-		playerUI.duration( this.duration );
-	},
 	play: function() {
 		lg( "ON: play" );
 		playerUI.play();
@@ -42,6 +27,25 @@ dom.jqPlayerVideo.on( {
 	stop: function() {
 		lg( "ON: stop" );
 		playerUI.stop();
+	},
+	durationchange: function() {
+		lg( "ON: durationchange" );
+		playerUI.duration( this.duration );
+	},
+	timeupdate: function() {
+		lg( "ON: timeupdate" );
+		playerUI.currentTime( this.currentTime );
+	},
+	volumechange: function() {
+		lg( "ON: volumechange" );
+		playerUI.volume( this.muted ? 0 : this.volume );
+	},
+	ratechange: function() {
+		lg( "ON: ratechange" );
+	},
+	opacitychange: function() {
+		lg( "ON: opacitychange" );
+		playerUI.opacity( api.video.opacity() );
 	}
 });
 
