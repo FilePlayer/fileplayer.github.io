@@ -1,0 +1,61 @@
+/* controls' menu */
+#ctrl .menu {
+	position: absolute;
+	bottom: 100%;
+	text-align: left;
+	font-size: 11px;
+	color: rgba( 255, 255, 255, .6 );
+	background-color: rgba( 13, 13, 13, .8 );
+	transition: all .2s;
+	opacity: 0;
+	visibility: hidden;
+}
+
+#ctrl .menu,
+#ctrl .menu-list {
+	border-radius: 4px;
+}
+
+#ctrl .menu-activate,
+#ctrl .menu-list li {
+	padding: 7px;
+}
+
+#ctrl .menu-activate .slidebutton {
+	float: right;
+	width: 28px;
+	height: 13px;
+}
+
+#ctrl .menu-activate > * {
+	display: inline-block;
+	width: 50%;
+}
+
+#ctrl .menu-list {
+	display: block;
+	height: 100%;
+}
+
+#ctrl .menu-list li {
+	overflow: hidden;
+	display: block;
+	cursor: pointer;
+	font-weight: lighter;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+#ctrl .menu-list li + li {
+	border-top: 1px solid rgba( 255, 255, 255, .1 );
+}
+
+#ctrl .menu-list li:hover {
+	background-color: rgba( 12, 12, 12, .8 );
+}
+
+#ctrl .menu-list li.selected {
+	color: rgba( 255, 255, 255, .9 );
+	font-weight: bold;
+}
+

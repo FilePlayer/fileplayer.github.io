@@ -23,7 +23,8 @@ var
 	cuesCopies,
 	enable = false,
 	cuesDelay = 0,
-	tracks = dom.jqPlayerVideo[ 0 ].textTracks
+	tracks = dom.jqPlayerVideo[ 0 ].textTracks,
+	jqListSubtitles = dom.jqPlayerSubtitlesList
 ;
 
 function initCuesMap( cues ) {
@@ -91,18 +92,38 @@ api.subtitles = that = {
 				srclang: "en",
 				label: "Subtitles " + ( tracksLen + 1 ),
 				name: file.name,
-				on: {
-					load: ( function( len ) {
-						return function( e ) {
-							tracks[ len ].mode = "hidden";
-							api.subtitles
-								.select( tracks[ len ] )
-								.enable( true )
-							;
-						};
-					})( tracksLen )
-				}
-			}).appendTo( dom.jqPlayerVideo );
+			})
+				.appendTo( dom.jqPlayerVideo )
+				.on( "load", ( function( len ) {
+					return function( e ) {
+						tracks[ len ].mode = "hidden";
+						api.subtitles
+							.select( tracks[ len ] )
+							.enable( true )
+						;
+					};
+				})( tracksLen ) )
+			;
+
+			jqListSubtitles.children().removeClass( "selected" );
+
+			// Add file name in subtitles list
+			$( "<li>", {
+				text: file.name,
+				class: "selected",
+				"data-jquery-element": "tooltip",
+				"data-tooltip-content": file.name,
+				"data-tooltip-side": "left",
+			})
+				.appendTo( jqListSubtitles )
+				.click( ( function( id ) {
+					return function () {
+						api.subtitles.select( tracks[ id ] );
+						jqListSubtitles.children().removeClass( "selected" );
+						$( this ).addClass( "selected" );
+					};
+				})( tracksLen ) )
+			;
 
 			// Chrome will start loading the track only
 			// after the `mode` attribute is set to "showing".
