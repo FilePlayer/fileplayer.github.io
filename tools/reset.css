@@ -27,6 +27,11 @@ input {
 	outline: 0;
 }
 
-input {
+input,
+ul {
 	margin: 0;
+}
+
+ul {
+	padding: 0;
 }

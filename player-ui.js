@@ -33,6 +33,7 @@ var
 	currentCue,
 	jqSubtitlesCue = dom.jqPlayerCue,
 	jqSubtitlesBtn = dom.jqPlayerSubtitlesBtn,
+	jqSubtitlesToolip = dom.jqPlayerSubtitlesTooltip,
 
 	// Texts: texts on screen.
 	jqScreenTexts = [
@@ -172,11 +173,11 @@ window.playerUI = that = {
 			? api.subtitles.findCue()
 			: null
 		);
-		jqSubtitlesBtn
-			.removeClass( "enable disable" )
-			.addClass( b ? "enable" : "disable" )
-			.attr( "data-tooltip-content", b ? "Disable subtitles" : "Enable subtitles" )
-		;
+		jqSubtitlesBtn.attr( "checked", b ? "checked" : null );
+		jqSubtitlesToolip.attr(
+			"data-tooltip-content",
+			b ? "Disable subtitles" : "Enable subtitles"
+		);
 		return that;
 	},
 	subtitlesCue: function( cue ) {

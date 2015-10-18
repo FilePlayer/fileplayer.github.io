@@ -1,0 +1,26 @@
+.btn.subtitles {
+	display: inline-block;
+}
+
+.btn.subtitles .fa {
+	cursor: pointer;
+}
+
+#subtitles-check {
+	position: absolute;
+	visibility: hidden;
+}
+
+.menu.subtitles {
+	width: 100px;
+	margin-left: -43px;
+}
+
+#subtitles-check:checked ~ label {
+	color: #fff;
+}
+
+#subtitles-check:checked ~ .menu.subtitles {
+	visibility: visible;
+	opacity: 1;
+}

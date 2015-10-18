@@ -10,6 +10,8 @@
 	<link rel="stylesheet" href="tools/overwrite-tooltip.css"/>
 	<link rel="stylesheet" href="player/player.css"/>
 	<link rel="stylesheet" href="player/placeholder.css"/>
+	<link rel="stylesheet" href="player/menu.css"/>
+	<link rel="stylesheet" href="player/menu-subtitles.css"/>
 	<link rel="stylesheet" href="player/video.css"/>
 	<link rel="stylesheet" href="player/controls.css"/>
 	<link rel="stylesheet" href="player/position.css"/>
@@ -81,10 +83,24 @@
 				</span>
 			</div
 			><div class="right"
-				><i
-					class="btn subtitles fa fa-fw fa-cc"
-					data-jquery-element="tooltip"
-				></i
+				><span class="btn subtitles"
+					><input id="subtitles-check" type="checkbox"
+					/><label
+						for="subtitles-check"
+						class="fa fa-fw fa-cc"
+					></label
+					><div class="menu subtitles"
+						><div class="menu-activate"
+							><span>Subtitles</span
+							><span data-jquery-element="tooltip"
+								><input
+									type="checkbox"
+									data-jquery-element="slidebutton"
+							/></span
+						></div
+						><ul class="menu-list"></ul
+					></div
+				></span
 				><span class="btn opacity"
 					><span
 						data-jquery-element="tooltip"
@@ -109,6 +125,7 @@
 
 <script src="//jquery-element.github.io/dist/tooltip-1.0.2.js"></script>
 <script src="//jquery-element.github.io/dist/cuteslider-1.1.2.js"></script>
+<script src="//jquery-element.github.io/dist/slidebutton-1.1.0.js"></script>
 
 <script src="tools/utils.js"></script>
 
