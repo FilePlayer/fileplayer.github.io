@@ -32,8 +32,8 @@ var
 	// Subtitles.
 	currentCue,
 	jqSubtitlesCue = dom.jqPlayerCue,
-	jqSubtitlesBtn = dom.jqPlayerSubtitlesBtn,
-	jqSubtitlesToolip = dom.jqPlayerSubtitlesTooltip,
+	jqSubtitlesCheckbox = dom.jqPlayerSubtitlesCheckbox,
+	jqSubtitlesToolip = dom.jqPlayerSubtitlesToggle.parent(),
 
 	// Texts: texts on screen.
 	jqScreenTexts = [
@@ -173,7 +173,7 @@ window.playerUI = that = {
 			? api.subtitles.findCue()
 			: null
 		);
-		jqSubtitlesBtn.attr( "checked", b ? "checked" : null );
+		jqSubtitlesCheckbox.attr( "checked", b ? "checked" : null );
 		jqSubtitlesToolip.attr(
 			"data-tooltip-content",
 			b ? "Disable subtitles" : "Enable subtitles"

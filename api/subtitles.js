@@ -110,10 +110,7 @@ api.subtitles = that = {
 			// Add file name in subtitles list
 			$( "<li>", {
 				text: file.name,
-				class: "selected",
-				"data-jquery-element": "tooltip",
-				"data-tooltip-content": file.name,
-				"data-tooltip-side": "left",
+				"class": "selected"
 			})
 				.appendTo( jqListSubtitles )
 				.click( ( function( id ) {

@@ -1,61 +1,48 @@
-/* controls' menu */
 #ctrl .menu {
 	position: absolute;
 	bottom: 100%;
-	text-align: left;
-	font-size: 11px;
-	color: rgba( 255, 255, 255, .6 );
-	background-color: rgba( 13, 13, 13, .8 );
+	padding-bottom: 25px;
+	cursor: default;
 	transition: all .2s;
-	opacity: 0;
 	visibility: hidden;
+	opacity: 0;
 }
 
-#ctrl .menu,
-#ctrl .menu-list {
+#ctrl .btn:hover .menu {
+	visibility: visible;
+	opacity: 1;
+}
+
+#ctrl .menu .content {
+	overflow: hidden;
 	border-radius: 4px;
+	text-align: left;
+	background: #111;
+	box-shadow: 0 0 50px #000;
 }
 
-#ctrl .menu-activate,
-#ctrl .menu-list li {
+#ctrl .menu .header,
+#ctrl .menu li {
 	padding: 7px;
 }
 
-#ctrl .menu-activate .slidebutton {
-	float: right;
-	width: 28px;
-	height: 13px;
-}
-
-#ctrl .menu-activate > * {
-	display: inline-block;
-	width: 50%;
-}
-
-#ctrl .menu-list {
-	display: block;
-	height: 100%;
-}
-
-#ctrl .menu-list li {
-	overflow: hidden;
-	display: block;
+#ctrl .menu li {
 	cursor: pointer;
-	font-weight: lighter;
 	white-space: nowrap;
-	text-overflow: ellipsis;
+	border-top: 1px solid rgba( 255, 255, 255, .05 );
 }
 
-#ctrl .menu-list li + li {
-	border-top: 1px solid rgba( 255, 255, 255, .1 );
+#ctrl .menu li:hover {
+	background: rgba( 255, 255, 255, .05 );
 }
 
-#ctrl .menu-list li:hover {
-	background-color: rgba( 12, 12, 12, .8 );
+#ctrl .menu li:before {
+	content: "\f111";
+	font: 6px "FontAwesome";
+	margin-right: 1em;
+	visibility: hidden;
 }
 
-#ctrl .menu-list li.selected {
-	color: rgba( 255, 255, 255, .9 );
-	font-weight: bold;
+#ctrl .menu li.selected:before {
+	visibility: visible;
 }
-

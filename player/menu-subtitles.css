@@ -1,26 +1,30 @@
-.btn.subtitles {
+#ctrl .btn.subtitles {
 	display: inline-block;
 }
 
-.btn.subtitles .fa {
+#ctrl .btn.subtitles .fa {
 	cursor: pointer;
 }
 
-#subtitles-check {
-	position: absolute;
-	visibility: hidden;
+#ctrl .menu.subtitles {
+	min-width: 140px;
+	right: -57px;
 }
 
-.menu.subtitles {
-	width: 100px;
-	margin-left: -43px;
+#ctrl .menu.subtitles .slidebuttonParent {
+	float: right;
 }
 
-#subtitles-check:checked ~ label {
-	color: #fff;
+#ctrl .menu.subtitles {
+	font-size: 12px;
 }
 
-#subtitles-check:checked ~ .menu.subtitles {
-	visibility: visible;
-	opacity: 1;
+#ctrl .menu.subtitles .title {
+	opacity: .3;
+}
+
+#ctrl .menu.subtitles .slidebutton {
+	float: right;
+	width: 28px;
+	height: 13px;
 }

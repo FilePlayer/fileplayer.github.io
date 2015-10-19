@@ -50,6 +50,7 @@
 }
 
 #ctrl .btn {
+	position: relative;
 	font-size: 18px;
 	cursor: pointer;
 	transition: color .1s;
