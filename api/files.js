@@ -19,7 +19,7 @@ api.files = that = {
 
 			case "mp4" :
 				api.video
-					.setSource( URL.createObjectURL( file ) )
+					.load( URL.createObjectURL( file ) )
 					.play()
 				;
 			break;

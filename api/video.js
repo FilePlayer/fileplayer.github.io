@@ -3,6 +3,8 @@
 var
 	that,
 	oldSource,
+	isStopped = true,
+	isLoaded = false,
 	opacity = 1,
 	video = dom.jqPlayerVideo[ 0 ],
 	jqVideo = dom.jqPlayerVideo,
@@ -12,23 +14,25 @@ var
 api.video = that = {
 
 	// Manipulating the src="" attribute.
-	getSource: function() {
-		return jqVideo.attr( "src" );
+	unLoad: function() {
+		isLoaded = false;
+		jqVideo.add( jqVideoThumb ).attr( "src", "" );
+		return that;
 	},
-	setSource: function( src ) {
-		jqVideo.attr( "src", src );
-		jqVideoThumb.attr( "src", src );
+	load: function( url ) {
+		isLoaded = !!url;
+		oldSource = url;
+		jqVideo.add( jqVideoThumb ).attr( "src", url );
 		return that;
 	},
 
 	// Playing: play/pause/stop.
 	play: function() {
-		if ( that.isStopped() && oldSource ) {
-			that.setSource( oldSource );
+		if ( !isLoaded ) {
+			that.load( oldSource );
 		}
-		if ( that.getSource() ) {
-			video.play();
-		}
+		isStopped = false;
+		video.play();
 		return that;
 	},
 	pause: function() {
@@ -36,10 +40,10 @@ api.video = that = {
 		return that;
 	},
 	isPlaying: function() {
-		return !video.paused;
+		return !isStopped && !video.paused;
 	},
 	isStopped: function() {
-		return video.paused && !video.currentTime;
+		return isStopped;
 	},
 	playToggle: function( b ) {
 		if ( typeof b !== "boolean" ) {
@@ -48,10 +52,9 @@ api.video = that = {
 		return b ? that.play() : that.pause();
 	},
 	stop: function() {
-		var src = that.getSource();
-		if ( src ) {
-			that.setSource( "" );
-			oldSource = src;
+		if ( !isStopped ) {
+			isStopped = true;
+			that.unLoad( "" );
 			jqVideo.trigger( "stop" );
 		}
 		return that;
