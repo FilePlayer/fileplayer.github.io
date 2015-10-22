@@ -53,7 +53,7 @@ dom.jqDoc.keydown( function( e ) {
 	for ( var sc, i = 0; sc = shortcuts[ i ]; ++i ) {
 		if (
 			sc.key === e.keyCode &&
-			sc.ctrl === e.ctrlKey &&
+			sc.ctrl === ( e.ctrlKey || e.metaKey ) &&
 			sc.shift === e.shiftKey &&
 			sc.alt === e.altKey
 		) {
