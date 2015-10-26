@@ -17,15 +17,12 @@ api.files = that = {
 				api.subtitles.newTrack( file );
 			break;
 
-			case "mp4" :
+			default :
 				api.video
 					.load( URL.createObjectURL( file ) )
 					.play()
 				;
 			break;
-
-			default :
-			return that;
 		}
 
 		playerUI.title( name );
