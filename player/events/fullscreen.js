@@ -1,8 +1,11 @@
 (function() {
 
+var
+	plOpened
+;
+
 function fsToggle() {
 	document.toggleFullscreen( document.documentElement );
-	return false;
 }
 
 dom.jqPlayerFullscreenBtn.click( fsToggle );

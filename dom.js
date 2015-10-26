@@ -3,31 +3,50 @@
 window.dom = {
 	jqDoc: $( document ),
 	jqBody: $( document.body ),
+
+	// Player
 	jqPlayer: $( "#player" ),
-	jqPlayerTitle: $( "#titleFile" ),
-	jqPlayerShortcutDesc: $( "#shortcutDesc" ),
-	jqPlayerCue: $( "#cues > *" ),
 	jqPlayerCtrl: $( "#ctrl" ),
-	jqPlayerSliderCurrentTime: $( "#ctrl .cuteSlider.position" ),
-	jqPlayerSubtitlesIcon: $( "#ctrl .subtitles .fa" ),
-	jqPlayerSubtitlesToggle: $( "#ctrl .menu.subtitles .slidebutton" ),
-	jqPlayerSubtitlesCheckbox: $( "#ctrl .menu.subtitles input" ),
-	jqPlayerSubtitlesList: $( "#ctrl .menu.subtitles ul" ),
-	jqPlayerPlayBtn: $( "#ctrl .play" ),
-	jqPlayerStopBtn: $( "#ctrl .stop" ),
-	jqPlayerFullscreenBtn: $( "#ctrl .btn.fullscreen" ),
-	jqPlayerOpacityIcon: $( "#ctrl .opacity .fa" ),
-	jqPlayerOpacitySlider: $( "#ctrl .opacity .cuteSlider" ),
-	jqPlayerVolumeIcon: $( "#ctrl .volume .fa" ),
-	jqPlayerVolumeSlider: $( "#ctrl .volume .cuteSlider" ),
-	jqPlayerTimeText: $( "#player .txt.position" ),
-	jqPlayerTimeCurrent: $( "#player .position .current" ),
-	jqPlayerTimeRemaining: $( "#player .position .remaining" ),
-	jqPlayerTimeDuration: $( "#player .position .duration" ),
-	jqPlayerVideo: $( "#player video.main" ),
-	jqPlayerThumbnail: $( "#player .thumbnail" ),
-	jqPlayerThumbnailVideo: $( "#player .thumbnail video" ),
-	jqPlayerThumbnailCanvas: $( "#player .thumbnail canvas" )
+		// Video
+		jqPlayerVideo: $( "#player video.main" ),
+		jqPlayerFullscreenBtn: $( "#ctrl .btn.fullscreen" ),
+		// Texts on screen
+		jqPlayerTitle: $( "#titleFile" ),
+		jqPlayerShortcutDesc: $( "#shortcutDesc" ),
+		jqPlayerCue: $( "#cues > *" ),
+		// Subtitles
+		jqPlayerSubtitlesIcon: $( "#ctrl .subtitles .fa" ),
+		jqPlayerSubtitlesToggle: $( "#ctrl .menu.subtitles .slidebutton" ),
+		jqPlayerSubtitlesCheckbox: $( "#ctrl .menu.subtitles input" ),
+		jqPlayerSubtitlesList: $( "#ctrl .menu.subtitles ul" ),
+		// Play/pause/stop
+		jqPlayerPlayBtn: $( "#ctrl .play" ),
+		jqPlayerStopBtn: $( "#ctrl .stop" ),
+		// Volume
+		jqPlayerVolumeIcon: $( "#ctrl .volume .fa" ),
+		jqPlayerVolumeSlider: $( "#ctrl .volume .cuteSlider" ),
+		// Opacity
+		jqPlayerOpacityIcon: $( "#ctrl .opacity .fa" ),
+		jqPlayerOpacitySlider: $( "#ctrl .opacity .cuteSlider" ),
+		// CurrentTime
+		jqPlayerSliderCurrentTime: $( "#ctrl .cuteSlider.position" ),
+			// Thumbnail
+			jqPlayerThumbnail: $( "#player .thumbnail" ),
+			jqPlayerThumbnailVideo: $( "#player .thumbnail video" ),
+			jqPlayerThumbnailCanvas: $( "#player .thumbnail canvas" ),
+			// Texts
+			jqPlayerTimeText: $( "#player .txt.position" ),
+			jqPlayerTimeCurrent: $( "#player .position .current" ),
+			jqPlayerTimeRemaining: $( "#player .position .remaining" ),
+			jqPlayerTimeDuration: $( "#player .position .duration" ),
+
+	// Playlist
+	jqPlaylist: $( "#playlist" ),
+		// Toggle button
+		jqPlaylistToggleBtn: $( "#ctrl .btn.playlist" ),
+		// Left border to extend the playlist
+		jqPlaylistExtendWidth: $( "#playlist .extendWidth" )
+
 };
 
 // Make sure all the selections above works.

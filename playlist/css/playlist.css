@@ -1,0 +1,42 @@
+#playlist {
+	overflow: hidden;
+	background: rgba( 0, 0, 0, .3 );
+	transition: all .3s;
+	width: 0;
+	opacity: 0;
+}
+
+#playlist.showing {
+	opacity: 1;
+}
+
+/*#playlist.show,*/
+#playlist > .content {
+	min-width: 150px;
+}
+
+#playlist.show {
+	transition: none;
+}
+
+#playlist .content {
+	height: 100%;
+}
+
+#playlist .extendWidth {
+	position: absolute;
+	width: 4px;
+	height: 100%;
+	background: rgba( 255, 255, 255, .3 );
+}
+
+#playlist .extendWidth:hover,
+#playlist .extendWidth.hover {
+	background: rgba( 255, 255, 255, .6 );
+}
+
+/* Temporary */
+#playlist .text {
+	padding: 20px 10px;
+	text-align: center;
+}

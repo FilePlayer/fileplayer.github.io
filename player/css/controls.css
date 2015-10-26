@@ -34,10 +34,6 @@
 	color: rgba( 255, 255, 255, .6 );
 	background: linear-gradient( to bottom, rgba( 0, 0, 0, 0 ), #000 );
 	cursor: default;
-	-webkit-user-select: none;
-	   -moz-user-select: none;
-	    -ms-user-select: none;
-	        user-select: none;
 }
 
 #ctrl * {

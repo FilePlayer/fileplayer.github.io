@@ -16,111 +16,130 @@
 	<link rel="stylesheet" href="player/css/controls.css"/>
 	<link rel="stylesheet" href="player/css/position.css"/>
 	<link rel="stylesheet" href="player/css/subtitles.css"/>
+	<link rel="stylesheet" href="playlist/css/playlist.css"/>
 	<script src="//code.jquery.com/jquery-3.0.0-alpha1.min.js"></script>
 	<script src="//jquery-element.github.io/dist/jquery-element-1.7.0.js"></script>
 	<script>function lg( s ) { console.log( s ); }</script>
 </head>
 <body>
 
-<div id="player">
-	<div class="placeholder">
-		<h1 class="title">
-			<i class="logo fa fa-eject"></i>
-			FilePlayer
-		</h1>
-		<span>Drop files here…</span>
-	</div>
-	<video class="main"></video>
-	<div id="titleFile"></div>
-	<div id="shortcutDesc"></div>
-	<div id="cues"><span></span></div>
-	<div id="ctrl">
-		<span
-			class="cuteSlider-container"
-			data-jquery-element="tooltip"
-			data-tooltip-followmouse
-			><input
-				type="range"
-				data-jquery-element="cuteSlider"
-				data-jquery-element-class="position"
-				min="0" max="1" step=".0001"
-			/>
-			<div class="thumbnail">
-				<video></video>
-				<canvas></canvas>
-				<div class="loading"></div>
-			</div
-		></span>
-		<div class="bottom">
-			<div class="left">
-				<i
-					class="btn stop fa fa-fw fa-stop"
-					data-jquery-element="tooltip"
-					data-tooltip-content="Stop"
-				></i
-				><i
-					class="btn play fa fa-fw"
-					data-jquery-element="tooltip"
-				></i
-				><span class="btn volume"
+<div id="main">
+
+	<div id="player">
+		<div class="placeholder">
+			<h1 class="title">
+				<i class="logo fa fa-eject"></i>
+				FilePlayer
+			</h1>
+			<span>Drop files here…</span>
+		</div>
+		<video class="main"></video>
+		<div id="titleFile"></div>
+		<div id="shortcutDesc"></div>
+		<div id="cues"><span></span></div>
+		<div id="ctrl" class="no-select">
+			<span
+				class="cuteSlider-container"
+				data-jquery-element="tooltip"
+				data-tooltip-followmouse
+				><input
+					type="range"
+					data-jquery-element="cuteSlider"
+					data-jquery-element-class="position"
+					min="0" max="1" step=".0001"
+				/>
+				<div class="thumbnail">
+					<video></video>
+					<canvas></canvas>
+					<div class="loading"></div>
+				</div
+			></span>
+			<div class="bottom">
+				<div class="left">
+					<i
+						class="btn stop fa fa-fw fa-stop"
+						data-jquery-element="tooltip"
+						data-tooltip-content="Stop"
+					></i
 					><i
-						class="fa fa-fw"
+						class="btn play fa fa-fw"
 						data-jquery-element="tooltip"
 					></i
-					><span
-						data-jquery-element="tooltip"
-						><input
-							type="range"
-							data-jquery-element="cuteSlider"
-							min="0" max="1" step=".01"
-					/></span
-				></span
-				><span class="txt btn position">
-					<span class="time current"></span
-					><span class="delimiter"></span
-					><span class="time duration"></span
-					><span class="time remaining"></span>
-				</span>
-			</div
-			><div class="right"
-				><span class="btn subtitles"
-					><i class="fa fa-fw fa-cc"></i
-					><div class="menu subtitles"
-						><div class="content"
-							><div class="header"
-								><span class="title">Subtitles</span
-								><div
-									class="slidebuttonParent"
-									data-jquery-element="tooltip"
-									><input
-										type="checkbox"
-										data-jquery-element="slidebutton"
-								/></div>
-							</div
-							><ul></ul
+					><span class="btn volume"
+						><i
+							class="fa fa-fw"
+							data-jquery-element="tooltip"
+						></i
+						><span
+							data-jquery-element="tooltip"
+							><input
+								type="range"
+								data-jquery-element="cuteSlider"
+								min="0" max="1" step=".01"
+						/></span
+					></span
+					><span class="txt btn position">
+						<span class="time current"></span
+						><span class="delimiter"></span
+						><span class="time duration"></span
+						><span class="time remaining"></span>
+					</span>
+				</div
+				><div class="right"
+					><span class="btn opacity"
+						><span
+							data-jquery-element="tooltip"
+							><input
+								type="range"
+								data-jquery-element="cuteSlider"
+								min="0" max="1" step=".01"
+						/></span><i
+							class="fa fa-fw"
+							data-jquery-element="tooltip"
+							data-tooltip-content="Brightness"
+						></i
+					></span
+					><span class="btn subtitles"
+						><i class="fa fa-fw fa-cc"></i
+						><div class="menu subtitles"
+							><div class="content"
+								><div class="header"
+									><span class="title">Subtitles</span
+									><div
+										class="slidebuttonParent"
+										data-jquery-element="tooltip"
+										><input
+											type="checkbox"
+											data-jquery-element="slidebutton"
+									/></div>
+								</div
+								><ul></ul
+							></div
 						></div
-					></div
-				></span
-				><span class="btn opacity"
-					><span
+					></span
+					><i
+						class="btn fullscreen fa fa-fw"
 						data-jquery-element="tooltip"
-						><input
-							type="range"
-							data-jquery-element="cuteSlider"
-							min="0" max="1" step=".01"
-					/></span><i
-						class="fa fa-fw"
-						data-jquery-element="tooltip"
-						data-tooltip-content="Brightness"
 					></i
-				></span
-				><i
-					class="btn fullscreen fa fa-fw"
-					data-jquery-element="tooltip"
-				></i
-			></div>
+					><i
+						class="btn playlist fa fa-fw"
+						data-jquery-element="tooltip"
+					></i
+				></div>
+			</div>
 		</div>
 	</div>
+
+	<div id="playlist" class="no-select">
+		<div class="extendWidth ew-resize"></div>
+		<div class="content">
+			<div class="text">
+				<i class="fa fa-warning"></i>
+				The <b>playlist</b> is in development.
+			</div>
+		</div>
+	</div>
+
 </div>
 
 <script src="//jquery-element.github.io/dist/tooltip-1.0.2.js"></script>
@@ -132,17 +151,17 @@
 <script src="dom.js"></script>
 
 <script src="api/api.js"></script>
+<script src="api/files.js"></script>
 <script src="api/fullscreen.js"></script>
 <script src="api/keyboard.js"></script>
+<script src="api/playlist.js"></script>
 <script src="api/subtitles.js"></script>
 <script src="api/thumbnail/cache.js"></script>
 <script src="api/thumbnail/canvas.js"></script>
 <script src="api/video.js"></script>
-<script src="api/files.js"></script>
 
 <script src="player/data-binding.js"></script>
 <script src="player/player-ui.js"></script>
-
 <script src="player/events/drop.js"></script>
 <script src="player/events/controls.js"></script>
 <script src="player/events/subtitles.js"></script>
@@ -153,6 +172,9 @@
 <script src="player/events/speed.js"></script>
 <script src="player/events/fullscreen.js"></script>
 <script src="player/events/opacity.js"></script>
+
+<script src="playlist/playlist-ui.js"></script>
+<script src="playlist/events/playlist.js"></script>
 
 </body>
 </html>

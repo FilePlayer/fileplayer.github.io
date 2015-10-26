@@ -40,7 +40,10 @@ var
 		dom.jqPlayerTitle,
 		dom.jqPlayerShortcutDesc
 	],
-	screenTextsTimeoutIds = []
+	screenTextsTimeoutIds = [],
+
+	// Playlist
+	playlistWasShow
 ;
 
 function volStr( vol ) {
@@ -77,7 +80,8 @@ window.playerUI = that = {
 		return that;
 	},
 	fullscreen: function() {
-		document.fullscreen( document.documentElement );
+		playlistWasShow = playlistUI.isShow();
+		playlistUI.hide();
 		jqBtnFScr
 			.removeClass( "fa-expand" )
 			.addClass( "fa-compress" )
@@ -86,7 +90,9 @@ window.playerUI = that = {
 		return that;
 	},
 	exitFullscreen: function() {
-		document.exitFullscreen();
+		if ( playlistWasShow ) {
+			playlistUI.show();
+		}
 		jqBtnFScr
 			.removeClass( "fa-compress" )
 			.addClass( "fa-expand" )
