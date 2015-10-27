@@ -26,8 +26,8 @@ dom.jqDoc
 	.mousemove( function( e ) {
 		if ( mousedown ) {
 			playlistUI.width(
-				playlistUI.width() -
-				e.originalEvent.movementX
+				dom.jqDoc.width() -
+				e.originalEvent.pageX
 			);
 		}
 	})

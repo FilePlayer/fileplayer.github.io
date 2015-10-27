@@ -26,116 +26,120 @@
 <div id="main">
 
 	<div id="player">
-		<div class="placeholder">
-			<h1 class="title">
-				<i class="logo fa fa-eject"></i>
-				FilePlayer
-			</h1>
-			<span>Drop files here…</span>
-		</div>
-		<video class="main"></video>
-		<div id="titleFile"></div>
-		<div id="shortcutDesc"></div>
-		<div id="cues"><span></span></div>
-		<div id="ctrl" class="no-select">
-			<span
-				class="cuteSlider-container"
-				data-jquery-element="tooltip"
-				data-tooltip-followmouse
-				><input
-					type="range"
-					data-jquery-element="cuteSlider"
-					data-jquery-element-class="position"
-					min="0" max="1" step=".0001"
-				/>
-				<div class="thumbnail">
-					<video></video>
-					<canvas></canvas>
-					<div class="loading"></div>
-				</div
-			></span>
-			<div class="bottom">
-				<div class="left">
-					<i
-						class="btn stop fa fa-fw fa-stop"
-						data-jquery-element="tooltip"
-						data-tooltip-content="Stop"
-					></i
-					><i
-						class="btn play fa fa-fw"
-						data-jquery-element="tooltip"
-					></i
-					><span class="btn volume"
+		<div class="tableCellWrapper">
+			<div class="placeholder">
+				<h1 class="title">
+					<i class="logo fa fa-eject"></i>
+					FilePlayer
+				</h1>
+				<span>Drop files here…</span>
+			</div>
+			<video class="main"></video>
+			<div id="titleFile"></div>
+			<div id="shortcutDesc"></div>
+			<div id="cues"><span></span></div>
+			<div id="ctrl" class="no-select">
+				<span
+					class="cuteSlider-container"
+					data-jquery-element="tooltip"
+					data-tooltip-followmouse
+					><input
+						type="range"
+						data-jquery-element="cuteSlider"
+						data-jquery-element-class="position"
+						min="0" max="1" step=".0001"
+					/>
+					<div class="thumbnail">
+						<video></video>
+						<canvas></canvas>
+						<div class="loading"></div>
+					</div
+				></span>
+				<div class="bottom">
+					<div class="left">
+						<i
+							class="btn stop fa fa-fw fa-stop"
+							data-jquery-element="tooltip"
+							data-tooltip-content="Stop"
+						></i
 						><i
-							class="fa fa-fw"
+							class="btn play fa fa-fw"
 							data-jquery-element="tooltip"
 						></i
-						><span
-							data-jquery-element="tooltip"
-							><input
-								type="range"
-								data-jquery-element="cuteSlider"
-								min="0" max="1" step=".01"
-						/></span
-					></span
-					><span class="txt btn position">
-						<span class="time current"></span
-						><span class="delimiter"></span
-						><span class="time duration"></span
-						><span class="time remaining"></span>
-					</span>
-				</div
-				><div class="right"
-					><span class="btn opacity"
-						><span
-							data-jquery-element="tooltip"
-							><input
-								type="range"
-								data-jquery-element="cuteSlider"
-								min="0" max="1" step=".01"
-						/></span><i
-							class="fa fa-fw"
-							data-jquery-element="tooltip"
-							data-tooltip-content="Brightness"
-						></i
-					></span
-					><span class="btn subtitles"
-						><i class="fa fa-fw fa-cc"></i
-						><div class="menu subtitles"
-							><div class="content"
-								><div class="header"
-									><span class="title">Subtitles</span
-									><div
-										class="slidebuttonParent"
-										data-jquery-element="tooltip"
-										><input
-											type="checkbox"
-											data-jquery-element="slidebutton"
-									/></div>
-								</div
-								><ul></ul
+						><span class="btn volume"
+							><i
+								class="fa fa-fw"
+								data-jquery-element="tooltip"
+							></i
+							><span
+								data-jquery-element="tooltip"
+								><input
+									type="range"
+									data-jquery-element="cuteSlider"
+									min="0" max="1" step=".01"
+							/></span
+						></span
+						><span class="txt btn position">
+							<span class="time current"></span
+							><span class="delimiter"></span
+							><span class="time duration"></span
+							><span class="time remaining"></span>
+						</span>
+					</div
+					><div class="right"
+						><span class="btn opacity"
+							><span
+								data-jquery-element="tooltip"
+								><input
+									type="range"
+									data-jquery-element="cuteSlider"
+									min="0" max="1" step=".01"
+							/></span><i
+								class="fa fa-fw"
+								data-jquery-element="tooltip"
+								data-tooltip-content="Brightness"
+							></i
+						></span
+						><span class="btn subtitles"
+							><i class="fa fa-fw fa-cc"></i
+							><div class="menu subtitles"
+								><div class="content"
+									><div class="header"
+										><span class="title">Subtitles</span
+										><div
+											class="slidebuttonParent"
+											data-jquery-element="tooltip"
+											><input
+												type="checkbox"
+												data-jquery-element="slidebutton"
+										/></div>
+									</div
+									><ul></ul
+								></div
 							></div
-						></div
-					></span
-					><i
-						class="btn fullscreen fa fa-fw"
-						data-jquery-element="tooltip"
-					></i
-					><i
-						class="btn playlist fa fa-fw"
-						data-jquery-element="tooltip"
-					></i
-				></div>
+						></span
+						><i
+							class="btn fullscreen fa fa-fw"
+							data-jquery-element="tooltip"
+						></i
+						><i
+							class="btn playlist fa fa-fw"
+							data-jquery-element="tooltip"
+						></i
+					></div>
+				</div>
 			</div>
 		</div>
 	</div>
 
 	<div id="playlist" class="no-select">
-		<div class="extendWidth ew-resize"></div>
-		<div class="content">
-			<div class="text">
-				<i class="fa fa-warning"></i>
-				The <b>playlist</b> is in development.
+		<div class="tableCellWrapper">
+			<div class="extendWidth ew-resize"></div>
+			<div class="content">
+				<div class="text">
+					<i class="fa fa-warning"></i>
+					The <b>playlist</b> is in development.
+				</div>
 			</div>
 		</div>
 	</div>
