@@ -28,15 +28,21 @@ api.video = that = {
 
 	// Playing: play/pause/stop.
 	play: function() {
-		if ( !isLoaded ) {
-			that.load( oldSource );
+		if ( !that.isPlaying() ) {
+			if ( !isLoaded ) {
+				that.load( oldSource );
+			}
+			if ( isLoaded ) {
+				isStopped = false;
+				video.play();
+			}
 		}
-		isStopped = false;
-		video.play();
 		return that;
 	},
 	pause: function() {
-		video.pause();
+		if ( that.isPlaying() ) {
+			video.pause();
+		}
 		return that;
 	},
 	isPlaying: function() {

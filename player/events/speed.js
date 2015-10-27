@@ -20,7 +20,6 @@ spdLvls.some( function( n, i ) {
 function speed( lvl ) {
 	spdLvlCurrent = utils.range( 0, lvl, spdLvls.length - 1, spdLvlCurrent );
 	api.video.playbackRate( spdLvls[ spdLvlCurrent ] )
-	playerUI.actionDesc( "Speed : " + api.video.playbackRate().toFixed( 2 ) + "x" );
 }
 
 // Controls the playbackRate.

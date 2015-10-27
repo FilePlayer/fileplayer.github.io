@@ -42,6 +42,7 @@ dom.jqPlayerVideo.on( {
 	},
 	ratechange: function() {
 		lg( "ON: ratechange" );
+		playerUI.speed( this.playbackRate );
 	},
 	opacitychange: function() {
 		lg( "ON: opacitychange" );

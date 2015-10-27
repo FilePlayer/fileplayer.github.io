@@ -183,11 +183,9 @@ api.subtitles = that = {
 		if ( !arguments.length ) {
 			return cuesDelay;
 		}
-		cuesDelay = utils.range( -Infinity, sec, +Infinity, cuesDelay );
-		playerUI
-			.actionDesc( "Subtitles delay : " + cuesDelay.toFixed( 3 ) + " s" )
-			.subtitlesCue( that.findCue() );
-		;
+		playerUI.subtitlesDelay(
+			cuesDelay = utils.range( -Infinity, sec, +Infinity, cuesDelay )
+		);
 		return that;
 	}
 };

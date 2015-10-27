@@ -36,6 +36,7 @@ var
 	jqSubtitlesToolip = dom.jqPlayerSubtitlesToggle.parent(),
 
 	// Texts: texts on screen.
+	textsShowing,
 	jqScreenTexts = [
 		dom.jqPlayerTitle,
 		dom.jqPlayerShortcutDesc
@@ -46,22 +47,20 @@ var
 	playlistWasShow
 ;
 
-function volStr( vol ) {
-	return "Volume : " + Math.round( vol * 100 ) + " %";
-}
-
 function screenTexts( i, msg ) {
-	clearTimeout( screenTextsTimeoutIds[ i ] );
+	if ( textsShowing ) {
+		clearTimeout( screenTextsTimeoutIds[ i ] );
 
-	jqScreenTexts[ i ]
-		.text( msg )
-		.removeClass( "hidden" )
-	;
+		jqScreenTexts[ i ]
+			.text( msg )
+			.removeClass( "hidden" )
+		;
 
-	// Start to fadeout the element after 2s.
-	screenTextsTimeoutIds[ i ] = setTimeout( function() {
-		jqScreenTexts[ i ].addClass( "hidden" );
-	}, 2000 );
+		// Start to fadeout the element after 2s.
+		screenTextsTimeoutIds[ i ] = setTimeout( function() {
+			jqScreenTexts[ i ].addClass( "hidden" );
+		}, 2000 );
+	}
 }
 
 window.playerUI = that = {
@@ -113,7 +112,7 @@ window.playerUI = that = {
 			.addClass( "fa-pause" )
 			.attr( "data-tooltip-content", "Pause" )
 		;
-		return that;
+		return that.actionDesc( "Play" );
 	},
 	pause: function() {
 		jqPlayBtn
@@ -121,7 +120,7 @@ window.playerUI = that = {
 			.addClass( "fa-play" )
 			.attr( "data-tooltip-content", "Play" )
 		;
-		return that;
+		return that.actionDesc( "Pause" );
 	},
 	stop: function() {
 		dom.jqPlayer.removeClass( "cinema" );
@@ -131,6 +130,7 @@ window.playerUI = that = {
 			.pause()
 			.currentTime( 0 )
 			.duration( 0 )
+			.actionDesc( "Stop" )
 		;
 	},
 	currentTime: function( sec ) {
@@ -158,8 +158,12 @@ window.playerUI = that = {
 		;
 		jqVolumeSlider.element().val( vol );
 		jqVolumeIcon.attr( "data-tooltip-content", vol ? "Mute" : "Unmute" );
-		jqVolumeSliderParent.attr( "data-tooltip-content", volStr( vol ) );
-		return that;
+		var volStr = "Volume : " + Math.round( vol * 100 ) + " %";
+		jqVolumeSliderParent.attr( "data-tooltip-content", volStr );
+		return that.actionDesc( volStr );
+	},
+	speed: function( rate ) {
+		return that.actionDesc( "Speed : " + rate.toFixed( 2 ) + "x" );
 	},
 	opacity: function( op ) {
 		jqVideo.css( "opacity", op );
@@ -195,8 +199,16 @@ window.playerUI = that = {
 			}
 		}
 		return that;
+	},
+	subtitlesDelay: function( delay ) {
+		return that
+			.actionDesc( "Subtitles delay : " + delay.toFixed( 3 ) + " s" )
+			.subtitlesCue( api.subtitles.findCue() );
+		;
 	}
 };
+
+textsShowing = false;
 
 playerUI
 	.pause()
@@ -207,5 +219,7 @@ playerUI
 	.opacity( api.video.opacity() )
 	.exitFullscreen()
 ;
+
+textsShowing = true;
 
 })();
