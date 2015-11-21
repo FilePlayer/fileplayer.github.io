@@ -18,10 +18,7 @@ api.files = that = {
 			break;
 
 			default :
-				api.video
-					.load( URL.createObjectURL( file ) )
-					.play()
-				;
+				api.playlist.addItem( file )
 			break;
 		}
 

@@ -20,12 +20,15 @@
 }
 
 #playlist .content {
+    display: inline-block;
+    position: absolute;
+    width: 99%;
 	height: 100%;
 }
 
 #playlist .extendWidth {
-	position: absolute;
-	width: 4px;
+	display: inline-block;
+	width: 1%;
 	height: 100%;
 	background: rgba( 255, 255, 255, .3 );
 }
