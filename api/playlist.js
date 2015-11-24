@@ -7,11 +7,11 @@ api.playlist = that = {
 	currId: false,
 	push: function( file ) {
 		if ( file instanceof Blob ) {
-			api.playlist.files.push({
+			this.files.push({
 				"file" : file,
 				"url"  : URL.createObjectURL( file )
 			});
-			api.playlist.currId = api.playlist.files.length - 1;
+			this.currId = this.files.length - 1;
 			playlistUI.push( file.name );
 		}
 		return that;

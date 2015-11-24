@@ -67,21 +67,17 @@ window.playlistUI = that = {
 		jqPlaylistFile.removeClass( "selected" );
 
 		jqNewFile
-			.attr({
-				id: "item" + api.playlist.currId,
-				class: "item selected",
-			})
+			.addClass( "item selected" )
 			.text( name )
-			.click( ( function( selectId ) {
-				return function() {
-					jqPlaylistContent.children().removeClass( "selected" );
-					jqNewFile.addClass( "selected" );
-					api.video
-						.load( api.playlist.files[ selectId ].url )
-						.play()
-					api.playlist.currId = selectId;
-				};
-			}( api.playlist.currId ) ) )
+			.click( { selectId: api.playlist.currId }, function( e ) {
+				jqPlaylistContent.children().removeClass( "selected" );
+				jqNewFile.addClass( "selected" );
+				api.video
+					.load( api.playlist.files[ e.data.selectId ].url )
+					.play()
+				;
+				api.playlist.currId = e.data.selectId;
+			})
 			.appendTo( jqPlaylistContent )
 		;
 		return that;
