@@ -1,5 +1,6 @@
 #playlist .item {
 	overflow: hidden;
+	display: inherit;
 	position: relative;
 	padding: 10px;
 	font-size: 14px;
