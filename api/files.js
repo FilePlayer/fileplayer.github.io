@@ -19,6 +19,9 @@ api.files = that = {
 
 			default :
 				api.playlist.push( file )
+				api.video
+					.load( api.playlist.files[ api.playlist.currId ].url )
+					.play()
 			break;
 		}
 

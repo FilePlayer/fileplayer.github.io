@@ -75,7 +75,7 @@ window.playlistUI = that = {
 			.click( ( function( selectId ) {
 				return function() {
 					jqPlaylistContent.children().removeClass( "selected" );
-					$( this ).addClass( "selected" );
+					jqNewFile.addClass( "selected" );
 					api.video
 						.load( api.playlist.files[ selectId ].url )
 						.play()

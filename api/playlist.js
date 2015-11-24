@@ -13,9 +13,6 @@ api.playlist = that = {
 			});
 			api.playlist.currId = api.playlist.files.length - 1;
 			playlistUI.push( file.name );
-			api.video
-				.load( api.playlist.files[ api.playlist.currId ].url )
-				.play()
 		}
 		return that;
 	}
