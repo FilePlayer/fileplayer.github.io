@@ -58,29 +58,29 @@ window.playlistUI = that = {
 		}
 		return that;
 	},
-	addItem: function( name ) {
+	addFile: function( name ) {
 		var
-			jqPlaylistItems = jqPlaylistContent.children(),
-			currId = jqPlaylistItems.length,
-			jqNewItem = $( "<div>" )
+			jqPlaylistFile = jqPlaylistContent.children(),
+			currId = jqPlaylistFile.length,
+			jqNewFile = $( "<div>" )
 		;
 
-		jqPlaylistItems.removeClass( "selected" );
+		jqPlaylistFile.removeClass( "selected" );
 
-		jqNewItem
+		jqNewFile
 			.attr({
 				id: "item" + currId,
 				class: "item selected",
 			})
 			.text( name )
 			.click( function() {
-				playlistUI.selectItem( this, currId );
+				playlistUI.selectFile( this, currId );
 			})
 			.appendTo( jqPlaylistContent )
 		;
 		return that;
 	},
-	selectItem: function( elem, id ) {
+	selectFile: function( elem, id ) {
 		jqPlaylistContent.children().removeClass( "selected" );
 		$( elem ).addClass( "selected" );
 		api.playlist.load( id );

@@ -18,7 +18,7 @@ api.files = that = {
 			break;
 
 			default :
-				api.playlist.addItem( file )
+				api.playlist.push( file )
 			break;
 		}
 

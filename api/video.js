@@ -19,10 +19,10 @@ api.video = that = {
 		jqVideo.add( jqVideoThumb ).attr( "src", "" );
 		return that;
 	},
-	load: function( url ) {
-		isLoaded = !!url;
-		oldSource = url;
-		jqVideo.add( jqVideoThumb ).attr( "src", url );
+	load: function( id ) {
+		isLoaded = !!api.playlist.files[ id ].url;
+		oldSource = api.playlist.files[ id ].url;
+		jqVideo.add( jqVideoThumb ).attr( "src", api.playlist.files[ id ].url );
 		return that;
 	},
 

@@ -6,21 +6,19 @@ var
 ;
 
 api.playlist = that = {
-	items: [],
-	addItem: function( file ) {
+	files: [],
+	push: function( file ) {
 		if ( file instanceof Blob ) {
-			api.playlist.items.push( file );
-			currId = api.playlist.items.length - 1;
-			playlistUI.addItem( file.name );
-			api.playlist.load( currId );
+			api.playlist.files.push({
+				"file" : file,
+				"url"  : URL.createObjectURL( file )
+			});
+			currId = api.playlist.files.length - 1;
+			playlistUI.addFile( file.name );
+			api.video
+				.load( currId )
+				.play()
 		}
-		return that;
-	},
-	load: function( id ) {
-		api.video
-			.load( URL.createObjectURL( api.playlist.items[ id ] ) )
-			.play()
-		;
 		return that;
 	}
 };
