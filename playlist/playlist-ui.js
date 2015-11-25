@@ -78,6 +78,7 @@ window.playlistUI = that = {
 					.play()
 				;
 				api.playlist.currId = selectId;
+				return false;
 			})
 			.appendTo( jqPlaylistContent )
 		;
