@@ -1,8 +1,8 @@
-#ctrl .cuteSlider-container {
+#ctrl .cuteslider-container {
 	position: relative;
 }
 
-#ctrl .cuteSlider.position {
+#ctrl .cuteslider.position {
 	width: 100%;
 	padding-bottom: 10px;
 }
@@ -29,7 +29,7 @@
 	opacity: 0;
 }
 
-#player.cinema .cuteSlider.position:hover + .thumbnail {
+#player.cinema .cuteslider.position:hover + .thumbnail {
 	visibility: visible;
 	opacity: 1;
 }

@@ -24,12 +24,12 @@ window.dom = {
 		jqPlayerStopBtn: $( "#ctrl .stop" ),
 		// Volume
 		jqPlayerVolumeIcon: $( "#ctrl .volume .fa" ),
-		jqPlayerVolumeSlider: $( "#ctrl .volume .cuteSlider" ),
+		jqPlayerVolumeSlider: $( "#ctrl .volume .cuteslider" ),
 		// Opacity
 		jqPlayerOpacityIcon: $( "#ctrl .opacity .fa" ),
-		jqPlayerOpacitySlider: $( "#ctrl .opacity .cuteSlider" ),
+		jqPlayerOpacitySlider: $( "#ctrl .opacity .cuteslider" ),
 		// CurrentTime
-		jqPlayerSliderCurrentTime: $( "#ctrl .cuteSlider.position" ),
+		jqPlayerSliderCurrentTime: $( "#ctrl .cuteslider.position" ),
 			// Thumbnail
 			jqPlayerThumbnail: $( "#player .thumbnail" ),
 			jqPlayerThumbnailVideo: $( "#player .thumbnail video" ),
