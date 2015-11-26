@@ -62,7 +62,7 @@ window.playlistUI = that = {
 		var
 			jqPlaylistFile = jqPlaylistContent.children(),
 			jqNewFile = $( "<a>" ),
-			selectId = api.playlist.currId
+			selectId = jqPlaylistFile.length
 		;
 
 		jqPlaylistFile.removeClass( "selected" );
@@ -77,7 +77,7 @@ window.playlistUI = that = {
 					.load( api.playlist.files[ selectId ].url )
 					.play()
 				;
-				api.playlist.currId = selectId;
+				api.playlist.currentIndex( selectId );
 				return false;
 			})
 			.appendTo( jqPlaylistContent )

@@ -8,7 +8,8 @@ api.files = that = {
 	add: function( file ) {
 		var
 			name = file.name,
-			extension = name.substr( name.lastIndexOf( "." ) + 1 )
+			extension = name.substr( name.lastIndexOf( "." ) + 1 ),
+			plIndex = api.playlist.currentIndex()
 		;
 
 		switch ( extension.toLowerCase() ) {
@@ -20,9 +21,10 @@ api.files = that = {
 			default :
 				api.playlist.push( file );
 				api.video
-					.load( api.playlist.files[ api.playlist.currId ].url )
+					.load( api.playlist.files[ plIndex ].url )
 					.play()
 				;
+				api.playlist.currentIndex( plIndex + 1 );
 			break;
 		}
 
