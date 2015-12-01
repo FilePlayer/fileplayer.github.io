@@ -20,6 +20,10 @@
 	margin: -4px 0 0 -4px;
 }
 
+#ctrl .cuteslider-vertical .cuteslider-thumb {
+	margin: 0 0 -4px -4px;
+}
+
 #ctrl .cuteslider:hover .cuteslider-thumb {
 	background: #fff;
 	width: 14px;
@@ -27,15 +31,19 @@
 	margin: -7px 0 0 -7px;
 }
 
-#ctrl .btn .cuteslider {
+#ctrl .cuteslider-vertical:hover .cuteslider-thumb {
+	margin: 0 0 -7px -7px;
+}
+
+#ctrl .btn.volume .cuteslider {
 	transition: all .25s;
 	margin: 0;
 	width: 0;
 	opacity: 0;
 }
 
-#ctrl .btn:hover .cuteslider,
-#ctrl .btn .cuteslider.focus {
+#ctrl .btn.volume:hover .cuteslider,
+#ctrl .btn.volume .cuteslider.focus {
 	margin: 0 7px;
 	width: 50px;
 	opacity: 1;

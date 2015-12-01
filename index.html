@@ -13,6 +13,7 @@
 	<link rel="stylesheet" href="player/css/player.css"/>
 	<link rel="stylesheet" href="player/css/placeholder.css"/>
 	<link rel="stylesheet" href="player/css/menu.css"/>
+	<link rel="stylesheet" href="player/css/menu-opacity.css"/>
 	<link rel="stylesheet" href="player/css/menu-subtitles.css"/>
 	<link rel="stylesheet" href="player/css/video.css"/>
 	<link rel="stylesheet" href="player/css/controls.css"/>
@@ -104,17 +105,18 @@
 					</div
 					><div class="right"
 						><span class="btn opacity"
-							><span
+							><i class="fa fa-fw"></i
+							><div
+								class="menu opacity"
 								data-jquery-element="tooltip"
-								><input
-									type="range"
-									data-jquery-element="cuteslider"
-									min="0" max="1" step=".01"
-							/></span><i
-								class="fa fa-fw"
-								data-jquery-element="tooltip"
-								data-tooltip-content="Brightness"
-							></i
+								><div class="content"
+									><input
+										type="range"
+										data-jquery-element="cuteslider"
+										data-cuteslider-vertical
+										min="0" max="1" step=".01"
+								/></div
+							></div
 						></span
 						><span class="btn subtitles"
 							><i class="fa fa-fw fa-cc"></i
