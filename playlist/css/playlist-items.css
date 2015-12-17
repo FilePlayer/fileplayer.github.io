@@ -1,0 +1,20 @@
+#playlist .item {
+	overflow: hidden;
+	display: inherit;
+	position: relative;
+	padding: 10px;
+	font-size: 14px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	background-color: rgba( 255, 255, 255, .1 );
+	cursor: pointer;
+}
+
+#playlist .item.selected {
+	background-color: rgba( 255, 255, 255, .3 )
+}
+
+#playlist .item + .item {
+	border-top: 1px solid rgba( 255, 255, 255, 0.23 );
+}

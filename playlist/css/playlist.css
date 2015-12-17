@@ -19,12 +19,9 @@
 	transition: none;
 }
 
-#playlist .content {
-	height: 100%;
-}
-
 #playlist .extendWidth {
-	position: absolute;
+	display: inline-block;
+	float:left;
 	width: 4px;
 	height: 100%;
 	background: rgba( 255, 255, 255, .3 );
