@@ -1,7 +1,8 @@
 (function() {
 
 var
-	that
+	that,
+	jqPlaylistContent = dom.jqPlaylistContent
 ;
 
 api.files = that = {
@@ -9,7 +10,7 @@ api.files = that = {
 		var
 			name = file.name,
 			extension = name.substr( name.lastIndexOf( "." ) + 1 ),
-			plIndex = api.playlist.currentIndex()
+			plIndex = jqPlaylistContent.children().length
 		;
 
 		switch ( extension.toLowerCase() ) {
