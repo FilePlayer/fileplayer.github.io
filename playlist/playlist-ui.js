@@ -7,6 +7,7 @@ var
 	showTimeout,
 	jqPlaylist = dom.jqPlaylist,
 	jqToggleBtn = dom.jqPlaylistToggleBtn,
+	jqPlaylistContent = dom.jqPlaylistContent,
 	minWidth = 150 //parseFloat( jqPlaylist.css( "minWidth" ) )
 ;
 
@@ -55,6 +56,32 @@ window.playlistUI = that = {
 		if ( showing ) {
 			jqPlaylist.css( "width", w );
 		}
+		return that;
+	},
+	push: function( name ) {
+		var
+			jqPlaylistFile = jqPlaylistContent.children(),
+			jqNewFile = $( "<a>" ),
+			selectId = jqPlaylistFile.length
+		;
+
+		jqPlaylistFile.removeClass( "selected" );
+
+		jqNewFile
+			.addClass( "item selected" )
+			.text( name )
+			.click( function() {
+				jqPlaylistContent.children().removeClass( "selected" );
+				jqNewFile.addClass( "selected" );
+				api.video
+					.load( api.playlist.files[ selectId ].url )
+					.play()
+				;
+				api.playlist.currentIndex( selectId );
+				return false;
+			})
+			.appendTo( jqPlaylistContent )
+		;
 		return that;
 	}
 };
