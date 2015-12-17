@@ -30,6 +30,8 @@ function pos( p ) {
 
 // Control the position with the arrow keys.
 api.keyboard
+	.shortcut( "left",        pos.bind( null,  "-=1" ) )
+	.shortcut( "right",       pos.bind( null,  "+=1" ) )
 	.shortcut( "shift+left",  pos.bind( null,  "-=3" ) )
 	.shortcut( "shift+right", pos.bind( null,  "+=3" ) )
 	.shortcut( "alt+left",    pos.bind( null, "-=10" ) )
