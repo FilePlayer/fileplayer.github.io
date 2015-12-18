@@ -45,8 +45,9 @@ window.dom = {
 		// Toggle button
 		jqPlaylistToggleBtn: $( "#ctrl .btn.playlist" ),
 		// Left border to extend the playlist
-		jqPlaylistExtendWidth: $( "#playlist .extendWidth" )
-
+		jqPlaylistExtendWidth: $( "#playlist .extendWidth" ),
+		// List of playlist's items
+		jqPlaylistContent: $( "#playlist .content" )
 };
 
 // Make sure all the selections above works.

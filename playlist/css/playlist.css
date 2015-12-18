@@ -10,21 +10,21 @@
 	opacity: 1;
 }
 
-/*#playlist.show,*/
-#playlist > .content {
-	min-width: 150px;
+#playlist .content {
+	position: absolute;
+	overflow: auto;
+	left: 4px;
+	right: 0;
+	height: 100%;
 }
 
 #playlist.show {
 	transition: none;
 }
 
-#playlist .content {
-	height: 100%;
-}
-
 #playlist .extendWidth {
-	position: absolute;
+	display: inline-block;
+	float: left;
 	width: 4px;
 	height: 100%;
 	background: rgba( 255, 255, 255, .3 );
@@ -33,10 +33,4 @@
 #playlist .extendWidth:hover,
 #playlist .extendWidth.hover {
 	background: rgba( 255, 255, 255, .6 );
-}
-
-/* Temporary */
-#playlist .text {
-	padding: 20px 10px;
-	text-align: center;
 }

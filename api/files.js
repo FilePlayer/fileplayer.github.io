@@ -1,14 +1,16 @@
 (function() {
 
 var
-	that
+	that,
+	jqPlaylistContent = dom.jqPlaylistContent
 ;
 
 api.files = that = {
 	add: function( file ) {
 		var
 			name = file.name,
-			extension = name.substr( name.lastIndexOf( "." ) + 1 )
+			extension = name.substr( name.lastIndexOf( "." ) + 1 ),
+			plIndex = jqPlaylistContent.children().length
 		;
 
 		switch ( extension.toLowerCase() ) {
@@ -18,10 +20,12 @@ api.files = that = {
 			break;
 
 			default :
+				api.playlist.push( file );
 				api.video
-					.load( URL.createObjectURL( file ) )
+					.load( api.playlist.files[ plIndex ].url )
 					.play()
 				;
+				api.playlist.currentIndex( plIndex + 1 );
 			break;
 		}
 
