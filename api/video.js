@@ -134,8 +134,4 @@ api.video = that = {
 	}
 };
 
-// The videoElement has no "stop" event.
-// But this API has a .stop() methode anyway, this methode trigger("stop").
-jqVideo.on( "ended", api.video.stop );
-
 })();

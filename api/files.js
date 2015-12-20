@@ -20,12 +20,7 @@ api.files = that = {
 			break;
 
 			default :
-				api.playlist.push( file );
-				api.video
-					.load( api.playlist.files[ plIndex ].url )
-					.play()
-				;
-				api.playlist.currentIndex( plIndex + 1 );
+				api.playlist.pushAndPlay( file );
 			break;
 		}
 

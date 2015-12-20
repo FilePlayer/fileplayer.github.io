@@ -1,3 +1,44 @@
+(function() {
+
+function list() {
+	this.first
+	this.last = null;
+	this.length = 0;
+	this.circular( false );
+}
+
+list.prototype = {
+	pushBack: function( obj ) {
+		var node = {
+			data: obj
+		};
+		if ( !this.length ) {
+			node.prev =
+			node.next = this.isCircular ? node : null;
+			this.first = node;
+		} else {
+			node.prev = this.last;
+			node.next = this.isCircular ? this.first : null;
+			this.last.next = node;
+		}
+		this.last = node;
+		++this.length;
+		return node;
+	},
+	circular: function( b ) {
+		this.isCircular = b;
+		if ( this.length ) {
+			if ( b ) {
+				this.last.next = this.first;
+				this.first.prev = this.last;
+			} else {
+				this.last.next =
+				this.first.prev = null;
+			}
+		}
+	}
+};
+
 window.utils = {
 	secondsToString: function( sec ) {
 		// 3600 -> "1:00:00"
@@ -23,5 +64,10 @@ window.utils = {
 			;
 		}
 		return Math.min( Math.max( a, valn ), b );
+	},
+	list: function() {
+		return new list();
 	}
 };
+
+})();

@@ -58,30 +58,22 @@ window.playlistUI = that = {
 		}
 		return that;
 	},
-	push: function( name ) {
-		var
-			jqPlaylistFile = jqPlaylistContent.children(),
-			jqNewFile = $( "<a>" ),
-			selectId = jqPlaylistFile.length
-		;
+	append: function( nodeFile ) {
+		var data = nodeFile.data;
 
-		jqPlaylistFile.removeClass( "selected" );
-
-		jqNewFile
-			.addClass( "item selected" )
-			.text( name )
+		data.jqElem =
+		$( "<a class='item'>" )
+			.text( data.file.name )
+			.appendTo( jqPlaylistContent )
 			.click( function() {
-				jqPlaylistContent.children().removeClass( "selected" );
-				jqNewFile.addClass( "selected" );
-				api.video
-					.load( api.playlist.files[ selectId ].url )
-					.play()
-				;
-				api.playlist.currentIndex( selectId );
+				api.playlist.select( nodeFile );
 				return false;
 			})
-			.appendTo( jqPlaylistContent )
 		;
+		return that;
+	},
+	highlight: function( fileWrapper, b ) {
+		fileWrapper.jqElem.toggleClass( "selected", b );
 		return that;
 	}
 };
