@@ -24,20 +24,19 @@ api.playlist = that = {
 		return that.select( lastNode ? lastNode.next : listFiles.first );
 	},
 	select: function( node ) {
-		if ( node !== nodeSelected ) {
+		if ( node === null ) {
+			api.video.stop();
+		} else {
+			api.video
+				.pause()
+				.load( node.data.url )
+				.play()
+			;
 			if ( nodeSelected ) {
 				playlistUI.highlight( nodeSelected.data, false );
 			}
-			if ( node === null ) {
-				api.video.stop();
-			} else {
-				api.video
-					.load( node.data.url )
-					.play()
-				;
-				playlistUI.highlight( node.data, true );
-				nodeSelected = node;
-			}
+			playlistUI.highlight( node.data, true );
+			nodeSelected = node;
 		}
 		return that;
 	},

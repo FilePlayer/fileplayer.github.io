@@ -19,9 +19,11 @@ window.dom = {
 		jqPlayerSubtitlesToggle: $( "#ctrl .menu.subtitles .slidebutton" ),
 		jqPlayerSubtitlesCheckbox: $( "#ctrl .menu.subtitles input" ),
 		jqPlayerSubtitlesList: $( "#ctrl .menu.subtitles ul" ),
-		// Play/pause/stop
+		// Play/pause/stop/prev/next
 		jqPlayerPlayBtn: $( "#ctrl .play" ),
 		jqPlayerStopBtn: $( "#ctrl .stop" ),
+		jqPlayerPrevBtn: $( "#ctrl .prev" ),
+		jqPlayerNextBtn: $( "#ctrl .next" ),
 		// Volume
 		jqPlayerVolumeIcon: $( "#ctrl .volume .fa" ),
 		jqPlayerVolumeSlider: $( "#ctrl .volume .cuteslider" ),
