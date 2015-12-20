@@ -23,7 +23,7 @@ dom.jqPlayerThumbnailVideo.on( "timeupdate", function() {
 	var sec = ~~elVideo.currentTime;
 	loading( false );
 	if (
-		elVideo.duration &&
+		elVideo.videoWidth &&
 		!api.thumbnail.cache.getImage( sec )
 	) {
 		api.thumbnail.canvas.drawFromVideo();
