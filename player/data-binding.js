@@ -11,9 +11,18 @@ dom.jqDoc.on(
 	}
 );
 
+function resize() {
+	api.video.resizeUpdate();
+	playerUI.subtitlesResizeUpdate();
+}
+
+resize();
+dom.jqWindow.resize( resize );
+
 dom.jqPlayerVideo.on( {
 	loadedmetadata: function() {
 		lg( "ON: loadedmetadata" );
+		api.video.loaded();
 		playerUI.loaded();
 	},
 	play: function() {

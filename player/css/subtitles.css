@@ -1,12 +1,11 @@
 #cues {
 	position: absolute;
-	bottom: 70px;
 	width: 100%;
 	text-align: center;
 }
 
-.ctrlHidden #cues {
-	bottom: 5px;
+.ctrlVisible #cues.isUnderCtrl {
+	bottom: 80px !important;
 }
 
 #cues > span {

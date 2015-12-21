@@ -25,6 +25,22 @@ api.video = that = {
 		jqVideo.add( jqVideoThumb ).attr( "src", url );
 		return that;
 	},
+	loaded: function() {
+		that.ratio = video.videoWidth / video.videoHeight
+		return that.resizeUpdate();
+	},
+
+	// Dimensions:
+	resizeUpdate: function() {
+		var
+			r = that.ratio,
+			w = that.elementWidth  = jqVideo.width(),
+			h = that.elementHeight = jqVideo.height()
+		;
+		that.imageWidth  = Math.min( w, r > 1 ? w : h * r );
+		that.imageHeight = Math.min( h, r < 1 ? h : w / r );
+		return that;
+	},
 
 	// Playing: play/pause/stop.
 	play: function() {

@@ -1,6 +1,7 @@
 (function() {
 
 window.dom = {
+	jqWindow: $( window ),
 	jqDoc: $( document ),
 	jqBody: $( document.body ),
 

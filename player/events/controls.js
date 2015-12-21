@@ -9,14 +9,20 @@ var
 function showCtrl() {
 	clearTimeout( timeoutHiding );
 	clearTimeout( timeoutHidden );
-	jqPlayer.removeClass( "ctrlHiding ctrlHidden" );
+	jqPlayer
+		.removeClass( "ctrlHiding ctrlHidden" )
+		.addClass( "ctrlVisible" )
+	;
 }
 
 function hideCtrl() {
 	clearTimeout( timeoutHiding );
 	jqPlayer.addClass( "ctrlHiding" );
 	timeoutHidden = setTimeout( function() {
-		jqPlayer.addClass( "ctrlHidden" );
+		jqPlayer
+			.removeClass( "ctrlVisible" )
+			.addClass( "ctrlHidden" )
+		;
 	}, 2000 );
 }
 

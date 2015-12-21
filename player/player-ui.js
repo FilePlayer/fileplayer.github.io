@@ -31,6 +31,7 @@ var
 
 	// Subtitles.
 	currentCue,
+	jqSubtitlesCueParent = dom.jqPlayerCue.parent(),
 	jqSubtitlesCue = dom.jqPlayerCue,
 	jqSubtitlesCheckbox = dom.jqPlayerSubtitlesCheckbox,
 	jqSubtitlesToolip = dom.jqPlayerSubtitlesToggle.parent(),
@@ -76,7 +77,7 @@ window.playerUI = that = {
 		jqTimeSliderParent.attr( "data-tooltip-content", null );
 		api.thumbnail.canvas.drawFromImg();
 		api.thumbnail.cache.init( Math.ceil( api.video.duration() ) );
-		return that;
+		return that.subtitlesResizeUpdate();
 	},
 	fullscreen: function() {
 		playlistWasShow = playlistUI.isShow();
@@ -176,6 +177,15 @@ window.playerUI = that = {
 			"data-tooltip-content",
 			"Brightness : " + Math.round( op * 100 ) + " %"
 		);
+		return that;
+	},
+	subtitlesResizeUpdate: function() {
+		var btm = ( api.video.elementHeight - api.video.imageHeight ) / 2;
+		jqSubtitlesCueParent
+			// 80: dom.jqPlayerCtrl.outerHeight()
+			.toggleClass( "isUnderCtrl", btm < 80 )
+			.css( "bottom", btm )
+		;
 		return that;
 	},
 	subtitlesToggle: function( b ) {

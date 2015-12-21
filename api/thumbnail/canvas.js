@@ -34,15 +34,15 @@ api.thumbnail.canvas = that = {
 	drawFromVideo: function() {
 		var
 			x, y, w, h,
-			videoRatio = elVideo.videoWidth / elVideo.videoHeight
+			ratio = api.video.ratio
 		;
-		if ( videoRatio > 1 ) {
+		if ( ratio > 1 ) {
 			w = canvasW;
-			h = canvasW / videoRatio;
+			h = canvasW / ratio;
 			x = 0;
 			y = ( canvasH - h ) / 2;
 		} else {
-			w = canvasH * videoRatio;
+			w = canvasH * ratio;
 			h = canvasH;
 			x = ( canvasW - w ) / 2;
 			y = 0;
