@@ -9,18 +9,14 @@ var
 ;
 
 api.playlist = that = {
-	push: function( file ) {
-		playlistUI.append(
-			listFiles.pushBack({
-				file : file,
-				url  : URL.createObjectURL( file )
-			})
-		);
+	push: function( fileWrapper ) {
+		fileWrapper.url = URL.createObjectURL( fileWrapper.file );
+		playlistUI.append( listFiles.pushBack( fileWrapper ) );
 		return that;
 	},
-	pushAndPlay: function( file ) {
+	pushAndPlay: function( fileWrapper ) {
 		var lastNode = listFiles.last;
-		that.push( file );
+		that.push( fileWrapper );
 		return that.select( lastNode ? lastNode.next : listFiles.first );
 	},
 	select: function( node ) {

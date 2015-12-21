@@ -60,7 +60,7 @@ function initCuesMap( cues ) {
 }
 
 api.subtitles = that = {
-	newTrack: function( file ) {
+	newTrack: function( fileWrapper ) {
 		var
 			reader = new FileReader()
 		;
@@ -91,7 +91,7 @@ api.subtitles = that = {
 				src: blob.url,
 				srclang: "en",
 				label: "Subtitles " + ( tracksLen + 1 ),
-				name: file.name,
+				name: fileWrapper.file.name,
 			})
 				.appendTo( dom.jqPlayerVideo )
 				.on( "load", ( function( len ) {
@@ -109,7 +109,7 @@ api.subtitles = that = {
 
 			// Add file name in subtitles list
 			$( "<li>", {
-				text: file.name,
+				text: fileWrapper.file.name,
 				"class": "selected"
 			})
 				.appendTo( jqListSubtitles )
@@ -130,7 +130,7 @@ api.subtitles = that = {
 			}
 		};
 
-		reader.readAsText( file );
+		reader.readAsText( fileWrapper.file );
 
 		return that;
 	},
