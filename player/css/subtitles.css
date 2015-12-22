@@ -9,10 +9,13 @@
 }
 
 #cues > span {
-	padding: 3px 1px;
 	color: #fff;
-	font: 22px/31px sans-serif;
-	background: rgba( 0, 0, 0, .8 );
+	text-shadow:
+		-1px -1px 1px #000,
+		 1px -1px 1px #000,
+		 1px  1px 1px #000,
+		-1px  1px 1px #000
+	;
 }
 
 #cues > span:empty {

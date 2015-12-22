@@ -35,10 +35,11 @@ api.video = that = {
 		var
 			r = that.ratio,
 			w = that.elementWidth  = jqVideo.width(),
-			h = that.elementHeight = jqVideo.height()
+			h = that.elementHeight = jqVideo.height(),
+			rElem = w / h
 		;
-		that.imageWidth  = Math.min( w, r > 1 ? w : h * r );
-		that.imageHeight = Math.min( h, r < 1 ? h : w / r );
+		that.imageWidth  = r > rElem ? w : h * r;
+		that.imageHeight = r < rElem ? h : w / r;
 		playerUI.subtitlesResizeUpdate();
 		return that;
 	},

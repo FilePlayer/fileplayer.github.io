@@ -180,11 +180,17 @@ window.playerUI = that = {
 		return that;
 	},
 	subtitlesResizeUpdate: function() {
-		var btm = ( api.video.elementHeight - api.video.imageHeight ) / 2;
+		var
+			imgW = api.video.imageWidth,
+			btm = ( api.video.elementHeight - api.video.imageHeight ) / 2
+		;
 		jqSubtitlesCueParent
 			// 80: dom.jqPlayerCtrl.outerHeight()
 			.toggleClass( "isUnderCtrl", btm < 80 )
-			.css( "bottom", btm )
+			.css({
+				bottom: btm,
+				fontSize: Math.max( 10, imgW / 100 * 2.5 ) + "px"
+			})
 		;
 		return that;
 	},
