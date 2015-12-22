@@ -39,6 +39,7 @@ api.video = that = {
 		;
 		that.imageWidth  = Math.min( w, r > 1 ? w : h * r );
 		that.imageHeight = Math.min( h, r < 1 ? h : w / r );
+		playerUI.subtitlesResizeUpdate();
 		return that;
 	},
 

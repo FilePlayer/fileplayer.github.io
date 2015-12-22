@@ -5,6 +5,7 @@ var
 	width,
 	showing,
 	showTimeout,
+	hideTimeout,
 	jqPlaylist = dom.jqPlaylist,
 	jqToggleBtn = dom.jqPlaylistToggleBtn,
 	jqPlaylistContent = dom.jqPlaylistContent,
@@ -16,11 +17,13 @@ window.playlistUI = that = {
 		return showing;
 	},
 	show: function() {
+		clearTimeout( hideTimeout );
 		showing = true;
 		jqPlaylist.addClass( "showing" );
 		showTimeout = setTimeout( function() {
 			jqPlaylist.addClass( "show" );
-		}, 300 );
+			api.video.resizeUpdate();
+		}, 350 );
 		jqToggleBtn
 			.removeClass( "fa-caret-square-o-left" )
 			.addClass( "fa-caret-square-o-right" )
@@ -35,6 +38,7 @@ window.playlistUI = that = {
 			.removeClass( "fa-caret-square-o-right" )
 			.addClass( "fa-caret-square-o-left" )
 		;
+		hideTimeout = setTimeout( api.video.resizeUpdate , 350 );
 		jqToggleBtn[ 0 ].dataset.tooltipContent = "Show playlist";
 		that.width( 0 );
 		showing = false;
@@ -55,6 +59,7 @@ window.playlistUI = that = {
 		}
 		if ( showing ) {
 			jqPlaylist.css( "width", w );
+			api.video.resizeUpdate();
 		}
 		return that;
 	},

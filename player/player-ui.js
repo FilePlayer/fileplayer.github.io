@@ -77,7 +77,7 @@ window.playerUI = that = {
 		jqTimeSliderParent.attr( "data-tooltip-content", null );
 		api.thumbnail.canvas.drawFromImg();
 		api.thumbnail.cache.init( Math.ceil( api.video.duration() ) );
-		return that.subtitlesResizeUpdate();
+		return that;
 	},
 	fullscreen: function() {
 		playlistWasShow = playlistUI.isShow();
