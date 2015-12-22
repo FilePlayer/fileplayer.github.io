@@ -67,7 +67,7 @@ window.playlistUI = that = {
 		var data = nodeFile.data;
 
 		data.jqElem =
-		$( "<a class='item'>" )
+		$( "<a class='item' href='#'>" )
 			.text( data.file.name )
 			.appendTo( jqPlaylistContent )
 			.click( function() {

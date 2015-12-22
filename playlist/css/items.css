@@ -1,0 +1,18 @@
+#playlist .item {
+	display: block;
+	padding: 5px 7px;
+	font-size: 12px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	background: rgba( 255, 255, 255, .1 );
+	border-bottom: 1px solid #444;
+}
+
+#playlist .item:hover {
+	background: #333;
+}
+
+#playlist .item.selected {
+	background: #444;
+}
