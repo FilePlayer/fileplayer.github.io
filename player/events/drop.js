@@ -1,36 +1,62 @@
 (function() {
 
-function isFileOrDirectory( item ) {
-	if ( item.isFile ) {
-		item.file( function( file ) {
-			api.files.add( file );
-		});
-	} else if ( item.isDirectory ) {
-		var dirReader = item.createReader();
-		dirReader.readEntries( function( entries ) {
-			$.each( entries, function( key, entry ) {
-				isFileOrDirectory( entry );
-			});
-		});
+function addItems( items ) {
+	var
+		dirReader,
+		nbFiles = 0,
+		arrayFiles = [],
+		traversing = true,
+		alreadyAdded = false
+	;
+
+	function apiAdd() {
+		if ( !traversing && !nbFiles && !alreadyAdded ) {
+			alreadyAdded = true;
+			api.files.add( arrayFiles );
+		}
 	}
+
+	function traverseTree( item ) {
+		if ( item.isFile ) {
+			++nbFiles;
+			item.file( function( file ) {
+				--nbFiles;
+				arrayFiles.push( file );
+				apiAdd();
+			});
+		} else if ( item.isDirectory ) {
+			dirReader = item.createReader();
+			dirReader.readEntries( function( items ) {
+				$.each( items, function() {
+					traverseTree( this );
+				});
+			});
+		}
+	}
+
+	$.each( items, function() {
+		if ( item = this.webkitGetAsEntry() ) {
+			traverseTree( item );
+		}
+	});
+
+	traversing = false;
+	apiAdd();
 }
 
 dom.jqBody.on( {
 	dragover: false,
 	drop: function( e ) {
-		if ( ( data = e.originalEvent.dataTransfer ) ) {
-			// Drop folders only on Chrome
+		var data = e.originalEvent.dataTransfer;
+		if ( data ) {
+
+			// Chrome :
 			if ( data.items ) {
-				$.each( data.items, function( key, item ) {
-					if ( ( item = item.webkitGetAsEntry() ) ) {
-						isFileOrDirectory( item );
- 					}
-				});
-			}
-			else if ( data.files ) {
-				$.each( data.files, function( key, file ) {
-					api.files.add( file );
-				});
+				addItems( data.items );
+
+			// Everyone else :
+			} else if ( data.files ) {
+				api.files.add( data.files );
 			}
 		}
 		return false;

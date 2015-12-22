@@ -9,15 +9,21 @@ var
 ;
 
 api.playlist = that = {
-	push: function( fileWrapper ) {
-		fileWrapper.url = URL.createObjectURL( fileWrapper.file );
-		playlistUI.append( listFiles.pushBack( fileWrapper ) );
+	push: function( filesWrappers ) {
+		var f, i = 0;
+		for ( ; f = filesWrappers[ i ]; ++i ) {
+			f.url = URL.createObjectURL( f.file );
+			playlistUI.append( listFiles.pushBack( f ) );
+		}
 		return that;
 	},
-	pushAndPlay: function( fileWrapper ) {
-		var lastNode = listFiles.last;
-		that.push( fileWrapper );
-		return that.select( lastNode ? lastNode.next : listFiles.first );
+	pushAndPlay: function( filesWrappers ) {
+		var last = listFiles.last;
+		that.push( filesWrappers );
+		if ( last !== listFiles.last ) {
+			that.select( last ? last.next : listFiles.first );
+		}
+		return that;
 	},
 	select: function( node ) {
 		if ( node === null ) {
@@ -32,6 +38,7 @@ api.playlist = that = {
 				playlistUI.highlight( nodeSelected.data, false );
 			}
 			playlistUI.highlight( node.data, true );
+			playerUI.title( node.data.name );
 			nodeSelected = node;
 		}
 		return that;
@@ -80,5 +87,7 @@ jqVideo.on( "ended", function() {
 			that.select( nodeSelected.next );
 	}
 });
+
+$(function() {api.playlist.pushAndPlay( [] );})
 
 })();

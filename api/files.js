@@ -5,45 +5,51 @@ var
 ;
 
 api.files = that = {
-	add: function( file ) {
+	add: function( files ) {
 		var
-			name = file.name,
-			ind = name.lastIndexOf( "." ),
-			fileWrapper = {
-				file: file,
-				name: name.substr( 0, ind ),
-				extension: name.substr( ind + 1 ).toLowerCase()
-			}
+			filesWrappers = []
 		;
 
-		switch ( file.type ) {
-			case "video/webm" :
-			case "audio/webm" :
-			case "video/mp4" :
-			case "audio/mp3" :
-			case "video/ogg" :
-			case "audio/ogg" :
-			case "application/ogg" :
-			case "audio/wave" :
-			case "audio/wav" :
-			case "audio/x-wav" :
-			case "audio/x-pn-wav" :
-				api.playlist.pushAndPlay( fileWrapper );
-			break;
+		$.each( files, function() {
+			var
+				name = this.name,
+				ind = name.lastIndexOf( "." ),
+				fileWrapper = {
+					file: this,
+					name: name.substr( 0, ind ),
+					extension: name.substr( ind + 1 ).toLowerCase()
+				},
+				debug = "[" + this.type + "] [" + fileWrapper.extension + "]"
+			;
 
-			default :
-				switch ( fileWrapper.extension ) {
-					case "srt" :
-					case "vtt" :
-						api.subtitles.newTrack( fileWrapper );
-					break;
-					default :
-						// Abort
-						return that;
-				}
-		}
+			switch ( fileWrapper.extension ) {
+				case "mp3" :
+				case "mp4" :
+				case "mpeg" :
+				case "mpg" :
+				case "ogg" :
+				case "ogm" : // ?
+				case "wav" :
+				case "weba" : // ?
+				case "webm" :
+					filesWrappers.push( fileWrapper );
+				break;
 
-		playerUI.title( name );
+				case "srt" :
+				case "vtt" :
+					api.subtitles.newTrack( fileWrapper );
+				break;
+
+				default :
+					// Continue;
+					lg( "DROP: not supported: " + debug );
+					return;
+			}
+
+			lg( "DROP: supported: " + debug );
+		});
+
+		api.playlist.pushAndPlay( filesWrappers );
 		return that;
 	}
 };
