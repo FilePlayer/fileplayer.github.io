@@ -1,12 +1,13 @@
 #playlist .item {
 	display: block;
-	padding: 5px 7px;
-	font-size: 12px;
-	white-space: nowrap;
+	padding: .5em;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	background: rgba( 255, 255, 255, .1 );
+	white-space: nowrap;
+	color: #aaa;
+	font-size: 12px;
 	border-bottom: 1px solid #444;
+	background: #222;
 }
 
 #playlist .item:hover {
@@ -14,5 +15,14 @@
 }
 
 #playlist .item.selected {
-	background: #444;
+	color: #fff;
+	font-weight: bold;
+}
+
+#playlist .item .fa {
+	margin-right: .5em;
+}
+
+#playlist .item:not(.selected) .fa {
+	color: #666;
 }

@@ -17,6 +17,7 @@ api.files = that = {
 				fileWrapper = {
 					file: this,
 					name: name.substr( 0, ind ),
+					type: this.type.substr( 0, this.type.indexOf( "/" ) ),
 					extension: name.substr( ind + 1 ).toLowerCase()
 				},
 				debug = "[" + this.type + "] [" + fileWrapper.extension + "]"

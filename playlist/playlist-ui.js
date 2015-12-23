@@ -67,13 +67,19 @@ window.playlistUI = that = {
 		var data = nodeFile.data;
 
 		data.jqElem =
-		$( "<a class='item' href='#'>" )
-			.text( data.file.name )
-			.appendTo( jqPlaylistContent )
+		$(
+			"<a class='item' href='#'>" +
+				"<i class='fa fa-fw fa-" +
+					( data.type === "audio" ? "music" : "film" ) +
+				"'></i>" +
+				"<span>" + data.name + "</span>" +
+			"</a>"
+		)
 			.click( function() {
 				api.playlist.select( nodeFile );
 				return false;
 			})
+			.appendTo( jqPlaylistContent )
 		;
 		return that;
 	},
