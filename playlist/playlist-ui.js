@@ -8,7 +8,7 @@ var
 	hideTimeout,
 	jqPlaylist = dom.jqPlaylist,
 	jqToggleBtn = dom.jqPlaylistToggleBtn,
-	jqPlaylistContent = dom.jqPlaylistContent,
+	jqPlaylistList = dom.jqPlaylistList,
 	minWidth = 150 //parseFloat( jqPlaylist.css( "minWidth" ) )
 ;
 
@@ -68,7 +68,7 @@ window.playlistUI = that = {
 
 		data.jqElem =
 		$(
-			"<a class='item' href='#'>" +
+			"<a class='file' href='#'>" +
 				"<i class='fa fa-fw fa-" +
 					( data.type === "audio" ? "music" : "film" ) +
 				"'></i>" +
@@ -79,7 +79,7 @@ window.playlistUI = that = {
 				api.playlist.select( nodeFile );
 				return false;
 			})
-			.appendTo( jqPlaylistContent )
+			.appendTo( jqPlaylistList )
 		;
 		return that;
 	},

@@ -10,14 +10,6 @@
 	opacity: 1;
 }
 
-#playlist .content {
-	position: absolute;
-	overflow: auto;
-	left: 4px;
-	right: 0;
-	height: 100%;
-}
-
 #playlist.show {
 	transition: none;
 }
@@ -33,4 +25,11 @@
 #playlist .extendWidth:hover,
 #playlist .extendWidth.hover {
 	background: rgba( 255, 255, 255, .6 );
+}
+
+#playlist .content {
+	position: absolute;
+	left: 4px;
+	right: 0;
+	height: 100%;
 }

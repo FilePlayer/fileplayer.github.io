@@ -42,15 +42,14 @@ window.dom = {
 			jqPlayerTimeCurrent: $( "#player .position .current" ),
 			jqPlayerTimeRemaining: $( "#player .position .remaining" ),
 			jqPlayerTimeDuration: $( "#player .position .duration" ),
+		// Playlist toggle button
+		jqPlaylistToggleBtn: $( "#ctrl .btn.playlist" ),
 
 	// Playlist
 	jqPlaylist: $( "#playlist" ),
-		// Toggle button
-		jqPlaylistToggleBtn: $( "#ctrl .btn.playlist" ),
-		// Left border to extend the playlist
 		jqPlaylistExtendWidth: $( "#playlist .extendWidth" ),
-		// List of playlist's items
-		jqPlaylistContent: $( "#playlist .content" )
+		jqPlaylistContent: $( "#playlist .content" ),
+		jqPlaylistList: $( "#playlist .list" )
 };
 
 // Make sure all the selections above works.
