@@ -3,57 +3,60 @@
 var
 	that,
 	playMode,
-	nodeSelected = null,
-	listFiles = utils.list(),
+	jqFileSelected = $(),
+	jqFiles = dom.jqPlaylistList,
 	jqVideo = dom.jqPlayerVideo
 ;
+
+function firstFile() {
+	return jqFiles.children()[ 0 ];
+}
+
+function lastFile() {
+	var children = jqFiles.children();
+	return children[ children.length - 1 ];
+}
 
 api.playlist = that = {
 	push: function( filesWrappers ) {
 		var f, i = 0;
 		for ( ; f = filesWrappers[ i ]; ++i ) {
 			f.url = URL.createObjectURL( f.file );
-			playlistUI.append( listFiles.pushBack( f ) );
+			playlistUI.append( f );
 		}
 		return that;
 	},
 	pushAndPlay: function( filesWrappers ) {
-		var last = listFiles.last;
+		var last = lastFile();
 		that.push( filesWrappers );
-		if ( last !== listFiles.last ) {
-			that.select( last ? last.next : listFiles.first );
+		if ( last !== lastFile() ) {
+			that.select( last ? last.jqThis.next()[ 0 ] : firstFile() );
 		}
 		return that;
 	},
-	select: function( node ) {
-		if ( node === null ) {
+	select: function( elFile ) {
+		if ( !elFile ) {
 			api.video.stop();
 		} else {
 			api.video
 				.pause()
-				.load( node.data.url )
+				.load( elFile.fileWrapper.url )
 				.play()
 			;
-			if ( nodeSelected ) {
-				playlistUI.highlight( nodeSelected.data, false );
+			if ( jqFileSelected ) {
+				playlistUI.highlight( jqFileSelected, false );
 			}
-			playlistUI.highlight( node.data, true );
-			playerUI.title( node.data.name );
-			nodeSelected = node;
+			playlistUI.highlight( elFile.jqThis, true );
+			playerUI.title( elFile.fileWrapper.name );
+			jqFileSelected = elFile.jqThis;
 		}
 		return that;
 	},
 	prev: function() {
-		if ( nodeSelected ) {
-			that.select( nodeSelected.prev );
-		}
-		return that;
+		return that.select( jqFileSelected.prev()[ 0 ] || lastFile() );
 	},
 	next: function() {
-		if ( nodeSelected ) {
-			that.select( nodeSelected.next );
-		}
-		return that;
+		return that.select( jqFileSelected.next()[ 0 ] || firstFile() );
 	},
 
 	// The `mode` specify the action to do at the end of the current file :
@@ -63,7 +66,6 @@ api.playlist = that = {
 	// "loopAll" -> play the next file, at the end of the playlist it will play the first file.
 	autoplay: function( mode ) {
 		playMode = mode;
-		listFiles.circular( mode === "loopAll" );
 		return that;
 	}
 };
@@ -74,19 +76,24 @@ api.playlist.autoplay( true );
 // But the api.video has a .stop() methode anyway, this methode trigger("stop").
 jqVideo.on( "ended", function() {
 	switch ( playMode ) {
-		case false :
-			api.video.stop();
-		break;
 		case "loopOne" :
 			api.video
 				.currentTime( 0 )
 				.play()
 			;
-		break;
-		default :
-			that.select( nodeSelected.next );
+			return;
+		case "loopAll" :
+			that.next();
+			return;
+		case true :
+			if ( jqFileSelected.next().length ) {
+				that.next();
+				return;
+			}
 	}
+	api.video.stop();
 });
+
 
 $(function() {api.playlist.pushAndPlay( [] );})
 

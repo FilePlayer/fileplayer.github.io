@@ -63,28 +63,31 @@ window.playlistUI = that = {
 		}
 		return that;
 	},
-	append: function( nodeFile ) {
-		var data = nodeFile.data;
-
-		data.jqElem =
-		$(
-			"<a class='file' href='#'>" +
-				"<i class='fa fa-fw fa-" +
-					( data.type === "audio" ? "music" : "film" ) +
-				"'></i>" +
-				"<span>" + data.name + "</span>" +
-			"</a>"
-		)
-			.dblclick( function() {
-				api.playlist.select( nodeFile );
-				return false;
-			})
-			.appendTo( jqPlaylistList )
+	append: function( fileWrapper ) {
+		var
+			jqFile =
+				$(
+					"<a class='file' href='#'>" +
+						"<i class='fa fa-fw fa-" +
+							( fileWrapper.type === "audio" ? "music" : "film" ) +
+						"'></i>" +
+						"<span>" + fileWrapper.name + "</span>" +
+					"</a>"
+				)
+				.click( false )
+				.dblclick( function() {
+					api.playlist.select( this );
+					return false;
+				})
+				.appendTo( jqPlaylistList )
 		;
+
+		jqFile[ 0 ].fileWrapper = fileWrapper;
+		jqFile[ 0 ].jqThis = jqFile;
 		return that;
 	},
-	highlight: function( fileWrapper, b ) {
-		fileWrapper.jqElem.toggleClass( "selected", b );
+	highlight: function( jqFile, b ) {
+		jqFile.toggleClass( "selected", b );
 		return that;
 	}
 };
