@@ -20,16 +20,18 @@ function addItems( items ) {
 		if ( item.isFile ) {
 			++nbFiles;
 			item.file( function( file ) {
-				--nbFiles;
 				arrayFiles.push( file );
+				--nbFiles;
 				apiAdd();
 			});
 		} else if ( item.isDirectory ) {
+			++nbFiles;
 			dirReader = item.createReader();
 			dirReader.readEntries( function( items ) {
 				$.each( items, function() {
 					traverseTree( this );
 				});
+				--nbFiles;
 			});
 		}
 	}
