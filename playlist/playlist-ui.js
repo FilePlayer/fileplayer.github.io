@@ -75,7 +75,7 @@ window.playlistUI = that = {
 				"<span>" + data.name + "</span>" +
 			"</a>"
 		)
-			.click( function() {
+			.dblclick( function() {
 				api.playlist.select( nodeFile );
 				return false;
 			})
