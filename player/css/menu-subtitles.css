@@ -1,11 +1,3 @@
-#ctrl .btn.subtitles {
-	display: inline-block;
-}
-
-#ctrl .btn.subtitles .fa {
-	cursor: pointer;
-}
-
 #ctrl .menu.subtitles {
 	min-width: 140px;
 	right: -57px;

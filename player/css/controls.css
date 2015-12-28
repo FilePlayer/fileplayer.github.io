@@ -45,23 +45,8 @@
 	display: inline-block;
 }
 
-#ctrl .btn {
-	position: relative;
-	font-size: 18px;
-	cursor: pointer;
-	transition: color .1s;
-}
-
 #ctrl * + .btn {
 	margin-left: 5px;
-}
-
-#ctrl .btn.disable {
-	color: rgba( 255, 255, 255, .3 );
-}
-
-#ctrl .btn:hover {
-	color: #fff;
 }
 
 #ctrl .bottom .right {

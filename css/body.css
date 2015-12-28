@@ -1,0 +1,35 @@
+.ew-resize {
+	cursor: ew-resize;
+}
+
+.no-select {
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
+}
+
+#main {
+	display: table;
+	table-layout: fixed;
+	width: 100%;
+	height: 100%;
+}
+
+#main > * {
+	display: table-cell;
+	vertical-align: top;
+
+	/* Needed for Firefox. */
+	height: 100%;
+}
+
+/*
+	These wrapper is needed for IE11.
+	Can't use a direct absolute child inside a table-cell element.
+*/
+.tableCellWrapper {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
