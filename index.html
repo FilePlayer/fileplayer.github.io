@@ -19,6 +19,7 @@
 	<link rel="stylesheet" href="player/css/position.css"/>
 	<link rel="stylesheet" href="player/css/subtitles.css"/>
 	<link rel="stylesheet" href="playlist/css/playlist.css"/>
+	<link rel="stylesheet" href="playlist/css/nav.css"/>
 	<link rel="stylesheet" href="playlist/css/list.css"/>
 	<script src="//code.jquery.com/jquery-3.0.0-alpha1.min.js"></script>
 	<script src="//jquery-element.github.io/jquery-element-1.7.0.js"></script>
@@ -94,7 +95,6 @@
 						></span
 						><span class="txt btn position">
 							<span class="time current"></span
-							><span class="delimiter"></span
 							><span class="time duration"></span
 							><span class="time remaining"></span>
 						</span>
@@ -149,6 +149,15 @@
 		<div class="tableCellWrapper">
 			<div class="extendWidth ew-resize"></div>
 			<div class="content">
+				<nav>
+					<span class="index">
+						<span class="current"></span
+						><span class="total"></span>
+					</span>
+					<span class="right">
+						<i class="btn close fa fa-fw fa-times-circle"></i>
+					</span>
+				</nav>
 				<div class="list"></div>
 			</div>
 		</div>

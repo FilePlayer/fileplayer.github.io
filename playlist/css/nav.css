@@ -1,0 +1,33 @@
+#playlist nav {
+	padding: 5px;
+	background: #333;
+}
+
+#playlist nav * {
+	vertical-align: middle;
+}
+
+#playlist nav .index {
+	font-size: 12px;
+}
+
+#playlist nav .current {
+	font-weight: bold;
+}
+
+#playlist nav .current:after {
+	content: "\A0/\A0";
+	font-weight: normal;
+}
+
+#playlist nav .right {
+	float: right;
+}
+
+#playlist nav .close {
+	margin-left: 10px;
+}
+
+#playlist nav .repeat {
+	margin-bottom: 1px;
+}

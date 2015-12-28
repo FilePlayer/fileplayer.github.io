@@ -89,12 +89,22 @@ window.playlistUI = that = {
 	highlight: function( jqFile, b ) {
 		jqFile.toggleClass( "selected", b );
 		return that;
+	},
+	currentIndex: function( n ) {
+		dom.jqPlaylistNavIndex.text( n );
+		return that;
+	},
+	totalFiles: function( n ) {
+		dom.jqPlaylistNavTotal.text( n );
+		return that;
 	}
 };
 
 that
 	.hide()
 	.width( 350 )
+	.currentIndex( 0 )
+	.totalFiles( 0 )
 ;
 
 })();

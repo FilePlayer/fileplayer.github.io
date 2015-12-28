@@ -8,6 +8,7 @@ var
 api.keyboard.shortcut( "ctrl+l", playlistUI.showToggle );
 
 dom.jqPlaylistToggleBtn.click( playlistUI.showToggle );
+dom.jqPlaylistClose.click( playlistUI.hide );
 
 jqExtend
 	.mousedown( function() {

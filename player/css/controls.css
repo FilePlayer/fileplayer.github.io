@@ -57,7 +57,7 @@
 	font-size: 12px;
 }
 
-#ctrl .position .delimiter:after {
+#ctrl .position .current:after {
 	content: "\A0/\A0";
 }
 

@@ -49,7 +49,12 @@ window.dom = {
 	jqPlaylist: $( "#playlist" ),
 		jqPlaylistExtendWidth: $( "#playlist .extendWidth" ),
 		jqPlaylistContent: $( "#playlist .content" ),
-		jqPlaylistList: $( "#playlist .list" )
+		jqPlaylistList: $( "#playlist .list" ),
+		// Nav
+		jqPlaylistNav: $( "#playlist nav" ),
+			jqPlaylistClose: $( "#playlist nav .close" ),
+			jqPlaylistNavIndex: $( "#playlist nav .current" ),
+			jqPlaylistNavTotal: $( "#playlist nav .total" )
 };
 
 // Make sure all the selections above works.
@@ -58,5 +63,9 @@ for ( var key in window.dom ) {
 		console.error( "dom." + key + " is empty." );
 	}
 }
+
+// This can be considered like NULL for jQuery.
+// Useful for api.playlist.
+dom.jqEmpty = $();
 
 })();

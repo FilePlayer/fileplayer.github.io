@@ -4,7 +4,7 @@
 	position: absolute;
 	overflow: auto;
 	width: 100%;
-	top: 0;
+	top: 26px;
 	bottom: 0;
 }
 
@@ -34,7 +34,7 @@
 	display: inline-block;
 	counter-increment: section;
 	content: counter( section );
-	width: 11px;
+	min-width: 11px;
 	text-align: center;
 	font-size: 10px;
 	font-weight: bold;

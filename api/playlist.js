@@ -3,19 +3,11 @@
 var
 	that,
 	playMode,
-	jqFileSelected = $(),
-	jqFiles = dom.jqPlaylistList,
+	jqFileSelected = dom.jqEmpty,
+	jqFiles = dom.jqEmpty,
+	jqList = dom.jqPlaylistList,
 	jqVideo = dom.jqPlayerVideo
 ;
-
-function firstFile() {
-	return jqFiles.children()[ 0 ];
-}
-
-function lastFile() {
-	var children = jqFiles.children();
-	return children[ children.length - 1 ];
-}
 
 api.playlist = that = {
 	push: function( filesWrappers ) {
@@ -24,13 +16,15 @@ api.playlist = that = {
 			f.url = URL.createObjectURL( f.file );
 			playlistUI.append( f );
 		}
+		jqFiles = jqList.children();
+		playlistUI.totalFiles( jqFiles.length );
 		return that;
 	},
 	pushAndPlay: function( filesWrappers ) {
-		var last = lastFile();
+		var last = jqFiles.get( -1 );
 		that.push( filesWrappers );
-		if ( last !== lastFile() ) {
-			that.select( last ? last.jqThis.next()[ 0 ] : firstFile() );
+		if ( last !== jqFiles.get( -1 ) ) {
+			that.select( last ? last.jqThis.next()[ 0 ] : jqFiles.get( 0 ) );
 		}
 		return that;
 	},
@@ -46,17 +40,20 @@ api.playlist = that = {
 			if ( jqFileSelected ) {
 				playlistUI.highlight( jqFileSelected, false );
 			}
-			playlistUI.highlight( elFile.jqThis, true );
 			playerUI.title( elFile.fileWrapper.name );
+			playlistUI
+				.highlight( elFile.jqThis, true )
+				.currentIndex( 1 + jqFiles.index( elFile ) )
+			;
 			jqFileSelected = elFile.jqThis;
 		}
 		return that;
 	},
 	prev: function() {
-		return that.select( jqFileSelected.prev()[ 0 ] || lastFile() );
+		return that.select( jqFileSelected.prev()[ 0 ] || jqFiles.get( -1 ) );
 	},
 	next: function() {
-		return that.select( jqFileSelected.next()[ 0 ] || firstFile() );
+		return that.select( jqFileSelected.next()[ 0 ] || jqFiles.get( 0 ) );
 	},
 
 	// The `mode` specify the action to do at the end of the current file :
@@ -93,8 +90,5 @@ jqVideo.on( "ended", function() {
 	}
 	api.video.stop();
 });
-
-
-$(function() {api.playlist.pushAndPlay( [] );})
 
 })();
