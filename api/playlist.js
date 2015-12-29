@@ -61,13 +61,15 @@ api.playlist = that = {
 	// true ------> play the next file.
 	// "loopOne" -> replay the same file.
 	// "loopAll" -> play the next file, at the end of the playlist it will play the first file.
-	autoplay: function( mode ) {
+	playingMode: function( mode ) {
+		if ( !arguments.length ) {
+			return playMode;
+		}
 		playMode = mode;
+		playlistUI.playingMode( mode );
 		return that;
 	}
 };
-
-api.playlist.autoplay( true );
 
 // The videoElement has no "stop" event.
 // But the api.video has a .stop() methode anyway, this methode trigger("stop").

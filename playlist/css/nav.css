@@ -29,5 +29,46 @@
 }
 
 #playlist nav .repeat {
-	margin-bottom: 1px;
+	position: relative;
+}
+
+#playlist nav .repeat * {
+	display: none;
+	position: absolute;
+	left: -1px;
+	top: 0;
+	font: bold 12px/12px sans-serif;
+	border-radius: 999px;
+	border: 6px solid;
+	border-color: inherit;
+}
+
+#playlist nav .repeat.one *,
+#playlist nav .repeat.all * {
+	display: block;
+}
+
+#playlist nav .repeat :after {
+	position: absolute;
+	left: -3px;
+	top: -6px;
+	color: #333;
+}
+
+#playlist nav .repeat.one :after {
+	content: "1";
+	font-size: 10px;
+	font-weight: bold;
+}
+
+#playlist nav .repeat.all :after {
+	content: "\f0c9";
+	font: 8px FontAwesome;
+	top: -4px;
+}
+
+.tooltip .repeatDot {
+	position: absolute;
+	margin: 5px 0 0 -3px;
+	font-size: 6px;
 }

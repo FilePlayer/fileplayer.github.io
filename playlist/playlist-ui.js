@@ -90,6 +90,26 @@ window.playlistUI = that = {
 		jqFile.toggleClass( "selected", b );
 		return that;
 	},
+	playingMode: function( m ) {
+		var dot = "<i class='repeatDot fa fa-circle'></i>";
+
+		dom.jqPlaylistRepeat
+			.removeClass( "disable one all" )
+			.addClass(
+				m === true ? "" :
+				m === "loopOne" ? "one" :
+				m === "loopAll" ? "all" : "disable"
+			)
+			.attr( "data-tooltip-content",
+				"Playing mode&nbsp;:<br/><br/>" +
+				( m === false ? dot : "" ) + "&nbsp;&nbsp;stop after file<br/>" +
+				( m === true  ? dot : "" ) + "&nbsp;&nbsp;stop after playlist<br/>" +
+				( m === "loopOne" ? dot : "" ) + "&nbsp;&nbsp;repeat one<br/>" +
+				( m === "loopAll" ? dot : "" ) + "&nbsp;&nbsp;repeat playlist<br/>"
+			)
+		;
+		return that;
+	},
 	currentIndex: function( n ) {
 		dom.jqPlaylistNavIndex.text( n );
 		return that;

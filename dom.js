@@ -52,9 +52,10 @@ window.dom = {
 		jqPlaylistList: $( "#playlist .list" ),
 		// Nav
 		jqPlaylistNav: $( "#playlist nav" ),
-			jqPlaylistClose: $( "#playlist nav .close" ),
 			jqPlaylistNavIndex: $( "#playlist nav .current" ),
-			jqPlaylistNavTotal: $( "#playlist nav .total" )
+			jqPlaylistNavTotal: $( "#playlist nav .total" ),
+			jqPlaylistRepeat: $( "#playlist nav .repeat" ),
+			jqPlaylistClose: $( "#playlist nav .close" )
 };
 
 // Make sure all the selections above works.
