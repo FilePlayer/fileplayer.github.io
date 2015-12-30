@@ -49,6 +49,9 @@ api.playlist = that = {
 		}
 		return that;
 	},
+	selectedFile: function() {
+		return jqFileSelected[ 0 ] && jqFileSelected[ 0 ].fileWrapper;
+	},
 	prev: function() {
 		return that.select( jqFileSelected.prev()[ 0 ] || jqFiles.get( -1 ) );
 	},

@@ -4,7 +4,7 @@
 	transition: all .25s;
 }
 
-.ctrlHiding #ctrl,
+.playing.video.ctrlHiding #ctrl,
 #titleFile.hidden,
 #shortcutDesc.hidden {
 	transition-duration: 2s;

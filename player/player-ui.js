@@ -107,7 +107,10 @@ window.playerUI = that = {
 		return b ? that.fullscreen() : that.exitFullscreen();
 	},
 	play: function() {
-		dom.jqPlayer.addClass( "cinema" );
+		dom.jqPlayer
+			.removeClass( "audio video" )
+			.addClass( "playing " + api.playlist.selectedFile().type )
+		;
 		jqPlayBtn
 			.removeClass( "fa-play" )
 			.addClass( "fa-pause" )
@@ -124,7 +127,7 @@ window.playerUI = that = {
 		return that.actionDesc( "Pause" );
 	},
 	stop: function() {
-		dom.jqPlayer.removeClass( "cinema" );
+		dom.jqPlayer.removeClass( "playing audio video" );
 		api.thumbnail.canvas.drawFromImg();
 		jqTimeSliderParent.attr( "data-tooltip-content", null );
 		return that
