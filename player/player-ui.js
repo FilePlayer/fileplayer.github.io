@@ -37,43 +37,35 @@ var
 	jqSubtitlesToolip = dom.jqPlayerSubtitlesToggle.parent(),
 
 	// Texts: texts on screen.
-	jqScreenTexts = [
-		dom.jqPlayerTitle,
-		dom.jqPlayerShortcutDesc
-	],
-	screenTextsTimeoutIds = [],
+	screenTextTimeoutId,
 
 	// Playlist
 	playlistWasShow
 ;
 
-function screenTexts( i, msg ) {
-	if ( that.textsShowing ) {
-		clearTimeout( screenTextsTimeoutIds[ i ] );
-
-		jqScreenTexts[ i ]
-			.text( msg )
-			.removeClass( "hidden" )
-		;
-
-		// Start to fadeout the element after 2s.
-		screenTextsTimeoutIds[ i ] = setTimeout( function() {
-			jqScreenTexts[ i ].addClass( "hidden" );
-		}, 2000 );
-	}
-}
-
 window.playerUI = that = {
 	textsShowing: true,
-	title: function( msg ) {
-		screenTexts( 0, msg );
-		return that;
-	},
 	actionDesc: function( msg ) {
-		screenTexts( 1, msg );
+		if ( that.textsShowing ) {
+			clearTimeout( screenTextTimeoutId );
+			dom.jqPlayerShortcutDesc
+				.text( msg )
+				.removeClass( "hidden" )
+			;
+			// Start to fadeout the element after 2s.
+			screenTextTimeoutId = setTimeout( function() {
+				dom.jqPlayerShortcutDesc.addClass( "hidden" );
+			}, 2000 );
+		}
 		return that;
 	},
 	loaded: function() {
+		var file = api.playlist.selectedFile();
+		dom.jqPlayer
+			.removeClass( "audio video" )
+			.addClass( "playing " + file.type )
+		;
+		dom.jqPlayerTitleName.text( file.name );
 		jqTimeSliderParent.attr( "data-tooltip-content", null );
 		api.thumbnail.canvas.drawFromImg();
 		api.thumbnail.cache.init( Math.ceil( api.video.duration() ) );
@@ -107,10 +99,6 @@ window.playerUI = that = {
 		return b ? that.fullscreen() : that.exitFullscreen();
 	},
 	play: function() {
-		dom.jqPlayer
-			.removeClass( "audio video" )
-			.addClass( "playing " + api.playlist.selectedFile().type )
-		;
 		jqPlayBtn
 			.removeClass( "fa-play" )
 			.addClass( "fa-pause" )
@@ -128,6 +116,7 @@ window.playerUI = that = {
 	},
 	stop: function() {
 		dom.jqPlayer.removeClass( "playing audio video" );
+		dom.jqPlayerTitleName.empty();
 		api.thumbnail.canvas.drawFromImg();
 		jqTimeSliderParent.attr( "data-tooltip-content", null );
 		return that

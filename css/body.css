@@ -9,6 +9,15 @@
 	        user-select: none;
 }
 
+.textShadow {
+	text-shadow:
+		-1px -1px 1px #000,
+		 1px -1px 1px #000,
+		 1px  1px 1px #000,
+		-1px  1px 1px #000
+	;
+}
+
 #main {
 	display: table;
 	table-layout: fixed;
@@ -22,6 +31,12 @@
 
 	/* Needed for Firefox. */
 	height: 100%;
+}
+
+.textOverflow {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 /*

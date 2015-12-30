@@ -12,9 +12,6 @@
 #playlist .file {
 	display: block;
 	padding: .5em;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
 	color: #aaa;
 	font-size: 12px;
 	border-bottom: 1px solid #444;

@@ -40,7 +40,6 @@ api.playlist = that = {
 			if ( jqFileSelected ) {
 				playlistUI.highlight( jqFileSelected, false );
 			}
-			playerUI.title( elFile.fileWrapper.name );
 			playlistUI
 				.highlight( elFile.jqThis, true )
 				.currentIndex( 1 + jqFiles.index( elFile ) )

@@ -67,7 +67,7 @@ window.playlistUI = that = {
 		var
 			jqFile =
 				$(
-					"<a class='file' href='#'>" +
+					"<a class='file textOverflow' href='#'>" +
 						"<i class='fa fa-fw fa-" +
 							( fileWrapper.type === "audio" ? "music" : "film" ) +
 						"'></i>" +

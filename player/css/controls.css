@@ -1,18 +1,36 @@
 #ctrl,
-#titleFile,
+#title,
 #shortcutDesc {
 	transition: all .25s;
 }
 
 .playing.video.ctrlHiding #ctrl,
-#titleFile.hidden,
+.playing.video.ctrlHiding #title,
 #shortcutDesc.hidden {
 	transition-duration: 2s;
 	visibility: hidden;
 	opacity: 0;
 }
 
-#titleFile,
+#title {
+	position: relative;
+	padding: 10px;
+	font-size: 20px;
+	background: linear-gradient( to top, transparent, #000 );
+}
+
+#title .fa {
+	margin-right: .5em;
+}
+
+.playing.audio #title .fa:before {
+	content: "\f001"; /* fa-music */
+}
+
+.playing.video #title .fa:before {
+	content: "\f008"; /* fa-film */
+}
+
 #shortcutDesc {
 	position: absolute;
 	top: 50px;
@@ -32,7 +50,7 @@
 	right: 0;
 	padding: 15px;
 	color: rgba( 255, 255, 255, .6 );
-	background: linear-gradient( to bottom, rgba( 0, 0, 0, 0 ), #000 );
+	background: linear-gradient( to bottom, transparent, #000 );
 	cursor: default;
 }
 

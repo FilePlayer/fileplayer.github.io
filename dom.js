@@ -11,8 +11,10 @@ window.dom = {
 		// Video
 		jqPlayerVideo: $( "#player video.main" ),
 		jqPlayerFullscreenBtn: $( "#ctrl .btn.fullscreen" ),
+		// File's title
+		jqPlayerTitle: $( "#title" ),
+		jqPlayerTitleName: $( "#title span" ),
 		// Texts on screen
-		jqPlayerTitle: $( "#titleFile" ),
 		jqPlayerShortcutDesc: $( "#shortcutDesc" ),
 		jqPlayerCue: $( "#cues > *" ),
 		// Subtitles
