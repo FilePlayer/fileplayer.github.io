@@ -11,7 +11,6 @@ dom.jqDoc.on(
 	}
 );
 
-api.video.resizeUpdate();
 dom.jqWindow.resize( api.video.resizeUpdate );
 
 dom.jqPlayerVideo.on( {

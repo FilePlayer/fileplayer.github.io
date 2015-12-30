@@ -37,7 +37,6 @@ var
 	jqSubtitlesToolip = dom.jqPlayerSubtitlesToggle.parent(),
 
 	// Texts: texts on screen.
-	textsShowing,
 	jqScreenTexts = [
 		dom.jqPlayerTitle,
 		dom.jqPlayerShortcutDesc
@@ -49,7 +48,7 @@ var
 ;
 
 function screenTexts( i, msg ) {
-	if ( textsShowing ) {
+	if ( that.textsShowing ) {
 		clearTimeout( screenTextsTimeoutIds[ i ] );
 
 		jqScreenTexts[ i ]
@@ -65,6 +64,7 @@ function screenTexts( i, msg ) {
 }
 
 window.playerUI = that = {
+	textsShowing: true,
 	title: function( msg ) {
 		screenTexts( 0, msg );
 		return that;
@@ -159,9 +159,11 @@ window.playerUI = that = {
 		;
 		jqVolumeSlider.element().val( vol );
 		jqVolumeIcon.attr( "data-tooltip-content", vol ? "Mute" : "Unmute" );
-		var volStr = "Volume : " + Math.round( vol * 100 ) + " %";
-		jqVolumeSliderParent.attr( "data-tooltip-content", volStr );
-		return that.actionDesc( volStr );
+		jqVolumeSliderParent.attr(
+			"data-tooltip-content",
+			"Volume : " + utils.fPercent( vol )
+		);
+		return that;
 	},
 	speed: function( rate ) {
 		return that.actionDesc( "Speed : " + rate.toFixed( 2 ) + "x" );
@@ -175,7 +177,7 @@ window.playerUI = that = {
 		;
 		jqOpacitySliderParent.attr(
 			"data-tooltip-content",
-			"Brightness : " + Math.round( op * 100 ) + " %"
+			"Brightness : " + utils.fPercent( op )
 		);
 		return that;
 	},
@@ -223,19 +225,5 @@ window.playerUI = that = {
 		;
 	}
 };
-
-textsShowing = false;
-
-playerUI
-	.pause()
-	.currentTime( 0 )
-	.duration( 0 )
-	.subtitlesToggle( false )
-	.volume( api.video.volume() )
-	.opacity( api.video.opacity() )
-	.exitFullscreen()
-;
-
-textsShowing = true;
 
 })();

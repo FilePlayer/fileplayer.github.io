@@ -120,11 +120,4 @@ window.playlistUI = that = {
 	}
 };
 
-that
-	.hide()
-	.width( 350 )
-	.currentIndex( 0 )
-	.totalFiles( 0 )
-;
-
 })();

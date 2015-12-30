@@ -25,6 +25,9 @@ window.utils = {
 			;
 		}
 		return Math.min( Math.max( a, valn ), b );
+	},
+	fPercent: function( n ) {
+		return Math.round( n * 100 ) + " %";
 	}
 };
 

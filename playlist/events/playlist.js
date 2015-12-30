@@ -16,7 +16,6 @@ dom.jqPlaylistRepeat.click( function() {
 		( 1 + $.inArray( api.playlist.playingMode(), playModes ) ) % playModes.length
 	]);
 });
-api.playlist.playingMode( true );
 
 jqExtend
 	.mousedown( function() {
