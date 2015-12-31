@@ -13,7 +13,6 @@ api.playlist = that = {
 	push: function( filesWrappers ) {
 		var f, i = 0;
 		for ( ; f = filesWrappers[ i ]; ++i ) {
-			f.url = URL.createObjectURL( f.file );
 			playlistUI.append( f );
 		}
 		jqFiles = jqList.children();
@@ -32,12 +31,15 @@ api.playlist = that = {
 		if ( !elFile ) {
 			api.video.stop();
 		} else {
+			var fWrap = elFile.fileWrapper;
+			fWrap.url = URL.createObjectURL( fWrap.file );
 			api.video
 				.pause()
-				.load( elFile.fileWrapper.url )
+				.load( fWrap.url )
 				.play()
 			;
-			if ( jqFileSelected ) {
+			if ( jqFileSelected.length ) {
+				URL.revokeObjectURL( jqFileSelected[ 0 ].fileWrapper.url );
 				playlistUI.highlight( jqFileSelected, false );
 			}
 			playlistUI
