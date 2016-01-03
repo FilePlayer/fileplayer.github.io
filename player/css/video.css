@@ -5,6 +5,6 @@ video.main {
 	top: 0;
 }
 
-.ctrlHidden video.main {
+.playing.video.ctrlHidden video.main {
 	cursor: none;
 }

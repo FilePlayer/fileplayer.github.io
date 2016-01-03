@@ -18,6 +18,7 @@ window.dom = {
 		jqPlayerShortcutDesc: $( "#shortcutDesc" ),
 		jqPlayerCue: $( "#cues > *" ),
 		// Subtitles
+		jqPlayerSubtitlesBtn: $( "#ctrl .btn.subtitles" ),
 		jqPlayerSubtitlesIcon: $( "#ctrl .subtitles .fa" ),
 		jqPlayerSubtitlesToggle: $( "#ctrl .menu.subtitles .slidebutton" ),
 		jqPlayerSubtitlesCheckbox: $( "#ctrl .menu.subtitles input" ),

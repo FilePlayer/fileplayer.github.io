@@ -32,13 +32,14 @@ api.playlist = that = {
 			api.video.stop();
 		} else {
 			var fWrap = elFile.fileWrapper;
+
 			fWrap.url = URL.createObjectURL( fWrap.file );
 			api.video
 				.pause()
 				.load( fWrap.url )
 				.play()
 			;
-			if ( jqFileSelected.length ) {
+			if ( jqFileSelected.length && jqFileSelected[ 0 ] !== elFile ) {
 				URL.revokeObjectURL( jqFileSelected[ 0 ].fileWrapper.url );
 				playlistUI.highlight( jqFileSelected, false );
 			}
