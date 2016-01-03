@@ -2,20 +2,13 @@
 
 var
 	mousedown = false,
-	jqExtend = dom.jqPlaylistExtendWidth,
-	playModes = [ false, true, "loopOne", "loopAll" ]
+	jqExtend = dom.jqPlaylistExtendWidth
 ;
 
 api.keyboard.shortcut( "ctrl+l", playlistUI.showToggle );
 
 dom.jqPlaylistToggleBtn.click( playlistUI.showToggle );
 dom.jqPlaylistClose.click( playlistUI.hide );
-
-dom.jqPlaylistRepeat.click( function() {
-	api.playlist.playingMode( playModes[
-		( 1 + $.inArray( api.playlist.playingMode(), playModes ) ) % playModes.length
-	]);
-});
 
 jqExtend
 	.mousedown( function() {

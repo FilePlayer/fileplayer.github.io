@@ -27,7 +27,7 @@ api.playlist = that = {
 		}
 		return that;
 	},
-	select: function( elFile ) {
+	select: function( elFile, noScroll ) {
 		if ( !elFile ) {
 			api.video.stop();
 		} else {
@@ -46,6 +46,9 @@ api.playlist = that = {
 				.highlight( elFile.jqThis, true )
 				.currentIndex( 1 + jqFiles.index( elFile ) )
 			;
+			if ( !noScroll ) {
+				playlistUI.scrollToSelection();
+			}
 			jqFileSelected = elFile.jqThis;
 		}
 		return that;

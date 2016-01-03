@@ -8,11 +8,47 @@ var
 	hideTimeout,
 	jqPlaylist = dom.jqPlaylist,
 	jqToggleBtn = dom.jqPlaylistToggleBtn,
-	jqPlaylistList = dom.jqPlaylistList,
+	jqList = dom.jqPlaylistList,
 	minWidth = 150 //parseFloat( jqPlaylist.css( "minWidth" ) )
 ;
 
 window.playlistUI = that = {
+
+	// Scroll the playlist's list to show the selected file.
+	// This function don't do anything if the selected file is already on screen.
+	// nbElemMargin: how many elements we want to show above or below the selected file.
+	scrollToSelection: function() {
+		var
+			ok,
+			top,
+			height,
+			topOnScr,
+			childHeight,
+			nbElemsMargin = 3.25,
+			children = jqList.children( ".selected" )
+		;
+		if ( children.length ) {
+			top = children.position().top;
+			topOnScr = top - jqList[ 0 ].scrollTop;
+			childHeight = children.outerHeight();
+			if ( ok = topOnScr < 0 ) {
+				top -= nbElemsMargin * childHeight;
+			} else {
+				height = jqList.height();
+				if ( ok = topOnScr > height - childHeight ) {
+					top -= height - ++nbElemsMargin * childHeight;
+				}
+			}
+			if ( ok ) {
+				jqList.stop().animate({
+					scrollTop: top
+				}, 250 );
+			}
+		}
+		return that;
+	},
+
+	// Show or hide the playlist's container.
 	isShow: function() {
 		return showing;
 	},
@@ -50,6 +86,8 @@ window.playlistUI = that = {
 		}
 		return b ? that.show() : that.hide();
 	},
+
+	// Set or get the width of the playlist's container.
 	width: function( w ) {
 		if ( arguments.length === 0 ) {
 			return width;
@@ -63,6 +101,8 @@ window.playlistUI = that = {
 		}
 		return that;
 	},
+
+	// Create a new DOM element with events for the new file.
 	append: function( fileWrapper ) {
 		var
 			jqFile =
@@ -76,20 +116,24 @@ window.playlistUI = that = {
 				)
 				.click( false )
 				.dblclick( function() {
-					api.playlist.select( this );
+					api.playlist.select( this, "noscroll" );
 					return false;
 				})
-				.appendTo( jqPlaylistList )
+				.appendTo( jqList )
 		;
 
 		jqFile[ 0 ].fileWrapper = fileWrapper;
 		jqFile[ 0 ].jqThis = jqFile;
 		return that;
 	},
+
+	// (Un)select a specific file in the playlist.
 	highlight: function( jqFile, b ) {
 		jqFile.toggleClass( "selected", b );
 		return that;
 	},
+
+	// Update of the repeat button.
 	playingMode: function( m ) {
 		var dot = "<i class='repeatDot fa fa-circle'></i>";
 
