@@ -1,12 +1,13 @@
 #playlist {
-	overflow: hidden;
-	background: rgba( 0, 0, 0, .3 );
+	background: #0a0a0a;
 	transition: all .3s;
 	width: 0;
 	opacity: 0;
+	visibility: hidden;
 }
 
 #playlist.showing {
+	visibility: visible;
 	opacity: 1;
 }
 
@@ -15,16 +16,26 @@
 }
 
 #playlist .extendWidth {
+	position: relative;
+	z-index: 1;
 	display: inline-block;
 	float: left;
 	width: 4px;
 	height: 100%;
-	background: rgba( 255, 255, 255, .3 );
+	background: #666;
 }
 
 #playlist .extendWidth:hover,
 #playlist .extendWidth.hover {
-	background: rgba( 255, 255, 255, .6 );
+	background: #aaa;
+}
+
+#playlist .extendWidth:after {
+	content: "";
+	position: absolute;
+	left: -7px;
+	right: -7px;
+	height: 100%;
 }
 
 #playlist .content {

@@ -13,7 +13,7 @@ dom.jqPlaylistClose.click( playlistUI.hide );
 jqExtend
 	.mousedown( function() {
 		mousedown = true;
-		dom.jqBody.addClass( "ew-resize" );
+		dom.jqBody.addClass( "ew-resize no-select" );
 		jqExtend.addClass( "hover" );
 	})
 ;
@@ -21,7 +21,7 @@ jqExtend
 dom.jqDoc
 	.mouseup( function() {
 		mousedown = false;
-		dom.jqBody.removeClass( "ew-resize" );
+		dom.jqBody.removeClass( "ew-resize no-select" );
 		jqExtend.removeClass( "hover" );
 	})
 	.mousemove( function( e ) {

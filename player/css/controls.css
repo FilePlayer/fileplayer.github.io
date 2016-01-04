@@ -13,10 +13,15 @@
 }
 
 #title {
+	display: none;
 	position: relative;
 	padding: 10px;
 	font-size: 20px;
 	background: linear-gradient( to top, transparent, #000 );
+}
+
+.playing #title {
+	display: block;
 }
 
 #title .fa {
