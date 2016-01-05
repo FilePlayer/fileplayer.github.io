@@ -60,20 +60,12 @@ window.playlistUI = that = {
 			jqPlaylist.addClass( "show" );
 			api.video.resizeUpdate();
 		}, 350 );
-		jqToggleBtn
-			.removeClass( "fa-caret-square-o-left" )
-			.addClass( "fa-caret-square-o-right" )
-		;
 		jqToggleBtn[ 0 ].dataset.tooltipContent = "Hide playlist";
 		return that.width( width );
 	},
 	hide: function() {
 		clearTimeout( showTimeout );
 		jqPlaylist.removeClass( "show showing" );
-		jqToggleBtn
-			.removeClass( "fa-caret-square-o-right" )
-			.addClass( "fa-caret-square-o-left" )
-		;
 		hideTimeout = setTimeout( api.video.resizeUpdate , 350 );
 		jqToggleBtn[ 0 ].dataset.tooltipContent = "Show playlist";
 		that.width( 0 );
