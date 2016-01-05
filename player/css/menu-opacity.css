@@ -1,0 +1,14 @@
+#ctrl .btn.opacity {
+	display: inline-block;
+}
+
+#ctrl .menu.opacity .content {
+	width: 100%;
+	height: 100%;
+    padding: 10px 0px 10px 5px;
+}
+
+#ctrl .menu.opacity .cuteslider {
+    width: 14px;
+    height: 50px;
+}
