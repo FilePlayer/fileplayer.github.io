@@ -11,6 +11,8 @@ window.dom = {
 		// Video
 		jqPlayerVideo: $( "#player video.main" ),
 		jqPlayerFullscreenBtn: $( "#ctrl .btn.fullscreen" ),
+		// Canvas visualization
+		jqPlayerCanvas: $( "#visu" ),
 		// File's title
 		jqPlayerTitle: $( "#title" ),
 		jqPlayerTitleName: $( "#title span" ),
