@@ -17,26 +17,12 @@
 	transition-property: color, width, height, margin;
 	width: 8px;
 	height: 8px;
-	margin: -4px 0 0 -4px;
+	margin: -4px;
 }
 
 #ctrl .cuteslider:hover .cuteslider-thumb {
 	background: #fff;
 	width: 14px;
 	height: 14px;
-	margin: -7px 0 0 -7px;
-}
-
-#ctrl .btn .cuteslider {
-	transition: all .25s;
-	margin: 0;
-	width: 0;
-	opacity: 0;
-}
-
-#ctrl .btn:hover .cuteslider,
-#ctrl .btn .cuteslider.focus {
-	margin: 0 7px;
-	width: 50px;
-	opacity: 1;
+	margin: -7px;
 }

@@ -96,3 +96,26 @@
 #ctrl .position .remaining:before {
 	content: "-";
 }
+
+#ctrl .btn.volume .cuteslider {
+	transition: all .25s;
+	margin: 0;
+	width: 0;
+	opacity: 0;
+}
+
+#ctrl .btn.volume:hover .cuteslider,
+#ctrl .btn.volume .cuteslider.focus {
+	margin: 0 7px;
+	width: 50px;
+	opacity: 1;
+}
+
+#ctrl .menu.opacity .content {
+	padding: 10px 5px;
+}
+
+#ctrl .menu.opacity .cuteslider {
+	width: 14px;
+	height: 50px;
+}
