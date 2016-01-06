@@ -6,7 +6,7 @@ var
 	nbVisu = 0,
 	selectedVisu = $.noop,
 	canvas = dom.jqPlayerCanvas[ 0 ],
-	ctxCanvas = canvas.getContext( '2d' ),
+	ctxCanvas = canvas.getContext( '2d', { alpha: false } ),
 	ctxAudio = new AudioContext(),
 	analyser = ctxAudio.createAnalyser(),
 	src = ctxAudio.createMediaElementSource( dom.jqPlayerVideo[ 0 ] ),
@@ -31,9 +31,13 @@ api.audio = that = {
 		return that;
 	},
 	visuOn: function() {
+		var data = new Uint8Array( 100000 );
+
 		function frame( timestamp ) {
+			// analyser.getByteTimeDomainData( data );	// test1
+			analyser.getByteFrequencyData( data );	// test2
 			ctxCanvas.clearRect( 0, 0, canvas.width, canvas.height );
-			selectedVisu( ctxCanvas, analyser );
+			selectedVisu( ctxCanvas, analyser, data );
 			requestId = requestAnimationFrame( frame );
 		}
 		if ( !visuEnable ) {
