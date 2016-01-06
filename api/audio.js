@@ -31,13 +31,16 @@ api.audio = that = {
 		return that;
 	},
 	visuOn: function() {
-		var data = new Uint8Array( 100000 );
-
+		var info = {
+			width: canvas.width,
+			height: canvas.height,
+			ctxCanvas: ctxCanvas,
+			analyser: analyser,
+			data: new Uint8Array( 2048 ) // TODO (analyser.frequencyBinCount)
+		};
 		function frame( timestamp ) {
-			// analyser.getByteTimeDomainData( data );	// test1
-			analyser.getByteFrequencyData( data );	// test2
 			ctxCanvas.clearRect( 0, 0, canvas.width, canvas.height );
-			selectedVisu( ctxCanvas, analyser, data );
+			selectedVisu( info );
 			requestId = requestAnimationFrame( frame );
 		}
 		if ( !visuEnable ) {
@@ -59,9 +62,6 @@ api.audio = that = {
 		}
 		return b ? that.visuOn() : that.visuOff();
 	}
-}
+};
 
 })();
-
-
-
