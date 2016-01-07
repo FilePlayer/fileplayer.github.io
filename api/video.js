@@ -3,9 +3,9 @@
 var
 	that,
 	oldSource,
+	opacity,
 	isStopped = true,
 	isLoaded = false,
-	opacity = 1,
 	video = dom.jqPlayerVideo[ 0 ],
 	jqVideo = dom.jqPlayerVideo,
 	jqVideoThumb = dom.jqPlayerThumbnailVideo
@@ -146,9 +146,8 @@ api.video = that = {
 		if ( arguments.length === 0 ) {
 			return opacity;
 		}
-		if ( opacity = utils.range( 0, o, 1, opacity ) ) {
-			jqVideo.trigger( "opacitychange" );
-		}
+		opacity = utils.range( 0, o, 1, opacity );
+		jqVideo.trigger( "opacitychange" );
 		return that;
 	}
 };

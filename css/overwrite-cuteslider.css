@@ -12,17 +12,18 @@
 }
 
 #ctrl .cuteslider-thumb {
-	background: #999;
 	transition: all .1s ease;
 	transition-property: color, width, height, margin;
 	width: 8px;
 	height: 8px;
 	margin: -4px;
+	background: #999;
 }
 
-#ctrl .cuteslider:hover .cuteslider-thumb {
-	background: #fff;
+#ctrl .cuteslider:hover .cuteslider-thumb,
+#ctrl .cuteslider.focus .cuteslider-thumb {
 	width: 14px;
 	height: 14px;
 	margin: -7px;
+	background: #fff;
 }
