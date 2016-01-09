@@ -37,10 +37,7 @@ api.audio = that = {
 			data: new Uint8Array( analyser.frequencyBinCount )
 		};
 		function frame( timestamp ) {
-			if ( api.video.isPlaying() ) {
-				ctxCanvas.clearRect( 0, 0, canvas.width, canvas.height );
-				selectedVisu( info );
-			}
+			selectedVisu( info );
 			requestId = requestAnimationFrame( frame );
 		}
 		if ( !visuEnable ) {
