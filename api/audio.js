@@ -15,7 +15,6 @@ var
 
 src.connect( analyser );
 analyser.connect( ctxAudio.destination );
-
 api.audio = that = {
 	addVisu: function( name, fn ) {
 		visu[ name ] = fn;
@@ -31,16 +30,17 @@ api.audio = that = {
 		return that;
 	},
 	visuOn: function() {
+		analyser.fftSize = 4096;
 		var info = {
-			width: canvas.width,
-			height: canvas.height,
 			ctxCanvas: ctxCanvas,
 			analyser: analyser,
-			data: new Uint8Array( 2048 ) // TODO (analyser.frequencyBinCount)
+			data: new Uint8Array( analyser.frequencyBinCount )
 		};
 		function frame( timestamp ) {
-			ctxCanvas.clearRect( 0, 0, canvas.width, canvas.height );
-			selectedVisu( info );
+			if ( api.video.isPlaying() ) {
+				ctxCanvas.clearRect( 0, 0, canvas.width, canvas.height );
+				selectedVisu( info );
+			}
 			requestId = requestAnimationFrame( frame );
 		}
 		if ( !visuEnable ) {
