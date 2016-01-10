@@ -64,7 +64,10 @@ window.playerUI = that = {
 			.removeClass( "audio video" )
 			.addClass( "playing " + file.type )
 		;
-		dom.jqPlayerTitleName.text( file.name );
+		dom.jqPlayerTitleName
+			.add( dom.jqTitle )
+				.text( file.name )
+		;
 		jqTimeSliderParent.attr( "data-tooltip-content", null );
 		api.thumbnail.canvas.drawFromImg();
 		api.thumbnail.cache.init( Math.ceil( api.video.duration() ) );
@@ -116,6 +119,7 @@ window.playerUI = that = {
 	stop: function() {
 		dom.jqPlayer.removeClass( "playing audio video" );
 		dom.jqPlayerTitleName.empty();
+		dom.jqTitle.text( "FilePlayer" );
 		api.thumbnail.canvas.drawFromImg();
 		jqTimeSliderParent.attr( "data-tooltip-content", null );
 		return that

@@ -4,6 +4,7 @@ window.dom = {
 	jqWindow: $( window ),
 	jqDoc: $( document ),
 	jqBody: $( document.body ),
+	jqTitle: $( "title" ),
 
 	// Player
 	jqPlayer: $( "#player" ),
