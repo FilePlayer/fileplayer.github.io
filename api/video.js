@@ -16,16 +16,20 @@ api.video = that = {
 	// Manipulating the src="" attribute.
 	unLoad: function() {
 		isLoaded = false;
-		jqVideo.add( jqVideoThumb ).attr( "src", "" );
+		jqVideo.attr( "src", "" );
+		if ( api.playlist.selectedFile().type === "video" ) {
+			jqVideoThumb.attr( "src", "" );
+		}
 		return that;
 	},
 	load: function( url ) {
-		isLoaded = !!url;
 		oldSource = url;
-		jqVideo.add( jqVideoThumb ).attr( "src", url );
+		jqVideo.attr( "src", url );
+		jqVideoThumb.attr( "src", api.playlist.selectedFile().type === "video" ? url : "" );
 		return that;
 	},
 	loaded: function() {
+		isLoaded = true;
 		that.ratio = video.videoWidth / video.videoHeight
 		return that.resizeUpdate();
 	},
@@ -48,10 +52,10 @@ api.video = that = {
 	// Playing: play/pause/stop.
 	play: function() {
 		if ( !that.isPlaying() ) {
-			if ( !isLoaded ) {
+			if ( !isLoaded && oldSource ) {
 				that.load( oldSource );
 			}
-			if ( isLoaded ) {
+			if ( isLoaded || oldSource ) {
 				isStopped = false;
 				video.play();
 			}

@@ -34,7 +34,7 @@ jqSliderTime
 	.mouseenter( function() { if ( elVideo.duration ) { elVideo.play();  } } )
 	.mouseleave( function() { if ( elVideo.duration ) { elVideo.pause(); } } )
 	.mousemove( function( e ) {
-		if ( elVideo.duration ) {
+		if ( !api.video.isStopped() ) {
 			var
 				margin = jqSliderTime.offset().left,
 				left = ( e.pageX - margin )
@@ -42,20 +42,22 @@ jqSliderTime
 			if ( left !== oldLeft ) {
 				var
 					width = jqSliderTime.width(),
-					sec = ( left / width ) * elVideo.duration,
+					sec = ( left / width ) * api.video.duration(),
 					limit = thumbnailOW2 - margin
 				;
 				oldLeft = left;
-				jqThumbnail.css(
-					"left",
-					utils.range( limit, left, width - limit )
-				);
 				jqSliderTimeContainer.attr(
 					"data-tooltip-content",
 					utils.secondsToString( sec )
 				);
-				if ( elVideo.duration ) {
+				if ( api.playlist.selectedFile().type === "video" ) {
 					loading( true );
+					if ( elVideo.paused ) {
+						elVideo.play();
+					}
+					jqThumbnail.css( "left",
+						utils.range( limit, left, width - limit )
+					);
 					api.thumbnail.canvas.drawFromImg(
 						api.thumbnail.cache.getImage( sec, 30 )
 					);

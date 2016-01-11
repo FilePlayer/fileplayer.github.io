@@ -29,7 +29,7 @@
 	opacity: 0;
 }
 
-#player.playing .cuteslider.position:hover + .thumbnail {
+#player.playing.video .cuteslider.position:hover + .thumbnail {
 	visibility: visible;
 	opacity: 1;
 }
