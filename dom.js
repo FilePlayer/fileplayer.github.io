@@ -9,11 +9,11 @@ window.dom = {
 	// Player
 	jqPlayer: $( "#player" ),
 	jqPlayerCtrl: $( "#ctrl" ),
-		// Video
-		jqPlayerVideo: $( "#player video.main" ),
+		// Screen
+		jqPlayerScreen: $( "#screen" ),
+		jqPlayerVideo: $( "#screen video" ),
+		jqPlayerCanvas: $( "#screen canvas" ),
 		jqPlayerFullscreenBtn: $( "#ctrl .btn.fullscreen" ),
-		// Canvas visualization
-		jqPlayerCanvas: $( "#visu" ),
 		// File's title
 		jqPlayerTitle: $( "#title" ),
 		jqPlayerTitleName: $( "#title span" ),

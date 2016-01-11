@@ -11,11 +11,10 @@
 	<link rel="stylesheet" href="css/overwrite-cuteslider.css"/>
 	<link rel="stylesheet" href="css/overwrite-tooltip.css"/>
 	<link rel="stylesheet" href="player/css/player.css"/>
+	<link rel="stylesheet" href="player/css/screen.css"/>
 	<link rel="stylesheet" href="player/css/placeholder.css"/>
 	<link rel="stylesheet" href="player/css/menu.css"/>
 	<link rel="stylesheet" href="player/css/menu-subtitles.css"/>
-	<link rel="stylesheet" href="player/css/video.css"/>
-	<link rel="stylesheet" href="player/css/canvas.css"/>
 	<link rel="stylesheet" href="player/css/controls.css"/>
 	<link rel="stylesheet" href="player/css/position.css"/>
 	<link rel="stylesheet" href="player/css/subtitles.css"/>
@@ -39,8 +38,10 @@
 				</h1>
 				<span>Drop files here…</span>
 			</div>
-			<video class="main"></video>
-			<canvas id="visu"></canvas>
+			<div id="screen">
+				<video></video>
+				<canvas></canvas>
+			</div>
 			<div id="title" class="textOverflow textShadow">
 				<i class="fa fa-fw"></i
 				><span></span>

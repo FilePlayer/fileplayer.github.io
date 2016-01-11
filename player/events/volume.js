@@ -18,7 +18,7 @@ api.keyboard
 ;
 
 // Control the volume with the vertical mouse scroll.
-dom.jqPlayerVideo.on( "wheel", function( e ) {
+dom.jqPlayerScreen.on( "wheel", function( e ) {
 	vol( e.originalEvent.deltaY < 0
 		? "+=.05"
 		: "-=.05"
