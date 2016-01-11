@@ -2,6 +2,7 @@
 
 var
 	max,
+	PI2 = Math.PI / 2,
 	pinchPerc = 1 / 8,
 	HeightPerc = 1 / 4
 ;
@@ -29,8 +30,9 @@ api.audio.addVisu(
 			"rgba(" +
 				Math.round( 255 - max * 255 ) + "," +
 				Math.round( max * 64 ) + "," +
-				Math.round( max * 255 ) +
-			",.9)"
+				Math.round( max * 255 ) + "," +
+				( .95 - .25 * ( 1 - Math.cos( max * PI2 ) ) ) +
+			")"
 		;
 		ctx.fillRect( 0, 0, w, h );
 
@@ -54,7 +56,7 @@ api.audio.addVisu(
 				}
 
 			ctx.lineJoin = "round";
-			ctx.lineWidth = 1 + Math.round( 4 * max );
+			ctx.lineWidth = 1 + Math.round( 3 * max );
 			ctx.strokeStyle = "#fff";
 			ctx.stroke();
 		ctx.restore();
