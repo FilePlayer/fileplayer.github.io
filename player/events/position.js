@@ -1,31 +1,29 @@
 (function() {
 
-var
-	elVideo = dom.jqPlayerVideo[ 0 ],
-	jqTxtPosition = dom.jqPlayerTimeText
-;
-
+// Change the currentTime by using the long slider.
 dom.jqPlayerSliderCurrentTime.change( function() {
-	if ( elVideo.duration ) {
-		var val = this.value * elVideo.duration;
+	if ( !api.video.isStopped() ) {
+		var val = this.value * api.video.duration();
 		playerUI.currentTime( val );
 		api.video.currentTime( val );
 	}
 });
 
 // Switch between showing the duration or the remaining time.
-jqTxtPosition.click( function() {
-	jqTxtPosition.toggleClass( "remaining" );
+dom.jqPlayerTimeText.click( function() {
+	dom.jqPlayerTimeText.toggleClass( "remaining" );
 });
 
 function pos( p ) {
-	api.video.currentTime( p );
-	var sec = api.video.currentTime();
-	playerUI.actionDesc(
-		utils.secondsToString( sec ) + " / " +
-		utils.secondsToString( api.video.duration() )
-	);
-	playerUI.currentTime( sec );
+	if ( !api.video.isStopped() ) {
+		api.video.currentTime( p );
+		var sec = api.video.currentTime();
+		playerUI.actionDesc(
+			utils.secondsToString( sec ) + " / " +
+			utils.secondsToString( api.video.duration() )
+		);
+		playerUI.currentTime( sec );
+	}
 }
 
 // Control the position with the arrow keys.
