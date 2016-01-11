@@ -1,20 +1,26 @@
 (function() {
 
 var
+	ctxAudio,
+	srcAudio,
+	analyser,
 	requestId,
 	visu = {},
 	nbVisu = 0,
 	selectedVisu = $.noop,
 	canvas = dom.jqPlayerCanvas[ 0 ],
-	ctxCanvas = canvas.getContext( '2d', { alpha: false } ),
-	ctxAudio = new AudioContext(),
-	analyser = ctxAudio.createAnalyser(),
-	src = ctxAudio.createMediaElementSource( dom.jqPlayerVideo[ 0 ] ),
+	ctxCanvas = canvas.getContext( "2d" ),
 	visuEnable = false
 ;
 
-src.connect( analyser );
-analyser.connect( ctxAudio.destination );
+if ( window.AudioContext ) {
+	ctxAudio = new AudioContext();
+	analyser = ctxAudio.createAnalyser();
+	srcAudio = ctxAudio.createMediaElementSource( dom.jqPlayerVideo[ 0 ] );
+	srcAudio.connect( analyser );
+	analyser.connect( ctxAudio.destination );
+}
+
 api.audio = that = {
 	addVisu: function( name, fn ) {
 		visu[ name ] = fn;
@@ -30,19 +36,21 @@ api.audio = that = {
 		return that;
 	},
 	visuOn: function() {
-		analyser.fftSize = 4096;
-		var info = {
-			ctxCanvas: ctxCanvas,
-			analyser: analyser,
-			data: new Uint8Array( analyser.frequencyBinCount )
-		};
-		function frame( timestamp ) {
-			selectedVisu( info );
-			requestId = requestAnimationFrame( frame );
-		}
-		if ( !visuEnable ) {
-			requestId = requestAnimationFrame( frame );
-			visuEnable = true;
+		if ( ctxAudio ) {
+			analyser.fftSize = 4096;
+			var info = {
+				ctxCanvas: ctxCanvas,
+				analyser: analyser,
+				data: new Uint8Array( analyser.frequencyBinCount )
+			};
+			function frame( timestamp ) {
+				selectedVisu( info );
+				requestId = requestAnimationFrame( frame );
+			}
+			if ( !visuEnable ) {
+				requestId = requestAnimationFrame( frame );
+				visuEnable = true;
+			}
 		}
 		return that;
 	},
