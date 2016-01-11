@@ -3,9 +3,6 @@
 var
 	that,
 
-	// Video.
-	jqVideo = dom.jqPlayerVideo,
-
 	// Button: play/pause.
 	jqPlayBtn = dom.jqPlayerPlayBtn,
 
@@ -164,7 +161,7 @@ window.playerUI = that = {
 		return that.actionDesc( "Speed : " + rate.toFixed( 2 ) + "x" );
 	},
 	opacity: function( op ) {
-		jqVideo.css( "opacity", op );
+		dom.jqPlayerScreen.css( "opacity", op );
 		jqOpacitySlider.element().val( op );
 		jqOpacityIcon
 			.removeClass( "fa-moon-o fa-lightbulb-o" )
