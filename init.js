@@ -29,6 +29,8 @@ playlistUI
 	.totalFiles( 0 )
 ;
 
+api.audio.selectVisu( "Oscilloscope" );
+
 playerUI.textsShowing = true;
 
 })();
