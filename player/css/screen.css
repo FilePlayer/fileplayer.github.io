@@ -1,3 +1,7 @@
+#screen {
+	transition: opacity .5s;
+}
+
 #screen,
 #screen video,
 #screen canvas {

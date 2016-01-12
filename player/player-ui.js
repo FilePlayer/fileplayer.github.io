@@ -24,7 +24,6 @@ var
 	// Button, slider: opacity.
 	jqOpacityIcon = dom.jqPlayerOpacityIcon,
 	jqOpacitySlider = dom.jqPlayerOpacitySlider,
-	jqOpacitySliderParent = jqOpacitySlider.parent(),
 
 	// Subtitles.
 	currentCue,
@@ -167,10 +166,7 @@ window.playerUI = that = {
 			.removeClass( "fa-moon-o fa-lightbulb-o" )
 			.addClass( op < .5 ? "fa-moon-o" : "fa-lightbulb-o" )
 		;
-		jqOpacitySliderParent.attr(
-			"data-tooltip-content",
-			"Brightness : " + utils.fPercent( op )
-		);
+		dom.jqPlayerOpacityValue.text( utils.fPercent( op ) );
 		return that;
 	},
 	subtitlesResizeUpdate: function() {

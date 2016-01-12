@@ -23,9 +23,9 @@ window.dom = {
 		// Subtitles
 		jqPlayerSubtitlesBtn: $( "#ctrl .btn.subtitles" ),
 		jqPlayerSubtitlesIcon: $( "#ctrl .subtitles .fa" ),
-		jqPlayerSubtitlesToggle: $( "#ctrl .menu.subtitles .slidebutton" ),
-		jqPlayerSubtitlesCheckbox: $( "#ctrl .menu.subtitles input" ),
-		jqPlayerSubtitlesList: $( "#ctrl .menu.subtitles ul" ),
+		jqPlayerSubtitlesToggle: $( "#ctrl .subtitles .slidebutton" ),
+		jqPlayerSubtitlesCheckbox: $( "#ctrl .subtitles input" ),
+		jqPlayerSubtitlesList: $( "#ctrl .subtitles ul" ),
 		// Play/pause/stop/prev/next
 		jqPlayerPlayBtn: $( "#ctrl .play" ),
 		jqPlayerStopBtn: $( "#ctrl .stop" ),
@@ -35,8 +35,9 @@ window.dom = {
 		jqPlayerVolumeIcon: $( "#ctrl .volume .fa" ),
 		jqPlayerVolumeSlider: $( "#ctrl .volume .cuteslider" ),
 		// Opacity
-		jqPlayerOpacityIcon: $( "#ctrl .opacity .fa" ),
+		jqPlayerOpacityIcon: $( "#ctrl .opacity > .fa" ),
 		jqPlayerOpacitySlider: $( "#ctrl .opacity .cuteslider" ),
+		jqPlayerOpacityValue: $( "#ctrl .opacity .val" ),
 		// CurrentTime
 		jqPlayerSliderCurrentTime: $( "#ctrl .cuteslider.position" ),
 			// Thumbnail

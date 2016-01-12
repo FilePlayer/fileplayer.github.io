@@ -14,7 +14,6 @@
 	<link rel="stylesheet" href="player/css/screen.css"/>
 	<link rel="stylesheet" href="player/css/placeholder.css"/>
 	<link rel="stylesheet" href="player/css/menu.css"/>
-	<link rel="stylesheet" href="player/css/menu-subtitles.css"/>
 	<link rel="stylesheet" href="player/css/controls.css"/>
 	<link rel="stylesheet" href="player/css/position.css"/>
 	<link rel="stylesheet" href="player/css/subtitles.css"/>
@@ -109,21 +108,26 @@
 						><span class="btn opacity"
 							><i class="fa fa-fw"></i
 							><div
-								class="menu opacity"
+								class="menu"
 								><div class="content"
-									data-jquery-element="tooltip"
-									data-tooltip-side="left"
-									><input
-										type="range"
-										data-jquery-element="cuteslider"
-										data-cuteslider-vertical
-										min="0" max="1" step=".01"
-								/></div
+									><div class="header"
+										><span class="title">Brightness : </span
+										><b class="val"></b
+									></div
+									><ul><li>
+										<i class="fa fa-moon-o"></i
+										><input
+											type="range"
+											data-jquery-element="cuteslider"
+											min="0" max="1" step=".01"
+										/><i class="fa fa-lightbulb-o"></i>
+									</li></ul
+								></div
 							></div
 						></span
 						><span class="btn subtitles"
 							><i class="fa fa-fw fa-cc"></i
-							><div class="menu subtitles"
+							><div class="menu"
 								><div class="content"
 									><div class="header"
 										><span class="title">Subtitles</span
@@ -133,8 +137,8 @@
 											><input
 												type="checkbox"
 												data-jquery-element="slidebutton"
-										/></div>
-									</div
+										/></div
+									></div
 									><ul></ul
 								></div
 							></div

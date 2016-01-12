@@ -4,7 +4,7 @@
 }
 
 .btn.fa,
-.btn .fa {
+.btn > .fa {
 	font-size: 18px;
 	color: #999;
 	cursor: pointer;
@@ -12,11 +12,11 @@
 }
 
 .btn.fa:hover,
-.btn:hover .fa {
+.btn:hover > .fa {
 	color: #fff;
 }
 
 .btn.disable.fa,
-.btn.disable .fa {
+.btn.disable > .fa {
 	opacity: .3;
 }

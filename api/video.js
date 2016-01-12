@@ -153,6 +153,12 @@ api.video = that = {
 		opacity = utils.range( 0, o, 1, opacity );
 		jqVideo.trigger( "opacitychange" );
 		return that;
+	},
+	opacityToggle: function( b ) {
+		if ( typeof b !== "boolean" ) {
+			b = opacity < 1;
+		}
+		return that.opacity( b ? 1 : .25 );
 	}
 };
 

@@ -111,11 +111,12 @@
 	opacity: 1;
 }
 
-#ctrl .menu.opacity .content {
-	padding: 10px 5px;
+#ctrl .opacity .menu {
+	right: -62px;
 }
 
-#ctrl .menu.opacity .cuteslider {
-	width: 14px;
-	height: 50px;
+#ctrl .opacity .menu .cuteslider {
+	width: 90px;
+	height: 14px;
+	margin: 0 .9em 0 .7em;
 }
