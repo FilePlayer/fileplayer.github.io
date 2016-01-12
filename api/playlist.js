@@ -42,6 +42,7 @@ api.playlist = that = {
 				.highlight( elFile.jqThis, true )
 				.currentIndex( 1 + jqFiles.index( elFile ) )
 			;
+			api.subtitles.disable();
 			api.audio.visuToggle( fWrap.type === "audio" );
 			if ( !noScroll ) {
 				playlistUI.scrollToSelection();

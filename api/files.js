@@ -7,7 +7,8 @@ var
 api.files = that = {
 	add: function( files ) {
 		var
-			filesWrappers = []
+			fMediaWraps = [],
+			fTextWraps = []
 		;
 
 		$.each( files, function() {
@@ -33,12 +34,12 @@ api.files = that = {
 				case "wav" :
 				case "weba" : // ?
 				case "webm" :
-					filesWrappers.push( fileWrapper );
+					fMediaWraps.push( fileWrapper );
 				break;
 
 				case "srt" :
 				case "vtt" :
-					api.subtitles.newTrack( fileWrapper );
+					fTextWraps.push( fileWrapper );
 				break;
 
 				default :
@@ -50,7 +51,10 @@ api.files = that = {
 			lg( "DROP: supported: " + debug );
 		});
 
-		api.playlist.pushAndPlay( filesWrappers );
+		api.playlist.pushAndPlay( fMediaWraps );
+		$.each( fTextWraps, function() {
+			api.subtitles.newTrack( this );
+		});
 		return that;
 	}
 };
