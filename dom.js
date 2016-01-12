@@ -61,6 +61,7 @@ window.dom = {
 		jqPlaylistNav: $( "#playlist nav" ),
 			jqPlaylistNavIndex: $( "#playlist nav .current" ),
 			jqPlaylistNavTotal: $( "#playlist nav .total" ),
+			jqPlaylistShuffle: $( "#playlist nav .shuffle" ),
 			jqPlaylistRepeat: $( "#playlist nav .repeat" ),
 			jqPlaylistClose: $( "#playlist nav .close" )
 };

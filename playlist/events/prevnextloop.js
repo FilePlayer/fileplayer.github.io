@@ -4,6 +4,8 @@ var
 	playModes = [ false, true, "loopOne", "loopAll" ]
 ;
 
+dom.jqPlaylistShuffle.click( api.playlist.shuffle );
+
 dom.jqPlaylistRepeat.click( function() {
 	api.playlist.playingMode( playModes[
 		( 1 + $.inArray( api.playlist.playingMode(), playModes ) ) % playModes.length

@@ -4,3 +4,7 @@
 	font-weight: bold;
 	background: rgba( 255, 255, 255, .9 ) !important;
 }
+
+.tooltip .fa {
+	font-size: 14px;
+}

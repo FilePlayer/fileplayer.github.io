@@ -24,6 +24,7 @@ playerUI
 
 playlistUI
 	.hide()
+	.shuffle( false )
 	.width( 350 )
 	.currentIndex( 0 )
 	.totalFiles( 0 )

@@ -3,8 +3,10 @@
 var
 	that,
 	playMode,
-	jqFileSelected = dom.jqEmpty,
+	isShuffled = false,
 	jqFiles = dom.jqEmpty,
+	jqFilesSave = dom.jqEmpty,
+	jqFileSelected = dom.jqEmpty,
 	jqList = dom.jqPlaylistList,
 	jqVideo = dom.jqPlayerVideo
 ;
@@ -64,6 +66,42 @@ api.playlist = that = {
 	},
 	next: function() {
 		return that.select( jqFileSelected.next()[ 0 ] || jqFiles.get( 0 ) );
+	},
+
+	shuffle: function( b ) {
+		if ( typeof b !== "boolean" ) {
+			b = !isShuffled;
+		}
+		if ( b !== isShuffled ) {
+			var len = jqFiles.length;
+
+			// Shuffle: false, reset the old order.
+			if ( !b ) {
+				// Prepent because we want to let the new dropped files at the end.
+				jqList.prepend( jqFilesSave );
+
+			// Shuffle: true, if there are more than one files we proceed.
+			} else if ( len > 1 ) {
+				jqFilesSave = jqList.children();
+				jqFiles.each( function() {
+					jqFiles
+						.eq( Math.floor( Math.random() * len ) )
+						.after( this )
+					;
+				});
+				// Always put the selected file on the first place.
+				jqList.prepend( jqFileSelected );
+			}
+
+			// Synchronise jqFiles and playlistUI.
+			jqFiles = jqList.children();
+			playlistUI
+				.shuffle( isShuffled = b )
+				.currentIndex( 1 + jqFiles.index( jqFileSelected ) )
+				.scrollToSelection()
+			;
+		}
+		return that;
 	},
 
 	// The `mode` specify the action to do at the end of the current file :
