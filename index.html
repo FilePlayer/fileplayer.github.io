@@ -4,7 +4,7 @@
 	<title>FilePlayer</title>
 	<meta charset="UTF-8"/>
 	<link rel="icon" type="image/x-icon" href="favicon.png"/>
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="../dep/fa/css/font-awesome.min.css"/>
 	<link rel="stylesheet" href="css/reset.css"/>
 	<link rel="stylesheet" href="css/body.css"/>
 	<link rel="stylesheet" href="css/btn.css"/>
@@ -20,9 +20,6 @@
 	<link rel="stylesheet" href="playlist/css/playlist.css"/>
 	<link rel="stylesheet" href="playlist/css/nav.css"/>
 	<link rel="stylesheet" href="playlist/css/list.css"/>
-	<script src="//code.jquery.com/jquery-3.0.0-alpha1.min.js"></script>
-	<script src="//jquery-element.github.io/jquery-element-1.7.0.js"></script>
-	<script>function lg( s ) { console.log( s ); }</script>
 </head>
 <body>
 
@@ -186,14 +183,23 @@
 
 </div>
 
-<script src="//jquery-element.github.io/tooltip-1.1.1.js"></script>
-<script src="//jquery-element.github.io/cuteslider-2.1.0.js"></script>
-<script src="//jquery-element.github.io/slidebutton-1.1.0.js"></script>
+<!-- Debug -->
+<script>function lg( s ) { console.log( s ); }</script>
 
+<!-- JS dependancies -->
+<script src="../dep/jquery.min.js"></script>
+<script src="../dep/jquery-element.js"></script>
+<script src="../dep/tooltip.js"></script>
+<script src="../dep/cuteslider.js"></script>
+<script src="../dep/slidebutton.js"></script>
+
+<!-- Generical functions -->
 <script src="tools/utils.js"></script>
 
+<!-- Wrap all the needed elements with jQuery -->
 <script src="dom.js"></script>
 
+<!-- API (no DOM treatment here) -->
 <script src="api/api.js"></script>
 <script src="api/files.js"></script>
 <script src="api/fullscreen.js"></script>
@@ -205,6 +211,7 @@
 <script src="api/video.js"></script>
 <script src="api/audio.js"></script>
 
+<!-- All DOM treatment and events binding for the Player -->
 <script src="player/player-ui.js"></script>
 <script src="player/data-binding.js"></script>
 <script src="player/events/drop.js"></script>
@@ -218,13 +225,16 @@
 <script src="player/events/fullscreen.js"></script>
 <script src="player/events/opacity.js"></script>
 
+<!-- All DOM treatment and events binding for the Playlist -->
 <script src="playlist/playlist-ui.js"></script>
 <script src="playlist/events/container.js"></script>
 <script src="playlist/events/prevnextloop.js"></script>
 <script src="playlist/events/scroll.js"></script>
 
+<!-- Audio visualisations -->
 <script src="../visualisations/oscilloscope.js"></script>
 
+<!-- Initialisation (no function call before that) -->
 <script src="init.js"></script>
 
 </body>
