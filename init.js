@@ -19,6 +19,7 @@ playerUI
 	.currentTime( 0 )
 	.duration( 0 )
 	.subtitlesToggle( false )
+	.visualisationsToggle( false )
 	.exitFullscreen()
 ;
 

@@ -120,3 +120,14 @@
 	height: 14px;
 	margin: 0 .9em 0 .7em;
 }
+
+#ctrl .visu .menu {
+	min-width: 140px;
+	right: -57px;
+}
+
+#ctrl .visu .slidebutton {
+	float: right;
+	width: 28px;
+	height: 13px;
+}

@@ -36,7 +36,7 @@ api.audio = that = {
 		return that;
 	},
 	visuOn: function() {
-		if ( ctxAudio ) {
+		if ( ctxAudio && !visuEnable ) {
 			analyser.fftSize = 4096;
 			var info = {
 				ctxCanvas: ctxCanvas,
@@ -47,22 +47,21 @@ api.audio = that = {
 				selectedVisu( info );
 				requestId = requestAnimationFrame( frame );
 			}
-			if ( !visuEnable ) {
-				requestId = requestAnimationFrame( frame );
-				visuEnable = true;
-			}
+			requestId = requestAnimationFrame( frame );
+			playerUI.visualisationsToggle( visuEnable = true );
 		}
 		return that;
 	},
 	visuOff: function() {
 		if ( visuEnable ) {
+			ctxCanvas.clearRect( 0, 0, canvas.width, canvas.height );
 			cancelAnimationFrame( requestId );
-			visuEnable = false;
+			playerUI.visualisationsToggle( visuEnable = false );
 		}
 		return that;
 	},
 	visuToggle: function( b ) {
-		if ( !arguments.length ) {
+		if ( typeof b !== "boolean" ) {
 			b = !visuEnable;
 		}
 		return b ? that.visuOn() : that.visuOff();

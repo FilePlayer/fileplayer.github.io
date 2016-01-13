@@ -34,6 +34,12 @@ window.dom = {
 		// Volume
 		jqPlayerVolumeIcon: $( "#ctrl .volume .fa" ),
 		jqPlayerVolumeSlider: $( "#ctrl .volume .cuteslider" ),
+		// Visualisations
+		jqPlayerVisuBtn: $( "#ctrl .btn.visu" ),
+		jqPlayerVisuIcon: $( "#ctrl .visu .fa" ),
+		jqPlayerVisuToggle: $( "#ctrl .visu .slidebutton" ),
+		jqPlayerVisuCheckbox: $( "#ctrl .visu input" ),
+		jqPlayerVisuList: $( "#ctrl .visu ul" ),
 		// Opacity
 		jqPlayerOpacityIcon: $( "#ctrl .opacity > .fa" ),
 		jqPlayerOpacitySlider: $( "#ctrl .opacity .cuteslider" ),

@@ -3,6 +3,7 @@
 var
 	that,
 	playMode,
+	fileWrapper = {},
 	isShuffled = false,
 	jqFiles = dom.jqEmpty,
 	jqFilesSave = dom.jqEmpty,
@@ -45,7 +46,10 @@ api.playlist = that = {
 				.currentIndex( 1 + jqFiles.index( elFile ) )
 			;
 			api.subtitles.disable();
-			api.audio.visuToggle( fWrap.type === "audio" );
+			if ( fWrap.type !== fileWrapper.type ) {
+				api.audio.visuToggle( fWrap.type === "audio" );
+				fileWrapper = fWrap;
+			}
 			if ( !noScroll ) {
 				playlistUI.scrollToSelection();
 			}

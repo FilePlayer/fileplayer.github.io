@@ -29,7 +29,6 @@ var
 	currentCue,
 	jqSubtitlesCueParent = dom.jqPlayerCue.parent(),
 	jqSubtitlesCue = dom.jqPlayerCue,
-	jqSubtitlesToolip = dom.jqPlayerSubtitlesToggle.parent(),
 
 	// Texts: texts on screen.
 	screenTextTimeoutId,
@@ -191,10 +190,6 @@ window.playerUI = that = {
 		);
 		dom.jqPlayerSubtitlesBtn.toggleClass( "disable", !b );
 		dom.jqPlayerSubtitlesCheckbox.attr( "checked", b ? "checked" : null );
-		jqSubtitlesToolip.attr(
-			"data-tooltip-content",
-			b ? "Disable subtitles" : "Enable subtitles"
-		);
 		return that;
 	},
 	subtitlesCue: function( cue ) {
@@ -212,6 +207,11 @@ window.playerUI = that = {
 			.actionDesc( "Subtitles delay : " + delay.toFixed( 3 ) + " s" )
 			.subtitlesCue( api.subtitles.findCue() );
 		;
+	},
+	visualisationsToggle: function( b ) {
+		dom.jqPlayerVisuBtn.toggleClass( "disable", !b );
+		dom.jqPlayerVisuCheckbox.attr( "checked", b ? "checked" : null );
+		return that;
 	}
 };
 
