@@ -2,7 +2,7 @@
 
 dom.jqPlayerVisuToggle
 	.add( dom.jqPlayerVisuIcon )
-		.click( api.audio.visuToggle )
+		.click( api.visualisations.toggle )
 ;
 
 })();

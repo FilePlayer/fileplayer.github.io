@@ -31,7 +31,7 @@ playlistUI
 	.totalFiles( 0 )
 ;
 
-api.audio.selectVisu( "Oscilloscope" );
+api.visualisations.select( "Oscilloscope" );
 
 playerUI.textsShowing = true;
 

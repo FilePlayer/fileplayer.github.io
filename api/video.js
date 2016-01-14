@@ -45,7 +45,7 @@ api.video = that = {
 		that.imageWidth  = r > rElem ? w : h * r;
 		that.imageHeight = r < rElem ? h : w / r;
 		playerUI.subtitlesResizeUpdate();
-		api.audio.resize();
+		api.visualisations.resize();
 		return that;
 	},
 

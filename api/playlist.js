@@ -47,7 +47,7 @@ api.playlist = that = {
 			;
 			api.subtitles.disable();
 			if ( fWrap.type !== fileWrapper.type ) {
-				api.audio.visuToggle( fWrap.type === "audio" );
+				api.visualisations.toggle( fWrap.type === "audio" );
 				fileWrapper = fWrap;
 			}
 			if ( !noScroll ) {
