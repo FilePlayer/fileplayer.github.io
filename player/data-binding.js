@@ -50,6 +50,10 @@ dom.jqPlayerVideo.on( {
 	opacitychange: function() {
 		lg( "ON: opacitychange" );
 		playerUI.opacity( api.video.opacity() );
+	},
+	rotationchange: function() {
+		lg( "ON: rotationchange" );
+		playerUI.rotation( api.video.rotation() );
 	}
 });
 

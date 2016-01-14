@@ -5,6 +5,7 @@ playerUI.textsShowing = false;
 api.video
 	.resizeUpdate()
 	.opacity( 1 )
+	.rotation( 0 )
 	// Force the volumechange event
 	.volume( 0 )
 	.volume( 1 )
