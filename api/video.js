@@ -149,6 +149,14 @@ api.video = that = {
 			jqVideo.trigger( "opacitychange" );
 		}
 		return that;
+	},
+
+	// Getter: width/height
+	width: function() {
+		return video.videoWidth;
+	},
+	height: function() {
+		return video.videoHeight;
 	}
 };
 

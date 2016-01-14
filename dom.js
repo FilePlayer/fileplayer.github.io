@@ -34,6 +34,8 @@ window.dom = {
 		// Opacity
 		jqPlayerOpacityIcon: $( "#ctrl .opacity .fa" ),
 		jqPlayerOpacitySlider: $( "#ctrl .opacity .cuteslider" ),
+		// Rotation
+		jqPlayerRotationIcon: $( "#ctrl .rotation" ),
 		// CurrentTime
 		jqPlayerSliderCurrentTime: $( "#ctrl .cuteslider.position" ),
 			// Thumbnail
