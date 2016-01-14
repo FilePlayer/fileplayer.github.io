@@ -4,12 +4,15 @@ window.dom = {
 	jqWindow: $( window ),
 	jqDoc: $( document ),
 	jqBody: $( document.body ),
+	jqTitle: $( "title" ),
 
 	// Player
 	jqPlayer: $( "#player" ),
 	jqPlayerCtrl: $( "#ctrl" ),
-		// Video
-		jqPlayerVideo: $( "#player video.main" ),
+		// Screen
+		jqPlayerScreen: $( "#screen" ),
+		jqPlayerVideo: $( "#screen video" ),
+		jqPlayerCanvas: $( "#screen canvas" ),
 		jqPlayerFullscreenBtn: $( "#ctrl .btn.fullscreen" ),
 		// File's title
 		jqPlayerTitle: $( "#title" ),
@@ -20,9 +23,9 @@ window.dom = {
 		// Subtitles
 		jqPlayerSubtitlesBtn: $( "#ctrl .btn.subtitles" ),
 		jqPlayerSubtitlesIcon: $( "#ctrl .subtitles .fa" ),
-		jqPlayerSubtitlesToggle: $( "#ctrl .menu.subtitles .slidebutton" ),
-		jqPlayerSubtitlesCheckbox: $( "#ctrl .menu.subtitles input" ),
-		jqPlayerSubtitlesList: $( "#ctrl .menu.subtitles ul" ),
+		jqPlayerSubtitlesToggle: $( "#ctrl .subtitles .slidebutton" ),
+		jqPlayerSubtitlesCheckbox: $( "#ctrl .subtitles input" ),
+		jqPlayerSubtitlesList: $( "#ctrl .subtitles ul" ),
 		// Play/pause/stop/prev/next
 		jqPlayerPlayBtn: $( "#ctrl .play" ),
 		jqPlayerStopBtn: $( "#ctrl .stop" ),
@@ -31,9 +34,16 @@ window.dom = {
 		// Volume
 		jqPlayerVolumeIcon: $( "#ctrl .volume .fa" ),
 		jqPlayerVolumeSlider: $( "#ctrl .volume .cuteslider" ),
+		// Visualisations
+		jqPlayerVisuBtn: $( "#ctrl .btn.visu" ),
+		jqPlayerVisuIcon: $( "#ctrl .visu .fa" ),
+		jqPlayerVisuToggle: $( "#ctrl .visu .slidebutton" ),
+		jqPlayerVisuCheckbox: $( "#ctrl .visu input" ),
+		jqPlayerVisuList: $( "#ctrl .visu ul" ),
 		// Opacity
-		jqPlayerOpacityIcon: $( "#ctrl .opacity .fa" ),
+		jqPlayerOpacityIcon: $( "#ctrl .opacity > .fa" ),
 		jqPlayerOpacitySlider: $( "#ctrl .opacity .cuteslider" ),
+		jqPlayerOpacityValue: $( "#ctrl .opacity .val" ),
 		// Rotation
 		jqPlayerRotationIcon: $( "#ctrl .rotation" ),
 		// CurrentTime
@@ -59,6 +69,7 @@ window.dom = {
 		jqPlaylistNav: $( "#playlist nav" ),
 			jqPlaylistNavIndex: $( "#playlist nav .current" ),
 			jqPlaylistNavTotal: $( "#playlist nav .total" ),
+			jqPlaylistShuffle: $( "#playlist nav .shuffle" ),
 			jqPlaylistRepeat: $( "#playlist nav .repeat" ),
 			jqPlaylistClose: $( "#playlist nav .close" )
 };

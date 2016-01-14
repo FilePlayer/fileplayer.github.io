@@ -111,11 +111,23 @@
 	opacity: 1;
 }
 
-#ctrl .menu.opacity .content {
-	padding: 10px 5px;
+#ctrl .opacity .menu {
+	right: -62px;
 }
 
-#ctrl .menu.opacity .cuteslider {
-	width: 14px;
-	height: 50px;
+#ctrl .opacity .menu .cuteslider {
+	width: 90px;
+	height: 14px;
+	margin: 0 .9em 0 .7em;
+}
+
+#ctrl .visu .menu {
+	min-width: 140px;
+	right: -57px;
+}
+
+#ctrl .visu .slidebutton {
+	float: right;
+	width: 28px;
+	height: 13px;
 }

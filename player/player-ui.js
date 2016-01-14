@@ -3,9 +3,6 @@
 var
 	that,
 
-	// Video.
-	jqVideo = dom.jqPlayerVideo,
-
 	// Button: play/pause.
 	jqPlayBtn = dom.jqPlayerPlayBtn,
 
@@ -27,13 +24,11 @@ var
 	// Button, slider: opacity.
 	jqOpacityIcon = dom.jqPlayerOpacityIcon,
 	jqOpacitySlider = dom.jqPlayerOpacitySlider,
-	jqOpacitySliderParent = jqOpacitySlider.parent(),
 
 	// Subtitles.
 	currentCue,
 	jqSubtitlesCueParent = dom.jqPlayerCue.parent(),
 	jqSubtitlesCue = dom.jqPlayerCue,
-	jqSubtitlesToolip = dom.jqPlayerSubtitlesToggle.parent(),
 
 	// Texts: texts on screen.
 	screenTextTimeoutId,
@@ -64,7 +59,10 @@ window.playerUI = that = {
 			.removeClass( "audio video" )
 			.addClass( "playing " + file.type )
 		;
-		dom.jqPlayerTitleName.text( file.name );
+		dom.jqPlayerTitleName
+			.add( dom.jqTitle )
+				.text( file.name )
+		;
 		jqTimeSliderParent.attr( "data-tooltip-content", null );
 		api.thumbnail.canvas.drawFromImg();
 		api.thumbnail.cache.init( Math.ceil( api.video.duration() ) );
@@ -116,6 +114,7 @@ window.playerUI = that = {
 	stop: function() {
 		dom.jqPlayer.removeClass( "playing audio video" );
 		dom.jqPlayerTitleName.empty();
+		dom.jqTitle.text( "FilePlayer" );
 		api.thumbnail.canvas.drawFromImg();
 		jqTimeSliderParent.attr( "data-tooltip-content", null );
 		return that
@@ -160,16 +159,13 @@ window.playerUI = that = {
 		return that.actionDesc( "Speed : " + rate.toFixed( 2 ) + "x" );
 	},
 	opacity: function( op ) {
-		jqVideo.css( "opacity", op );
+		dom.jqPlayerScreen.css( "opacity", op );
 		jqOpacitySlider.element().val( op );
 		jqOpacityIcon
 			.removeClass( "fa-moon-o fa-lightbulb-o" )
 			.addClass( op < .5 ? "fa-moon-o" : "fa-lightbulb-o" )
 		;
-		jqOpacitySliderParent.attr(
-			"data-tooltip-content",
-			"Brightness : " + utils.fPercent( op )
-		);
+		dom.jqPlayerOpacityValue.text( utils.fPercent( op ) );
 		return that;
 	},
 	subtitlesResizeUpdate: function() {
@@ -194,10 +190,6 @@ window.playerUI = that = {
 		);
 		dom.jqPlayerSubtitlesBtn.toggleClass( "disable", !b );
 		dom.jqPlayerSubtitlesCheckbox.attr( "checked", b ? "checked" : null );
-		jqSubtitlesToolip.attr(
-			"data-tooltip-content",
-			b ? "Disable subtitles" : "Enable subtitles"
-		);
 		return that;
 	},
 	subtitlesCue: function( cue ) {
@@ -215,6 +207,11 @@ window.playerUI = that = {
 			.actionDesc( "Subtitles delay : " + delay.toFixed( 3 ) + " s" )
 			.subtitlesCue( api.subtitles.findCue() );
 		;
+	},
+	visualisationsToggle: function( b ) {
+		dom.jqPlayerVisuBtn.toggleClass( "disable", !b );
+		dom.jqPlayerVisuCheckbox.attr( "checked", b ? "checked" : null );
+		return that;
 	}
 };
 

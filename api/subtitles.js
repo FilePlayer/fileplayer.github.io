@@ -115,7 +115,10 @@ api.subtitles = that = {
 				.appendTo( jqListSubtitles )
 				.click( ( function( id ) {
 					return function () {
-						api.subtitles.select( tracks[ id ] );
+						api.subtitles
+							.select( tracks[ id ] )
+							.enable()
+						;
 						jqListSubtitles.children().removeClass( "selected" );
 						$( this ).addClass( "selected" );
 					};

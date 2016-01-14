@@ -125,6 +125,17 @@ window.playlistUI = that = {
 		return that;
 	},
 
+	shuffle: function( b ) {
+		dom.jqPlaylistShuffle
+			.toggleClass( "enable", b )
+			.attr(
+				"data-tooltip-content",
+				"Shuffle " + "<i class='fa fa-toggle-" + ( b ? "on" : "off" ) + "'></i>"
+			)
+		;
+		return that;
+	},
+
 	// Update of the repeat button.
 	playingMode: function( m ) {
 		var dot = "<i class='repeatDot fa fa-circle'></i>";

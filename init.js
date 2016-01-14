@@ -19,15 +19,19 @@ playerUI
 	.currentTime( 0 )
 	.duration( 0 )
 	.subtitlesToggle( false )
+	.visualisationsToggle( false )
 	.exitFullscreen()
 ;
 
 playlistUI
 	.hide()
+	.shuffle( false )
 	.width( 350 )
 	.currentIndex( 0 )
 	.totalFiles( 0 )
 ;
+
+api.audio.selectVisu( "Oscilloscope" );
 
 playerUI.textsShowing = true;
 

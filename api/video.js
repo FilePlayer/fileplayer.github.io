@@ -3,9 +3,9 @@
 var
 	that,
 	oldSource,
+	opacity,
 	isStopped = true,
 	isLoaded = false,
-	opacity = 1,
 	video = dom.jqPlayerVideo[ 0 ],
 	jqVideo = dom.jqPlayerVideo,
 	jqVideoThumb = dom.jqPlayerThumbnailVideo
@@ -16,16 +16,20 @@ api.video = that = {
 	// Manipulating the src="" attribute.
 	unLoad: function() {
 		isLoaded = false;
-		jqVideo.add( jqVideoThumb ).attr( "src", "" );
+		jqVideo.attr( "src", "" );
+		if ( api.playlist.selectedFile().type === "video" ) {
+			jqVideoThumb.attr( "src", "" );
+		}
 		return that;
 	},
 	load: function( url ) {
-		isLoaded = !!url;
 		oldSource = url;
-		jqVideo.add( jqVideoThumb ).attr( "src", url );
+		jqVideo.attr( "src", url );
+		jqVideoThumb.attr( "src", api.playlist.selectedFile().type === "video" ? url : "" );
 		return that;
 	},
 	loaded: function() {
+		isLoaded = true;
 		that.ratio = video.videoWidth / video.videoHeight
 		return that.resizeUpdate();
 	},
@@ -41,16 +45,17 @@ api.video = that = {
 		that.imageWidth  = r > rElem ? w : h * r;
 		that.imageHeight = r < rElem ? h : w / r;
 		playerUI.subtitlesResizeUpdate();
+		api.audio.resize();
 		return that;
 	},
 
 	// Playing: play/pause/stop.
 	play: function() {
 		if ( !that.isPlaying() ) {
-			if ( !isLoaded ) {
+			if ( !isLoaded && oldSource ) {
 				that.load( oldSource );
 			}
-			if ( isLoaded ) {
+			if ( isLoaded || oldSource ) {
 				isStopped = false;
 				video.play();
 			}
@@ -145,9 +150,8 @@ api.video = that = {
 		if ( arguments.length === 0 ) {
 			return opacity;
 		}
-		if ( opacity = utils.range( 0, o, 1, opacity ) ) {
-			jqVideo.trigger( "opacitychange" );
-		}
+		opacity = utils.range( 0, o, 1, opacity );
+		jqVideo.trigger( "opacitychange" );
 		return that;
 	},
 
@@ -157,6 +161,12 @@ api.video = that = {
 	},
 	height: function() {
 		return video.videoHeight;
+
+	opacityToggle: function( b ) {
+		if ( typeof b !== "boolean" ) {
+			b = opacity < 1;
+		}
+		return that.opacity( b ? 1 : .25 );
 	}
 };
 

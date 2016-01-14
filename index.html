@@ -4,26 +4,22 @@
 	<title>FilePlayer</title>
 	<meta charset="UTF-8"/>
 	<link rel="icon" type="image/x-icon" href="favicon.png"/>
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="../dep/fa/css/font-awesome.min.css"/>
 	<link rel="stylesheet" href="css/reset.css"/>
 	<link rel="stylesheet" href="css/body.css"/>
 	<link rel="stylesheet" href="css/btn.css"/>
 	<link rel="stylesheet" href="css/overwrite-cuteslider.css"/>
 	<link rel="stylesheet" href="css/overwrite-tooltip.css"/>
 	<link rel="stylesheet" href="player/css/player.css"/>
+	<link rel="stylesheet" href="player/css/screen.css"/>
 	<link rel="stylesheet" href="player/css/placeholder.css"/>
 	<link rel="stylesheet" href="player/css/menu.css"/>
-	<link rel="stylesheet" href="player/css/menu-subtitles.css"/>
-	<link rel="stylesheet" href="player/css/video.css"/>
 	<link rel="stylesheet" href="player/css/controls.css"/>
 	<link rel="stylesheet" href="player/css/position.css"/>
 	<link rel="stylesheet" href="player/css/subtitles.css"/>
 	<link rel="stylesheet" href="playlist/css/playlist.css"/>
 	<link rel="stylesheet" href="playlist/css/nav.css"/>
 	<link rel="stylesheet" href="playlist/css/list.css"/>
-	<script src="//code.jquery.com/jquery-3.0.0-alpha1.min.js"></script>
-	<script src="//jquery-element.github.io/jquery-element-1.7.0.js"></script>
-	<script>function lg( s ) { console.log( s ); }</script>
 </head>
 <body>
 
@@ -38,7 +34,10 @@
 				</h1>
 				<span>Drop files here…</span>
 			</div>
-			<video class="main"></video>
+			<div id="screen" class="no-select">
+				<video></video>
+				<canvas></canvas>
+			</div>
 			<div id="title" class="textOverflow textShadow">
 				<i class="fa fa-fw"></i
 				><span></span>
@@ -104,35 +103,51 @@
 					</div
 					><div class="right"
 						><i class="btn rotation fa fa-repeat"></i
+						><span class="btn visu"
+							><i class="fa fa-fw fa-align-center fa-rotate-270"></i
+							><div
+								class="menu"
+								><div class="content"
+									><div class="header"
+										><span class="title">Visualisations</span
+										><input
+												type="checkbox"
+												data-jquery-element="slidebutton"
+									/></div
+									><ul></ul
+								></div
+							></div
+						></span
 						><span class="btn opacity"
 							><i class="fa fa-fw"></i
 							><div
-								class="menu opacity"
+								class="menu"
 								><div class="content"
-									data-jquery-element="tooltip"
-									data-tooltip-side="left"
-									><input
-										type="range"
-										data-jquery-element="cuteslider"
-										data-cuteslider-vertical
-										min="0" max="1" step=".01"
-								/></div
+									><div class="header"
+										><span class="title">Brightness : </span
+										><b class="val"></b
+									></div
+									><ul><li>
+										<i class="fa fa-moon-o"></i
+										><input
+											type="range"
+											data-jquery-element="cuteslider"
+											min="0" max="1" step=".01"
+										/><i class="fa fa-lightbulb-o"></i>
+									</li></ul
+								></div
 							></div
 						></span
 						><span class="btn subtitles"
 							><i class="fa fa-fw fa-cc"></i
-							><div class="menu subtitles"
+							><div class="menu"
 								><div class="content"
 									><div class="header"
 										><span class="title">Subtitles</span
-										><div
-											class="slidebuttonParent"
-											data-jquery-element="tooltip"
-											><input
+										><input
 												type="checkbox"
 												data-jquery-element="slidebutton"
-										/></div>
-									</div
+									/></div
 									><ul></ul
 								></div
 							></div
@@ -162,6 +177,10 @@
 					</span>
 					<span class="right">
 						<i
+							class="btn shuffle fa fa-fw fa-random"
+							data-jquery-element="tooltip"
+							data-tooltip-side="bottom"
+						></i><i
 							class="btn repeat fa fa-fw fa-retweet"
 							data-jquery-element="tooltip"
 							data-tooltip-side="bottom"
@@ -176,14 +195,23 @@
 
 </div>
 
-<script src="//jquery-element.github.io/tooltip-1.1.1.js"></script>
-<script src="//jquery-element.github.io/cuteslider-2.0.0.js"></script>
-<script src="//jquery-element.github.io/slidebutton-1.1.0.js"></script>
+<!-- Debug -->
+<script>function lg( s ) { console.log( s ); }</script>
 
+<!-- JS dependancies -->
+<script src="../dep/jquery.min.js"></script>
+<script src="../dep/jquery-element.js"></script>
+<script src="../dep/tooltip.js"></script>
+<script src="../dep/cuteslider.js"></script>
+<script src="../dep/slidebutton.js"></script>
+
+<!-- Generical functions -->
 <script src="tools/utils.js"></script>
 
+<!-- Wrap all the needed elements with jQuery -->
 <script src="dom.js"></script>
 
+<!-- API (no DOM treatment here) -->
 <script src="api/api.js"></script>
 <script src="api/files.js"></script>
 <script src="api/fullscreen.js"></script>
@@ -195,6 +223,7 @@
 <script src="api/video.js"></script>
 <script src="api/audio.js"></script>
 
+<!-- All DOM treatment and events binding for the Player -->
 <script src="player/player-ui.js"></script>
 <script src="player/data-binding.js"></script>
 <script src="player/events/drop.js"></script>
@@ -208,12 +237,18 @@
 <script src="player/events/speed.js"></script>
 <script src="player/events/fullscreen.js"></script>
 <script src="player/events/opacity.js"></script>
+<script src="player/events/visualisations.js"></script>
 
+<!-- All DOM treatment and events binding for the Playlist -->
 <script src="playlist/playlist-ui.js"></script>
 <script src="playlist/events/container.js"></script>
 <script src="playlist/events/prevnextloop.js"></script>
 <script src="playlist/events/scroll.js"></script>
 
+<!-- Audio visualisations -->
+<script src="../visualisations/oscilloscope.js"></script>
+
+<!-- Initialisation (no function call before that) -->
 <script src="init.js"></script>
 
 </body>

@@ -4,19 +4,25 @@
 }
 
 .btn.fa,
-.btn .fa {
+.btn > .fa {
 	font-size: 18px;
 	color: #999;
 	cursor: pointer;
 	transition: color .1s;
 }
 
-.btn.fa:hover,
-.btn:hover .fa {
-	color: #fff;
+.btn.enable.fa,
+.btn.enable > .fa {
+	color: #ddd;
+	text-shadow: 0 0 6px rgba( 255, 255, 255, .6 );
 }
 
 .btn.disable.fa,
-.btn.disable .fa {
+.btn.disable > .fa {
 	opacity: .3;
+}
+
+.btn.fa:hover,
+.btn:hover > .fa {
+	color: #fff;
 }

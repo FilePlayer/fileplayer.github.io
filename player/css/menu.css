@@ -10,6 +10,7 @@
 
 #ctrl .btn:hover .menu {
 	visibility: visible;
+	z-index: 1;
 	opacity: 1;
 }
 
@@ -18,7 +19,11 @@
 	border-radius: 4px;
 	text-align: left;
 	background: #111;
-	box-shadow: 0 0 50px #000;
+	border: 2px solid #666;
+}
+
+#ctrl .menu .fa {
+	font-size: 14px;
 }
 
 #ctrl .menu .header,
@@ -27,22 +32,10 @@
 }
 
 #ctrl .menu li {
-	cursor: pointer;
 	white-space: nowrap;
-	border-top: 1px solid rgba( 255, 255, 255, .05 );
+	border-top: 1px solid #333;
 }
 
 #ctrl .menu li:hover {
-	background: rgba( 255, 255, 255, .05 );
-}
-
-#ctrl .menu li:before {
-	content: "\f111";
-	font: 6px "FontAwesome";
-	margin-right: 1em;
-	visibility: hidden;
-}
-
-#ctrl .menu li.selected:before {
-	visibility: visible;
+	background: #222;
 }
