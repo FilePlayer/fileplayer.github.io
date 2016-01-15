@@ -1,3 +1,5 @@
+"use strict";
+
 (function() {
 
 dom.jqPlayerStopBtn.click( api.video.stop );

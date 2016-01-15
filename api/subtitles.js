@@ -1,3 +1,5 @@
+"use strict";
+
 /*
 Here, the representation of a video.textTracks:
 

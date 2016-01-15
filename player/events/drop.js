@@ -1,3 +1,5 @@
+"use strict";
+
 (function() {
 
 function addItems( items ) {
@@ -37,8 +39,9 @@ function addItems( items ) {
 	}
 
 	$.each( items, function() {
-		if ( item = this.webkitGetAsEntry() ) {
-			traverseTree( item );
+		var file = this.webkitGetAsEntry();
+		if ( file ) {
+			traverseTree( file );
 		}
 	});
 

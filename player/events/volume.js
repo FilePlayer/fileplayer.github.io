@@ -1,3 +1,5 @@
+"use strict";
+
 (function() {
 
 dom.jqPlayerVolumeIcon.click( api.video.muteToggle );

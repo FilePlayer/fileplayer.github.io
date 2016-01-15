@@ -1,3 +1,5 @@
+"use strict";
+
 (function() {
 
 // Change the currentTime by using the long slider.

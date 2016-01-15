@@ -1,16 +1,19 @@
+"use strict";
+
 (function() {
 
 var
-	ctxAudio,
-	srcAudio,
+	that,
+	ctx,
+	src,
 	analyser
 ;
 
 if ( window.AudioContext ) {
 	ctx = new AudioContext();
 	analyser = ctx.createAnalyser();
-	srcAudio = ctx.createMediaElementSource( dom.jqPlayerVideo[ 0 ] );
-	srcAudio.connect( analyser );
+	src = ctx.createMediaElementSource( dom.jqPlayerVideo[ 0 ] );
+	src.connect( analyser );
 	analyser.connect( ctx.destination );
 }
 

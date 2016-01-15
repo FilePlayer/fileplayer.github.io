@@ -1,6 +1,9 @@
+"use strict";
+
 (function() {
 
 var
+	that,
 	requestId,
 	visu = {},
 	nbVisu = 0,
@@ -9,7 +12,11 @@ var
 	ctxAudio = api.audio.ctx,
 	canvas = dom.jqPlayerCanvas[ 0 ],
 	ctxCanvas = canvas.getContext( "2d" ),
-	enable = false
+	enable = false,
+	frameInfo = {
+		ctxCanvas: ctxCanvas,
+		analyser: analyser
+	}
 ;
 
 api.visualisations = that = {
@@ -27,17 +34,13 @@ api.visualisations = that = {
 		return that;
 	},
 	enable: function() {
+		function frame( timestamp ) {
+			selectedVisu( frameInfo );
+			requestId = requestAnimationFrame( frame );
+		}
 		if ( ctxAudio && !enable ) {
 			analyser.fftSize = 4096;
-			var info = {
-				ctxCanvas: ctxCanvas,
-				analyser: analyser,
-				data: new Uint8Array( analyser.frequencyBinCount )
-			};
-			function frame( timestamp ) {
-				selectedVisu( info );
-				requestId = requestAnimationFrame( frame );
-			}
+			frameInfo.data = new Uint8Array( analyser.frequencyBinCount );
 			requestId = requestAnimationFrame( frame );
 			playerUI.visualisationsToggle( enable = true );
 		}
@@ -55,7 +58,7 @@ api.visualisations = that = {
 		if ( typeof b !== "boolean" ) {
 			b = !enable;
 		}
-		return b ? api.visualisations.enable() : api.visualisations.disable();
+		return b ? that.enable() : that.disable();
 	}
 };
 
