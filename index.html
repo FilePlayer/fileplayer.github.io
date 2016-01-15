@@ -64,6 +64,11 @@
 				<div class="bottom">
 					<div class="left">
 						<i
+							class="btn open fa fa-fw fa-folder-open"
+							data-jquery-element="tooltip"
+							data-tooltip-content="Open files"
+						></i
+						><i
 							class="btn stop fa fa-fw fa-stop"
 							data-jquery-element="tooltip"
 							data-tooltip-content="Stop"
@@ -167,6 +172,7 @@
 
 	<div id="playlist" class="no-select">
 		<div class="tableCellWrapper">
+			<input type="file" multiple/>
 			<div class="extendWidth ew-resize"></div>
 			<div class="content">
 				<nav>
@@ -243,6 +249,7 @@
 <script src="playlist/events/container.js"></script>
 <script src="playlist/events/prevnextloop.js"></script>
 <script src="playlist/events/scroll.js"></script>
+<script src="playlist/events/inputfile.js"></script>
 
 <!-- Audio visualisations -->
 <script src="../visualisations/oscilloscope.js"></script>

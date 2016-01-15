@@ -54,8 +54,12 @@ api.video = that = {
 	// Playing: play/pause/stop.
 	play: function() {
 		if ( !that.isPlaying() ) {
-			if ( !isLoaded && oldSource ) {
-				that.load( oldSource );
+			if ( !isLoaded ) {
+				if ( oldSource ) {
+					that.load( oldSource );
+				} else {
+					dom.jqPlaylistInputFile.click();
+				}
 			}
 			if ( isLoaded || oldSource ) {
 				isStopped = false;

@@ -29,6 +29,7 @@ window.dom = {
 		jqPlayerSubtitlesCheckbox: $( "#ctrl .subtitles input" ),
 		jqPlayerSubtitlesList: $( "#ctrl .subtitles ul" ),
 		// Play/pause/stop/prev/next
+		jqPlayerOpenBtn: $( "#ctrl .open" ),
 		jqPlayerPlayBtn: $( "#ctrl .play" ),
 		jqPlayerStopBtn: $( "#ctrl .stop" ),
 		jqPlayerPrevBtn: $( "#ctrl .prev" ),
@@ -65,6 +66,7 @@ window.dom = {
 		jqPlaylistExtendWidth: $( "#playlist .extendWidth" ),
 		jqPlaylistContent: $( "#playlist .content" ),
 		jqPlaylistList: $( "#playlist .list" ),
+		jqPlaylistInputFile: $( "#playlist input[type='file']" ),
 		// Nav
 		jqPlaylistNav: $( "#playlist nav" ),
 			jqPlaylistNavIndex: $( "#playlist nav .current" ),
