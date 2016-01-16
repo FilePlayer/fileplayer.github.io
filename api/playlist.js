@@ -19,21 +19,90 @@ api.playlist = that = {
 		dom.jqPlaylistInputFile.click();
 		return that;
 	},
-	push: function( filesWrappers ) {
-		var f, i = 0;
-		for ( ; f = filesWrappers[ i ]; ++i ) {
-			playlistUI.append( f );
-		}
+	
+	addFiles: function( files ) {
+		var
+			fMediaWraps = [],
+			fTextWraps = [],
+			elLast = jqFiles.get( -1 ),
+			extText = "-srt-vtt",
+			extMedia = "-mp3-mp4-mpeg-ogg-wav-webm-mpg-weba-ogm"
+		;
+
+		$.each( files, function() {
+			var
+				name = this.name,
+				ind = name.lastIndexOf( "." ),
+				ext = name.substr( ind + 1 ).toLowerCase(),
+				debug = "[" + this.type + "] [" + ext + "]",
+				fileWrapper = {
+					file: this,
+					extension: ext,
+					name: name.substr( 0, ind ),
+					type: this.type.substr( 0, this.type.indexOf( "/" ) )
+				}
+			;
+
+			if ( extMedia.indexOf( ext ) ) {
+				fMediaWraps.push( fileWrapper );
+			} else if ( extText.indexOf( ext ) ) {
+				fTextWraps.push( fileWrapper );
+			} else {
+				lg( "DROP: not supported: " + debug );
+				return;
+			}
+
+			lg( "DROP: supported: " + debug );
+		});
+
+		$.each( fMediaWraps, function() {
+			playlistUI.append( this );
+		});
 		jqFiles = jqList.children();
 		playlistUI.totalFiles( jqFiles.length );
+		if ( elLast !== jqFiles.get( -1 ) ) {
+			that.select( elLast ? elLast.jqThis.next()[ 0 ] : jqFiles[ 0 ] );
+		}
+
+		// Add subtitles AFTER adding the media file.
+		$.each( fTextWraps, function() {
+			api.subtitles.newTrack( this );
+		});
+
 		return that;
 	},
-	pushAndPlay: function( filesWrappers ) {
-		var last = jqFiles.get( -1 );
-		that.push( filesWrappers );
-		if ( last !== jqFiles.get( -1 ) ) {
-			that.select( last ? last.jqThis.next()[ 0 ] : jqFiles.get( 0 ) );
+	extractAddFiles: function( files ) {
+		function call() {
+			if ( --nbFiles === 0 ) {
+				that.addFiles( arrayFiles );
+			}
 		}
+		function traverseTree( item ) {
+			if ( item.isFile ) {
+				item.file( function( file ) {
+					arrayFiles.push( file );
+					call();
+				});
+			} else if ( item.isDirectory ) {
+				dirReader = item.createReader();
+				dirReader.readEntries( function( files ) {
+					nbFiles += files.length;
+					call();
+					$.each( files, function() {
+						traverseTree( this );
+					});
+				});
+			}
+		}
+
+		var
+			dirReader,
+			nbFiles = files.length,
+			arrayFiles = []
+		;
+		$.each( files, function() {
+			traverseTree( this.webkitGetAsEntry() );
+		});
 		return that;
 	},
 	select: function( elFile, noScroll ) {
