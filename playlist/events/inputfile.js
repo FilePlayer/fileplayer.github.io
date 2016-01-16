@@ -6,13 +6,9 @@ dom.jqPlaylistInputFile.change( function() {
 	api.files.add( this.files );
 });
 
-function open() {
-	dom.jqPlaylistInputFile.click();
-}
-
-dom.jqPlayerOpenBtn.click( open );
+dom.jqPlayerOpenBtn.click( api.playlist.dialogueFiles );
 
 // This shortcut doesn't work on Firefox (security purpose).
-api.keyboard.shortcut( "ctrl+o", open );
+api.keyboard.shortcut( "ctrl+o", api.playlist.dialogueFiles );
 
 })();

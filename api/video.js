@@ -8,6 +8,7 @@ var
 	opacity,
 	isStopped = true,
 	isLoaded = false,
+	isLoading = false,
 	video = dom.jqPlayerVideo[ 0 ],
 	jqVideo = dom.jqPlayerVideo,
 	jqVideoThumb = dom.jqPlayerThumbnailVideo
@@ -28,10 +29,12 @@ api.video = that = {
 		oldSource = url;
 		jqVideo.attr( "src", url );
 		jqVideoThumb.attr( "src", api.playlist.selectedFile().type === "video" ? url : "" );
+		isLoading = true;
 		return that;
 	},
 	loaded: function() {
 		isLoaded = true;
+		isLoading = false;
 		that.ratio = video.videoWidth / video.videoHeight
 		return that.resizeUpdate();
 	},
@@ -54,16 +57,14 @@ api.video = that = {
 	// Playing: play/pause/stop.
 	play: function() {
 		if ( !that.isPlaying() ) {
-			if ( !isLoaded ) {
-				if ( oldSource ) {
-					that.load( oldSource );
-				} else {
-					dom.jqPlaylistInputFile.click();
-				}
-			}
-			if ( isLoaded || oldSource ) {
+			var file = api.playlist.selectedFile();
+			if ( isLoaded || isLoading ) {
 				isStopped = false;
 				video.play();
+			} else if ( file ) {
+				api.playlist.select( file.element );
+			} else {
+				api.playlist.dialogueFiles();
 			}
 		}
 		return that;

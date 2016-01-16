@@ -15,6 +15,10 @@ var
 ;
 
 api.playlist = that = {
+	dialogueFiles: function() {
+		dom.jqPlaylistInputFile.click();
+		return that;
+	},
 	push: function( filesWrappers ) {
 		var f, i = 0;
 		for ( ; f = filesWrappers[ i ]; ++i ) {

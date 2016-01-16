@@ -115,7 +115,7 @@ window.playlistUI = that = {
 				})
 				.appendTo( jqList )
 		;
-
+		fileWrapper.element = jqFile[ 0 ];
 		jqFile[ 0 ].fileWrapper = fileWrapper;
 		jqFile[ 0 ].jqThis = jqFile;
 		return that;
