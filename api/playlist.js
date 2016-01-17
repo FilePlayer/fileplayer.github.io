@@ -20,13 +20,13 @@ api.playlist = that = {
 		return that;
 	},
 	
-	addFiles: function( files ) {
+	addFiles: function( files, autoplay ) {
 		var
+			jqFilesAdded,
 			fMediaWraps = [],
 			fTextWraps = [],
-			elLast = jqFiles.get( -1 ),
-			extText = "-srt-vtt",
-			extMedia = "-mp3-mp4-mpeg-ogg-wav-webm-mpg-weba-ogm"
+			extText = "srt-vtt",
+			extMedia = "mp3-mp4-mpeg-ogg-wav-webm-mpg-weba-ogm"
 		;
 
 		$.each( files, function() {
@@ -43,9 +43,9 @@ api.playlist = that = {
 				}
 			;
 
-			if ( extMedia.indexOf( ext ) ) {
+			if ( extMedia.indexOf( ext ) > -1 ) {
 				fMediaWraps.push( fileWrapper );
-			} else if ( extText.indexOf( ext ) ) {
+			} else if ( extText.indexOf( ext ) > -1 ) {
 				fTextWraps.push( fileWrapper );
 			} else {
 				lg( "DROP: not supported: " + debug );
@@ -55,13 +55,11 @@ api.playlist = that = {
 			lg( "DROP: supported: " + debug );
 		});
 
-		$.each( fMediaWraps, function() {
-			playlistUI.append( this );
-		});
+		jqFilesAdded = playlistUI.addFiles( fMediaWraps );
 		jqFiles = jqList.children();
 		playlistUI.totalFiles( jqFiles.length );
-		if ( elLast !== jqFiles.get( -1 ) ) {
-			that.select( elLast ? elLast.jqThis.next()[ 0 ] : jqFiles[ 0 ] );
+		if ( autoplay && jqFilesAdded.length ) {
+			that.select( jqFilesAdded[ 0 ] );
 		}
 
 		// Add subtitles AFTER adding the media file.
@@ -71,10 +69,10 @@ api.playlist = that = {
 
 		return that;
 	},
-	extractAddFiles: function( files ) {
+	extractAddFiles: function( files, autoplay ) {
 		function call() {
 			if ( --nbFiles === 0 ) {
-				that.addFiles( arrayFiles );
+				that.addFiles( arrayFiles, autoplay );
 			}
 		}
 		function traverseTree( item ) {
