@@ -38,7 +38,7 @@
 	height: 100%;
 }
 
-#playlist .content {
+#playlist > * > .content {
 	position: absolute;
 	left: 4px;
 	right: 0;

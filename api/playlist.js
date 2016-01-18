@@ -75,6 +75,7 @@ api.playlist = that = {
 				that.addFiles( arrayFiles, autoplay );
 			}
 		}
+
 		function traverseTree( item ) {
 			if ( item.isFile ) {
 				item.file( function( file ) {
@@ -94,13 +95,18 @@ api.playlist = that = {
 		}
 
 		var
+			item,
 			dirReader,
 			nbFiles = files.length,
 			arrayFiles = []
 		;
+
 		$.each( files, function() {
-			traverseTree( this.webkitGetAsEntry() );
+			if ( item = this.webkitGetAsEntry() ) {
+				traverseTree( item );
+			}
 		});
+
 		return that;
 	},
 	select: function( elFile, noScroll ) {
@@ -136,7 +142,7 @@ api.playlist = that = {
 		return that;
 	},
 	selectedFile: function() {
-		return jqFileSelected[ 0 ] && jqFileSelected[ 0 ].fileWrapper;
+		return ( jqFileSelected[ 0 ] || null ) && jqFileSelected[ 0 ].fileWrapper;
 	},
 	prev: function() {
 		return that.select( jqFileSelected.prev()[ 0 ] || jqFiles.get( -1 ) );
