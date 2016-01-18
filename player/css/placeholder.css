@@ -4,6 +4,8 @@
 	top: 50%;
 	margin: -60px 0 0;
 	text-align: center;
+	color: #777;
+	animation: sinOpacity 5s ease infinite;
 }
 
 #player.playing .placeholder {
@@ -15,19 +17,19 @@
 	margin: 0;
 	font-size: 50px;
 	font-style: italic;
-	opacity: .3;
 }
 
-#player .placeholder span {
-	display: block;
-	margin-top: 40px;
-	font-size: 12px;
-	font-weight: bold;
-	animation: placeholderSpan 2s ease infinite;
+#player .placeholder .version {
+	position: absolute;
+	top: 47px;
+	left: 50%;
+	margin-left: -88px;
+	font: 14px monospace;
+	opacity: .66;
 }
 
-@keyframes placeholderSpan {
-	  0% { opacity: .1; }
-	 50% { opacity: 1; }
-	100% { opacity: .1; }
+@keyframes sinOpacity {
+	  0% { opacity: 1; }
+	 50% { opacity: .2; }
+	100% { opacity: 1; }
 }
