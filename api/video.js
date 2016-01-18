@@ -6,6 +6,7 @@ var
 	that,
 	oldSource,
 	opacity,
+	rotation,
 	isStopped = true,
 	isLoaded = false,
 	isLoading = false,
@@ -161,6 +162,25 @@ api.video = that = {
 		jqVideo.trigger( "opacitychange" );
 		return that;
 	},
+
+	// Rotation (degrees)
+	rotation: function( deg ) {
+		if ( arguments.length === 0 ) {
+			return rotation;
+		}
+		rotation = utils.range( 0, deg, 360, rotation );
+		jqVideo.trigger( "rotationchange" );
+		return that;
+	},
+
+	// Getter: width/height
+	width: function() {
+		return video.videoWidth;
+	},
+	height: function() {
+		return video.videoHeight;
+	},
+
 	opacityToggle: function( b ) {
 		if ( typeof b !== "boolean" ) {
 			b = opacity < 1;

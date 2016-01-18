@@ -20,6 +20,7 @@ window.utils = {
 	},
 	range: function( a, val, b, ori ) {
 		var valn = +val;
+
 		if ( arguments.length === 4 && val[ 1 ] === "=" ) {
 			valn =
 				( ori || 0 ) +

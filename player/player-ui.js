@@ -23,6 +23,10 @@ var
 	// Button: fullscreen.
 	jqBtnFScr = dom.jqPlayerFullscreenBtn,
 
+	// Button, slider: rotation.
+	jqRotationIcon = dom.jqPlayerRotationIcon,
+	jqRotationSlider = dom.jqPlayerRotationSlider,
+
 	// Button, slider: opacity.
 	jqOpacityIcon = dom.jqPlayerOpacityIcon,
 	jqOpacitySlider = dom.jqPlayerOpacitySlider,
@@ -159,6 +163,11 @@ window.playerUI = that = {
 	},
 	speed: function( rate ) {
 		return that.actionDesc( "Speed : " + rate.toFixed( 2 ) + "x" );
+	},
+	rotation: function( rot ) {
+		dom.jqPlayerVideo.css( { transform: "rotate(" + rot + "deg)" } );
+		dom.jqPlayerRotationValue.text( rot + "°" );
+		return that;
 	},
 	opacity: function( op ) {
 		dom.jqPlayerScreen.css( "opacity", op );

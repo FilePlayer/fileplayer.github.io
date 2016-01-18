@@ -115,7 +115,8 @@
 	right: -62px;
 }
 
-#ctrl .opacity .menu .cuteslider {
+#ctrl .opacity .menu .cuteslider,
+#ctrl .rotation .menu .cuteslider {
 	width: 90px;
 	height: 14px;
 	margin: 0 .9em 0 .7em;
@@ -130,4 +131,9 @@
 	float: right;
 	width: 28px;
 	height: 13px;
+}
+
+#ctrl .rotation .menu {
+	min-width: 120px;
+	right: -52px;
 }
