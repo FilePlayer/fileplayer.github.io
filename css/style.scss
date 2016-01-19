@@ -1,0 +1,22 @@
+---
+---
+
+// Merge all the CSS files in only one.
+
+@import 'reset/reset';
+@import 'reset/body';
+@import 'reset/btn';
+@import 'reset/overwrite-cuteslider';
+@import 'reset/overwrite-tooltip';
+
+@import 'player/player';
+@import 'player/screen';
+@import 'player/placeholder';
+@import 'player/menu';
+@import 'player/controls';
+@import 'player/position';
+@import 'player/subtitles';
+
+@import 'playlist/playlist';
+@import 'playlist/nav';
+@import 'playlist/list';
