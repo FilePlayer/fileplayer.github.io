@@ -16,6 +16,31 @@ var
 
 window.playlistUI = that = {
 
+	updateList: function() {
+		that.jqFiles = dom.jqPlaylistList.children();
+		return that;
+	},
+	updateFileHeight: function() {
+		that.fileHeight = Math.max(
+			that.jqFiles.outerHeight(),
+			that.jqFiles.eq( 1 ).outerHeight()
+		) - 1;
+		return that;
+	},
+	updateTotal: function() {
+		dom.jqPlaylistNavTotal.text( that.jqFiles.length );
+		return that;
+	},
+	updateIndex: function() {
+		dom.jqPlaylistNavIndex.text( 1 + that.jqFiles.index( that.jqFileSelected ) );
+		return that;
+	},
+	// (Un)select a specific file in the playlist.
+	highlight: function( jqFile, b ) {
+		that.jqFileSelected = jqFile.toggleClass( "selected", b );
+		return that;
+	},
+
 	// Scroll the playlist's list to show the selected file.
 	// This function don't do anything if the selected file is already on screen.
 	// nbElemMargin: how many elements we want to show above or below the selected file.
@@ -118,7 +143,7 @@ window.playlistUI = that = {
 
 		$.each( filesWrapper, function() {
 			html +=
-				"<a class='file' href='#'>" +
+				"<a class='file'>" +
 					"<div class='content textOverflow'>"+
 						"<i class='fa fa-fw fa-" +
 							( this.type === "audio" ? "music" : "film" ) +
@@ -128,7 +153,6 @@ window.playlistUI = that = {
 				"</a>"
 			;
 		});
-
 		jqFiles = $( html )
 			.click( false )
 			.dblclick( function() {
@@ -149,12 +173,6 @@ window.playlistUI = that = {
 			jqFiles.appendTo( jqList );
 		}
 		return jqFiles;
-	},
-
-	// (Un)select a specific file in the playlist.
-	highlight: function( jqFile, b ) {
-		jqFile.toggleClass( "selected", b );
-		return that;
 	},
 
 	shuffle: function( b ) {
@@ -187,14 +205,6 @@ window.playlistUI = that = {
 				( m === "loopAll" ? dot : "" ) + "&nbsp;&nbsp;repeat playlist<br/>"
 			)
 		;
-		return that;
-	},
-	currentIndex: function( n ) {
-		dom.jqPlaylistNavIndex.text( n );
-		return that;
-	},
-	totalFiles: function( n ) {
-		dom.jqPlaylistNavTotal.text( n );
 		return that;
 	}
 };

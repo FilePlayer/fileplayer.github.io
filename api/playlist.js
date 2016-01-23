@@ -56,8 +56,10 @@ api.playlist = that = {
 		});
 
 		jqFilesAdded = playlistUI.addFiles( fMediaWraps );
-		jqFiles = jqList.children();
-		playlistUI.totalFiles( jqFiles.length );
+		playlistUI
+			.updateList()
+			.updateTotal()
+		;
 		if ( autoplay && jqFilesAdded.length ) {
 			that.select( jqFilesAdded[ 0 ] );
 		}
@@ -122,7 +124,7 @@ api.playlist = that = {
 			}
 			playlistUI
 				.highlight( elFile.jqThis, true )
-				.currentIndex( 1 + jqFiles.index( elFile ) )
+				.updateIndex()
 			;
 			api.subtitles.disable();
 			if ( fWrap.type !== fileWrapper.type ) {
@@ -145,10 +147,10 @@ api.playlist = that = {
 		return ( jqFileSelected[ 0 ] || null ) && jqFileSelected[ 0 ].fileWrapper;
 	},
 	prev: function() {
-		return that.select( jqFileSelected.prev()[ 0 ] || jqFiles.get( -1 ) );
+		return that.select( jqFileSelected.prev()[ 0 ] || playlistUI.jqFiles.get( -1 ) );
 	},
 	next: function() {
-		return that.select( jqFileSelected.next()[ 0 ] || jqFiles.get( 0 ) );
+		return that.select( jqFileSelected.next()[ 0 ] || playlistUI.jqFiles.get( 0 ) );
 	},
 
 	shuffle: function( b ) {
@@ -156,7 +158,7 @@ api.playlist = that = {
 			b = !isShuffled;
 		}
 		if ( b !== isShuffled ) {
-			var len = jqFiles.length;
+			var len = playlistUI.jqFiles.length;
 
 			// Shuffle: false, reset the old order.
 			if ( !b ) {
@@ -166,8 +168,8 @@ api.playlist = that = {
 			// Shuffle: true, if there are more than one files we proceed.
 			} else if ( len > 1 ) {
 				jqFilesSave = jqList.children();
-				jqFiles.each( function() {
-					jqFiles
+				playlistUI.jqFiles.each( function() {
+					playlistUI.jqFiles
 						.eq( Math.floor( Math.random() * len ) )
 						.after( this )
 					;
@@ -177,10 +179,10 @@ api.playlist = that = {
 			}
 
 			// Synchronise jqFiles and playlistUI.
-			jqFiles = jqList.children();
 			playlistUI
 				.shuffle( isShuffled = b )
-				.currentIndex( 1 + jqFiles.index( jqFileSelected ) )
+				.updateList()
+				.updateIndex()
 				.scrollToSelection()
 			;
 		}

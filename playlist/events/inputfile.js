@@ -30,9 +30,7 @@ dom.jqBody.on({
 	// When we are dragging over the player (not the playlist).
 	dragover: function( e ) {
 		var
-			fileH,
 			listY,
-			jqFiles,
 			x = e.pageX,
 			y = e.pageY
 		;
@@ -40,7 +38,7 @@ dom.jqBody.on({
 		if ( x !== dragX || y !== dragY ) {
 
 			// Drag on the player.
-			if ( x < dom.jqWindow.width() - playlistUI.width() ) {
+			if ( !playlistUI.isShow() || x < dom.jqWindow.width() - playlistUI.width() ) {
 				dragOver = "player";
 				findNextSelected();
 
@@ -49,10 +47,14 @@ dom.jqBody.on({
 				dragOver = "playlist";
 				listY = dom.jqPlaylistList.position().top;
 				if ( y >= listY ) {
-					jqFiles = dom.jqPlaylistList.children();
-					fileH = jqFiles.outerHeight() - 1;
 					y = y - listY + dom.jqPlaylistList[ 0 ].scrollTop;
-					playlistUI.dragover( jqFiles[ Math.round( y / fileH ) ] || null );
+					playlistUI
+						.updateList()
+						.updateFileHeight()
+						.dragover(
+							playlistUI.jqFiles[ Math.round( y / playlistUI.fileHeight ) ] || null
+						)
+					;
 				}
 			}
 
