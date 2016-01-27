@@ -41,10 +41,6 @@ dom.jqPlayerVideo.on( {
 		lg( "ON: timeupdate" );
 		playerUI.currentTime( this.currentTime );
 	},
-	volumechange: function() {
-		lg( "ON: volumechange" );
-		playerUI.volume( this.muted ? 0 : this.volume );
-	},
 	ratechange: function() {
 		lg( "ON: ratechange" );
 		playerUI.speed( this.playbackRate );

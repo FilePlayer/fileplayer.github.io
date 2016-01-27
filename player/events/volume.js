@@ -2,15 +2,15 @@
 
 (function() {
 
-dom.jqPlayerVolumeIcon.click( api.video.muteToggle );
+dom.jqPlayerVolumeIcon.click( api.audio.muteToggle );
 
 dom.jqPlayerVolumeSlider.change( function() {
-	api.video.volume( this.value );
+	api.audio.volume( this.value );
 });
 
 function vol( n ) {
-	api.video.volume( n );
-	playerUI.actionDesc( "Volume : " + utils.fPercent( api.video.volume() ) );
+	api.audio.volume( n );
+	playerUI.actionDesc( "Volume : " + utils.fPercent( api.audio.volume() ) );
 }
 
 // Control the volume with the keyboard.

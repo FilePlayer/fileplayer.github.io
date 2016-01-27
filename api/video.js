@@ -112,37 +112,6 @@ api.video = that = {
 		return that;
 	},
 
-	// Sound: volume/mute/unMute
-	volume: function( vol ) {
-		if ( arguments.length === 0 ) {
-			return video.volume;
-		}
-		if ( video.volume = utils.range( 0, vol, 1, video.volume ) ) {
-			video.muted = false;
-		}
-		return that;
-	},
-	mute: function() {
-		video.muted = true;
-		return that;
-	},
-	unMute: function() {
-		video.muted = false;
-		if ( video.volume === 0 ) {
-			video.volume = 1;
-		}
-		return that;
-	},
-	isMuted: function() {
-		return video.muted || video.volume === 0;
-	},
-	muteToggle: function( b ) {
-		if ( typeof b !== "boolean" ) {
-			b = !that.isMuted();
-		}
-		return b ? that.mute() : that.unMute();
-	},
-
 	// Speed: playbackRate.
 	playbackRate: function( rate ) {
 		if ( arguments.length === 0 ) {
