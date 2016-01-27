@@ -7,7 +7,6 @@ var
 	playMode,
 	fileWrapper = {},
 	isShuffled = false,
-	jqFiles = dom.jqEmpty,
 	jqFilesSave = dom.jqEmpty,
 	jqFileSelected = dom.jqEmpty,
 	jqList = dom.jqPlaylistList,

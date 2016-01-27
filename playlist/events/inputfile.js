@@ -2,14 +2,9 @@
 
 (function() {
 
-function findNextSelected() {
-	var el = api.playlist.selectedFile();
-	playlistUI.dragover( el && el.element.jqThis.next()[ 0 ] );
-}
-
 // <input type="file" multiple/>
 dom.jqPlaylistInputFile.change( function() {
-	findNextSelected();
+	playlistUI.dragover( dom.jqPlayer );
 	api.playlist.addFiles( this.files, true );
 });
 
@@ -21,45 +16,61 @@ api.keyboard.shortcut( "ctrl+o", api.playlist.dialogueFiles );
 var
 	dragX,
 	dragY,
-	dragOver,
-	dragOverWindow
+	autoplay,
+	isDragging,
+	jqFileDragging,
+	dragOutside
 ;
+
+function dragend() {
+	if ( jqFileDragging ) {
+		playlistUI.reattach( jqFileDragging );
+		if ( autoplay ) {
+			api.playlist.select( jqFileDragging[ 0 ] );
+		}
+		jqFileDragging = null;
+	}
+	playlistUI.dragover( null );
+	isDragging = false;
+	dragOutside = false;
+}
 
 dom.jqBody.on({
 
 	// When we are dragging over the player (not the playlist).
 	dragover: function( e ) {
 		var
+			jq,
 			listY,
 			x = e.pageX,
 			y = e.pageY
 		;
 
+		isDragging = true;
+
+		// This if prevent ondragover to be called every ~100ms.
 		if ( x !== dragX || y !== dragY ) {
+			dragX = x;
+			dragY = y;
 
 			// Drag on the player.
 			if ( !playlistUI.isShow() || x < dom.jqWindow.width() - playlistUI.width() ) {
-				dragOver = "player";
-				findNextSelected();
+				autoplay = true;
+				playlistUI.dragover( dom.jqPlayer );
 
 			// Drag on the playlist.
 			} else {
-				dragOver = "playlist";
+				autoplay = false;
 				listY = dom.jqPlaylistList.position().top;
 				if ( y >= listY ) {
 					y = y - listY + dom.jqPlaylistList[ 0 ].scrollTop;
+					jq = playlistUI.jqFiles.eq( Math.round( y / playlistUI.fileHeight ) );
 					playlistUI
-						.updateList()
 						.updateFileHeight()
-						.dragover(
-							playlistUI.jqFiles[ Math.round( y / playlistUI.fileHeight ) ] || null
-						)
+						.dragover( jq[ 0 ] ? jq[ 0 ].jqThis : dom.jqPlaylistList )
 					;
 				}
 			}
-
-			dragX = x;
-			dragY = y;
 		}
 
 		// Prevent the browser to load the file directly in the tab.
@@ -68,12 +79,12 @@ dom.jqBody.on({
 	},
 
 	drop: function( e ) {
-		var
-			autoplay = dragOver === "player",
-			data = e.originalEvent.dataTransfer
-		;
+		e = e.originalEvent;
+		var data = e && e.dataTransfer;
 
-		if ( data ) {
+		if ( jqFileDragging ) {
+			dragend();
+		} else if ( data ) {
 			// Chrome :
 			if ( data.items ) {
 				api.playlist.extractAddFiles( data.items, autoplay );
@@ -82,25 +93,46 @@ dom.jqBody.on({
 				api.playlist.addFiles( data.files, autoplay );
 			}
 		}
+		isDragging =
+		dragOutside = false;
 		return false;
 	},
 
-	// Fired at the end of an **intern** drag.
+	// dragstart/end concerns the internal dragndrop.
+	// So they aren't called when you are dragging some files from your disk.
+	dragstart: function( e ) {
+		// If we drag out something directly out the window
+		// the dragover event don't have the time to be fired.
+		dragOutside = true;
+		playlistUI.dragover( dom.jqPlaylistList );
+
+		isDragging = true;
+		jqFileDragging = e.target.jqThis;
+		playlistUI.detach( jqFileDragging );
+	},
 	dragend: function() {
-		playlistUI.dragover( null );
+		dragend();
 		return false;
 	},
 
-	// Detect when the dragging file leave the window.
-	// With a little hack to avoid the bubling of ondragleave...
-	dragenter: function() {
-		dragOverWindow = true;
+	// cf. https://github.com/lolmaus/jquery.dragbetter
+	// Detect when the mouse leave the window while dragging.
+	dragbetterenter: function() {
+		dragOutside = false;
 	},
-	dragleave: function() {
-		if ( !dragOverWindow ) {
-			playlistUI.dragover( null );
+	dragbetterleave: function() {
+		if ( isDragging ) {
+			dragOutside = true;
+			autoplay = false;
+			playlistUI.dragover( dom.jqPlaylistList );
 		}
-		dragOverWindow = false;
+	},
+
+	// Detect when we have dropped an intern file outside of the window.
+	mousemove: function() {
+		if ( dragOutside ) {
+			dragend();
+		}
 	}
 });
 

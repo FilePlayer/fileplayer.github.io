@@ -8,6 +8,7 @@ var
 	showing,
 	showTimeout,
 	hideTimeout,
+	detachTimeout,
 	jqPlaylist = dom.jqPlaylist,
 	jqToggleBtn = dom.jqPlaylistToggleBtn,
 	jqList = dom.jqPlaylistList,
@@ -38,6 +39,26 @@ window.playlistUI = that = {
 	// (Un)select a specific file in the playlist.
 	highlight: function( jqFile, b ) {
 		that.jqFileSelected = jqFile.toggleClass( "selected", b );
+		return that;
+	},
+
+	detach: function( jqFile ) {
+		if ( jqFile ) {
+			jqFile.addClass( "dragging" );
+			// callback to the end of the CSS's animation.
+			detachTimeout = setTimeout( function() {
+				jqFile.detach();
+				that.updateList();
+			}, 200 );
+		}
+		return that;
+	},
+	reattach: function( jqFile ) {
+		playlistUI.addFiles( jqFile );
+		clearTimeout( detachTimeout );
+		setTimeout( function() {
+			jqFile.removeClass( "dragging" );
+		}, 1 );
 		return that;
 	},
 
@@ -121,14 +142,28 @@ window.playlistUI = that = {
 		return that;
 	},
 
-	dragover: function( elem ) {
-		if ( elem !== that.elFileDragover ) {
-			if ( that.elFileDragover ) {
-				that.elFileDragover.jqThis.removeClass( "dragover" );
+	jqDragover: dom.jqPlaylistList,
+	dragover: function( jqElem ) {
+		if ( jqElem !== that.jqDragover ) {
+			if ( that.jqDragover ) {
+				that.jqDragover.removeClass( "dragover" );
 			}
-			that.elFileDragover = elem;
-			if ( elem ) {
-				elem.jqThis.addClass( "dragover" );
+			if ( jqElem === dom.jqPlayer ) {
+				var
+					jq,
+					sel = api.playlist.selectedFile()
+				;
+				if ( sel ) {
+					sel = sel.element.jqThis.next();
+					if ( sel.length ) {
+						jq = sel[ 0 ].jqThis;
+					}
+				}
+				jqElem = jq || dom.jqPlaylistList;
+			}
+			that.jqDragover = jqElem;
+			if ( jqElem ) {
+				jqElem.addClass( "dragover" );
 			}
 		}
 		return that;
@@ -137,41 +172,47 @@ window.playlistUI = that = {
 	// Create a new DOM element with events for the new file.
 	addFiles: function( filesWrapper ) {
 		var
-			jqFiles,
+			jqFiles = filesWrapper,
 			html = ""
 		;
 
-		$.each( filesWrapper, function() {
-			html +=
-				"<a class='file'>" +
-					"<div class='content textOverflow'>"+
-						"<i class='fa fa-fw fa-" +
-							( this.type === "audio" ? "music" : "film" ) +
-						"'></i>" +
-						"<span>" + this.name + "</span>" +
-					"</div>" +
-				"</a>"
+		if ( !filesWrapper.jquery ) {
+			$.each( filesWrapper, function() {
+				html +=
+					"<a class='file' href='#' draggable='true'>" +
+						"<div class='content textOverflow'>"+
+							"<i class='fa fa-fw fa-" +
+								( this.type === "audio" ? "music" : "film" ) +
+							"'></i>" +
+							"<span>" + this.name + "</span>" +
+						"</div>" +
+					"</a>"
+				;
+			});
+			jqFiles = $( html )
+				.click( false )
+				.dblclick( function() {
+					api.playlist.select( this, "noscroll" );
+					return false;
+				})
+				.each( function( i ) {
+					filesWrapper[ i ].element = this;
+					this.fileWrapper = filesWrapper[ i ];
+					this.jqThis = $( this );
+				})
 			;
-		});
-		jqFiles = $( html )
-			.click( false )
-			.dblclick( function() {
-				api.playlist.select( this, "noscroll" );
-				return false;
-			})
-			.each( function( i ) {
-				filesWrapper[ i ].element = this;
-				this.fileWrapper = filesWrapper[ i ];
-				this.jqThis = $( this );
-			})
-		;
-
-		if ( that.elFileDragover ) {
-			jqFiles.insertBefore( that.elFileDragover );
-			that.dragover( null );
-		} else {
-			jqFiles.appendTo( jqList );
 		}
+
+		if ( that.jqDragover === dom.jqPlaylistList ) {
+			jqFiles.appendTo( jqList );
+		} else if ( that.jqDragover ) {
+			jqFiles.insertBefore( that.jqDragover );
+		}
+
+		that
+			.dragover( null )
+			.updateList()
+		;
 		return jqFiles;
 	},
 
