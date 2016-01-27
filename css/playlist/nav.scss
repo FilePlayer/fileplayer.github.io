@@ -1,81 +1,80 @@
-#playlist nav {
-	padding: 5px;
-	background: #333;
-}
-
-#playlist nav * {
-	vertical-align: middle;
-}
-
-#playlist nav .index {
-	font-size: 12px;
-}
-
-#playlist nav .current {
-	font-weight: bold;
-}
-
-#playlist nav .current:after {
-	content: "\A0/\A0";
-	font-weight: normal;
-}
-
-#playlist nav .right {
-	float: right;
-}
-
-#playlist nav .close {
-	margin-left: 1em;
-}
-
-#playlist nav .repeat {
-	position: relative;
-}
-
-#playlist nav .repeat * {
-	display: none;
-	position: absolute;
-	left: -1px;
-	top: 0;
-	font: bold 12px/12px sans-serif;
-	border-radius: 999px;
-	border: 6px solid;
-	border-color: inherit;
-}
-
-#playlist nav .repeat.one *,
-#playlist nav .repeat.all * {
-	display: block;
-}
-
-#playlist nav .repeat :after {
-	position: absolute;
-	left: -3px;
-	top: -6px;
-	color: #333;
-}
-
-#playlist nav .repeat.one :after {
-	content: "1";
-	font-size: 10px;
-	font-weight: bold;
-}
-
-#playlist nav .repeat.all :after {
-	content: "\f0c9";
-	font: 8px FontAwesome;
-	top: -4px;
-}
-
 .tooltip .repeatDot {
 	position: absolute;
 	margin: 5px 0 0 -3px;
 	font-size: 6px;
 }
 
-#playlist nav .shuffle {
-	margin-right: .2em;
+#playlist nav {
+	padding: 5px;
+	background: #333;
+	
+	* {
+		vertical-align: middle;
+	}
 
-	/* because fa-random is bigger than fa-retweet */
-	font-size: 16px;
+	.index {
+		font-size: 12px;
+	}
+
+	.current {
+		font-weight: bold;
+	}
+
+	.current:after {
+		content: "\A0/\A0";
+		font-weight: normal;
+	}
+
+	.right {
+		float: right;
+	}
+
+	.close {
+		margin-left: 1em;
+	}
+
+	.shuffle {
+		margin-right: .2em;
+		/* because fa-random is bigger than fa-retweet */
+		font-size: 16px;
+	}
+
+	.repeat {
+		position: relative;
+
+		* {
+			display: none;
+			position: absolute;
+			left: -1px;
+			top: 0;
+			font: bold 12px/12px sans-serif;
+			border-radius: 999px;
+			border: 6px solid;
+			border-color: inherit;
+		}
+
+		&.one *,
+		&.all * {
+			display: block;
+		}
+
+		:after {
+			position: absolute;
+			left: -3px;
+			top: -6px;
+			color: #333;
+		}
+
+		&.one :after {
+			content: "1";
+			font-size: 10px;
+			font-weight: bold;
+		}
+
+		&.all :after {
+			content: "\f0c9";
+			font: 8px FontAwesome;
+			top: -4px;
+		}
+	}
 }
