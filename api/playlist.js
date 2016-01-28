@@ -199,6 +199,7 @@ api.playlist = that = {
 		}
 		playMode = mode;
 		playlistUI.playingMode( mode );
+		Cookies.set( "playlistmode", mode, { expires: 365 } );
 		return that;
 	}
 };

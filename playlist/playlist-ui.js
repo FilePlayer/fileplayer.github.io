@@ -102,13 +102,14 @@ window.playlistUI = that = {
 	},
 	show: function() {
 		clearTimeout( hideTimeout );
-		showing = true;
 		jqPlaylist.addClass( "showing" );
 		showTimeout = setTimeout( function() {
 			jqPlaylist.addClass( "show" );
 			api.video.resizeUpdate();
 		}, 350 );
 		jqToggleBtn[ 0 ].dataset.tooltipContent = "Hide playlist";
+		showing = true;
+		Cookies.set( "playlistshow", showing, { expires: 365 } );
 		return that.width( width );
 	},
 	hide: function() {
@@ -118,6 +119,7 @@ window.playlistUI = that = {
 		jqToggleBtn[ 0 ].dataset.tooltipContent = "Show playlist";
 		that.width( 0 );
 		showing = false;
+		Cookies.set( "playlistshow", showing, { expires: 365 } );
 		return that;
 	},
 	showToggle: function( b ) {
@@ -134,6 +136,7 @@ window.playlistUI = that = {
 		}
 		if ( w ) {
 			width = w = Math.max( w, minWidth );
+			Cookies.set( "playlistwidth", w, { expires: 365 } );
 		}
 		if ( showing ) {
 			jqPlaylist.css( "width", w );

@@ -19,7 +19,8 @@ function vol( v ) {
 	} else {
 		video.volume = v;
 	}
-	volume = v;
+	playerUI.volume( volume = v );
+	Cookies.set( "volume", v, { expires: 365 } );
 }
 
 video.volume = 1;
@@ -46,18 +47,15 @@ api.audio = that = {
 		}
 		vol( utils.range( 0, v, 1, volume ) );
 		volSave = volume;
-		playerUI.volume( volume );
 		return that;
 	},
 	mute: function() {
 		volSave = volume;
 		vol( 0 );
-		playerUI.volume( 0 );
 		return that;
 	},
 	unMute: function() {
 		vol( volSave || 1 );
-		playerUI.volume( volume );
 		return that;
 	},
 	isMuted: function() {

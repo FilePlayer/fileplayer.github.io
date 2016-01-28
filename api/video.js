@@ -127,6 +127,7 @@ api.video = that = {
 			return opacity;
 		}
 		opacity = utils.range( 0, o, 1, opacity );
+		Cookies.set( "brightness", opacity, { expires: 365 } );
 		jqVideo.trigger( "opacitychange" );
 		return that;
 	},
