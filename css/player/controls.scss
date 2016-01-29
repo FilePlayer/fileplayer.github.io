@@ -64,7 +64,6 @@
 }
 
 #ctrl .bottom > * {
-	width: 50%;
 	display: inline-block;
 }
 
@@ -73,7 +72,7 @@
 }
 
 #ctrl .bottom .right {
-	text-align: right;
+	float: right;
 }
 
 #ctrl .txt.position {
