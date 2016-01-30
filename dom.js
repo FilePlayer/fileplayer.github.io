@@ -13,15 +13,13 @@ window.dom = {
 	jqPlayerCtrl: $( ".ctrl" ),
 		// Screen
 		jqPlayerScreen: $( ".screen" ),
+		jqPlayerImage: $( ".screen .image" ),
 		jqPlayerVideo: $( ".screen video" ),
 		jqPlayerCanvas: $( ".screen canvas" ),
-		jqPlayerFullscreenBtn: $( ".ctrl .btn.fullscreen" ),
-		// File's title
-		jqPlayerTitle: $( ".maintitle" ),
-		jqPlayerTitleName: $( ".maintitle span" ),
-		// Texts on screen
-		jqPlayerShortcutDesc: $( ".shortcutDesc" ),
-		jqPlayerCue: $( ".cues > *" ),
+		jqPlayerTitle: $( ".screen .filename" ),
+		jqPlayerTitleName: $( ".screen .filename span" ),
+		jqPlayerShortcutDesc: $( ".screen .shortcutDesc" ),
+		jqPlayerCue: $( ".screen .cues > *" ),
 		// Subtitles
 		jqPlayerSubtitlesBtn: $( ".ctrl .btn.subtitles" ),
 		jqPlayerSubtitlesIcon: $( ".ctrl .subtitles .fa" ),
@@ -47,6 +45,8 @@ window.dom = {
 		jqPlayerOpacityIcon: $( ".ctrl .opacity > .fa" ),
 		jqPlayerOpacitySlider: $( ".ctrl .opacity .cuteslider" ),
 		jqPlayerOpacityValue: $( ".ctrl .opacity .val" ),
+		// Fullscreen
+		jqPlayerFullscreenBtn: $( ".ctrl .btn.fullscreen" ),
 		// CurrentTime
 		jqPlayerSliderCurrentTime: $( ".ctrl .cuteslider.position" ),
 			// Thumbnail

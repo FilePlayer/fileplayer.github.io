@@ -1,9 +1,41 @@
+@keyframes sinOpacity {
+	  0% { opacity: 1; }
+	 50% { opacity: .2; }
+	100% { opacity: 1; }
+}
+
 .screen {
+	position: relative;
 	transition: opacity .5s;
 
+	.placeholder {
+		position: absolute;
+		width: 100%;
+		top: 50%;
+		margin: -60px 0 0;
+		text-align: center;
+		color: #777;
+		animation: sinOpacity 5s ease infinite;
+
+		.title {
+			display: inline-block;
+			margin: 0;
+			font-size: 50px;
+			font-style: italic;
+		}
+		.version {
+			position: absolute;
+			top: 47px;
+			left: 50%;
+			margin-left: -88px;
+			font: 14px monospace;
+			opacity: .66;
+		}
+	}
+
 	&,
-	video,
-	canvas {
+	.image,
+	.image * {
 		position: absolute;
 		top: 0;
 		width: 100%;
@@ -21,3 +53,8 @@
 .playing.audio .screen canvas {
 	display: block;
 }
+
+.player.playing .screen .placeholder {
+	display: none;
+}
+

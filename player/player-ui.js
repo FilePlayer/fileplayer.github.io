@@ -161,7 +161,7 @@ window.playerUI = that = {
 		return that.actionDesc( "Speed : " + rate.toFixed( 2 ) + "x" );
 	},
 	opacity: function( op ) {
-		dom.jqPlayerScreen.css( "opacity", op );
+		dom.jqPlayerImage.css( "opacity", op );
 		jqOpacitySlider.element().val( op );
 		jqOpacityIcon
 			.removeClass( "fa-moon-o fa-lightbulb-o" )

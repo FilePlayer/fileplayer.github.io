@@ -1,18 +1,18 @@
 .ctrl,
-.maintitle,
+.filename,
 .shortcutDesc {
 	transition: all .25s;
 }
 
 .playing.video.ctrlHiding .ctrl,
-.playing.video.ctrlHiding .maintitle,
+.playing.video.ctrlHiding .filename,
 .shortcutDesc.hidden {
 	transition-duration: 2s;
 	visibility: hidden;
 	opacity: 0;
 }
 
-.maintitle {
+.filename {
 	display: none;
 	position: relative;
 	padding: 10px;
@@ -24,15 +24,15 @@
 	}
 }
 
-.playing .maintitle {
+.playing .filename {
 	display: block;
 }
 
-.playing.audio .maintitle .fa:before {
+.playing.audio .filename .fa:before {
 	content: "\f001"; /* fa-music */
 }
 
-.playing.video .maintitle .fa:before {
+.playing.video .filename .fa:before {
 	content: "\f008"; /* fa-film */
 }
 
