@@ -2,9 +2,10 @@
 .tooltip {
 	color: #222 !important;
 	font-weight: bold;
-	background: rgba( 255, 255, 255, .9 ) !important;
+	background: #eee !important;
+
+	.fa {
+		font-size: 14px;
+	}
 }
 
-.tooltip .fa {
-	font-size: 14px;
-}

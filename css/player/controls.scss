@@ -18,14 +18,14 @@
 	padding: 10px;
 	font-size: 20px;
 	background: linear-gradient( to top, transparent, #000 );
+
+	.fa {
+		margin-right: .5em;
+	}
 }
 
 .playing #title {
 	display: block;
-}
-
-#title .fa {
-	margin-right: .5em;
 }
 
 .playing.audio #title .fa:before {
@@ -39,13 +39,8 @@
 #shortcutDesc {
 	position: absolute;
 	top: 50px;
-	left: 20px;
-	font-size: 20px;
-}
-
-#shortcutDesc {
-	left: auto;
 	right: 20px;
+	font-size: 20px;
 }
 
 #ctrl {
@@ -57,76 +52,74 @@
 	color: rgba( 255, 255, 255, .6 );
 	background: linear-gradient( to bottom, transparent, #000 );
 	cursor: default;
+
+	* {
+		vertical-align: middle;
+		
+		+ .btn {
+			margin-left: 5px;
+		}
+	}
+	.bottom {
+		> * {
+			display: inline-block;
+		}
+		.right {
+			float: right;
+		}
+	}
+	.txt.position {
+		font-size: 12px;
+	}
+	.position {
+		.current:after {
+			content: "\A0/\A0";
+		}
+		&.remaining .duration,
+		.remaining {
+			display: none;
+		}
+		&.remaining .remaining {
+			display: inline;
+		}
+		.remaining:before {
+			content: "-";
+		}
+	}
+	.btn.volume {
+		.cuteslider {
+			transition: all .25s;
+			margin: 0;
+			width: 0;
+			opacity: 0;
+		}
+		&:hover .cuteslider,
+		.cuteslider.focus {
+			margin: 0 7px;
+			width: 50px;
+			opacity: 1;
+		}
+	}
+	.opacity .menu {
+		right: -62px;
+
+		.cuteslider {
+			width: 90px;
+			height: 14px;
+			margin: 0 .9em 0 .7em;
+		}
+	}
+	.visu {
+		.menu {
+			min-width: 140px;
+			right: -57px;
+		}
+		.slidebutton {
+			float: right;
+			width: 28px;
+			height: 13px;
+		}
+	}
 }
 
-#ctrl * {
-	vertical-align: middle;
-}
 
-#ctrl .bottom > * {
-	display: inline-block;
-}
-
-#ctrl * + .btn {
-	margin-left: 5px;
-}
-
-#ctrl .bottom .right {
-	float: right;
-}
-
-#ctrl .txt.position {
-	font-size: 12px;
-}
-
-#ctrl .position .current:after {
-	content: "\A0/\A0";
-}
-
-#ctrl .position.remaining .duration,
-#ctrl .position .remaining {
-	display: none;
-}
-
-#ctrl .position.remaining .remaining {
-	display: inline;
-}
-
-#ctrl .position .remaining:before {
-	content: "-";
-}
-
-#ctrl .btn.volume .cuteslider {
-	transition: all .25s;
-	margin: 0;
-	width: 0;
-	opacity: 0;
-}
-
-#ctrl .btn.volume:hover .cuteslider,
-#ctrl .btn.volume .cuteslider.focus {
-	margin: 0 7px;
-	width: 50px;
-	opacity: 1;
-}
-
-#ctrl .opacity .menu {
-	right: -62px;
-}
-
-#ctrl .opacity .menu .cuteslider {
-	width: 90px;
-	height: 14px;
-	margin: 0 .9em 0 .7em;
-}
-
-#ctrl .visu .menu {
-	min-width: 140px;
-	right: -57px;
-}
-
-#ctrl .visu .slidebutton {
-	float: right;
-	width: 28px;
-	height: 13px;
-}

@@ -1,29 +1,28 @@
 /* cuteslider overload */
 #ctrl .cuteslider {
 	height: 14px;
+
+	&-track {
+		background: #666;
+	}
+	&-track-lower {
+		background: #f22;
+	}
+	&-thumb {
+		transition: all .1s ease;
+		transition-property: color, width, height, margin;
+		width: 8px;
+		height: 8px;
+		margin: -4px;
+		background: #999;
+	}
+	&:hover .cuteslider-thumb,
+	&.focus .cuteslider-thumb {
+		width: 14px;
+		height: 14px;
+		margin: -7px;
+		background: #fff;
+	}
 }
 
-#ctrl .cuteslider-track {
-	background: #666;
-}
 
-#ctrl .cuteslider-track-lower {
-	background: #f22;
-}
-
-#ctrl .cuteslider-thumb {
-	transition: all .1s ease;
-	transition-property: color, width, height, margin;
-	width: 8px;
-	height: 8px;
-	margin: -4px;
-	background: #999;
-}
-
-#ctrl .cuteslider:hover .cuteslider-thumb,
-#ctrl .cuteslider.focus .cuteslider-thumb {
-	width: 14px;
-	height: 14px;
-	margin: -7px;
-	background: #fff;
-}

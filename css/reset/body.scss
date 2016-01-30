@@ -1,3 +1,18 @@
+#main {
+	display: table;
+	table-layout: fixed;
+	width: 100%;
+	height: 100%;
+
+	> * {
+		display: table-cell;
+		vertical-align: top;
+
+		/* Needed for Firefox. */
+		height: 100%;
+	}
+}
+
 .ew-resize {
 	cursor: ew-resize;
 }
@@ -16,21 +31,6 @@
 		 1px  1px 1px #000,
 		-1px  1px 1px #000
 	;
-}
-
-#main {
-	display: table;
-	table-layout: fixed;
-	width: 100%;
-	height: 100%;
-}
-
-#main > * {
-	display: table-cell;
-	vertical-align: top;
-
-	/* Needed for Firefox. */
-	height: 100%;
 }
 
 .textOverflow {

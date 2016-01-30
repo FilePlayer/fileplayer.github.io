@@ -6,35 +6,31 @@
 	transition: all .2s;
 	visibility: hidden;
 	opacity: 0;
+
+	.content {
+		overflow: hidden;
+		border-radius: 4px;
+		background: #111;
+		border: 2px solid #666;
+	}
+	.fa {
+		font-size: 14px;
+	}
+	.header, li {
+		padding: 7px;
+	}
+	li {
+		white-space: nowrap;
+		border-top: 1px solid #333;
+
+		&:hover {
+			background: #222;
+		}
+	}
 }
 
 #ctrl .btn:hover .menu {
 	visibility: visible;
 	z-index: 1;
 	opacity: 1;
-}
-
-#ctrl .menu .content {
-	overflow: hidden;
-	border-radius: 4px;
-	background: #111;
-	border: 2px solid #666;
-}
-
-#ctrl .menu .fa {
-	font-size: 14px;
-}
-
-#ctrl .menu .header,
-#ctrl .menu li {
-	padding: 7px;
-}
-
-#ctrl .menu li {
-	white-space: nowrap;
-	border-top: 1px solid #333;
-}
-
-#ctrl .menu li:hover {
-	background: #222;
 }

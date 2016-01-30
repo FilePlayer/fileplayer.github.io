@@ -1,5 +1,4 @@
 #playlist {
-
 	.list {
 		counter-reset: section;
 		position: absolute;
@@ -8,7 +7,6 @@
 		top: 26px;
 		bottom: 0;
 	}
-
 	.file {
 		position: relative;
 		display: block;
@@ -28,11 +26,9 @@
 		&, &:before {
 			transition-duration: .2s;
 		}
-
 		&:hover {
 			background: #333;
 		}
-
 		&.dragging {
 			opacity: .5;
 			height: 0;
@@ -40,7 +36,6 @@
 			padding-bottom: 0;
 			overflow: hidden;
 		}
-
 		&:before {
 			content: "";
 			position: absolute;
@@ -50,20 +45,17 @@
 			bottom: 100%;
 			transition-property: height;
 		}
-
-		&.dragover:before {
-			height: 10px;
-		}
-
 		&.dragover {
 			margin-top: 9px;
-		}
 
+			&:before {
+				height: 10px;
+			}
+		}
 		&.selected {
 			color: #fff;
 			font-weight: bold;
 		}
-
 		.content:before {
 			display: inline-block;
 			counter-increment: section;
@@ -74,11 +66,9 @@
 			font-weight: bold;
 			opacity: .5;
 		}
-
 		.fa {
 			margin: 0 .5em;
 		}
-
 		&:not(.selected) .fa {
 			color: #666;
 		}

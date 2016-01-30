@@ -3,43 +3,42 @@
 	position: absolute;
 	width: 100%;
 	text-align: center;
+
+	> span {
+		color: #fff;
+
+		&:empty {
+			visibility: hidden;
+		}
+	}
 }
 
 .ctrlVisible #cues.isUnderCtrl {
 	bottom: 80px !important;
 }
 
-#cues > span {
-	color: #fff;
-}
-
-#cues > span:empty {
-	visibility: hidden;
-}
-
 /* Menu */
-#ctrl .subtitles .menu {
-	min-width: 140px;
-	right: -57px;
-}
+#ctrl .subtitles {
+	.menu {
+		min-width: 140px;
+		right: -57px;
+	}
+	.slidebutton {
+		float: right;
+		width: 28px;
+		height: 13px;
+	}
+	li {
+		cursor: pointer;
 
-#ctrl .subtitles .slidebutton {
-	float: right;
-	width: 28px;
-	height: 13px;
-}
-
-#ctrl .subtitles li {
-	cursor: pointer;
-}
-
-#ctrl .subtitles li:before {
-	content: "\f111";
-	font: 6px "FontAwesome";
-	margin-right: 1em;
-	visibility: hidden;
-}
-
-#ctrl .subtitles li.selected:before {
-	visibility: visible;
+		&:before {
+			content: "\f111";
+			font: 6px "FontAwesome";
+			margin-right: 1em;
+			visibility: hidden;
+		}
+		&.selected:before {
+			visibility: visible;
+		}
+	}
 }

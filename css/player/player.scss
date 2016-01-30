@@ -1,8 +1,8 @@
 #player {
 	transition: all .5s;
 	background: none;
-}
 
-#player.playing {
-	background: #000;
+	&.playing {
+		background: #000;
+	}
 }

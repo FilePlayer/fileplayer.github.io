@@ -1,22 +1,21 @@
 #screen {
 	transition: opacity .5s;
-}
 
-#screen,
-#screen video,
-#screen canvas {
-	position: absolute;
-	top: 0;
-	width: 100%;
-	height: 100%;
+	&,
+	video,
+	canvas {
+		position: absolute;
+		top: 0;
+		width: 100%;
+		height: 100%;
+	}
+	canvas {
+		display: none;
+	}
 }
 
 .playing.video.ctrlHidden #screen {
 	cursor: none;
-}
-
-#screen canvas {
-	display: none;
 }
 
 .playing.audio #screen canvas {

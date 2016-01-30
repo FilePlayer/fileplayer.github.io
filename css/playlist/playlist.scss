@@ -9,22 +9,18 @@
 		visibility: visible;
 		opacity: 1;
 	}
-
 	&.show {
 		transition: none;
 	}
-
 	> * > .content {
 		position: absolute;
 		left: 4px;
 		right: 0;
 		height: 100%;
 	}
-
 	input[type="file"] {
 		display: none;
 	}
-
 	.extendWidth {
 		position: relative;
 		z-index: 1;
@@ -37,7 +33,6 @@
 		&:hover, &.hover {
 			background: #aaa;
 		}
-
 		&:after {
 			content: "";
 			position: absolute;

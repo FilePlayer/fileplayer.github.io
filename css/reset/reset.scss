@@ -36,11 +36,12 @@ ul {
 /* Scroll bar */
 ::-webkit-scrollbar {
 	width: 5px;
-}
-::-webkit-scrollbar-thumb {
-	border-radius: 999px;
-	background: #888;
-}
-::-webkit-scrollbar-track {
-	background: #111;
+
+	&-thumb {
+		border-radius: 999px;
+		background: #888;
+	}
+	&-track {
+		background: #111;
+	}
 }
