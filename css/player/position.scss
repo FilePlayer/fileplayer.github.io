@@ -1,4 +1,4 @@
-#ctrl {
+.ctrl {
 	.cuteslider-container {
 		position: relative;
 	}
@@ -62,7 +62,7 @@
 	}
 }
 
-#player.playing.video .cuteslider.position:hover + .thumbnail {
+.player.playing.video .cuteslider.position:hover + .thumbnail {
 	visibility: visible;
 	opacity: 1;
 }

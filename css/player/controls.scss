@@ -1,18 +1,18 @@
-#ctrl,
-#title,
-#shortcutDesc {
+.ctrl,
+.maintitle,
+.shortcutDesc {
 	transition: all .25s;
 }
 
-.playing.video.ctrlHiding #ctrl,
-.playing.video.ctrlHiding #title,
-#shortcutDesc.hidden {
+.playing.video.ctrlHiding .ctrl,
+.playing.video.ctrlHiding .maintitle,
+.shortcutDesc.hidden {
 	transition-duration: 2s;
 	visibility: hidden;
 	opacity: 0;
 }
 
-#title {
+.maintitle {
 	display: none;
 	position: relative;
 	padding: 10px;
@@ -24,26 +24,26 @@
 	}
 }
 
-.playing #title {
+.playing .maintitle {
 	display: block;
 }
 
-.playing.audio #title .fa:before {
+.playing.audio .maintitle .fa:before {
 	content: "\f001"; /* fa-music */
 }
 
-.playing.video #title .fa:before {
+.playing.video .maintitle .fa:before {
 	content: "\f008"; /* fa-film */
 }
 
-#shortcutDesc {
+.shortcutDesc {
 	position: absolute;
 	top: 50px;
 	right: 20px;
 	font-size: 20px;
 }
 
-#ctrl {
+.ctrl {
 	position: absolute;
 	bottom: 0;
 	left: 0;

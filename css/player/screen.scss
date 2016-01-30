@@ -1,4 +1,4 @@
-#screen {
+.screen {
 	transition: opacity .5s;
 
 	&,
@@ -14,10 +14,10 @@
 	}
 }
 
-.playing.video.ctrlHidden #screen {
+.playing.video.ctrlHidden .screen {
 	cursor: none;
 }
 
-.playing.audio #screen canvas {
+.playing.audio .screen canvas {
 	display: block;
 }

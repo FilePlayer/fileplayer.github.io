@@ -9,9 +9,9 @@
 </head>
 <body>
 
-<div id="main">
+<div class="fileplayer">
 
-	<div id="player">
+	<div class="player">
 		<div class="tableCellWrapper">
 			<div class="placeholder">
 				<h1 class="title">
@@ -23,17 +23,17 @@
 					version 0.3.1
 				</span>
 			</div>
-			<div id="screen" class="no-select">
+			<div class="screen no-select">
 				<video></video>
 				<canvas></canvas>
 			</div>
-			<div id="title" class="textOverflow textShadow">
+			<div class="maintitle textOverflow textShadow">
 				<i class="fa fa-fw"></i>
 				<span></span>
 			</div>
-			<div id="shortcutDesc" class="textShadow"></div>
-			<div id="cues"><span class="textShadow"></span></div>
-			<div id="ctrl" class="no-select">
+			<div class="shortcutDesc textShadow"></div>
+			<div class="cues"><span class="textShadow"></span></div>
+			<div class="ctrl no-select">
 				<span
 					class="cuteslider-container"
 					data-jquery-element="tooltip"
@@ -124,7 +124,7 @@
 								</div>
 							</div>
 						</span>
-						<i class="btn playlist fa fa-fw fa-list"
+						<i class="btn btn-playlist fa fa-fw fa-list"
 							data-jquery-element="tooltip"></i>
 						<i class="btn fullscreen fa fa-fw"
 							data-jquery-element="tooltip"></i>
@@ -134,7 +134,7 @@
 		</div>
 	</div>
 
-	<div id="playlist" class="no-select">
+	<div class="playlist no-select">
 		<div class="tableCellWrapper">
 			<input type="file" multiple/>
 			<div class="extendWidth ew-resize"></div>

@@ -1,5 +1,5 @@
 /* cuteslider overload */
-#ctrl .cuteslider {
+.ctrl .cuteslider {
 	height: 14px;
 
 	&-track {
@@ -13,14 +13,14 @@
 		transition-property: color, width, height, margin;
 		width: 8px;
 		height: 8px;
-		margin: -4px;
+		margin: -4px !important;
 		background: #999;
 	}
 	&:hover .cuteslider-thumb,
 	&.focus .cuteslider-thumb {
 		width: 14px;
 		height: 14px;
-		margin: -7px;
+		margin: -7px !important;
 		background: #fff;
 	}
 }

@@ -4,7 +4,7 @@
 	100% { opacity: 1; }
 }
 
-#player .placeholder {
+.player .placeholder {
 	position: absolute;
 	width: 100%;
 	top: 50%;
@@ -29,6 +29,6 @@
 	}
 }
 
-#player.playing .placeholder {
+.player.playing .placeholder {
 	display: none;
 }

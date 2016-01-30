@@ -1,5 +1,5 @@
 /* Texts on screen */
-#cues {
+.cues {
 	position: absolute;
 	width: 100%;
 	text-align: center;
@@ -13,12 +13,12 @@
 	}
 }
 
-.ctrlVisible #cues.isUnderCtrl {
+.ctrlVisible .cues.isUnderCtrl {
 	bottom: 80px !important;
 }
 
 /* Menu */
-#ctrl .subtitles {
+.ctrl .subtitles {
 	.menu {
 		min-width: 140px;
 		right: -57px;

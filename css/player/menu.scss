@@ -1,4 +1,4 @@
-#ctrl .menu {
+.ctrl .menu {
 	position: absolute;
 	bottom: 100%;
 	padding-bottom: 25px;
@@ -29,7 +29,7 @@
 	}
 }
 
-#ctrl .btn:hover .menu {
+.ctrl .btn:hover .menu {
 	visibility: visible;
 	z-index: 1;
 	opacity: 1;
