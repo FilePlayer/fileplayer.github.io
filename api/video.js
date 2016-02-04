@@ -5,7 +5,6 @@
 var
 	that,
 	oldSource,
-	opacity,
 	isStopped = true,
 	isLoaded = false,
 	isLoading = false,
@@ -36,27 +35,8 @@ api.video = that = {
 		isLoaded = true;
 		isLoading = false;
 		that.ratio = video.videoWidth / video.videoHeight
-		return that.resizeUpdate();
-	},
-
-	// Dimensions:
-	resizeFilename: function() {
-		dom.screenFilename.css(
-			"width", playlistUI.isShow()
-			? that.windowWidth - playlistUI.width() + "px"
-			: "100%"
-		);
-		return that;
-	},
-	resizeUpdate: function() {
-		var
-			r = that.ratio,
-			w = that.elementWidth  = jqVideo.width(),
-			h = that.elementHeight = jqVideo.height(),
-			rElem = w / h
-		;
-		that.imageWidth  = r > rElem ? w : h * r;
-		that.imageHeight = r < rElem ? h : w / r;
+		api.screen.resize();
+		playerUI.subtitlesResizeUpdate();
 		return that;
 	},
 
@@ -125,23 +105,6 @@ api.video = that = {
 		}
 		video.playbackRate = rate;
 		return that;
-	},
-
-	// Brightness: opacity.
-	opacity: function( o ) {
-		if ( arguments.length === 0 ) {
-			return opacity;
-		}
-		opacity = utils.range( 0, o, 1, opacity );
-		Cookies.set( "brightness", opacity, { expires: 365 } );
-		jqVideo.trigger( "opacitychange" );
-		return that;
-	},
-	opacityToggle: function( b ) {
-		if ( typeof b !== "boolean" ) {
-			b = opacity < 1;
-		}
-		return that.opacity( b ? 1 : .25 );
 	}
 };
 

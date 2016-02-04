@@ -23,7 +23,7 @@ var
 	// Button: fullscreen.
 	jqBtnFScr = dom.ctrlFullscreenBtn,
 
-	// Button, slider: opacity.
+	// Button, slider: brightness.
 	jqBrightnessIcon = dom.ctrlBrightnessIcon,
 	jqBrightnessSlider = dom.ctrlBrightnessSlider,
 
@@ -160,7 +160,7 @@ window.playerUI = that = {
 	speed: function( rate ) {
 		return that.actionDesc( "Speed : " + rate.toFixed( 2 ) + "x" );
 	},
-	opacity: function( op ) {
+	brightness: function( op ) {
 		dom.screenImage.css( "opacity", op );
 		jqBrightnessSlider.element().val( op );
 		jqBrightnessIcon
@@ -172,12 +172,11 @@ window.playerUI = that = {
 	},
 	subtitlesResizeUpdate: function() {
 		var
-			imgW = api.video.imageWidth,
-			btm = ( api.video.elementHeight - api.video.imageHeight ) / 2
+			imgW = api.video.width,
+			btm = ( api.screen.height - api.video.height ) / 2
 		;
 		jqSubtitlesCueParent
-			// 80: dom.ctrl.outerHeight()
-			.toggleClass( "isUnderCtrl", btm < 80 )
+			.toggleClass( "isUnderCtrl", btm < 80 ) // 80: dom.ctrl.outerHeight()
 			.css({
 				bottom: btm,
 				fontSize: Math.max( 10, imgW / 100 * 2.5 ) + "px"

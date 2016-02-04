@@ -15,9 +15,9 @@ dom.doc.on(
 
 dom.window.resize( function() {
 	api.video.windowWidth = dom.window.width();
-	api.video
+	api.screen
+		.resize()
 		.resizeFilename()
-		.resizeUpdate()
 	;
 	api.visualisations.resize();
 	playerUI.subtitlesResizeUpdate();
@@ -53,9 +53,9 @@ dom.screenVideo.on( {
 		lg( "ON: ratechange" );
 		playerUI.speed( this.playbackRate );
 	},
-	opacitychange: function() {
-		lg( "ON: opacitychange" );
-		playerUI.opacity( api.video.opacity() );
+	brightnesschange: function() {
+		lg( "ON: brightnesschange" );
+		playerUI.brightness( api.screen.brightness() );
 	}
 });
 

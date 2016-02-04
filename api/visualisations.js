@@ -25,8 +25,8 @@ api.visualisations = that = {
 		return that;
 	},
 	resize: function() {
-		canvas.width = api.video.elementWidth;
-		canvas.height = api.video.elementHeight;
+		canvas.width = api.screen.width;
+		canvas.height = api.screen.height;
 		return that;
 	},
 	select: function( name ) {

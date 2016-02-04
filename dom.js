@@ -75,9 +75,9 @@ window.dom = {
 			ctrlVisualCheckbox: $( ".ctrl .visu input" ),
 			ctrlVisualList: $( ".ctrl .visu ul" ),
 			// Brightness
-			ctrlBrightnessIcon: $( ".ctrl .opacity > .fa" ),
-			ctrlBrightnessSlider: $( ".ctrl .opacity .cuteslider" ),
-			ctrlBrightnessValue: $( ".ctrl .opacity .val" ),
+			ctrlBrightnessIcon: $( ".ctrl .brightness > .fa" ),
+			ctrlBrightnessSlider: $( ".ctrl .brightness .cuteslider" ),
+			ctrlBrightnessValue: $( ".ctrl .brightness .val" ),
 			// Subtitles
 			ctrlSubtitlesBtn: $( ".ctrl .btn.subtitles" ),
 			ctrlSubtitlesIcon: $( ".ctrl .subtitles .fa" ),
