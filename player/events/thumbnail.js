@@ -3,15 +3,15 @@
 (function() {
 
 var
-	jqThumbnail = dom.jqPlayerThumbnail,
+	jqThumbnail = dom.ctrlThumbnail,
 	thumbnailOW2 = jqThumbnail.outerWidth() / 2,
 	
 	// video
-	elVideo = dom.jqPlayerThumbnailVideo[ 0 ],
+	elVideo = dom.ctrlThumbnailVideo[ 0 ],
 	oldLeft,
 
 	// slider.position
-	jqSliderTime = dom.jqPlayerSliderCurrentTime,
+	jqSliderTime = dom.ctrlSliderCurrentTime,
 	jqSliderTimeContainer = jqSliderTime.parent()
 ;
 
@@ -21,7 +21,7 @@ function loading( b ) {
 	jqThumbnail.toggleClass( "loading", b );
 }
 
-dom.jqPlayerThumbnailVideo.on( "timeupdate", function() {
+dom.ctrlThumbnailVideo.on( "timeupdate", function() {
 	var sec = ~~elVideo.currentTime;
 	loading( false );
 	if (

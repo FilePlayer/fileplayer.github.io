@@ -1,7 +1,8 @@
 .ctrl,
 .filename,
 .shortcutDesc {
-	transition: all .25s;
+	transition-property: opacity, visibility;
+	transition-duration: .25s;
 }
 
 .playing.video.ctrlHiding .ctrl,
@@ -12,45 +13,17 @@
 	opacity: 0;
 }
 
-.filename {
-	display: none;
-	position: relative;
-	padding: 10px;
-	font-size: 20px;
-	background: linear-gradient( to top, transparent, #000 );
-
-	.fa {
-		margin-right: .5em;
-	}
-}
-
-.playing .filename {
-	display: block;
-}
-
-.playing.audio .filename .fa:before {
-	content: "\f001"; /* fa-music */
-}
-
-.playing.video .filename .fa:before {
-	content: "\f008"; /* fa-film */
-}
-
 .shortcutDesc {
 	position: absolute;
 	top: 50px;
-	right: 20px;
-	font-size: 20px;
+	left: 13px;
+	font-size: 16px;
 }
 
 .ctrl {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	padding: 15px;
-	color: rgba( 255, 255, 255, .6 );
-	background: linear-gradient( to bottom, transparent, #000 );
+	padding: 0 15px 15px;
+	color: #aaa;
+	background: linear-gradient( to bottom, transparent, #000 22% );
 	cursor: default;
 
 	* {

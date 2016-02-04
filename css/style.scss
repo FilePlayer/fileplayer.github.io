@@ -1,13 +1,13 @@
 ---
 ---
 
-// Merge all the CSS files in only one.
-
 @import 'reset/reset';
-@import 'reset/body';
+@import 'reset/common-classes';
 @import 'reset/btn';
 @import 'reset/overwrite-cuteslider';
 @import 'reset/overwrite-tooltip';
+
+@import 'main';
 
 @import 'player/player';
 @import 'player/screen';

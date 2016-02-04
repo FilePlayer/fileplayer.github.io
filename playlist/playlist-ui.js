@@ -9,31 +9,31 @@ var
 	showTimeout,
 	hideTimeout,
 	detachTimeout,
-	jqPlaylist = dom.jqPlaylist,
-	jqToggleBtn = dom.jqPlaylistToggleBtn,
-	jqList = dom.jqPlaylistList,
+	jqToggleBtn = dom.ctrlPlaylistBtn,
+	jqPlaylist = dom.playlist,
+	jqList = dom.playlistList,
 	minWidth = 150 //parseFloat( jqPlaylist.css( "minWidth" ) )
 ;
 
 window.playlistUI = that = {
 
 	updateList: function() {
-		that.jqFiles = dom.jqPlaylistList.children();
+		that.jqFiles = jqList.children();
 		return that;
 	},
 	updateFileHeight: function() {
 		that.fileHeight = Math.max(
 			that.jqFiles.outerHeight(),
 			that.jqFiles.eq( 1 ).outerHeight()
-		) - 1;
+		);
 		return that;
 	},
 	updateTotal: function() {
-		dom.jqPlaylistNavTotal.text( that.jqFiles.length );
+		dom.playlistNavTotal.text( that.jqFiles.length );
 		return that;
 	},
 	updateIndex: function() {
-		dom.jqPlaylistNavIndex.text( 1 + that.jqFiles.index( that.jqFileSelected ) );
+		dom.playlistNavIndex.text( 1 + that.jqFiles.index( that.jqFileSelected ) );
 		return that;
 	},
 	// (Un)select a specific file in the playlist.
@@ -82,7 +82,7 @@ window.playlistUI = that = {
 			if ( ok = topOnScr < 0 ) {
 				top -= nbElemsMargin * childHeight;
 			} else {
-				height = jqList.height();
+				height = jqList.height() - 50; // 50 -> $(".ctrl").height()
 				if ( ok = topOnScr > height - childHeight ) {
 					top -= height - ++nbElemsMargin * childHeight;
 				}
@@ -102,23 +102,19 @@ window.playlistUI = that = {
 	},
 	show: function() {
 		clearTimeout( hideTimeout );
-		jqPlaylist.addClass( "showing" );
-		showTimeout = setTimeout( function() {
-			jqPlaylist.addClass( "show" );
-			api.video.resizeUpdate();
-		}, 350 );
+		jqPlaylist.addClass( "show" );
 		jqToggleBtn[ 0 ].dataset.tooltipContent = "Hide playlist";
 		showing = true;
+		api.video.resizeFilename();
 		Cookies.set( "playlistshow", showing, { expires: 365 } );
-		return that.width( width );
+		return that;
 	},
 	hide: function() {
 		clearTimeout( showTimeout );
-		jqPlaylist.removeClass( "show showing" );
-		hideTimeout = setTimeout( api.video.resizeUpdate , 350 );
+		jqPlaylist.removeClass( "show" );
 		jqToggleBtn[ 0 ].dataset.tooltipContent = "Show playlist";
-		that.width( 0 );
 		showing = false;
+		api.video.resizeFilename();
 		Cookies.set( "playlistshow", showing, { expires: 365 } );
 		return that;
 	},
@@ -134,24 +130,20 @@ window.playlistUI = that = {
 		if ( arguments.length === 0 ) {
 			return width;
 		}
-		if ( w ) {
-			width = w = Math.max( w, minWidth );
-			Cookies.set( "playlistwidth", w, { expires: 365 } );
-		}
-		if ( showing ) {
-			jqPlaylist.css( "width", w );
-			api.video.resizeUpdate();
-		}
+		width = w = Math.max( w, minWidth );
+		jqPlaylist.css( "width", w );
+		api.video.resizeFilename();
+		Cookies.set( "playlistwidth", w, { expires: 365 } );
 		return that;
 	},
 
-	jqDragover: dom.jqPlaylistList,
+	jqDragover: jqList,
 	dragover: function( jqElem ) {
 		if ( jqElem !== that.jqDragover ) {
 			if ( that.jqDragover ) {
 				that.jqDragover.removeClass( "dragover" );
 			}
-			if ( jqElem === dom.jqPlayer ) {
+			if ( jqElem === dom.screen ) {
 				var
 					jq,
 					sel = api.playlist.selectedFile()
@@ -162,7 +154,7 @@ window.playlistUI = that = {
 						jq = sel[ 0 ].jqThis;
 					}
 				}
-				jqElem = jq || dom.jqPlaylistList;
+				jqElem = jq || jqList;
 			}
 			that.jqDragover = jqElem;
 			if ( jqElem ) {
@@ -206,7 +198,7 @@ window.playlistUI = that = {
 			;
 		}
 
-		if ( that.jqDragover === dom.jqPlaylistList ) {
+		if ( that.jqDragover === jqList ) {
 			jqFiles.appendTo( jqList );
 		} else if ( that.jqDragover ) {
 			jqFiles.insertBefore( that.jqDragover );
@@ -220,7 +212,7 @@ window.playlistUI = that = {
 	},
 
 	shuffle: function( b ) {
-		dom.jqPlaylistShuffle
+		dom.playlistShuffleBtn
 			.toggleClass( "enable", b )
 			.attr(
 				"data-tooltip-content",
@@ -234,7 +226,7 @@ window.playlistUI = that = {
 	playingMode: function( m ) {
 		var dot = "<i class='repeatDot fa fa-circle'></i>";
 
-		dom.jqPlaylistRepeat
+		dom.playlistRepeatBtn
 			.removeClass( "disable one all" )
 			.addClass(
 				m === true ? "" :

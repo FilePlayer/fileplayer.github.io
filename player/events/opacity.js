@@ -2,10 +2,10 @@
 
 (function() {
 
-dom.jqPlayerOpacitySlider.change( function() {
+dom.ctrlBrightnessSlider.change( function() {
 	api.video.opacity( this.value );
 });
 
-dom.jqPlayerOpacityIcon.click( api.video.opacityToggle );
+dom.ctrlBrightnessIcon.click( api.video.opacityToggle );
 
 })();

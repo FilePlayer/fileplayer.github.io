@@ -9,9 +9,9 @@ var
 	isStopped = true,
 	isLoaded = false,
 	isLoading = false,
-	video = dom.jqPlayerVideo[ 0 ],
-	jqVideo = dom.jqPlayerVideo,
-	jqVideoThumb = dom.jqPlayerThumbnailVideo
+	video = dom.screenVideo[ 0 ],
+	jqVideo = dom.screenVideo,
+	jqVideoThumb = dom.ctrlThumbnailVideo
 ;
 
 api.video = that = {
@@ -40,6 +40,14 @@ api.video = that = {
 	},
 
 	// Dimensions:
+	resizeFilename: function() {
+		dom.screenFilename.css(
+			"width", playlistUI.isShow()
+			? that.windowWidth - playlistUI.width() + "px"
+			: "100%"
+		);
+		return that;
+	},
 	resizeUpdate: function() {
 		var
 			r = that.ratio,
@@ -49,8 +57,6 @@ api.video = that = {
 		;
 		that.imageWidth  = r > rElem ? w : h * r;
 		that.imageHeight = r < rElem ? h : w / r;
-		playerUI.subtitlesResizeUpdate();
-		api.visualisations.resize();
 		return that;
 	},
 

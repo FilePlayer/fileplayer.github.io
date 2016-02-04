@@ -4,32 +4,32 @@
 
 var
 	mousedown = false,
-	jqExtend = dom.jqPlaylistExtendWidth
+	jqExtend = dom.playlistExtendWidth
 ;
 
 api.keyboard.shortcut( "ctrl+l", playlistUI.showToggle );
 
-dom.jqPlaylistToggleBtn.click( playlistUI.showToggle );
-dom.jqPlaylistClose.click( playlistUI.hide );
+dom.ctrlPlaylistBtn.click( playlistUI.showToggle );
+dom.playlistCloseBtn.click( playlistUI.hide );
 
 jqExtend
 	.mousedown( function() {
 		mousedown = true;
-		dom.jqBody.addClass( "ew-resize no-select" );
+		dom.body.addClass( "ew-resize no-select" );
 		jqExtend.addClass( "hover" );
 	})
 ;
 
-dom.jqDoc
+dom.doc
 	.mouseup( function() {
 		mousedown = false;
-		dom.jqBody.removeClass( "ew-resize no-select" );
+		dom.body.removeClass( "ew-resize no-select" );
 		jqExtend.removeClass( "hover" );
 	})
 	.mousemove( function( e ) {
 		if ( mousedown ) {
 			playlistUI.width(
-				dom.jqDoc.width() -
+				dom.doc.width() -
 				e.originalEvent.pageX
 			);
 		}

@@ -5,7 +5,6 @@
 }
 
 .screen {
-	position: relative;
 	transition: opacity .5s;
 
 	.placeholder {
@@ -44,17 +43,39 @@
 	canvas {
 		display: none;
 	}
+	.filename {
+		display: none;
+		box-sizing: border-box;
+		position: relative;
+		padding: 10px;
+		font-size: 20px;
+		background: linear-gradient( to top, transparent, #000 );
+
+		.playing & {
+			display: block;
+		}
+		.fa {
+			margin-right: .5em;
+
+			.playing.audio &:before {
+				content: "\f001"; /* fa-music */
+			}
+			.playing.video &:before {
+				content: "\f008"; /* fa-film */
+			}
+		}
+	}
 }
 
-.playing.video.ctrlHidden .screen {
+.fileplayer.playing.video.ctrlHidden .screen {
 	cursor: none;
 }
 
-.playing.audio .screen canvas {
+.fileplayer.playing.audio .screen canvas {
 	display: block;
 }
 
-.player.playing .screen .placeholder {
+.fileplayer.playing .screen .placeholder {
 	display: none;
 }
 

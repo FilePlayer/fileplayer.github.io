@@ -6,31 +6,31 @@ var
 	that,
 
 	// Button: play/pause.
-	jqPlayBtn = dom.jqPlayerPlayBtn,
+	jqPlayBtn = dom.ctrlPlayBtn,
 
 	// Button, slider: volume.
-	jqVolumeIcon = dom.jqPlayerVolumeIcon,
-	jqVolumeSlider = dom.jqPlayerVolumeSlider,
+	jqVolumeIcon = dom.ctrlVolumeIcon,
+	jqVolumeSlider = dom.ctrlVolumeSlider,
 	jqVolumeSliderParent = jqVolumeSlider.parent(),
 
 	// Texts, slider: position/duration.
-	jqTimeTxtCurrent = dom.jqPlayerTimeCurrent,
-	jqTimeTxtRemaining = dom.jqPlayerTimeRemaining,
-	jqTimeTxtDuration = dom.jqPlayerTimeDuration,
-	jqTimeSlider = dom.jqPlayerSliderCurrentTime,
+	jqTimeTxtCurrent = dom.ctrlTimeCurrent,
+	jqTimeTxtRemaining = dom.ctrlTimeRemaining,
+	jqTimeTxtDuration = dom.ctrlTimeDuration,
+	jqTimeSlider = dom.ctrlSliderCurrentTime,
 	jqTimeSliderParent = jqTimeSlider.parent(),
 
 	// Button: fullscreen.
-	jqBtnFScr = dom.jqPlayerFullscreenBtn,
+	jqBtnFScr = dom.ctrlFullscreenBtn,
 
 	// Button, slider: opacity.
-	jqOpacityIcon = dom.jqPlayerOpacityIcon,
-	jqOpacitySlider = dom.jqPlayerOpacitySlider,
+	jqBrightnessIcon = dom.ctrlBrightnessIcon,
+	jqBrightnessSlider = dom.ctrlBrightnessSlider,
 
 	// Subtitles.
 	currentCue,
-	jqSubtitlesCueParent = dom.jqPlayerCue.parent(),
-	jqSubtitlesCue = dom.jqPlayerCue,
+	jqSubtitlesCueParent = dom.screenCue.parent(),
+	jqSubtitlesCue = dom.screenCue,
 
 	// Texts: texts on screen.
 	screenTextTimeoutId,
@@ -44,25 +44,25 @@ window.playerUI = that = {
 	actionDesc: function( msg ) {
 		if ( that.textsShowing ) {
 			clearTimeout( screenTextTimeoutId );
-			dom.jqPlayerShortcutDesc
+			dom.screenShortcutText
 				.text( msg )
 				.removeClass( "hidden" )
 			;
 			// Start to fadeout the element after 2s.
 			screenTextTimeoutId = setTimeout( function() {
-				dom.jqPlayerShortcutDesc.addClass( "hidden" );
+				dom.screenShortcutText.addClass( "hidden" );
 			}, 2000 );
 		}
 		return that;
 	},
 	loaded: function() {
 		var file = api.playlist.selectedFile();
-		dom.jqPlayer
+		dom.fileplayer
 			.removeClass( "audio video" )
 			.addClass( "playing " + file.type )
 		;
-		dom.jqPlayerTitleName
-			.add( dom.jqTitle )
+		dom.screenFilenameText
+			.add( dom.title )
 				.text( file.name )
 		;
 		jqTimeSliderParent.attr( "data-tooltip-content", null );
@@ -114,9 +114,9 @@ window.playerUI = that = {
 		return that.actionDesc( "Pause" );
 	},
 	stop: function() {
-		dom.jqPlayer.removeClass( "playing audio video" );
-		dom.jqPlayerTitleName.empty();
-		dom.jqTitle.text( "FilePlayer" );
+		dom.fileplayer.removeClass( "playing audio video" );
+		dom.screenFilenameText.empty();
+		dom.title.text( "FilePlayer" );
 		api.thumbnail.canvas.drawFromImg();
 		jqTimeSliderParent.attr( "data-tooltip-content", null );
 		return that
@@ -161,13 +161,13 @@ window.playerUI = that = {
 		return that.actionDesc( "Speed : " + rate.toFixed( 2 ) + "x" );
 	},
 	opacity: function( op ) {
-		dom.jqPlayerImage.css( "opacity", op );
-		jqOpacitySlider.element().val( op );
-		jqOpacityIcon
+		dom.screenImage.css( "opacity", op );
+		jqBrightnessSlider.element().val( op );
+		jqBrightnessIcon
 			.removeClass( "fa-moon-o fa-lightbulb-o" )
 			.addClass( op < .5 ? "fa-moon-o" : "fa-lightbulb-o" )
 		;
-		dom.jqPlayerOpacityValue.text( utils.fPercent( op ) );
+		dom.ctrlBrightnessValue.text( utils.fPercent( op ) );
 		return that;
 	},
 	subtitlesResizeUpdate: function() {
@@ -176,7 +176,7 @@ window.playerUI = that = {
 			btm = ( api.video.elementHeight - api.video.imageHeight ) / 2
 		;
 		jqSubtitlesCueParent
-			// 80: dom.jqPlayerCtrl.outerHeight()
+			// 80: dom.ctrl.outerHeight()
 			.toggleClass( "isUnderCtrl", btm < 80 )
 			.css({
 				bottom: btm,
@@ -190,8 +190,8 @@ window.playerUI = that = {
 			? api.subtitles.findCue()
 			: null
 		);
-		dom.jqPlayerSubtitlesBtn.toggleClass( "disable", !b );
-		dom.jqPlayerSubtitlesCheckbox.attr( "checked", b ? "checked" : null );
+		dom.ctrlSubtitlesBtn.toggleClass( "disable", !b );
+		dom.ctrlSubtitlesCheckbox.attr( "checked", b ? "checked" : null );
 		return that;
 	},
 	subtitlesCue: function( cue ) {
@@ -211,8 +211,8 @@ window.playerUI = that = {
 		;
 	},
 	visualisationsToggle: function( b ) {
-		dom.jqPlayerVisuBtn.toggleClass( "disable", !b );
-		dom.jqPlayerVisuCheckbox.attr( "checked", b ? "checked" : null );
+		dom.ctrlVisualBtn.toggleClass( "disable", !b );
+		dom.ctrlVisualCheckbox.attr( "checked", b ? "checked" : null );
 		return that;
 	}
 };

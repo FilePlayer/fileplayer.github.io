@@ -2,8 +2,8 @@
 
 (function() {
 
-dom.jqPlayerVisuToggle
-	.add( dom.jqPlayerVisuIcon )
+dom.ctrlVisualToggle
+	.add( dom.ctrlVisualIcon )
 		.click( api.visualisations.toggle )
 ;
 

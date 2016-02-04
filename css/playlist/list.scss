@@ -4,8 +4,14 @@
 		position: absolute;
 		overflow: auto;
 		width: 100%;
-		top: 26px;
+		top: 40px;
 		bottom: 0;
+
+		&:after {
+			content: "";
+			display: block;
+			height: 55px;
+		}
 	}
 	.file {
 		position: relative;
@@ -17,17 +23,13 @@
 		cursor: pointer;
 		color: #aaa;
 		font-size: 12px;
-		border: 0 solid #444;
-		border-width: 1px 0;
-		margin-top: -1px;
-		background: #222;
 		transition-property: margin-top, height, padding;
 
 		&, &:before {
 			transition-duration: .2s;
 		}
 		&:hover {
-			background: #333;
+			color: #fff;
 		}
 		&.dragging {
 			opacity: .5;

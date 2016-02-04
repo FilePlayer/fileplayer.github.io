@@ -2,8 +2,8 @@
 
 (function() {
 
-dom.jqPlayerSubtitlesToggle
-	.add( dom.jqPlayerSubtitlesIcon )
+dom.ctrlSubtitlesToggle
+	.add( dom.ctrlSubtitlesIcon )
 		.click( api.subtitles.toggle )
 ;
 

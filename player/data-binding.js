@@ -2,7 +2,7 @@
 
 (function() {
 
-dom.jqDoc.on(
+dom.doc.on(
 	      "fullscreenchange " +
 	    "MSFullscreenChange " +
 	   "mozfullscreenchange " +
@@ -13,9 +13,17 @@ dom.jqDoc.on(
 	}
 );
 
-dom.jqWindow.resize( api.video.resizeUpdate );
+dom.window.resize( function() {
+	api.video.windowWidth = dom.window.width();
+	api.video
+		.resizeFilename()
+		.resizeUpdate()
+	;
+	api.visualisations.resize();
+	playerUI.subtitlesResizeUpdate();
+});
 
-dom.jqPlayerVideo.on( {
+dom.screenVideo.on( {
 	loadedmetadata: function() {
 		lg( "ON: loadedmetadata" );
 		api.video.loaded();

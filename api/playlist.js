@@ -7,15 +7,14 @@ var
 	playMode,
 	fileWrapper = {},
 	isShuffled = false,
-	jqFilesSave = dom.jqEmpty,
-	jqFileSelected = dom.jqEmpty,
-	jqList = dom.jqPlaylistList,
-	jqVideo = dom.jqPlayerVideo
+	jqFilesSave = dom.empty,
+	jqFileSelected = dom.empty,
+	jqList = dom.playlistList
 ;
 
 api.playlist = that = {
 	dialogueFiles: function() {
-		dom.jqPlaylistInputFile.click();
+		dom.playlistInputFile.click();
 		return that;
 	},
 	
@@ -206,7 +205,7 @@ api.playlist = that = {
 
 // The videoElement has no "stop" event.
 // But the api.video has a .stop() methode anyway, this methode trigger("stop").
-jqVideo.on( "ended", function() {
+dom.screenVideo.on( "ended", function() {
 	switch ( playMode ) {
 		case "loopOne" :
 			api.video

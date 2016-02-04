@@ -25,8 +25,8 @@ var
 	cuesCopies,
 	enable = false,
 	cuesDelay = 0,
-	tracks = dom.jqPlayerVideo[ 0 ].textTracks,
-	jqListSubtitles = dom.jqPlayerSubtitlesList
+	tracks = dom.screenVideo[ 0 ].textTracks,
+	jqListSubtitles = dom.ctrlSubtitlesList
 ;
 
 function initCuesMap( cues ) {
@@ -95,7 +95,7 @@ api.subtitles = that = {
 				label: "Subtitles " + ( tracksLen + 1 ),
 				name: fileWrapper.file.name,
 			})
-				.appendTo( dom.jqPlayerVideo )
+				.appendTo( dom.screenVideo )
 				.on( "load", ( function( len ) {
 					return function( e ) {
 						tracks[ len ].mode = "hidden";

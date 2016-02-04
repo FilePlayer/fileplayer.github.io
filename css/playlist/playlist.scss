@@ -1,44 +1,29 @@
 .playlist {
-	background: #0a0a0a;
-	transition: all .3s;
-	width: 0;
+	width: 350px;
 	opacity: 0;
+	right: -50px;
 	visibility: hidden;
+	border-left: 1px solid #222;
+	background: rgba( 0, 0, 0, .9 );
+	transition-duration: .3s;
+	transition-property: right, opacity, visibility;
 
-	&.showing {
-		visibility: visible;
-		opacity: 1;
-	}
 	&.show {
-		transition: none;
-	}
-	> * > .content {
-		position: absolute;
-		left: 4px;
+		opacity: 1;
+		visibility: visible;
 		right: 0;
+	}
+	> .content {
 		height: 100%;
 	}
 	input[type="file"] {
 		display: none;
 	}
 	.extendWidth {
-		position: relative;
-		z-index: 1;
-		display: inline-block;
-		float: left;
-		width: 4px;
-		height: 100%;
-		background: #666;
-		
-		&:hover, &.hover {
-			background: #aaa;
-		}
-		&:after {
-			content: "";
-			position: absolute;
-			left: -7px;
-			right: -7px;
-			height: 100%;
-		}
+		position: absolute;
+		width: 16px;
+		left: -8px;
+		top: 0;
+		bottom: 0;
 	}
 }

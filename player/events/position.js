@@ -3,7 +3,7 @@
 (function() {
 
 // Change the currentTime by using the long slider.
-dom.jqPlayerSliderCurrentTime.change( function() {
+dom.ctrlSliderCurrentTime.change( function() {
 	if ( !api.video.isStopped() ) {
 		var val = this.value * api.video.duration();
 		playerUI.currentTime( val );
@@ -12,8 +12,8 @@ dom.jqPlayerSliderCurrentTime.change( function() {
 });
 
 // Switch between showing the duration or the remaining time.
-dom.jqPlayerTimeText.click( function() {
-	dom.jqPlayerTimeText.toggleClass( "remaining" );
+dom.ctrlTimeText.click( function() {
+	dom.ctrlTimeText.toggleClass( "remaining" );
 });
 
 function pos( p ) {

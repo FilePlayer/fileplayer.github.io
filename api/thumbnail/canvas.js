@@ -4,9 +4,9 @@
 
 var
 	that,
-	jqThumbnail = dom.jqPlayerThumbnail,
-	elVideo = dom.jqPlayerThumbnailVideo[ 0 ],
-	jqCanvas = dom.jqPlayerThumbnailCanvas,
+	jqThumbnail = dom.ctrlThumbnail,
+	elVideo = dom.ctrlThumbnailVideo[ 0 ],
+	jqCanvas = dom.ctrlThumbnailCanvas,
 	elCanvas = jqCanvas[ 0 ],
 
 	canvasCtx = elCanvas.getContext( "2d" ),

@@ -6,9 +6,9 @@ var
 	playModes = [ false, true, "loopOne", "loopAll" ]
 ;
 
-dom.jqPlaylistShuffle.click( api.playlist.shuffle );
+dom.playlistShuffleBtn.click( api.playlist.shuffle );
 
-dom.jqPlaylistRepeat.click( function() {
+dom.playlistRepeatBtn.click( function() {
 	api.playlist.playingMode( playModes[
 		( 1 + $.inArray( api.playlist.playingMode(), playModes ) ) % playModes.length
 	]);
@@ -19,7 +19,7 @@ api.keyboard
 	.shortcut( "n", api.playlist.next )
 ;
 
-dom.jqPlayerPrevBtn.click( api.playlist.prev );
-dom.jqPlayerNextBtn.click( api.playlist.next );
+dom.ctrlPrevBtn.click( api.playlist.prev );
+dom.ctrlNextBtn.click( api.playlist.next );
 
 })();

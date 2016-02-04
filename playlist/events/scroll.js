@@ -6,9 +6,9 @@ var
 	timeoutId
 ;
 
-dom.jqPlaylist
+dom.playlist
 	.mouseenter( function() {
-		dom.jqPlaylistList.stop();
+		dom.playlistList.stop();
 		clearTimeout( timeoutId );
 	})
 	.mouseleave( function() {

@@ -3,88 +3,101 @@
 (function() {
 
 window.dom = {
-	jqWindow: $( window ),
-	jqDoc: $( document ),
-	jqBody: $( document.body ),
-	jqTitle: $( "title" ),
+	window: $( window ),
+	doc: $( document ),
+	body: $( document.body ),
+	title: $( "title" ),
 
-	// Player
-	jqPlayer: $( ".player" ),
-	jqPlayerCtrl: $( ".ctrl" ),
-		// Screen
-		jqPlayerScreen: $( ".screen" ),
-		jqPlayerImage: $( ".screen .image" ),
-		jqPlayerVideo: $( ".screen video" ),
-		jqPlayerCanvas: $( ".screen canvas" ),
-		jqPlayerTitle: $( ".screen .filename" ),
-		jqPlayerTitleName: $( ".screen .filename span" ),
-		jqPlayerShortcutDesc: $( ".screen .shortcutDesc" ),
-		jqPlayerCue: $( ".screen .cues > *" ),
-		// Subtitles
-		jqPlayerSubtitlesBtn: $( ".ctrl .btn.subtitles" ),
-		jqPlayerSubtitlesIcon: $( ".ctrl .subtitles .fa" ),
-		jqPlayerSubtitlesToggle: $( ".ctrl .subtitles .slidebutton" ),
-		jqPlayerSubtitlesCheckbox: $( ".ctrl .subtitles input" ),
-		jqPlayerSubtitlesList: $( ".ctrl .subtitles ul" ),
-		// Play/pause/stop/prev/next
-		jqPlayerOpenBtn: $( ".ctrl .open" ),
-		jqPlayerPlayBtn: $( ".ctrl .play" ),
-		jqPlayerStopBtn: $( ".ctrl .stop" ),
-		jqPlayerPrevBtn: $( ".ctrl .prev" ),
-		jqPlayerNextBtn: $( ".ctrl .next" ),
-		// Volume
-		jqPlayerVolumeIcon: $( ".ctrl .volume .fa" ),
-		jqPlayerVolumeSlider: $( ".ctrl .volume .cuteslider" ),
-		// Visualisations
-		jqPlayerVisuBtn: $( ".ctrl .btn.visu" ),
-		jqPlayerVisuIcon: $( ".ctrl .visu .fa" ),
-		jqPlayerVisuToggle: $( ".ctrl .visu .slidebutton" ),
-		jqPlayerVisuCheckbox: $( ".ctrl .visu input" ),
-		jqPlayerVisuList: $( ".ctrl .visu ul" ),
-		// Opacity
-		jqPlayerOpacityIcon: $( ".ctrl .opacity > .fa" ),
-		jqPlayerOpacitySlider: $( ".ctrl .opacity .cuteslider" ),
-		jqPlayerOpacityValue: $( ".ctrl .opacity .val" ),
-		// Fullscreen
-		jqPlayerFullscreenBtn: $( ".ctrl .btn.fullscreen" ),
-		// CurrentTime
-		jqPlayerSliderCurrentTime: $( ".ctrl .cuteslider.position" ),
-			// Thumbnail
-			jqPlayerThumbnail: $( ".player .thumbnail" ),
-			jqPlayerThumbnailVideo: $( ".player .thumbnail video" ),
-			jqPlayerThumbnailCanvas: $( ".player .thumbnail canvas" ),
-			// Texts
-			jqPlayerTimeText: $( ".player .txt.position" ),
-			jqPlayerTimeCurrent: $( ".player .position .current" ),
-			jqPlayerTimeRemaining: $( ".player .position .remaining" ),
-			jqPlayerTimeDuration: $( ".player .position .duration" ),
-		// Playlist toggle button
-		jqPlaylistToggleBtn: $( ".ctrl .btn-playlist" ),
+	// Main
+	fileplayer: $( ".fileplayer" ),
+
+	// Screen
+	screen: $( ".screen" ),
+
+		// Image
+		screenImage: $( ".screen .image" ),
+			screenVideo: $( ".screen video" ),
+			screenCanvas: $( ".screen canvas" ),
+		
+		// Filename, subtitle's cues, shortcut description
+		screenFilename: $( ".screen .filename" ),
+		screenFilenameText: $( ".screen .filename span" ),
+		screenShortcutText: $( ".screen .shortcutDesc" ),
+		screenCue: $( ".screen .cues > *" ),
 
 	// Playlist
-	jqPlaylist: $( ".playlist" ),
-		jqPlaylistExtendWidth: $( ".playlist .extendWidth" ),
-		jqPlaylistContent: $( ".playlist .content" ),
-		jqPlaylistList: $( ".playlist .list" ),
-		jqPlaylistInputFile: $( ".playlist input[type='file']" ),
+	playlist: $( ".playlist" ),
+		playlistExtendWidth: $( ".playlist .extendWidth" ),
+		playlistContent: $( ".playlist .content" ),
+		playlistList: $( ".playlist .list" ),
+		playlistInputFile: $( ".playlist input[type='file']" ),
+
 		// Nav
-		jqPlaylistNav: $( ".playlist nav" ),
-			jqPlaylistNavIndex: $( ".playlist nav .current" ),
-			jqPlaylistNavTotal: $( ".playlist nav .total" ),
-			jqPlaylistShuffle: $( ".playlist nav .shuffle" ),
-			jqPlaylistRepeat: $( ".playlist nav .repeat" ),
-			jqPlaylistClose: $( ".playlist nav .close" )
+		playlistNav: $( ".playlist nav" ),
+			playlistNavIndex: $( ".playlist nav .current" ),
+			playlistNavTotal: $( ".playlist nav .total" ),
+			playlistShuffleBtn: $( ".playlist nav .shuffle" ),
+			playlistRepeatBtn: $( ".playlist nav .repeat" ),
+			playlistCloseBtn: $( ".playlist nav .close" ),
+
+	// ctrl
+	ctrl: $( ".ctrl" ),
+
+		// Slider position
+			// CurrentTime
+			ctrlSliderCurrentTime: $( ".ctrl .cuteslider.position" ),
+			// Thumbnail
+			ctrlThumbnail: $( ".ctrl .thumbnail" ),
+			ctrlThumbnailVideo: $( ".ctrl .thumbnail video" ),
+			ctrlThumbnailCanvas: $( ".ctrl .thumbnail canvas" ),
+
+		// Left
+			// Open, stop, prev, play/pause, next
+			ctrlOpenBtn: $( ".ctrl .open" ),
+			ctrlPlayBtn: $( ".ctrl .play" ),
+			ctrlStopBtn: $( ".ctrl .stop" ),
+			ctrlPrevBtn: $( ".ctrl .prev" ),
+			ctrlNextBtn: $( ".ctrl .next" ),
+			// Volume
+			ctrlVolumeIcon: $( ".ctrl .volume .fa" ),
+			ctrlVolumeSlider: $( ".ctrl .volume .cuteslider" ),
+			// Time
+			ctrlTimeText: $( ".ctrl .txt.position" ),
+			ctrlTimeCurrent: $( ".ctrl .position .current" ),
+			ctrlTimeRemaining: $( ".ctrl .position .remaining" ),
+			ctrlTimeDuration: $( ".ctrl .position .duration" ),
+
+		// Right
+			// Visualisations
+			ctrlVisualBtn: $( ".ctrl .btn.visu" ),
+			ctrlVisualIcon: $( ".ctrl .visu .fa" ),
+			ctrlVisualToggle: $( ".ctrl .visu .slidebutton" ),
+			ctrlVisualCheckbox: $( ".ctrl .visu input" ),
+			ctrlVisualList: $( ".ctrl .visu ul" ),
+			// Brightness
+			ctrlBrightnessIcon: $( ".ctrl .opacity > .fa" ),
+			ctrlBrightnessSlider: $( ".ctrl .opacity .cuteslider" ),
+			ctrlBrightnessValue: $( ".ctrl .opacity .val" ),
+			// Subtitles
+			ctrlSubtitlesBtn: $( ".ctrl .btn.subtitles" ),
+			ctrlSubtitlesIcon: $( ".ctrl .subtitles .fa" ),
+			ctrlSubtitlesToggle: $( ".ctrl .subtitles .slidebutton" ),
+			ctrlSubtitlesCheckbox: $( ".ctrl .subtitles input" ),
+			ctrlSubtitlesList: $( ".ctrl .subtitles ul" ),
+			// Playlist toggle button
+			ctrlPlaylistBtn: $( ".ctrl .btn-playlist" ),
+			// Fullscreen
+			ctrlFullscreenBtn: $( ".ctrl .btn.fullscreen" )
 };
 
 // Make sure all the selections above works.
-for ( var key in window.dom ) {
-	if ( window.dom[ key ].length === 0 ) {
+for ( var key in dom ) {
+	if ( dom[ key ].length === 0 ) {
 		console.error( "dom." + key + " is empty." );
 	}
 }
 
 // This can be considered like NULL for jQuery.
-// Useful for api.playlist.
-dom.jqEmpty = $();
+dom.empty = $();
 
 })();

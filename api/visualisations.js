@@ -10,7 +10,7 @@ var
 	selectedVisu = $.noop,
 	analyser = api.audio.analyser,
 	ctxAudio = api.audio.ctx,
-	canvas = dom.jqPlayerCanvas[ 0 ],
+	canvas = dom.screenCanvas[ 0 ],
 	ctxCanvas = canvas.getContext( "2d" ),
 	enable = false,
 	frameInfo = {

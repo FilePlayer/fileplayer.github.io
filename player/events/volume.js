@@ -2,9 +2,9 @@
 
 (function() {
 
-dom.jqPlayerVolumeIcon.click( api.audio.muteToggle );
+dom.ctrlVolumeIcon.click( api.audio.muteToggle );
 
-dom.jqPlayerVolumeSlider.change( function() {
+dom.ctrlVolumeSlider.change( function() {
 	api.audio.volume( this.value );
 });
 
@@ -20,7 +20,7 @@ api.keyboard
 ;
 
 // Control the volume with the vertical mouse scroll.
-dom.jqPlayerScreen.on( "wheel", function( e ) {
+dom.screen.on( "wheel", function( e ) {
 	vol( e.originalEvent.deltaY < 0
 		? "+=.05"
 		: "-=.05"

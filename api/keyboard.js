@@ -51,7 +51,7 @@ api.keyboard = that = {
 	}
 };
 
-dom.jqDoc.keydown( function( e ) {
+dom.doc.keydown( function( e ) {
 	for ( var sc, i = 0; sc = shortcuts[ i ]; ++i ) {
 		if (
 			sc.key === e.keyCode &&

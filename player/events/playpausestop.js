@@ -2,8 +2,8 @@
 
 (function() {
 
-dom.jqPlayerStopBtn.click( api.video.stop );
-dom.jqPlayerPlayBtn.click( api.video.playToggle );
+dom.ctrlStopBtn.click( api.video.stop );
+dom.ctrlPlayBtn.click( api.video.playToggle );
 
 api.keyboard
 	.shortcut( "s", api.video.stop )

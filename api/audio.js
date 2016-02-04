@@ -10,7 +10,7 @@ var
 	gainNode,
 	volume,
 	volSave,
-	video = dom.jqPlayerVideo[ 0 ]
+	video = dom.screenVideo[ 0 ]
 ;
 
 function vol( v ) {
@@ -30,7 +30,7 @@ if ( window.AudioContext ) {
 	analyser = ctx.createAnalyser();
 	gainNode = ctx.createGain();
 	gainNode.gain.value = 1;
-	src = ctx.createMediaElementSource( dom.jqPlayerVideo[ 0 ] );
+	src = ctx.createMediaElementSource( video );
 	src.connect( analyser );
 	analyser.connect( gainNode );
 	gainNode.connect( ctx.destination );

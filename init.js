@@ -37,10 +37,11 @@ if ( plMode !== "loopAll" ) {
 }
 
 // Initialisation:
+dom.doc.trigger( "resize" );
+
 playerUI.textsShowing = false;
 
 api.video
-	.resizeUpdate()
 	.opacity( opacity )
 ;
 
@@ -62,8 +63,8 @@ api.playlist
 ;
 
 playlistUI
-	.showToggle( plShow )
 	.width( plWidth )
+	.showToggle( plShow )
 	.shuffle( false )
 	.updateList()
 	.updateIndex()

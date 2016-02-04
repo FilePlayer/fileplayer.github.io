@@ -3,12 +3,12 @@
 (function() {
 
 // <input type="file" multiple/>
-dom.jqPlaylistInputFile.change( function() {
-	playlistUI.dragover( dom.jqPlayer );
+dom.playlistInputFile.change( function() {
+	playlistUI.dragover( dom.screen );
 	api.playlist.addFiles( this.files, true );
 });
 
-dom.jqPlayerOpenBtn.click( api.playlist.dialogueFiles );
+dom.ctrlOpenBtn.click( api.playlist.dialogueFiles );
 
 // This shortcut doesn't work on Firefox (security purpose).
 api.keyboard.shortcut( "ctrl+o", api.playlist.dialogueFiles );
@@ -35,7 +35,7 @@ function dragend() {
 	dragOutside = false;
 }
 
-dom.jqBody.on({
+dom.body.on({
 
 	// When we are dragging over the player (not the playlist).
 	dragover: function( e ) {
@@ -54,20 +54,20 @@ dom.jqBody.on({
 			dragY = y;
 
 			// Drag on the player.
-			if ( !playlistUI.isShow() || x < dom.jqWindow.width() - playlistUI.width() ) {
+			if ( !playlistUI.isShow() || x < dom.window.width() - playlistUI.width() ) {
 				autoplay = true;
-				playlistUI.dragover( dom.jqPlayer );
+				playlistUI.dragover( dom.screen );
 
 			// Drag on the playlist.
 			} else {
 				autoplay = false;
-				listY = dom.jqPlaylistList.position().top;
+				listY = dom.playlistList.position().top;
 				if ( y >= listY ) {
-					y = y - listY + dom.jqPlaylistList[ 0 ].scrollTop;
+					y = y - listY + dom.playlistList[ 0 ].scrollTop;
 					jq = playlistUI.jqFiles.eq( Math.round( y / playlistUI.fileHeight ) );
 					playlistUI
 						.updateFileHeight()
-						.dragover( jq[ 0 ] ? jq[ 0 ].jqThis : dom.jqPlaylistList )
+						.dragover( jq[ 0 ] ? jq[ 0 ].jqThis : dom.playlistList )
 					;
 				}
 			}
@@ -104,7 +104,7 @@ dom.jqBody.on({
 		// If we drag out something directly out the window
 		// the dragover event don't have the time to be fired.
 		dragOutside = true;
-		playlistUI.dragover( dom.jqPlaylistList );
+		playlistUI.dragover( dom.playlistList );
 
 		isDragging = true;
 		jqFileDragging = e.target.jqThis;
@@ -124,7 +124,7 @@ dom.jqBody.on({
 		if ( isDragging ) {
 			dragOutside = true;
 			autoplay = false;
-			playlistUI.dragover( dom.jqPlaylistList );
+			playlistUI.dragover( dom.playlistList );
 		}
 	},
 

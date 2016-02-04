@@ -1,18 +1,3 @@
-.fileplayer {
-	display: table;
-	table-layout: fixed;
-	width: 100%;
-	height: 100%;
-
-	> * {
-		display: table-cell;
-		vertical-align: top;
-
-		/* Needed for Firefox. */
-		height: 100%;
-	}
-}
-
 .ew-resize {
 	cursor: ew-resize;
 }
@@ -37,14 +22,4 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-}
-
-/*
-	These wrapper is needed for IE11.
-	Can't use a direct absolute child inside a table-cell element.
-*/
-.tableCellWrapper {
-	position: relative;
-	width: 100%;
-	height: 100%;
 }
