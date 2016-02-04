@@ -22,7 +22,7 @@ var
 	brightness = cookies.brightness,
 	plMode = cookies.playlistmode,
 	plShow = cookies.playlistshow === "true",
-	plWidth = cookies.playlistwidth || 350
+	plWidth = cookies.playlistwidth || 25
 ;
 if ( vol === undefined ) {
 	vol = 1;

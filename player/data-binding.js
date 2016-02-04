@@ -14,11 +14,10 @@ dom.doc.on(
 );
 
 dom.window.resize( function() {
-	api.video.windowWidth = dom.window.width();
-	api.screen
-		.resize()
-		.resizeFilename()
-	;
+	// Be careful with changing this order:
+	api.screen.resize();
+	playlistUI.resize();
+	api.screen.resizeFilename();
 	api.visualisations.resize();
 	playerUI.subtitlesResizeUpdate();
 });
@@ -46,7 +45,6 @@ dom.screenVideo.on( {
 		playerUI.duration( this.duration );
 	},
 	timeupdate: function() {
-		lg( "ON: timeupdate" );
 		playerUI.currentTime( this.currentTime );
 	},
 	ratechange: function() {

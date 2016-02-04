@@ -54,7 +54,7 @@ dom.body.on({
 			dragY = y;
 
 			// Drag on the player.
-			if ( !playlistUI.isShow() || x < dom.window.width() - playlistUI.width() ) {
+			if ( !playlistUI.isShow() || x < ( 1 - playlistUI.width() / 100 ) * api.screen.width ) {
 				autoplay = true;
 				playlistUI.dragover( dom.screen );
 

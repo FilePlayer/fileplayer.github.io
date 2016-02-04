@@ -29,8 +29,7 @@ dom.doc
 	.mousemove( function( e ) {
 		if ( mousedown ) {
 			playlistUI.width(
-				dom.doc.width() -
-				e.originalEvent.pageX
+				100 - e.originalEvent.pageX / api.screen.width * 100
 			);
 		}
 	})

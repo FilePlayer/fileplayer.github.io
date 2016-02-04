@@ -23,7 +23,7 @@ api.screen = that = {
 	resizeFilename: function() {
 		dom.screenFilename.css(
 			"width", playlistUI.isShow()
-			? api.video.windowWidth - playlistUI.width() + "px"
+			? 100 - playlistUI.width() + "%"
 			: "100%"
 		);
 		return that;

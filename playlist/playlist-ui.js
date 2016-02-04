@@ -6,13 +6,11 @@ var
 	that,
 	width,
 	showing,
-	showTimeout,
-	hideTimeout,
 	detachTimeout,
 	jqToggleBtn = dom.ctrlPlaylistBtn,
 	jqPlaylist = dom.playlist,
 	jqList = dom.playlistList,
-	minWidth = 150 //parseFloat( jqPlaylist.css( "minWidth" ) )
+	minWidthPx = parseFloat( jqPlaylist.css( "minWidth" ) )
 ;
 
 window.playlistUI = that = {
@@ -101,7 +99,6 @@ window.playlistUI = that = {
 		return showing;
 	},
 	show: function() {
-		clearTimeout( hideTimeout );
 		jqPlaylist.addClass( "show" );
 		jqToggleBtn[ 0 ].dataset.tooltipContent = "Hide playlist";
 		showing = true;
@@ -110,7 +107,6 @@ window.playlistUI = that = {
 		return that;
 	},
 	hide: function() {
-		clearTimeout( showTimeout );
 		jqPlaylist.removeClass( "show" );
 		jqToggleBtn[ 0 ].dataset.tooltipContent = "Show playlist";
 		showing = false;
@@ -130,10 +126,17 @@ window.playlistUI = that = {
 		if ( arguments.length === 0 ) {
 			return width;
 		}
-		width = w = Math.max( w, minWidth );
-		jqPlaylist.css( "width", w );
-		api.screen.resizeFilename();
+		width = w;
+		jqPlaylist.css( "width", w + "%" );
+		that.resize();
+		if ( showing ) {
+			api.screen.resizeFilename();
+		}
 		Cookies.set( "playlistwidth", w, { expires: 365 } );
+		return that;
+	},
+	resize: function() {
+		width = jqPlaylist.width() / api.screen.width * 100;
 		return that;
 	},
 
@@ -174,7 +177,7 @@ window.playlistUI = that = {
 		if ( !filesWrapper.jquery ) {
 			$.each( filesWrapper, function() {
 				html +=
-					"<a class='file' href='#' draggable='true'>" +
+					"<a class='file' href='/' draggable='true'>" +
 						"<div class='content textOverflow'>"+
 							"<i class='fa fa-fw fa-" +
 								( this.type === "audio" ? "music" : "film" ) +
