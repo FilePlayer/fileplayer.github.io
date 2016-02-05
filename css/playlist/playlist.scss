@@ -1,19 +1,19 @@
 .playlist {
 	width: 350px;
-	opacity: 0;
-	right: -50px;
 	max-width: 100%;
 	min-width: 175px;
-	visibility: hidden;
 	border-left: 1px solid #222;
 	background: rgba( 0, 0, 0, .9 );
 	transition-duration: .3s;
 	transition-property: right, opacity, visibility;
+	right: -50px;
+	opacity: 0;
+	visibility: hidden;
 
 	&.show {
+		right: 0;
 		opacity: 1;
 		visibility: visible;
-		right: 0;
 	}
 	> .content {
 		height: 100%;

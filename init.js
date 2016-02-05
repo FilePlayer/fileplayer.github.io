@@ -15,6 +15,9 @@ function rmChild( el ) {
 }
 rmChild( document.body );
 
+// Force the window resize event to set the width of the window.
+dom.doc.trigger( "resize" );
+
 // Cookies:
 var
 	cookies = Cookies.get(),
@@ -22,7 +25,7 @@ var
 	brightness = cookies.brightness,
 	plMode = cookies.playlistmode,
 	plShow = cookies.playlistshow === "true",
-	plWidth = cookies.playlistwidth || 25
+	plWidth = cookies.playlistwidth || ( dom.playlist.width() / api.screen.width * 100 )
 ;
 if ( vol === undefined ) {
 	vol = 1;
@@ -37,8 +40,6 @@ if ( plMode !== "loopAll" ) {
 }
 
 // Initialisation:
-dom.doc.trigger( "resize" );
-
 playerUI.textsShowing = false;
 
 api.screen
