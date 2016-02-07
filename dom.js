@@ -24,6 +24,7 @@ window.dom = {
 		screenFilenameText: $( ".screen .filename span" ),
 		screenShortcutText: $( ".screen .shortcutDesc" ),
 		screenCue: $( ".screen .cues > *" ),
+		numVersion: $( ".screen .num" ),
 
 	// Playlist
 	playlist: $( ".playlist" ),

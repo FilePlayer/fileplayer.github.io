@@ -25,6 +25,11 @@
 	color: #aaa;
 	background: linear-gradient( to bottom, transparent, #000 22% );
 	cursor: default;
+	opacity: 0;
+
+	.fileplayer.ready & {
+		opacity: 1;
+	}
 
 	* {
 		vertical-align: middle;
