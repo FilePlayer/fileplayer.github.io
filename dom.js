@@ -79,6 +79,10 @@ window.dom = {
 			ctrlBrightnessIcon: $( ".ctrl .brightness > .fa" ),
 			ctrlBrightnessSlider: $( ".ctrl .brightness .cuteslider" ),
 			ctrlBrightnessValue: $( ".ctrl .brightness .val" ),
+			// Speed
+			ctrlSpeedIcon: $( ".ctrl .speed > .fa" ),
+			ctrlSpeedSlider: $( ".ctrl .speed .cuteslider" ),
+			ctrlSpeedValue: $( ".ctrl .speed .val" ),
 			// Subtitles
 			ctrlSubtitlesBtn: $( ".ctrl .btn.subtitles" ),
 			ctrlSubtitlesIcon: $( ".ctrl .subtitles .fa" ),

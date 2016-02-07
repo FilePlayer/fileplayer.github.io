@@ -35,7 +35,7 @@
 		vertical-align: middle;
 		
 		+ .btn {
-			margin-left: 5px;
+			margin-left: 10px;
 		}
 	}
 	.bottom {
@@ -78,19 +78,31 @@
 			opacity: 1;
 		}
 	}
-	.brightness .menu {
-		right: -62px;
-
+	.speed {
+		.menu {
+			width: 200px;
+			right: -80px;
+		}
 		.cuteslider {
-			width: 90px;
+			width: 137px;
+			height: 14px;
+			margin: 0 .8em 0 .7em;
+		}
+	}
+	.brightness {
+		> .fa {
+			width: .9em;
+			text-align: center;
+		}
+		.cuteslider {
+			width: 83px;
 			height: 14px;
 			margin: 0 .9em 0 .7em;
 		}
 	}
 	.visu {
-		.menu {
-			min-width: 140px;
-			right: -57px;
+		.fa {
+			margin-right: -3px;
 		}
 		.slidebutton {
 			float: right;

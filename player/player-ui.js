@@ -158,7 +158,10 @@ window.playerUI = that = {
 		return that;
 	},
 	speed: function( rate ) {
-		return that.actionDesc( "Speed : " + rate.toFixed( 2 ) + "x" );
+		var val = rate.toFixed( 2 ) + "x";
+		dom.ctrlSpeedSlider.element().val( rate );
+		dom.ctrlSpeedValue.text( val );
+		return that.actionDesc( "Speed : " + val );
 	},
 	brightness: function( op ) {
 		dom.screenImage.css( "opacity", op );

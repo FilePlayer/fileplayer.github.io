@@ -74,22 +74,22 @@
 		</span>
 		<div class="bottom">
 			<div>
-				<i class="btn open fa fa-fw fa-folder-open"
+				<i class="btn open fa fa-folder-open"
 					data-jquery-element="tooltip"
 					data-tooltip-content="Open files"></i>
-				<i class="btn stop fa fa-fw fa-stop"
+				<i class="btn stop fa fa-stop"
 					data-jquery-element="tooltip"
 					data-tooltip-content="Stop"></i>
-				<i class="btn prev fa fa-fw fa-fast-backward"
+				<i class="btn prev fa fa-fast-backward"
 					data-jquery-element="tooltip"
 					data-tooltip-content="Previous"></i>
-				<i class="btn play fa fa-fw"
+				<i class="btn play fa"
 					data-jquery-element="tooltip"></i>
-				<i class="btn next fa fa-fw fa-fast-forward"
+				<i class="btn next fa fa-fast-forward"
 					data-jquery-element="tooltip"
 					data-tooltip-content="Next"></i>
 				<span class="btn volume">
-					<i class="fa fa-fw"
+					<i class="fa"
 						data-jquery-element="tooltip"></i>
 					<span data-jquery-element="tooltip">
 						<input type="range"
@@ -105,7 +105,7 @@
 			</div>
 			<div class="right">
 				<span class="btn visu">
-					<i class="fa fa-fw fa-align-center fa-rotate-270"></i>
+					<i class="fa fa-align-center fa-rotate-270"></i>
 					<div class="menu">
 						<div class="content">
 							<div class="header">
@@ -117,8 +117,39 @@
 						</div>
 					</div>
 				</span>
+				<span class="btn subtitles">
+					<i class="fa fa-cc"></i>
+					<div class="menu">
+						<div class="content">
+							<div class="header">
+								<span class="title">Subtitles</span>
+								<input type="checkbox"
+									data-jquery-element="slidebutton"/>
+								</div>
+							<ul></ul>
+						</div>
+					</div>
+				</span>
+				<span class="btn speed">
+					<i class="fa fa-tachometer"></i>
+					<div class="menu">
+						<div class="content">
+							<div class="header">
+								<span class="title">Speed : </span>
+								<b class="val"></b>
+							</div>
+							<ul><li>
+								<code>0.5</code>
+								<input type="range"
+									data-jquery-element="cuteslider"
+									min="0.5" max="4" step=".01"/>
+								<code>4</code>
+							</li></ul>
+						</div>
+					</div>
+				</span>
 				<span class="btn brightness">
-					<i class="fa fa-fw"></i>
+					<i class="fa"></i>
 					<div class="menu">
 						<div class="content">
 							<div class="header">
@@ -135,22 +166,9 @@
 						</div>
 					</div>
 				</span>
-				<span class="btn subtitles">
-					<i class="fa fa-fw fa-cc"></i>
-					<div class="menu">
-						<div class="content">
-							<div class="header">
-								<span class="title">Subtitles</span>
-								<input type="checkbox"
-									data-jquery-element="slidebutton"/>
-								</div>
-							<ul></ul>
-						</div>
-					</div>
-				</span>
-				<i class="btn btn-playlist fa fa-fw fa-list"
+				<i class="btn btn-playlist fa fa-list"
 					data-jquery-element="tooltip"></i>
-				<i class="btn fullscreen fa fa-fw"
+				<i class="btn fullscreen fa"
 					data-jquery-element="tooltip"></i>
 			</div>
 		</div>

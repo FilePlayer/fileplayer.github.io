@@ -3,31 +3,47 @@
 (function() {
 
 var
-	spdLvlCurrent,
 	spdLvls = [
-		 .02, .03, .06, .12,
-		 .25, .33, .50, .67,
-		 1, 1.25, 1.5, 2, 3,
-		 4, 8, 16, 32, 64
-	]
+		 .02, .03, .06, .12, .25, .33,
+		 .5, .67, 1, 1.25, 1.5, 2, 3, 4,
+		 8, 16, 32, 64
+	],
+	len = spdLvls.length
 ;
 
-spdLvls.some( function( n, i ) {
-	if ( n === 1 ) {
-		spdLvlCurrent = i;
-		return true;
-	}
-});
+function speed( dir ) {
+	var
+		a, b,
+		newSpd,
+		i = 1,
+		spd = api.video.playbackRate()
+	;
 
-function speed( lvl ) {
-	spdLvlCurrent = utils.range( 0, lvl, spdLvls.length - 1, spdLvlCurrent );
-	api.video.playbackRate( spdLvls[ spdLvlCurrent ] )
+	for ( ; i < len; ++i ) {
+		if ( spd <= spdLvls[ i ] ) {
+			newSpd = spdLvls[ dir < 0
+				? i - 1
+				: i + +( spd === spdLvls[ i ] )
+			];
+			break;
+		}
+	}
+	api.video.playbackRate( newSpd || spd );
 }
 
-// Controls the playbackRate.
+dom.ctrlSpeedSlider.change( function() {
+	api.video.playbackRate( this.value );
+});
+
+// Reset the speed by clicking on the icon.
+dom.ctrlSpeedIcon.click( function() {
+	api.video.playbackRate( 1 );
+});
+
+// + and - on the keyboard
 api.keyboard
-	.shortcut( "minus", speed.bind( null, "-=1" ) )
-	.shortcut( "plus",  speed.bind( null, "+=1" ) )
+	.shortcut( "minus", speed.bind( null, -1 ) )
+	.shortcut( "plus",  speed.bind( null, +1 ) )
 ;
 
 })();

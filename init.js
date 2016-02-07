@@ -50,6 +50,12 @@ api.audio
 	.volume( vol )
 ;
 
+api.video
+	// Force the change (data-binding).
+	.playbackRate( .5 )
+	.playbackRate( 1 )
+;
+
 playerUI
 	.pause()
 	.currentTime( 0 )
@@ -74,6 +80,9 @@ playlistUI
 
 api.visualisations.select( "Oscilloscope" );
 
-playerUI.textsShowing = true;
+// The onratechange event is fired after this line.
+setTimeout( function() {
+	playerUI.textsShowing = true;
+}, 100 );
 
 })();
