@@ -7,6 +7,9 @@ $backLightWidth: 35%;
 }
 
 .screen {
+	.fileplayer.playing.video.ctrlHidden & {
+		cursor: none;
+	}
 	.placeholder {
 		position: absolute;
 		top: 50%;
@@ -19,10 +22,12 @@ $backLightWidth: 35%;
 		opacity: 0;
 		transition: opacity .2s;
 
+		.fileplayer.playing & {
+			display: none;
+		}
 		.fileplayer.ready & {
 			opacity: 1;
 		}
-
 		.title {
 			height: 100%;
 			position: relative;
@@ -70,8 +75,21 @@ $backLightWidth: 35%;
 	.image {
 		transition: opacity .5s;
 	}
+	video {
+		transition: opacity .5s;
+		background: #000;
+		opacity: 0;
+
+		.playing & {
+			opacity: 1;
+		}
+	}
 	canvas {
 		display: none;
+
+		.fileplayer.playing.audio & {
+			display: block;
+		}
 	}
 	.filename {
 		display: none;
@@ -96,16 +114,3 @@ $backLightWidth: 35%;
 		}
 	}
 }
-
-.fileplayer.playing.video.ctrlHidden .screen {
-	cursor: none;
-}
-
-.fileplayer.playing.audio .screen canvas {
-	display: block;
-}
-
-.fileplayer.playing .screen .placeholder {
-	display: none;
-}
-

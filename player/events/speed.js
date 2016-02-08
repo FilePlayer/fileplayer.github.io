@@ -40,7 +40,7 @@ dom.ctrlSpeedIcon.click( function() {
 	api.video.playbackRate( 1 );
 });
 
-// + and - on the keyboard
+// + and - on the keyboard.
 api.keyboard
 	.shortcut( "minus", speed.bind( null, -1 ) )
 	.shortcut( "plus",  speed.bind( null, +1 ) )
