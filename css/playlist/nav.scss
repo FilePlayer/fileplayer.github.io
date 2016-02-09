@@ -26,15 +26,16 @@
 		float: right;
 	}
 	.close {
-		margin-left: 1em;
+		margin-left: .1em;
+		margin-top: -.16em;
+		font-size: 2em;
 	}
 	.shuffle {
 		margin-right: .2em;
-		/* because fa-random is bigger than fa-retweet */
-		font-size: 16px;
 	}
 	.repeat {
 		position: relative;
+		margin-top: -2px;
 
 		* {
 			display: none;
