@@ -4,7 +4,6 @@
 
 var
 	that,
-	oldSource,
 	isStopped = true,
 	isLoaded = false,
 	isLoading = false,
@@ -16,18 +15,11 @@ var
 api.video = that = {
 
 	// Manipulating the src="" attribute.
-	unLoad: function() {
-		isLoaded = false;
-		jqVideo.attr( "src", "" );
-		if ( api.playlist.selectedFile().mediaType === "video" ) {
-			jqVideoThumb.attr( "src", "" );
-		}
-		return that;
-	},
 	load: function( url ) {
-		oldSource = url;
 		jqVideo.attr( "src", url );
-		jqVideoThumb.attr( "src", api.playlist.selectedFile().mediaType === "video" ? url : "" );
+		if ( api.playlist.selectedFile().mediaType === "video" ) {
+			jqVideoThumb.attr( "src", url );
+		}
 		isLoading = true;
 		return that;
 	},
@@ -75,8 +67,12 @@ api.video = that = {
 	},
 	stop: function() {
 		if ( !isStopped ) {
+			that
+				.pause()
+				.currentTime( 0 )
+			;
 			isStopped = true;
-			that.unLoad( "" );
+			isLoaded = false;
 			jqVideo.trigger( "stop" );
 		}
 		return that;
