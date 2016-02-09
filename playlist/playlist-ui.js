@@ -180,7 +180,7 @@ window.playlistUI = that = {
 					"<a class='file' href='/' draggable='true'>" +
 						"<div class='content textOverflow'>"+
 							"<i class='fa fa-fw fa-" +
-								( this.type === "audio" ? "music" : "film" ) +
+								( this.mediaType === "audio" ? "music" : "film" ) +
 							"'></i>" +
 							"<span>" + this.name + "</span>" +
 						"</div>" +

@@ -19,7 +19,7 @@ api.video = that = {
 	unLoad: function() {
 		isLoaded = false;
 		jqVideo.attr( "src", "" );
-		if ( api.playlist.selectedFile().type === "video" ) {
+		if ( api.playlist.selectedFile().mediaType === "video" ) {
 			jqVideoThumb.attr( "src", "" );
 		}
 		return that;
@@ -27,7 +27,7 @@ api.video = that = {
 	load: function( url ) {
 		oldSource = url;
 		jqVideo.attr( "src", url );
-		jqVideoThumb.attr( "src", api.playlist.selectedFile().type === "video" ? url : "" );
+		jqVideoThumb.attr( "src", api.playlist.selectedFile().mediaType === "video" ? url : "" );
 		isLoading = true;
 		return that;
 	},

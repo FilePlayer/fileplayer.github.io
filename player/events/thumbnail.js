@@ -52,7 +52,7 @@ jqSliderTime
 					"data-tooltip-content",
 					utils.secondsToString( sec )
 				);
-				if ( api.playlist.selectedFile().type === "video" ) {
+				if ( api.playlist.selectedFile().mediaType === "video" ) {
 					loading( true );
 					if ( elVideo.paused ) {
 						elVideo.play();

@@ -93,7 +93,7 @@ api.subtitles = that = {
 				src: blob.url,
 				srclang: "en",
 				label: "Subtitles " + ( tracksLen + 1 ),
-				name: fileWrapper.file.name,
+				name: fileWrapper.dataFile.name,
 			})
 				.appendTo( dom.screenVideo )
 				.on( "load", ( function( len ) {
@@ -111,7 +111,7 @@ api.subtitles = that = {
 
 			// Add file name in subtitles list
 			$( "<li>", {
-				text: fileWrapper.file.name,
+				text: fileWrapper.dataFile.name,
 				"class": "selected"
 			})
 				.appendTo( jqListSubtitles )
@@ -135,7 +135,7 @@ api.subtitles = that = {
 			}
 		};
 
-		reader.readAsText( fileWrapper.file );
+		reader.readAsText( fileWrapper.dataFile );
 
 		return that;
 	},

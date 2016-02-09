@@ -59,7 +59,7 @@ window.playerUI = that = {
 		var file = api.playlist.selectedFile();
 		dom.fileplayer
 			.removeClass( "audio video" )
-			.addClass( "playing " + file.type )
+			.addClass( "playing " + file.mediaType )
 		;
 		dom.screenFilenameText
 			.add( dom.title )

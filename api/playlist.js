@@ -22,34 +22,24 @@ api.playlist = that = {
 		var
 			jqFilesAdded,
 			fMediaWraps = [],
-			fTextWraps = [],
-			extText = "srt-vtt",
-			extMedia = "mp3-mp4-mpeg-ogg-wav-webm-mpg-weba-ogm"
+			fTextWraps = []
 		;
 
 		$.each( files, function() {
 			var
-				name = this.name,
-				ind = name.lastIndexOf( "." ),
-				ext = name.substr( ind + 1 ).toLowerCase(),
-				debug = "[" + this.type + "] [" + ext + "]",
-				fileWrapper = {
-					file: this,
-					extension: ext,
-					name: name.substr( 0, ind ),
-					type: this.type.substr( 0, this.type.indexOf( "/" ) )
-				}
+				fileWrapper = new api.file( this ),
+				ext = fileWrapper.extension,
+				debug = "[" + fileWrapper.dataFile.type + "] [" + ext + "]"
 			;
-
-			if ( extMedia.indexOf( ext ) > -1 ) {
+			lg(fileWrapper)
+			if ( fileWrapper.isMedia ) {
 				fMediaWraps.push( fileWrapper );
-			} else if ( extText.indexOf( ext ) > -1 ) {
+			} else if ( fileWrapper.isText ) {
 				fTextWraps.push( fileWrapper );
 			} else {
 				lg( "DROP: not supported: " + debug );
 				return;
 			}
-
 			lg( "DROP: supported: " + debug );
 		});
 
@@ -115,9 +105,9 @@ api.playlist = that = {
 		} else {
 			var fWrap = elFile.fileWrapper;
 
-			fWrap.url = URL.createObjectURL( fWrap.file );
+			fWrap.createURL();
 			if ( jqFileSelected.length && jqFileSelected[ 0 ] !== elFile ) {
-				URL.revokeObjectURL( jqFileSelected[ 0 ].fileWrapper.url );
+				jqFileSelected[ 0 ].fileWrapper.revokeURL();
 				playlistUI.highlight( jqFileSelected, false );
 			}
 			playlistUI
@@ -125,8 +115,8 @@ api.playlist = that = {
 				.updateIndex()
 			;
 			api.subtitles.disable();
-			if ( fWrap.type !== fileWrapper.type ) {
-				api.visualisations.toggle( fWrap.type === "audio" );
+			if ( fWrap.mediaType !== fileWrapper.mediaType ) {
+				api.visualisations.toggle( fWrap.mediaType === "audio" );
 				fileWrapper = fWrap;
 			}
 			if ( !noScroll ) {
