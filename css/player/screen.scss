@@ -74,15 +74,15 @@ $backLightWidth: 35%;
 	}
 	.image {
 		transition: opacity .5s;
-	}
-	video {
-		transition: opacity .5s;
 		background: #000;
 		opacity: 0;
 
 		.playing & {
 			opacity: 1;
 		}
+	}
+	.brightnessWrapper {
+		transition: opacity .5s;
 	}
 	canvas {
 		display: none;

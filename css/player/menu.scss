@@ -1,8 +1,8 @@
 .ctrl .menu {
 	position: absolute;
 	bottom: 100%;
-	right: -55px;
-	width: 140px;
+	right: -60px;
+	min-width: 140px;
 	padding-bottom: 25px;
 	cursor: default;
 	transition: all .2s;

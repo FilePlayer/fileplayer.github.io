@@ -65,6 +65,9 @@
 		}
 	}
 	.btn.volume {
+		.fa {
+			width: 1em;
+		}
 		.cuteslider {
 			transition: all .25s;
 			margin: 0;
@@ -91,7 +94,7 @@
 	}
 	.brightness {
 		> .fa {
-			width: .9em;
+			width: .7em;
 			text-align: center;
 		}
 		.cuteslider {

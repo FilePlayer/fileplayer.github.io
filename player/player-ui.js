@@ -23,10 +23,6 @@ var
 	// Button: fullscreen.
 	jqBtnFScr = dom.ctrlFullscreenBtn,
 
-	// Button, slider: brightness.
-	jqBrightnessIcon = dom.ctrlBrightnessIcon,
-	jqBrightnessSlider = dom.ctrlBrightnessSlider,
-
 	// Subtitles.
 	currentCue,
 	jqSubtitlesCueParent = dom.screenCue.parent(),
@@ -164,9 +160,9 @@ window.playerUI = that = {
 		return that.actionDesc( "Speed : " + val );
 	},
 	brightness: function( op ) {
-		dom.screenImage.css( "opacity", op );
-		jqBrightnessSlider.element().val( op );
-		jqBrightnessIcon
+		dom.screenBrightness.css( "opacity", op );
+		dom.ctrlBrightnessSlider.element().val( op );
+		dom.ctrlBrightnessIcon
 			.removeClass( "fa-moon-o fa-lightbulb-o" )
 			.addClass( op < .5 ? "fa-moon-o" : "fa-lightbulb-o" )
 		;
