@@ -96,6 +96,13 @@ api.video = that = {
 		);
 		return that;
 	},
+	loop: function( b ) {
+		if ( arguments.length === 0 ) {
+			return video.loop;
+		}
+		video.loop = !!b;
+		return that;
+	},
 
 	// Speed: playbackRate.
 	playbackRate: function( rate ) {

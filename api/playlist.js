@@ -187,30 +187,19 @@ api.playlist = that = {
 			return playMode;
 		}
 		playMode = mode;
+		api.video.loop( mode === "loopOne" );
 		playlistUI.playingMode( mode );
 		Cookies.set( "playlistmode", mode, { expires: 365 } );
 		return that;
 	}
 };
 
-// The videoElement has no "stop" event.
-// But the api.video has a .stop() methode anyway, this methode trigger("stop").
+// What to do at the end of the file.
+// Note: the "loopOne" mode desn't have an end (cf: the loop attribute).
 dom.screenVideo.on( "ended", function() {
-	switch ( playMode ) {
-		case "loopOne" :
-			api.video
-				.currentTime( 0 )
-				.play()
-			;
-			return;
-		case "loopAll" :
-			that.next();
-			return;
-		case true :
-			if ( jqFileSelected.next().length ) {
-				that.next();
-				return;
-			}
+	if ( playMode === "loopAll" || playMode === true && jqFileSelected.next().length ) {
+		that.next();
+		return;
 	}
 	api.video.stop();
 });
