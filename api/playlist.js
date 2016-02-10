@@ -29,9 +29,9 @@ api.playlist = that = {
 			var
 				fileWrapper = new api.file( this ),
 				ext = fileWrapper.extension,
-				debug = "[" + fileWrapper.dataFile.type + "] [" + ext + "]"
+				debug = "[" + fileWrapper.mediaType + "] [" + ext + "]"
 			;
-			lg(fileWrapper)
+
 			if ( fileWrapper.isMedia ) {
 				fMediaWraps.push( fileWrapper );
 			} else if ( fileWrapper.isText ) {
