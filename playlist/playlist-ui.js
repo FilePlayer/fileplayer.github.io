@@ -111,6 +111,7 @@ window.playlistUI = that = {
 		jqToggleBtn[ 0 ].dataset.tooltipContent = "Show playlist";
 		showing = false;
 		api.screen.resizeFilename();
+		dom.playlistInputURL.blur();
 		Cookies.set( "playlistshow", showing, { expires: 365 } );
 		return that;
 	},

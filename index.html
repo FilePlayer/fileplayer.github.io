@@ -38,19 +38,24 @@
 		<input type="file" multiple/>
 		<div class="content">
 			<nav>
-				<span class="index">
+				<div class="index">
 					<span class="current"></span>
 					<span class="total"></span>
-				</span>
-				<span class="right">
+				</div>
+				<div class="input">
+					<form>
+						<input type="url" placeholder="http://... *.mp3 *.mp4"/>
+					</form>
+				</div>
+				<div class="right">
 					<i class="btn shuffle fa fa-fw fa-random"
 						data-jquery-element="tooltip"
 						data-tooltip-side="bottom"></i>
 					<i class="btn repeat fa fa-fw fa-retweet"
 						data-jquery-element="tooltip"
 						data-tooltip-side="bottom"><b></b></i>
-					<i class="btn close fa fa-fw fa-times"></i>
-				</span>
+					<i class="btn close fa fa-times"></i>
+				</div>
 			</nav>
 			<div class="list"></div>
 		</div>
@@ -200,6 +205,7 @@
 <script src="api/fullscreen.js"></script>
 <script src="api/keyboard.js"></script>
 <script src="api/playlist.js"></script>
+<script src="api/request.js"></script>
 <script src="api/screen.js"></script>
 <script src="api/subtitles.js"></script>
 <script src="api/thumbnail/cache.js"></script>
@@ -228,6 +234,7 @@
 <script src="playlist/events/prevnextloop.js"></script>
 <script src="playlist/events/scroll.js"></script>
 <script src="playlist/events/inputfile.js"></script>
+<script src="playlist/events/inputtext.js"></script>
 
 <!-- Audio visualisations -->
 <script src="../visualisations/oscilloscope.js"></script>

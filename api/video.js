@@ -12,6 +12,9 @@ var
 	jqVideoThumb = dom.ctrlThumbnailVideo
 ;
 
+video.crossOrigin = "anonymous";
+jqVideoThumb[ 0 ].crossOrigin = "anonymous";
+
 api.video = that = {
 
 	// Manipulating the src="" attribute.

@@ -37,6 +37,8 @@ window.dom = {
 		playlistNav: $( ".playlist nav" ),
 			playlistNavIndex: $( ".playlist nav .current" ),
 			playlistNavTotal: $( ".playlist nav .total" ),
+			playlistForm: $( ".playlist nav form" ),
+			playlistInputURL: $( ".playlist nav input" ),
 			playlistShuffleBtn: $( ".playlist nav .shuffle" ),
 			playlistRepeatBtn: $( ".playlist nav .repeat" ),
 			playlistCloseBtn: $( ".playlist nav .close" ),
