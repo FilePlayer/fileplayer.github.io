@@ -108,10 +108,9 @@ api.playlist = that = {
 			fWrap.createURL();
 			if ( jqFileSelected.length && jqFileSelected[ 0 ] !== elFile ) {
 				jqFileSelected[ 0 ].fileWrapper.revokeURL();
-				playlistUI.highlight( jqFileSelected, false );
 			}
 			playlistUI
-				.highlight( elFile.jqThis, true )
+				.select( elFile.jqThis )
 				.updateIndex()
 			;
 			api.subtitles.disable();

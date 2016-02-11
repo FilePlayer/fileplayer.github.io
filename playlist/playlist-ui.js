@@ -35,8 +35,22 @@ window.playlistUI = that = {
 		return that;
 	},
 	// (Un)select a specific file in the playlist.
-	highlight: function( jqFile, b ) {
-		that.jqFileSelected = jqFile.toggleClass( "selected", b );
+	jqFileSelected: dom.empty,
+	select: function( jqFile ) {
+		that.jqFileSelected.removeClass( "selected" );
+		that.jqFileSelected = jqFile.addClass( "selected" );
+
+		txt( dom.ctrlPrevBtn, jqFile.prev()[ 0 ] || that.jqFiles.get( -1 ), "Previous" );
+		txt( dom.ctrlNextBtn, jqFile.next()[ 0 ] || that.jqFiles[ 0 ], "Next" );
+		function txt( btn, file, str ) {
+			if ( file = file && file.fileWrapper ) {
+				btn[ 0 ].dataset.tooltipContent =
+					str + "&nbsp;: <i class='fa fa-" +
+						( file.mediaType === "audio" ? "music" : "film" ) +
+					"'></i> " + file.name
+				;
+			}
+		}
 		return that;
 	},
 

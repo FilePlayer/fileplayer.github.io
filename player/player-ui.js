@@ -11,7 +11,6 @@ var
 	// Button, slider: volume.
 	jqVolumeIcon = dom.ctrlVolumeIcon,
 	jqVolumeSlider = dom.ctrlVolumeSlider,
-	jqVolumeSliderParent = jqVolumeSlider.parent(),
 
 	// Texts, slider: position/duration.
 	jqTimeTxtCurrent = dom.ctrlTimeCurrent,
@@ -97,7 +96,6 @@ window.playerUI = that = {
 		jqPlayBtn
 			.removeClass( "fa-play" )
 			.addClass( "fa-pause" )
-			.attr( "data-tooltip-content", "Pause" )
 		;
 		return that.actionDesc( "Play" );
 	},
@@ -105,7 +103,6 @@ window.playerUI = that = {
 		jqPlayBtn
 			.removeClass( "fa-pause" )
 			.addClass( "fa-play" )
-			.attr( "data-tooltip-content", "Play" )
 		;
 		return that.actionDesc( "Pause" );
 	},
@@ -146,12 +143,7 @@ window.playerUI = that = {
 			)
 		;
 		jqVolumeSlider.element().val( vol );
-		jqVolumeIcon.attr( "data-tooltip-content", vol ? "Mute" : "Unmute" );
-		jqVolumeSliderParent.attr(
-			"data-tooltip-content",
-			"Volume : " + utils.fPercent( vol )
-		);
-		return that;
+		return that.actionDesc( "Volume : " + utils.fPercent( vol ) );
 	},
 	speed: function( rate ) {
 		var val = rate.toFixed( 2 ) + "x";

@@ -2,16 +2,13 @@
 
 (function() {
 
+var vol = api.audio.volume;
+
 dom.ctrlVolumeIcon.click( api.audio.muteToggle );
 
 dom.ctrlVolumeSlider.change( function() {
-	api.audio.volume( this.value );
+	vol( this.value );
 });
-
-function vol( n ) {
-	api.audio.volume( n );
-	playerUI.actionDesc( "Volume : " + utils.fPercent( api.audio.volume() ) );
-}
 
 // Control the volume with the keyboard.
 api.keyboard
