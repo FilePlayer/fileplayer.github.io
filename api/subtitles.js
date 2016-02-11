@@ -1,142 +1,83 @@
 "use strict";
 
-/*
-Here, the representation of a video.textTracks:
-
-video = {
-	textTracks: [ {
-		kind,          // "subtitles"
-		mode,          // "disabled", hidden" or "showing"
-		cues: [ {
-			id,        // start to "1" and not 0.
-			text,      // string
-			startTime, // secondes
-			endTime    // secondes
-		}, ... ]
-	}, ... ]
-}
-*/
-
 (function() {
 
 var
 	that,
-	textTrack,
-	cuesCopies,
+	currentCues,
+	jqLiOld = dom.empty,
 	enable = false,
-	cuesDelay = 0,
-	tracks = dom.screenVideo[ 0 ].textTracks,
-	jqListSubtitles = dom.ctrlSubtitlesList
+	cuesDelay = 0
 ;
 
-function initCuesMap( cues ) {
-	if ( !textTrack.cuesMap ) {
-		var
-			cue,
-			sA,
-			sB,
-			i = 0,
-			cuesLen = cues.length,
-			cuesMapLen = ~~cues[ cuesLen - 1 ].endTime + 1,
-			cuesMap = new Array( cuesMapLen )
-		;
-		cuesCopies = new Array( cuesLen );
-		textTrack.cuesMap = cuesMap;
-		for ( ; i < cuesLen; ++i ) {
-			cue = cues[ i ];
-			cuesCopies[ i ] = {
-				id: +cue.id,
-				startTime: cue.startTime,
-				endTime: cue.endTime,
-				text: "&nbsp;" + cue.text.replace( /\n/g, "&nbsp;<br/>&nbsp;" ) + "&nbsp;"
-			};
-			sA = ~~cue.startTime;
-			sB = ~~cue.endTime;
-			for ( ; sA <= sB; ++sA ) {
-				if ( !cuesMap[ sA ] ) {
-					cuesMap[ sA ] = cuesCopies[ i ];
-				}
+function parse( fileContent ) {
+	var
+		cue,
+		sA,
+		sB,
+		map,
+		i = 0,
+		cues = [],
+		cuesTmp = fileContent.split( /\s*\n\s*\n/ )
+	;
+
+	function getSec( s ) {
+		var cut = s.split( ":" );
+		cut[ 2 ] = +cut[ 2 ].replace( ",", "." );
+		return cut[ 0 ] * 3600 + cut[ 1 ] * 60 + cut[ 2 ];
+	}
+
+	while ( cue = cuesTmp[ i++ ] ) {
+		cue = /(\d+).*\s+([\d:,.]+)\s*-->\s*([\d:,.]+).*\s+((.|\s)*)/.exec( cue );
+		if ( cue ) {
+			cues.push( {
+				id: +cue[ 1 ],
+				startTime: getSec( cue[ 2 ] ),
+				endTime: getSec( cue[ 3 ] ),
+				text: cue[ 4 ].replace( /\s*\n\s*/g, "<br>" )
+			});
+		}
+	}
+
+	cues.map = map = new Array( ~~cues[ cues.length - 1 ].endTime + 1 );
+	for ( i = 0; cue = cues[ i ]; ++i ) {
+		sA = ~~cue.startTime;
+		sB = ~~cue.endTime;
+		for ( ; sA <= sB; ++sA ) {
+			if ( !map[ sA ] ) {
+				map[ sA ] = cue;
 			}
 		}
 	}
+
+	return cues;
 }
 
 api.subtitles = that = {
 	newTrack: function( fileWrapper ) {
-		var
-			reader = new FileReader()
-		;
+		var reader = new FileReader();
 
 		reader.onloadend = function () {
 			var
-				blob,
-				fileContent = reader.result,
-				tracksLen = tracks ? tracks.length : 0
+				cues = parse( reader.result ),
+				jqLi = $( "<li>" )
 			;
 
-			fileContent = "WEBVTT\n\n" + fileContent
-				// Delete special encoded characters then make VTT coding style
-				.substr( fileContent.indexOf( "1" ) )
-				// Replace "," in SRT files by "." in VTT files
-				.replace( /(\d{2}),(\d{3})/g, "$1.$2" )
+			jqLi
+				.text( fileWrapper.dataFile.name )
+				.appendTo( dom.ctrlSubtitlesList )
+				.click( function() {
+					currentCues = cues;
+					jqLiOld.removeClass( "selected" );
+					jqLiOld = jqLi.addClass( "selected" );
+					playerUI.subtitlesCue( that.findCue() );
+					api.subtitles.enable();
+				})
+				.click()
 			;
-
-			blob = new Blob( [ fileContent ], {
-				type: "text/vtt",
-				endings: "transparent"
-			});
-
-			blob.url = URL.createObjectURL( blob );
-
-			$( "<track>", {
-				kind: "subtitles",
-				src: blob.url,
-				srclang: "en",
-				label: "Subtitles " + ( tracksLen + 1 ),
-				name: fileWrapper.dataFile.name,
-			})
-				.appendTo( dom.screenVideo )
-				.on( "load", ( function( len ) {
-					return function( e ) {
-						tracks[ len ].mode = "hidden";
-						api.subtitles
-							.select( tracks[ len ] )
-							.enable( true )
-						;
-					};
-				})( tracksLen ) )
-			;
-
-			jqListSubtitles.children().removeClass( "selected" );
-
-			// Add file name in subtitles list
-			$( "<li>", {
-				text: fileWrapper.dataFile.name,
-				"class": "selected"
-			})
-				.appendTo( jqListSubtitles )
-				.click( ( function( id ) {
-					return function () {
-						api.subtitles
-							.select( tracks[ id ] )
-							.enable()
-						;
-						jqListSubtitles.children().removeClass( "selected" );
-						$( this ).addClass( "selected" );
-					};
-				})( tracksLen ) )
-			;
-
-			// Chrome will start loading the track only
-			// after the `mode` attribute is set to "showing".
-			// The `if` is necessary for Firefox.
-			if ( tracks[ tracksLen ] ) {
-				tracks[ tracksLen ].mode = "showing";
-			}
 		};
 
 		reader.readAsText( fileWrapper.dataFile );
-
 		return that;
 	},
 	isEnable: function() {
@@ -156,20 +97,11 @@ api.subtitles = that = {
 		}
 		return b ? that.enable() : that.disable();
 	},
-	select: function( track ) {
-		if ( !arguments.length ) {
-			return textTrack;
-		}
-		textTrack = track;
-		initCuesMap( track.cues );
-		playerUI.subtitlesCue( that.findCue() );
-		return that;
-	},
 	findCue: function() {
-		if ( enable && textTrack ) {
+		if ( enable && currentCues ) {
 			var
 				sec = api.video.currentTime() + cuesDelay,
-				cue = textTrack.cuesMap[ ~~sec ]
+				cue = currentCues.map[ ~~sec ]
 			;
 			if ( cue ) {
 				do {
@@ -179,7 +111,7 @@ api.subtitles = that = {
 					if ( sec <= cue.endTime ) {
 						return cue;
 					}
-				} while ( cue = cuesCopies[ cue.id ] );
+				} while ( cue = currentCues[ cue.id ] );
 			}
 			return cue;
 		}
