@@ -5,7 +5,8 @@
 var
 	jqThumbnail = dom.ctrlThumbnail,
 	thumbnailOW2 = jqThumbnail.outerWidth() / 2,
-	
+	isLoading = false,
+
 	// video
 	elVideo = dom.ctrlThumbnailVideo[ 0 ],
 	oldLeft,
@@ -18,23 +19,30 @@ var
 elVideo.muted = true;
 
 function loading( b ) {
-	jqThumbnail.toggleClass( "loading", b );
+	if ( b !== isLoading ) {
+		jqThumbnail.toggleClass( "loading", isLoading = b );
+	}
 }
 
 dom.ctrlThumbnailVideo.on( "timeupdate", function() {
-	var sec = ~~elVideo.currentTime;
 	loading( false );
 	if (
-		elVideo.videoWidth &&
-		!api.thumbnail.cache.getImage( sec )
+		api.video.isLoaded() && api.video.mediaType === "video" &&
+		!api.thumbnail.cache.getImage( ~~elVideo.currentTime )
 	) {
 		api.thumbnail.canvas.drawFromVideo();
 	}
 });
 
+function play( b ) {
+	if ( api.video.mediaType === "video" ) {
+		b ? elVideo.play() : elVideo.pause();
+	}
+}
+
 jqSliderTime
-	.mouseenter( function() { if ( elVideo.duration ) { elVideo.play();  } } )
-	.mouseleave( function() { if ( elVideo.duration ) { elVideo.pause(); } } )
+	.mouseenter( play.bind( null, true ) )
+	.mouseleave( play.bind( null, false ) )
 	.mousemove( function( e ) {
 		if ( !api.video.isStopped() ) {
 			var
@@ -52,7 +60,7 @@ jqSliderTime
 					"data-tooltip-content",
 					utils.secondsToString( sec )
 				);
-				if ( api.playlist.selectedFile().mediaType === "video" ) {
+				if ( api.video.mediaType === "video" ) {
 					loading( true );
 					if ( elVideo.paused ) {
 						elVideo.play();

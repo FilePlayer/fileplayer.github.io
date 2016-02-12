@@ -19,20 +19,25 @@ api.video = that = {
 
 	// Manipulating the src="" attribute.
 	load: function( url ) {
+		isLoaded = false;
+		isLoading = true;
 		jqVideo.attr( "src", url );
-		if ( api.playlist.selectedFile().mediaType === "video" ) {
+		that.mediaType = api.playlist.selectedFile().mediaType;
+		if ( that.mediaType === "video" ) {
 			jqVideoThumb.attr( "src", url );
 		}
-		isLoading = true;
 		return that;
 	},
 	loaded: function() {
 		isLoaded = true;
 		isLoading = false;
-		that.ratio = video.videoWidth / video.videoHeight
+		that.ratio = video.videoWidth / video.videoHeight;
 		api.screen.resize();
 		playerUI.subtitlesResizeUpdate();
 		return that;
+	},
+	isLoaded: function() {
+		return isLoaded;
 	},
 
 	// Playing: play/pause/stop.
@@ -76,6 +81,7 @@ api.video = that = {
 			;
 			isStopped = true;
 			isLoaded = false;
+			jqVideoThumb[ 0 ].pause();
 			jqVideo.trigger( "stop" );
 		}
 		return that;

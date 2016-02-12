@@ -12,7 +12,7 @@ var
 	canvasCtx = elCanvas.getContext( "2d" ),
 	canvasW = jqCanvas.width(),
 	canvasH = jqCanvas.height(),
-	currentImg
+	currentImg = null
 ;
 
 elCanvas.width = canvasW;
@@ -20,16 +20,17 @@ elCanvas.height = canvasH;
 
 api.thumbnail.canvas = that = {
 	drawFromImg: function( img ) {
-		if ( img !== currentImg ) {
-			if ( currentImg = img ) {
-				canvasCtx.putImageData(
-					img,
-					( canvasW - img.width ) / 2,
-					( canvasH - img.height ) / 2
-				);
-			} else {
+		if ( !img ) {
+			if ( currentImg ) {
+				currentImg = null;
 				canvasCtx.clearRect( 0, 0, canvasW, canvasH );
 			}
+		} else if ( img !== currentImg ) {
+			canvasCtx.putImageData(
+				currentImg = img,
+				( canvasW - img.width ) / 2,
+				( canvasH - img.height ) / 2
+			);
 		}
 		return that;
 	},

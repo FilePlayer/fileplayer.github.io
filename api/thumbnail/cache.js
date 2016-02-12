@@ -4,13 +4,12 @@
 
 var
 	that,
-	cache,
-	nbImgCached
+	nbImgCached,
+	cache = []
 ;
 
 api.thumbnail.cache = that = {
 	init: function( size ) {
-		cache = undefined;
 		nbImgCached = 0;
 		cache = new Array( size );
 		return that;
