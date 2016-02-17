@@ -16,7 +16,7 @@ var
 	jqTimeTxtCurrent = dom.ctrlTimeCurrent,
 	jqTimeTxtRemaining = dom.ctrlTimeRemaining,
 	jqTimeTxtDuration = dom.ctrlTimeDuration,
-	jqTimeSlider = dom.ctrlSliderCurrentTime,
+	jqTimeSlider = dom.ctrlCutesliderPosition,
 	jqTimeSliderParent = jqTimeSlider.parent(),
 
 	// Button: fullscreen.
@@ -51,7 +51,11 @@ window.playerUI = that = {
 		return that;
 	},
 	loaded: function() {
-		var file = api.playlist.selectedFile();
+		var
+			file = api.playlist.selectedFile(),
+			dur = api.video.duration()
+		;
+
 		dom.fileplayer
 			.removeClass( "audio video" )
 			.addClass( "playing " + file.mediaType )
@@ -60,9 +64,10 @@ window.playerUI = that = {
 			.add( dom.title )
 				.text( file.name )
 		;
+		dom.ctrlInputRangePosition.attr( "max", dur );
 		jqTimeSliderParent.attr( "data-tooltip-content", null );
 		api.thumbnail.canvas.drawFromImg();
-		api.thumbnail.cache.init( Math.ceil( api.video.duration() ) );
+		api.thumbnail.cache.init( Math.ceil( dur ) );
 		return that;
 	},
 	fullscreen: function() {
@@ -120,11 +125,10 @@ window.playerUI = that = {
 		;
 	},
 	currentTime: function( sec ) {
-		var dur = api.video.duration();
 		that.subtitlesCue( api.subtitles.findCue() );
-		jqTimeSlider.element().val( sec / dur );
+		jqTimeSlider.element().val( sec );
 		jqTimeTxtCurrent.text( utils.secondsToString( sec ) );
-		jqTimeTxtRemaining.text( utils.secondsToString( dur - sec ) );
+		jqTimeTxtRemaining.text( utils.secondsToString( api.video.duration() - sec ) );
 		return that;
 	},
 	duration: function( sec ) {

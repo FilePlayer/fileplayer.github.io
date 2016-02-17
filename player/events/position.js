@@ -3,11 +3,9 @@
 (function() {
 
 // Change the currentTime by using the long slider.
-dom.ctrlSliderCurrentTime.change( function() {
+dom.ctrlInputRangePosition.change( function() {
 	if ( !api.video.isStopped() ) {
-		var val = this.value * api.video.duration();
-		playerUI.currentTime( val );
-		api.video.currentTime( val );
+		api.video.currentTime( this.value );
 	}
 });
 

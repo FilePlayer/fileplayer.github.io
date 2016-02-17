@@ -12,7 +12,7 @@ var
 	oldLeft,
 
 	// slider.position
-	jqSliderTime = dom.ctrlSliderCurrentTime,
+	jqSliderTime = dom.ctrlCutesliderPosition,
 	jqSliderTimeContainer = jqSliderTime.parent()
 ;
 
