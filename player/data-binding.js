@@ -28,24 +28,23 @@ dom.screenVideo.on( {
 		api.video.loaded();
 		playerUI.loaded();
 	},
-	play: function() {
-		lg( "ON: play" );
-		playerUI.play();
+	waiting: function() {
+		lg( "ON: waiting" );
+		playerUI.seeking();
 	},
-	pause: function() {
-		lg( "ON: pause" );
-		playerUI.pause();
-	},
-	stop: function() {
-		lg( "ON: stop" );
-		playerUI.stop();
+	seeked: function() {
+		lg( "ON: seeked" );
+		playerUI.seeked();
 	},
 	durationchange: function() {
 		lg( "ON: durationchange" );
 		playerUI.duration( this.duration );
 	},
 	timeupdate: function() {
-		playerUI.currentTime( this.currentTime );
+		playerUI
+			.seeked()
+			.currentTime( this.currentTime )
+		;
 	},
 	ratechange: function() {
 		lg( "ON: ratechange" );

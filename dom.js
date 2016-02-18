@@ -65,7 +65,7 @@ window.dom = {
 			ctrlNextBtn: $( ".ctrl .next" ),
 			// Volume
 			ctrlVolumeIcon: $( ".ctrl .volume .fa" ),
-			ctrlVolumeSlider: $( ".ctrl .volume .cuteslider" ),
+			ctrlVolumeSlider: $( ".ctrl .volume input" ),
 			// Time
 			ctrlTimeText: $( ".ctrl .txt.position" ),
 			ctrlTimeCurrent: $( ".ctrl .position .current" ),
@@ -85,7 +85,7 @@ window.dom = {
 			ctrlBrightnessValue: $( ".ctrl .brightness .val" ),
 			// Speed
 			ctrlSpeedIcon: $( ".ctrl .speed > .fa" ),
-			ctrlSpeedSlider: $( ".ctrl .speed .cuteslider" ),
+			ctrlSpeedSlider: $( ".ctrl .speed input" ),
 			ctrlSpeedValue: $( ".ctrl .speed .val" ),
 			// Subtitles
 			ctrlSubtitlesBtn: $( ".ctrl .btn.subtitles" ),

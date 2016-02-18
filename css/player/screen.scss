@@ -6,6 +6,26 @@ $backLightWidth: 35%;
 	100% { left: 110%; }
 }
 
+@keyframes seekingFrames {
+	0% {
+		opacity: 0;
+		width: 50px;
+		height: 50px;
+		margin: -25px;
+		border-width: 25px;
+	}
+	33% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+		width: 100%;
+		height: 100%;
+		margin: -50%;
+		border-width: 0;
+	}
+}
+
 .screen {
 	.fileplayer.playing.video.ctrlHidden & {
 		cursor: none;
@@ -89,6 +109,35 @@ $backLightWidth: 35%;
 
 		.fileplayer.playing.audio & {
 			display: block;
+		}
+	}
+	.seeking {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		width: 200px;
+		height: 200px;
+		margin: -100px;
+		visibility: hidden;
+		transition: all .2s;
+
+		.fileplayer.seeking & {
+			visibility: visible;
+			opacity: 1;
+		}
+		div {
+			position: absolute;
+			box-sizing: border-box;
+			left: 50%;
+			top: 50%;
+			border: solid #ddd;
+			border-radius: 50%;
+			animation: seekingFrames 1.5s linear infinite;
+
+			&:nth-of-type( 2 ) {
+				opacity: 0;
+				animation-delay: .75s;
+			}
 		}
 	}
 	.filename {

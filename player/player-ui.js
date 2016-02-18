@@ -4,6 +4,8 @@
 
 var
 	that,
+	isSeeking = false,
+	seekTimeout,
 
 	// Button: play/pause.
 	jqPlayBtn = dom.ctrlPlayBtn,
@@ -50,12 +52,8 @@ window.playerUI = that = {
 		}
 		return that;
 	},
-	loaded: function() {
-		var
-			file = api.playlist.selectedFile(),
-			dur = api.video.duration()
-		;
-
+	loading: function() {
+		var file = api.playlist.selectedFile();
 		dom.fileplayer
 			.removeClass( "audio video" )
 			.addClass( "playing " + file.mediaType )
@@ -64,10 +62,30 @@ window.playerUI = that = {
 			.add( dom.title )
 				.text( file.name )
 		;
-		dom.ctrlInputRangePosition.attr( "max", dur );
+		jqTimeSlider.element().val( 0 );
 		jqTimeSliderParent.attr( "data-tooltip-content", null );
 		api.thumbnail.canvas.drawFromImg();
+		return that;
+	},
+	loaded: function() {
+		var dur = api.video.duration();
+		dom.ctrlInputRangePosition.attr( "max", dur );
 		api.thumbnail.cache.init( Math.ceil( dur ) );
+		return that;
+	},
+	seeking: function() {
+		if ( !isSeeking ) {
+			isSeeking = true;
+			dom.fileplayer.addClass( "seeking" );
+		}
+		return that;
+	},
+	seeked: function() {
+		clearTimeout( seekTimeout );
+		if ( isSeeking ) {
+			isSeeking = false;
+			dom.fileplayer.removeClass( "seeking" );
+		}
 		return that;
 	},
 	fullscreen: function() {
@@ -129,6 +147,10 @@ window.playerUI = that = {
 		jqTimeSlider.element().val( sec );
 		jqTimeTxtCurrent.text( utils.secondsToString( sec ) );
 		jqTimeTxtRemaining.text( utils.secondsToString( api.video.duration() - sec ) );
+		clearTimeout( seekTimeout );
+		if ( api.video.isPlaying() ) {
+			seekTimeout = setTimeout( playerUI.seeking, 700 );
+		}
 		return that;
 	},
 	duration: function( sec ) {

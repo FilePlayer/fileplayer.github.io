@@ -26,6 +26,7 @@ api.video = that = {
 		if ( that.mediaType === "video" ) {
 			jqVideoThumb.attr( "src", url );
 		}
+		playerUI.loading().seeking();
 		return that;
 	},
 	loaded: function() {
@@ -47,6 +48,7 @@ api.video = that = {
 			if ( isLoaded || isLoading ) {
 				isStopped = false;
 				video.play();
+				playerUI.play();
 			} else if ( file ) {
 				api.playlist.select( file.element );
 			} else {
@@ -58,6 +60,7 @@ api.video = that = {
 	pause: function() {
 		if ( that.isPlaying() ) {
 			video.pause();
+			playerUI.pause();
 		}
 		return that;
 	},
@@ -82,7 +85,7 @@ api.video = that = {
 			isStopped = true;
 			isLoaded = false;
 			jqVideoThumb[ 0 ].pause();
-			jqVideo.trigger( "stop" );
+			playerUI.stop();
 		}
 		return that;
 	},
