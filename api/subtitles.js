@@ -28,13 +28,13 @@ function parse( fileContent ) {
 	}
 
 	while ( cue = cuesTmp[ i++ ] ) {
-		cue = /(\d+).*\s+([\d:,.]+)\s*-->\s*([\d:,.]+).*\s+((.|\s)*)/.exec( cue );
+		cue = /\d+.*\s+([\d:,.]+)\s*-->\s*([\d:,.]+).*\s+((.|\s)*)/.exec( cue );
 		if ( cue ) {
 			cues.push( {
-				id: +cue[ 1 ],
-				startTime: getSec( cue[ 2 ] ),
-				endTime: getSec( cue[ 3 ] ),
-				text: cue[ 4 ].replace( /\s*\n\s*/g, "<br>" )
+				id: cues.length + 1,
+				startTime: getSec( cue[ 1 ] ),
+				endTime: getSec( cue[ 2 ] ),
+				text: cue[ 3 ].replace( /\s*\n\s*/g, "<br>" )
 			});
 		}
 	}
