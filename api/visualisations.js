@@ -5,6 +5,7 @@
 var
 	that,
 	requestId,
+	jqOldVisu = dom.empty,
 	visu = {},
 	nbVisu = 0,
 	selectedVisu = $.noop,
@@ -22,6 +23,10 @@ var
 api.visualisations = that = {
 	add: function( name, fn ) {
 		visu[ name ] = fn;
+		$( "<li data-name='" + name + "'>" + name + "</li>" )
+			.appendTo( dom.ctrlVisualList )
+			.click( that.select.bind( null, name ) )
+		;
 		return that;
 	},
 	resize: function() {
@@ -31,6 +36,8 @@ api.visualisations = that = {
 	},
 	select: function( name ) {
 		selectedVisu = visu[ name ] || $.noop;
+		jqOldVisu.removeClass( "selected" );
+		jqOldVisu = dom.ctrlVisualList.find( "[data-name='" + name + "']" ).addClass( "selected" );
 		return that;
 	},
 	enable: function() {

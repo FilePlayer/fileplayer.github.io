@@ -29,6 +29,19 @@
 			background: #222;
 		}
 	}
+	ul.selectable li {
+		cursor: pointer;
+
+		&:before {
+			content: "\f111";
+			font: 6px "FontAwesome";
+			margin-right: 1em;
+			visibility: hidden;
+		}
+		&.selected:before {
+			visibility: visible;
+		}
+	}
 }
 
 .ctrl .btn:hover .menu {
