@@ -14,9 +14,8 @@ dom.ctrlOpenBtn.click( api.playlist.dialogueFiles );
 api.keyboard.shortcut( "ctrl+o", function() {
 	if ( window.isFirefox ) {
 		api.error.throw( "FX_OPEN_FILE_SHORTCUT" );
-	} else {
-		api.playlist.dialogueFiles();
 	}
+	api.playlist.dialogueFiles();
 });
 
 var

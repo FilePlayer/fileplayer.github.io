@@ -9,6 +9,7 @@ var
 api.error = that = {
 	// data : [{file, urlError}, ...]
 	throw: function( error, data ) {
+
 		var
 			str
 		;
@@ -22,19 +23,21 @@ api.error = that = {
 				str = "Error : URL not supported : The url " + data.file + " can't be played (" + data.urlError + ")";
 			break;
 			case "URL_UNSUPPORTED_CORS":
-			str = "Error : URL not supported : The url " + data.file + " can't be played (CORS issue)";
+				str = "Error : URL not supported : The url " + data.file + " can't be played (CORS issue)";
 			break;
 			// features not supported by the browser
 			case "FX_OPEN_FILE_SHORTCUT":
-			str = "Warning : Sorry... CTRL+O is disable on Firefox. Use the folder icon (in the lower left corner) or drag and drop to open your files :-)";
+				str = "Warning : Sorry... CTRL+O is disable on Firefox. Use the folder icon (in the lower left corner) or drag and drop to open your files :-)";
 			break;
-			default: 
-			str = "Error " + error;
+			default:
+				str = "Error : " + error;
 			break;
 		}
+
 		setTimeout( function() {
 			alert( str );
 		}, 1 );
+
 		return that;
 	}
 }

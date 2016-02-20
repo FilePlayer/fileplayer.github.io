@@ -2,19 +2,14 @@
 
 (function() {
 
-// Opera 8.0+
+// Browser detection (needed if feature detection is not possible)
+// http://stackoverflow.com/questions/9847580/how-to-detect-safari-chrome-ie-firefox-and-opera-browser
 window.isOpera = ( !!window.opr && !!opr.addons ) || !!window.opera || navigator.userAgent.indexOf( ' OPR/' ) >= 0;
-// Firefox 1.0+
 window.isFirefox = typeof InstallTrigger !== 'undefined';
-// At least Safari 3+: "[object HTMLElementConstructor]"
 window.isSafari = Object.prototype.toString.call( window.HTMLElement ).indexOf( 'Constructor' ) > 0;
-// Internet Explorer 6-11
 window.isIE = /*@cc_on!@*/false || !!document.documentMode;
-// Edge 20+
 window.isEdge = !isIE && !!window.StyleMedia;
-// Chrome 1+
 window.isChrome = !!window.chrome && !!window.chrome.webstore;
-// Blink engine detection
 window.isBlink = ( isChrome || isOpera ) && !!window.CSS;
 
 window.utils = {
