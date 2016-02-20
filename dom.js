@@ -73,6 +73,8 @@ window.dom = {
 			ctrlTimeDuration: $( ".ctrl .position .duration" ),
 
 		// Right
+			// Frame capture
+			ctrlCaptureBtn: $( ".ctrl .btn.capture" ),
 			// Visualisations
 			ctrlVisualBtn: $( ".ctrl .btn.visu" ),
 			ctrlVisualIcon: $( ".ctrl .visu .fa" ),
