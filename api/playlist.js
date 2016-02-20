@@ -17,7 +17,6 @@ api.playlist = that = {
 		dom.playlistInputFile.click();
 		return that;
 	},
-	
 	addFiles: function( files, autoplay ) {
 		var
 			jqFilesAdded,
