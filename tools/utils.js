@@ -2,6 +2,16 @@
 
 (function() {
 
+// Browser detection (where feature detection is not possible)
+// http://stackoverflow.com/questions/9847580/how-to-detect-safari-chrome-ie-firefox-and-opera-browser
+window.isOpera = ( !!window.opr && !!opr.addons ) || !!window.opera || navigator.userAgent.indexOf( ' OPR/' ) >= 0;
+window.isFirefox = typeof InstallTrigger !== 'undefined';
+window.isSafari = Object.prototype.toString.call( window.HTMLElement ).indexOf( 'Constructor' ) > 0;
+window.isIE = /*@cc_on!@*/false || !!document.documentMode;
+window.isEdge = !isIE && !!window.StyleMedia;
+window.isChrome = !!window.chrome && !!window.chrome.webstore;
+window.isBlink = ( isChrome || isOpera ) && !!window.CSS;
+
 window.utils = {
 	secondsToString: function( sec ) {
 		// 3600 -> "1:00:00"
