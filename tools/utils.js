@@ -2,7 +2,7 @@
 
 (function() {
 
-// Browser detection (needed if feature detection is not possible)
+// Browser detection (where feature detection is not possible)
 // http://stackoverflow.com/questions/9847580/how-to-detect-safari-chrome-ie-firefox-and-opera-browser
 window.isOpera = ( !!window.opr && !!opr.addons ) || !!window.opera || navigator.userAgent.indexOf( ' OPR/' ) >= 0;
 window.isFirefox = typeof InstallTrigger !== 'undefined';

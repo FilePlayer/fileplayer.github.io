@@ -13,7 +13,7 @@ dom.ctrlOpenBtn.click( api.playlist.dialogueFiles );
 // This shortcut doesn't work on Firefox (security purpose).
 api.keyboard.shortcut( "ctrl+o", function() {
 	if ( window.isFirefox ) {
-		api.error.throw( "FX_OPEN_FILE_SHORTCUT" );
+		api.error.throw( "CTRLO_SHORTCUT" );
 	}
 	api.playlist.dialogueFiles();
 });

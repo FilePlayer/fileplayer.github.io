@@ -26,8 +26,8 @@ api.error = that = {
 				str = "Error : URL not supported : The url " + data.file + " can't be played (CORS issue)";
 			break;
 			// features not supported by the browser
-			case "FX_OPEN_FILE_SHORTCUT":
-				str = "Warning : Sorry... CTRL+O is disable on Firefox. Use the folder icon (in the lower left corner) or drag and drop to open your files :-)";
+			case "CTRLO_SHORTCUT":
+				str = "Sorry... CTRL+O can't work on your browser.\nUse the folder icon (in the lower left corner) or drag and drop your files directly :-)";
 			break;
 			default:
 				str = "Error : " + error;
