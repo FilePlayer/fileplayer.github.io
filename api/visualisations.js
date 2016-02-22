@@ -45,7 +45,10 @@ api.visualisations = that = {
 			selectedVisu( frameInfo );
 			requestId = requestAnimationFrame( frame );
 		}
-		if ( ctxAudio && !enable ) {
+		if ( !ctxAudio ) {
+			playerUI.visualisationsToggle( enable = false );
+			api.error.throw( "WEBAUDIO" );
+		} else if ( !enable ) {
 			analyser.fftSize = 4096;
 			frameInfo.data = new Uint8Array( analyser.frequencyBinCount );
 			requestId = requestAnimationFrame( frame );
@@ -57,8 +60,8 @@ api.visualisations = that = {
 		if ( enable ) {
 			ctxCanvas.clearRect( 0, 0, canvas.width, canvas.height );
 			cancelAnimationFrame( requestId );
-			playerUI.visualisationsToggle( enable = false );
 		}
+		playerUI.visualisationsToggle( enable = false );
 		return that;
 	},
 	toggle: function( b ) {

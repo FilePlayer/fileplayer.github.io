@@ -79,7 +79,7 @@ playlistUI
 
 api.visualisations
 	.select( "Oscilloscope" )
-	.enable()
+	.toggle( !!window.AudioContext )
 ;
 
 // The onratechange event is fired after this line.
