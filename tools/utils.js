@@ -30,11 +30,8 @@ window.utils = {
 	},
 	range: function( a, val, b, ori ) {
 		var valn = +val;
-		if ( arguments.length === 4 && val[ 1 ] === "=" ) {
-			valn =
-				( ori || 0 ) +
-				+val.substr( 2 ) * ( val[ 0 ] + "1" )
-			;
+		if ( val.length && val[ 1 ] === "=" ) {
+			valn = ( ori || 0 ) + val.substr( 2 ) * ( val[ 0 ] + "1" );
 		}
 		return Math.min( Math.max( a, valn ), b );
 	},

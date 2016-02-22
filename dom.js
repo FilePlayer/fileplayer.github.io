@@ -83,7 +83,7 @@ window.dom = {
 			ctrlVisualList: $( ".ctrl .visu ul" ),
 			// Brightness
 			ctrlBrightnessIcon: $( ".ctrl .brightness > .fa" ),
-			ctrlBrightnessSlider: $( ".ctrl .brightness .cuteslider" ),
+			ctrlBrightnessSlider: $( ".ctrl .brightness input" ),
 			ctrlBrightnessValue: $( ".ctrl .brightness .val" ),
 			// Speed
 			ctrlSpeedIcon: $( ".ctrl .speed > .fa" ),
