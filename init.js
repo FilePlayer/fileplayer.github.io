@@ -61,7 +61,6 @@ playerUI
 	.currentTime( 0 )
 	.duration( 0 )
 	.subtitlesToggle( false )
-	.visualisationsToggle( false )
 	.exitFullscreen()
 ;
 
@@ -78,7 +77,10 @@ playlistUI
 	.updateTotal()
 ;
 
-api.visualisations.select( "Oscilloscope" );
+api.visualisations
+	.select( "Oscilloscope" )
+	.enable()
+;
 
 // The onratechange event is fired after this line.
 setTimeout( function() {

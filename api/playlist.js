@@ -5,7 +5,6 @@
 var
 	that,
 	playMode,
-	fileWrapper = {},
 	isShuffled = false,
 	jqFilesSave = dom.empty,
 	jqFileSelected = dom.empty,
@@ -113,10 +112,6 @@ api.playlist = that = {
 				.updateIndex()
 			;
 			api.subtitles.disable();
-			if ( fWrap.mediaType !== fileWrapper.mediaType ) {
-				api.visualisations.toggle( fWrap.mediaType === "audio" );
-				fileWrapper = fWrap;
-			}
 			if ( !noScroll ) {
 				playlistUI.scrollToSelection();
 			}
