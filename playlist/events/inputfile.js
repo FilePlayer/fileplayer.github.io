@@ -95,7 +95,13 @@ dom.body.on({
 				api.playlist.extractAddFiles( data.items, autoplay );
 			// Everyone else :
 			} else if ( data.files ) {
-				api.playlist.addFiles( data.files, autoplay );
+				if ( !data.files.length ) {
+					// Folder detection for IE
+					api.error.throw( "NO_FOLDERS" );
+				} else {
+					// Others browsers
+					api.playlist.addFiles( data.files, autoplay );
+				}
 			}
 		}
 		isDragging =

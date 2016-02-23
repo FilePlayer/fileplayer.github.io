@@ -25,16 +25,40 @@ api.playlist = that = {
 
 		$.each( files, function() {
 			var
+				reader = new FileReader( this ),
 				fileWrapper = new api.file( this ),
 				ext = fileWrapper.extension,
 				debug = "[" + fileWrapper.mediaType + "] [" + ext + "]"
 			;
+
+			// For folders detection for Fx
+			if ( reader ) {
+				reader.onload = function ( e ) {
+					api.error.throw( "INVALID_FORMAT", {
+						filename : fileWrapper.name,
+						format : fileWrapper.extension
+					});
+				};
+				reader.onerror = function ( e ) {
+					api.error.throw( "NO_FOLDERS", {
+						filename : fileWrapper.name
+					});
+				};
+			}
 
 			if ( fileWrapper.isMedia ) {
 				fMediaWraps.push( fileWrapper );
 			} else if ( fileWrapper.isText ) {
 				fTextWraps.push( fileWrapper );
 			} else {
+				if ( reader ) {
+					reader.readAsText( this );
+				} else {
+					api.error.throw( "INVALID_FORMAT", {
+						filename : fileWrapper.name,
+						format : fileWrapper.extension
+					});
+				}
 				lg( "DROP: not supported: " + debug );
 				return;
 			}

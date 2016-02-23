@@ -16,9 +16,14 @@ api.error = that = {
 			// File can't be played.
 			case "INVALID_FORMAT":
 				title = "Incompatible file format";
-				str = "The file \"" + data.filename +
-					"\" can not be played. Its format (" + data.format +
+				str = "The file \"" + data.filename + "\" can not be played." +
+					" Its format (" + data.format +
 					") is not compatible with the <video> HTML5 standard element.";
+			break;
+			case "UNKNOWN_EXT":
+				title = "Incompatible file format";
+				str = "The file \"" + data.filename + "\" can not be played." +
+					" Its format is not recognized or maybe your browser doesn't support folders."
 			break;
 			case "INVALID_URL":
 				title = "URL, HTTP error " + data.code;
@@ -41,6 +46,11 @@ api.error = that = {
 				title = "Browser drawback";
 				str = "WebAudio is not supported by your browser so, the " +
 					"sound visualiser is disable. Use a modern browser for a better experience.";
+			break;
+			case "NO_FOLDERS":
+				title = "Browser drawback";
+				str = "Folders are not supported by your browser.";
+				str += data ? " \"" + data.filename + "\" can't be played." : "";
 			break;
 		}
 
