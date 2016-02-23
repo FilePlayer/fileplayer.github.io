@@ -81,6 +81,9 @@
 			opacity: 1;
 		}
 	}
+	.visu .fa {
+		margin-right: -3px;
+	}
 	.speed {
 		.menu {
 			width: 200px;
@@ -103,16 +106,7 @@
 			margin: 0 .9em 0 .7em;
 		}
 	}
-	.visu {
-		.fa {
-			margin-right: -3px;
-		}
-		.slidebutton {
-			float: right;
-			width: 28px;
-			height: 13px;
-		}
+	.subtitles .menu {
+		right: -53px;
 	}
 }
-
-
