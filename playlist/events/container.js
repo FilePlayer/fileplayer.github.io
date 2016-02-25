@@ -7,10 +7,10 @@ var
 	jqExtend = dom.playlistExtendWidth
 ;
 
-api.keyboard.shortcut( "ctrl+l", playlistUI.showToggle );
+api.keyboard.shortcut( "ctrl+l", ui.listOpenToggle );
 
-dom.ctrlPlaylistBtn.click( playlistUI.showToggle );
-dom.playlistCloseBtn.click( playlistUI.hide );
+dom.ctrlPlaylistBtn.click( ui.listOpenToggle );
+dom.playlistCloseBtn.click( ui.listClose );
 
 jqExtend
 	.mousedown( function() {
@@ -28,7 +28,7 @@ dom.doc
 	})
 	.mousemove( function( e ) {
 		if ( mousedown ) {
-			playlistUI.width(
+			ui.listWidth(
 				100 - e.originalEvent.pageX / api.screen.width * 100
 			);
 		}

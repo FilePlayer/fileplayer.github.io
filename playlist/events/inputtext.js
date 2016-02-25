@@ -13,7 +13,7 @@ dom.playlistForm.submit( function() {
 	jqURL.val( "" ).blur();
 	api.request.checkCORS( url, function( okCORS ) {
 		if ( okCORS ) {
-			playlistUI.dragover( dom.screen );
+			ui.listDragOver( dom.screen );
 			api.playlist.addFiles( [ url ], true );
 		} else {
 			lg( "URL not supported (probably a CORS issue)." );

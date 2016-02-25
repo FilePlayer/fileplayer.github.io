@@ -70,7 +70,7 @@ api.subtitles = that = {
 					currentCues = cues;
 					jqLiOld.removeClass( "selected" );
 					jqLiOld = jqLi.addClass( "selected" );
-					playerUI.subtitlesCue( that.findCue() );
+					ui.subtitlesCue( that.findCue() );
 					api.subtitles.enable();
 				})
 				.click()
@@ -84,11 +84,11 @@ api.subtitles = that = {
 		return enable;
 	},
 	enable: function() {
-		playerUI.subtitlesToggle( enable = true );
+		ui.subtitlesToggle( enable = true );
 		return that;
 	},
 	disable: function() {
-		playerUI.subtitlesToggle( enable = false );
+		ui.subtitlesToggle( enable = false );
 		return that;
 	},
 	toggle: function( b ) {
@@ -120,7 +120,7 @@ api.subtitles = that = {
 		if ( !arguments.length ) {
 			return cuesDelay;
 		}
-		playerUI.subtitlesDelay(
+		ui.subtitlesDelay(
 			cuesDelay = utils.range( -Infinity, sec, +Infinity, cuesDelay )
 		);
 		return that;

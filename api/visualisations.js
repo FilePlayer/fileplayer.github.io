@@ -46,13 +46,13 @@ api.visualisations = that = {
 			requestId = requestAnimationFrame( frame );
 		}
 		if ( !ctxAudio ) {
-			playerUI.visualisationsToggle( enable = false );
+			ui.visualisationsToggle( enable = false );
 			api.error.throw( "WEBAUDIO" );
 		} else if ( !enable ) {
 			analyser.fftSize = 4096;
 			frameInfo.data = new Uint8Array( analyser.frequencyBinCount );
 			requestId = requestAnimationFrame( frame );
-			playerUI.visualisationsToggle( enable = true );
+			ui.visualisationsToggle( enable = true );
 		}
 		return that;
 	},
@@ -61,7 +61,7 @@ api.visualisations = that = {
 			ctxCanvas.clearRect( 0, 0, canvas.width, canvas.height );
 			cancelAnimationFrame( requestId );
 		}
-		playerUI.visualisationsToggle( enable = false );
+		ui.visualisationsToggle( enable = false );
 		return that;
 	},
 	toggle: function( b ) {

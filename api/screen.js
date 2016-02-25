@@ -22,8 +22,8 @@ api.screen = that = {
 	},
 	resizeFilename: function() {
 		dom.screenFilename.css(
-			"width", playlistUI.isShow()
-			? 100 - playlistUI.width() + "%"
+			"width", ui.listIsOpen()
+			? 100 - ui.listWidth() + "%"
 			: "100%"
 		);
 		return that;
@@ -34,7 +34,7 @@ api.screen = that = {
 			return brightness;
 		}
 		brightness = utils.range( 0, o, 1, brightness );
-		dom.screenVideo.trigger( "brightnesschange" );
+		ui.brightness( brightness );
 		Cookies.set( "brightness", brightness, { expires: 365 } );
 		return that;
 	},

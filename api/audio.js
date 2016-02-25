@@ -19,7 +19,7 @@ function vol( v ) {
 	} else {
 		video.volume = v;
 	}
-	playerUI.volume( volume = v );
+	ui.volume( volume = v );
 	Cookies.set( "volume", v, { expires: 365 } );
 }
 

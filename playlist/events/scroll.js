@@ -12,7 +12,7 @@ dom.playlist
 		clearTimeout( timeoutId );
 	})
 	.mouseleave( function() {
-		timeoutId = setTimeout( playlistUI.scrollToSelection, 1500 );
+		timeoutId = setTimeout( ui.scrollToSelection, 1500 );
 	})
 ;
 

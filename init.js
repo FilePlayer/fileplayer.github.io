@@ -24,8 +24,8 @@ var
 	vol = cookies.volume,
 	brightness = cookies.brightness,
 	plMode = cookies.playlistmode,
-	plShow = cookies.playlistshow === "true",
-	plWidth = cookies.playlistwidth || ( dom.playlist.width() / api.screen.width * 100 )
+	listOpen = cookies.playlistshow === "true",
+	listWidth = cookies.playlistwidth || ( dom.playlist.width() / api.screen.width * 100 )
 ;
 if ( vol === undefined ) {
 	vol = 1;
@@ -40,7 +40,7 @@ if ( plMode !== "loopAll" ) {
 }
 
 // Initialisation:
-playerUI.textsShowing = false;
+ui.actionDescEnable = false;
 
 api.screen
 	.brightness( brightness )
@@ -56,25 +56,8 @@ api.video
 	.playbackRate( 1 )
 ;
 
-playerUI
-	.pause()
-	.currentTime( 0 )
-	.duration( 0 )
-	.subtitlesToggle( false )
-	.exitFullscreen()
-;
-
 api.playlist
-	.playingMode( plMode )
-;
-
-playlistUI
-	.width( plWidth )
-	.showToggle( plShow )
-	.shuffle( false )
-	.updateList()
-	.updateIndex()
-	.updateTotal()
+	.repeat( plMode )
 ;
 
 api.visualisations
@@ -82,9 +65,23 @@ api.visualisations
 	.toggle( !!window.AudioContext )
 ;
 
+ui
+	.pause()
+	.listUpdate()
+	.indexFile()
+	.totalFiles()
+	.currentTime( 0 )
+	.duration( 0 )
+	.listWidth( listWidth )
+	.listOpenToggle( listOpen )
+	.shuffle( false )
+	.fullscreenToggle( false )
+	.subtitlesToggle( false )
+;
+
 // The onratechange event is fired after this line.
 setTimeout( function() {
-	playerUI.textsShowing = true;
+	ui.actionDescEnable = true;
 }, 100 );
 
 })();

@@ -4,7 +4,7 @@
 
 // <input type="file" multiple/>
 dom.playlistInputFile.change( function() {
-	playlistUI.dragover( dom.screen );
+	ui.listDragOver( dom.screen );
 	api.playlist.addFiles( this.files, true );
 });
 
@@ -24,20 +24,28 @@ var
 	autoplay,
 	isDragging,
 	jqFileDragging,
-	dragOutside
+	dragOutside,
+	fileHeight
 ;
 
 function dragend() {
 	if ( jqFileDragging ) {
-		playlistUI.reattach( jqFileDragging );
+		ui.fileReattach( jqFileDragging );
 		if ( autoplay ) {
 			api.playlist.select( jqFileDragging[ 0 ] );
 		}
 		jqFileDragging = null;
 	}
-	playlistUI.dragover( null );
+	ui.listDragOver( null );
 	isDragging = false;
 	dragOutside = false;
+}
+
+function updateFileHeight() {
+	fileHeight = Math.max(
+		ui.jqFiles.outerHeight(),
+		ui.jqFiles.eq( 1 ).outerHeight()
+	);
 }
 
 dom.body.on({
@@ -59,9 +67,9 @@ dom.body.on({
 			dragY = y;
 
 			// Drag on the player.
-			if ( !playlistUI.isShow() || x < ( 1 - playlistUI.width() / 100 ) * api.screen.width ) {
+			if ( !ui.listIsOpen() || x < ( 1 - ui.listWidth() / 100 ) * api.screen.width ) {
 				autoplay = true;
-				playlistUI.dragover( dom.screen );
+				ui.listDragOver( dom.screen );
 
 			// Drag on the playlist.
 			} else {
@@ -69,11 +77,9 @@ dom.body.on({
 				listY = dom.playlistList.position().top;
 				if ( y >= listY ) {
 					y = y - listY + dom.playlistList[ 0 ].scrollTop;
-					jq = playlistUI.jqFiles.eq( Math.round( y / playlistUI.fileHeight ) );
-					playlistUI
-						.updateFileHeight()
-						.dragover( jq[ 0 ] ? jq[ 0 ].jqThis : dom.playlistList )
-					;
+					updateFileHeight();
+					jq = ui.jqFiles.eq( Math.round( y / fileHeight ) );
+					ui.listDragOver( jq[ 0 ] ? jq[ 0 ].jqThis : dom.playlistList );
 				}
 			}
 		}
@@ -115,11 +121,11 @@ dom.body.on({
 		// If we drag out something directly out the window
 		// the dragover event don't have the time to be fired.
 		dragOutside = true;
-		playlistUI.dragover( dom.playlistList );
+		ui.listDragOver( dom.playlistList );
 
 		isDragging = true;
 		jqFileDragging = e.target.jqThis;
-		playlistUI.detach( jqFileDragging );
+		ui.fileDetach( jqFileDragging );
 	},
 	dragend: function() {
 		dragend();
@@ -135,7 +141,7 @@ dom.body.on({
 		if ( isDragging ) {
 			dragOutside = true;
 			autoplay = false;
-			playlistUI.dragover( dom.playlistList );
+			ui.listDragOver( dom.playlistList );
 		}
 	},
 

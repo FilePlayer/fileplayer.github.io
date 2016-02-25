@@ -3,14 +3,14 @@
 (function() {
 
 var
-	playModes = [ false, true, "loopOne", "loopAll" ]
+	modes = [ false, true, "loopOne", "loopAll" ]
 ;
 
 dom.playlistShuffleBtn.click( api.playlist.shuffle );
 
 dom.playlistRepeatBtn.click( function() {
-	api.playlist.playingMode( playModes[
-		( 1 + $.inArray( api.playlist.playingMode(), playModes ) ) % playModes.length
+	api.playlist.repeat( modes[
+		( 1 + $.inArray( api.playlist.repeat(), modes ) ) % modes.length
 	]);
 });
 

@@ -26,7 +26,10 @@ api.video = that = {
 		if ( that.mediaType === "video" ) {
 			jqVideoThumb.attr( "src", url );
 		}
-		playerUI.loading().seeking();
+		ui
+			.loading()
+			.seeking()
+		;
 		return that;
 	},
 	loaded: function() {
@@ -34,7 +37,7 @@ api.video = that = {
 		isLoading = false;
 		that.ratio = video.videoWidth / video.videoHeight;
 		api.screen.resize();
-		playerUI.subtitlesResizeUpdate();
+		ui.subtitlesResizeUpdate();
 		return that;
 	},
 	isLoaded: function() {
@@ -48,7 +51,7 @@ api.video = that = {
 			if ( isLoaded || isLoading ) {
 				isStopped = false;
 				video.play();
-				playerUI.play();
+				ui.play();
 			} else if ( file ) {
 				api.playlist.select( file.element );
 			} else {
@@ -60,7 +63,7 @@ api.video = that = {
 	pause: function() {
 		if ( that.isPlaying() ) {
 			video.pause();
-			playerUI.pause();
+			ui.pause();
 		}
 		return that;
 	},
@@ -85,7 +88,7 @@ api.video = that = {
 			isStopped = true;
 			isLoaded = false;
 			jqVideoThumb[ 0 ].pause();
-			playerUI.stop();
+			ui.stop();
 		}
 		return that;
 	},

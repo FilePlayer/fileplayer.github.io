@@ -7,10 +7,12 @@ var
 ;
 
 window.api = {
-	version: "0.7.5",
+	version: "0.7.6",
 
 	thumbnail: {}
 };
+
+window.ui = {};
 
 dom.numVersion.text( api.version );
 

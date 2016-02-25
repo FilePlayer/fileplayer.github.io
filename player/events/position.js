@@ -18,11 +18,13 @@ function pos( p ) {
 	if ( !api.video.isStopped() ) {
 		api.video.currentTime( p );
 		var sec = api.video.currentTime();
-		playerUI.actionDesc(
-			utils.secondsToString( sec ) + " / " +
-			utils.secondsToString( api.video.duration() )
-		);
-		playerUI.currentTime( sec );
+		ui
+			.currentTime( sec )
+			.actionDesc(
+				utils.secondsToString( sec ) + " / " +
+				utils.secondsToString( api.video.duration() )
+			)
+		;
 	}
 }
 

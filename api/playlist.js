@@ -65,10 +65,10 @@ api.playlist = that = {
 			lg( "DROP: supported: " + debug );
 		});
 
-		jqFilesAdded = playlistUI.addFiles( fMediaWraps );
-		playlistUI
-			.updateList()
-			.updateTotal()
+		jqFilesAdded = ui.listAdd( fMediaWraps );
+		ui
+			.listUpdate()
+			.totalFiles()
 		;
 		if ( autoplay && jqFilesAdded.length ) {
 			that.select( jqFilesAdded[ 0 ] );
@@ -131,13 +131,13 @@ api.playlist = that = {
 			if ( jqFileSelected.length && jqFileSelected[ 0 ] !== elFile ) {
 				jqFileSelected[ 0 ].fileWrapper.revokeURL();
 			}
-			playlistUI
-				.select( elFile.jqThis )
-				.updateIndex()
+			ui
+				.fileSelect( elFile.jqThis )
+				.indexFile()
 			;
 			api.subtitles.disable();
 			if ( !noScroll ) {
-				playlistUI.scrollToSelection();
+				ui.scrollToSelection();
 			}
 			jqFileSelected = elFile.jqThis;
 			api.video
@@ -152,10 +152,10 @@ api.playlist = that = {
 		return ( jqFileSelected[ 0 ] || null ) && jqFileSelected[ 0 ].fileWrapper;
 	},
 	prev: function() {
-		return that.select( jqFileSelected.prev()[ 0 ] || playlistUI.jqFiles.get( -1 ) );
+		return that.select( jqFileSelected.prev()[ 0 ] || ui.jqFiles.get( -1 ) );
 	},
 	next: function() {
-		return that.select( jqFileSelected.next()[ 0 ] || playlistUI.jqFiles.get( 0 ) );
+		return that.select( jqFileSelected.next()[ 0 ] || ui.jqFiles.get( 0 ) );
 	},
 
 	shuffle: function( b ) {
@@ -163,7 +163,7 @@ api.playlist = that = {
 			b = !isShuffled;
 		}
 		if ( b !== isShuffled ) {
-			var len = playlistUI.jqFiles.length;
+			var len = ui.jqFiles.length;
 
 			// Shuffle: false, reset the old order.
 			if ( !b ) {
@@ -173,8 +173,8 @@ api.playlist = that = {
 			// Shuffle: true, if there are more than one files we proceed.
 			} else if ( len > 1 ) {
 				jqFilesSave = jqList.children();
-				playlistUI.jqFiles.each( function() {
-					playlistUI.jqFiles
+				ui.jqFiles.each( function() {
+					ui.jqFiles
 						.eq( Math.floor( Math.random() * len ) )
 						.after( this )
 					;
@@ -183,11 +183,10 @@ api.playlist = that = {
 				jqList.prepend( jqFileSelected );
 			}
 
-			// Synchronise jqFiles and playlistUI.
-			playlistUI
+			ui
 				.shuffle( isShuffled = b )
-				.updateList()
-				.updateIndex()
+				.listUpdate()
+				.indexFile()
 				.scrollToSelection()
 			;
 		}
@@ -199,13 +198,13 @@ api.playlist = that = {
 	// true ------> play the next file.
 	// "loopOne" -> replay the same file.
 	// "loopAll" -> play the next file, at the end of the playlist it will play the first file.
-	playingMode: function( mode ) {
+	repeat: function( mode ) {
 		if ( !arguments.length ) {
 			return playMode;
 		}
 		playMode = mode;
 		api.video.loop( mode === "loopOne" );
-		playlistUI.playingMode( mode );
+		ui.repeat( mode );
 		Cookies.set( "playlistmode", mode, { expires: 365 } );
 		return that;
 	}
