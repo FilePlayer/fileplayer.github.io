@@ -6,6 +6,6 @@ Anyway, if you like this idea, please visit the [**wiki**'s pages](https://githu
 
 #### Screenshots
 
-![](http://i.imgur.com/h0W9I9Q.png)
+![](http://i.imgur.com/7fKuYyQ.png)
 
-![](http://i.imgur.com/Tr3xvCW.png)
+![](http://i.imgur.com/KNQRwqN.png)
