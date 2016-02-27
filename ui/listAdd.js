@@ -4,16 +4,18 @@ $.extend( ui, {
 	listAdd: function( filesWrapper ) {
 		var
 			jqFiles = filesWrapper,
-			html = ""
+			html = "",
+			icon
 		;
 
 		if ( !filesWrapper.jquery ) {
 			$.each( filesWrapper, function() {
+				icon = this.mediaType === "audio" ? "music" : "film";
 				html +=
 					"<a class='file' href='/' draggable='true'>" +
 						"<div class='content textOverflow'>"+
 							"<i class='fa fa-fw fa-" +
-								( this.mediaType === "audio" ? "music" : "film" ) +
+								( this.isSupported ? icon : "times" ) +
 							"'></i>" +
 							"<span>" + this.name + "</span>" +
 						"</div>" +

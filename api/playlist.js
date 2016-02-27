@@ -20,63 +20,65 @@ api.playlist = that = {
 		var
 			jqFilesAdded,
 			fMediaWraps = [],
-			fTextWraps = []
+			fTextWraps = [],
+			promisesList = []
 		;
 
-		$.each( files, function() {
-			var
-				reader = new FileReader( this ),
-				fileWrapper = new api.file( this ),
-				ext = fileWrapper.extension,
-				debug = "[" + fileWrapper.mediaType + "] [" + ext + "]"
-			;
-
-			// For folders detection for Fx
-			if ( reader ) {
+		function sortFiles( index, reader, fileWrapper, file ) {
+			var p = new Promise( function( resolve, rejecte ) {
 				reader.onload = function ( e ) {
-					api.error.throw( "INVALID_FORMAT", {
-						filename : fileWrapper.name,
-						format : fileWrapper.extension
-					});
+					fMediaWraps.push( fileWrapper );
+					return resolve( fileWrapper );
 				};
 				reader.onerror = function ( e ) {
 					api.error.throw( "NO_FOLDERS", {
 						filename : fileWrapper.name
 					});
+					return resolve( fileWrapper );
 				};
-			}
+			});
+			reader.readAsText( file );
+			return p;
+		};
 
-			if ( fileWrapper.isMedia ) {
-				fMediaWraps.push( fileWrapper );
-			} else if ( fileWrapper.isText ) {
+		$.each( files , function( index ){
+			var
+				fileWrapper = new api.file( this ),
+				ext = fileWrapper.extension,
+				reader
+			;
+
+			fileWrapper.index = index;
+			if ( fileWrapper.isText ) {
 				fTextWraps.push( fileWrapper );
+			} else if ( !fileWrapper.isMedia &&
+						window.isFirefox && ( reader = new FileReader( this ))){
+				promisesList.push ( sortFiles( index, reader, fileWrapper, this ));
 			} else {
-				if ( reader ) {
-					reader.readAsText( this );
-				} else {
-					api.error.throw( "INVALID_FORMAT", {
-						filename : fileWrapper.name,
-						format : fileWrapper.extension
-					});
-				}
-				lg( "DROP: not supported: " + debug );
-				return;
+				fMediaWraps.push( fileWrapper );
 			}
-			lg( "DROP: supported: " + debug );
 		});
 
-		jqFilesAdded = ui.listAdd( fMediaWraps );
-		ui
-			.listUpdate()
-			.totalFiles()
-		;
-		if ( autoplay && jqFilesAdded.length ) {
-			that.select( jqFilesAdded[ 0 ] );
-		}
+		Promise
+			.all( promisesList )
+			.then( function() {
+				fMediaWraps.sort( function(a, b) {
+					 return a.index - b.index;
+				});
 
-		// Add subtitles AFTER adding the media file.
-		$.each( fTextWraps, function() {
-			api.subtitles.newTrack( this );
+				jqFilesAdded = ui.listAdd( fMediaWraps );
+				ui
+					.listUpdate()
+					.totalFiles()
+				;
+				if ( autoplay && jqFilesAdded.length ) {
+					that.select( jqFilesAdded[ 0 ] );
+				}
+
+				// Add subtitles AFTER adding the media file.
+				$.each( fTextWraps, function() {
+					api.subtitles.newTrack( this );
+				});
 		});
 
 		return that;
@@ -140,11 +142,19 @@ api.playlist = that = {
 				ui.scrollToSelection();
 			}
 			jqFileSelected = elFile.jqThis;
-			api.video
-				.pause()
-				.load( fWrap.url )
-				.play()
-			;
+			if ( fWrap.isSupported ) {
+				api.video
+					.pause()
+					.load( fWrap.url )
+					.play()
+				;
+			} else {
+				api.error.throw( fWrap.extension ? "INVALID_FORMAT" : "UNKNOWN_EXT", {
+					filename : fWrap.name,
+					format : fWrap.extension
+				});
+				that.next();
+			}
 		}
 		return that;
 	},

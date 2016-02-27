@@ -21,13 +21,21 @@ api.file = function( file ) {
 	// Name.
 	indA = path.lastIndexOf( "/" );
 	indB = path.lastIndexOf( "." );
-	this.name = path.substr( indA + 1, indB - indA - 1 );
+	this.name = path.substr(
+		indA + 1,
+		indB >= 0
+			? indB - indA - 1
+			: undefined
+	);
 
 	// Extension / type.
-	this.extension = ext = path.substr( indB + 1 ).toLowerCase();
+	if ( indB >= 0 ){
+		this.extension = ext = path.substr( indB + 1 ).toLowerCase();
+	}
 	this.isText = extText.indexOf( ext ) > -1;
 	this.isMedia = extMedia.indexOf( ext ) > -1;
 	this.mediaType = extAudio.indexOf( ext ) > -1 ? "audio" : "video";
+	this.isSupported = this.isText || this.isMedia;
 
 	if ( this.isLocal ) {
 		this.dataFile = file;
