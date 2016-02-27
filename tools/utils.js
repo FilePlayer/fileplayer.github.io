@@ -7,7 +7,7 @@
 window.isOpera = ( !!window.opr && !!opr.addons ) || !!window.opera || navigator.userAgent.indexOf( " OPR/" ) >= 0;
 window.isFirefox = typeof InstallTrigger !== "undefined";
 window.isSafari = Object.prototype.toString.call( window.HTMLElement ).indexOf( "Constructor" ) > 0;
-window.isIE = /*@cc_on!@*/false || !!document.documentMode;
+window.isIE = !!document.documentMode;
 window.isEdge = !isIE && !!window.StyleMedia;
 window.isChrome = !!window.chrome && !!window.chrome.webstore;
 window.isBlink = ( isChrome || isOpera ) && !!window.CSS;

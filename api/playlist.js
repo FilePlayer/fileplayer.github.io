@@ -32,7 +32,7 @@ api.playlist = that = {
 				};
 				reader.onerror = function ( e ) {
 					api.error.throw( "NO_FOLDERS", {
-						filename : fileWrapper.name
+						filename: fileWrapper.name
 					});
 					return resolve( fileWrapper );
 				};
@@ -41,19 +41,19 @@ api.playlist = that = {
 			return p;
 		};
 
-		$.each( files , function( index ){
+		$.each( files, function( index ) {
 			var
-				fileWrapper = new api.file( this ),
-				ext = fileWrapper.extension,
-				reader
+				reader,
+				fileWrapper = new api.file( this )
 			;
 
 			fileWrapper.index = index;
 			if ( fileWrapper.isText ) {
 				fTextWraps.push( fileWrapper );
 			} else if ( !fileWrapper.isMedia &&
-						window.isFirefox && ( reader = new FileReader( this ))){
-				promisesList.push ( sortFiles( index, reader, fileWrapper, this ));
+				window.isFirefox && ( reader = new FileReader( this ) )
+			) {
+				promisesList.push( sortFiles( index, reader, fileWrapper, this ) );
 			} else {
 				fMediaWraps.push( fileWrapper );
 			}
@@ -62,7 +62,7 @@ api.playlist = that = {
 		Promise
 			.all( promisesList )
 			.then( function() {
-				fMediaWraps.sort( function(a, b) {
+				fMediaWraps.sort( function( a, b ) {
 					 return a.index - b.index;
 				});
 
@@ -150,8 +150,8 @@ api.playlist = that = {
 				;
 			} else {
 				api.error.throw( fWrap.extension ? "INVALID_FORMAT" : "UNKNOWN_EXT", {
-					filename : fWrap.name,
-					format : fWrap.extension
+					filename: fWrap.name,
+					format: fWrap.extension
 				});
 				that.next();
 			}

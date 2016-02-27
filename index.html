@@ -189,78 +189,73 @@
 <script src="../dep/cuteslider.js"></script>
 <script src="../dep/slidebutton.js"></script>
 
-<!-- Generical functions -->
-<script src="tools/utils.js"></script>
+<!-- FilePlayer main code -->
 
-<!-- Wrap all the needed elements with jQuery -->
-<script src="dom.js"></script>
+<!-- Production mode: -->
+<script src="main.js"></script>
+<!-- -->
 
-<!-- API (no DOM treatment here) -->
-<script src="api/main.js"></script>
-<script src="api/file.js"></script>
-<script src="api/fullscreen.js"></script>
-<script src="api/keyboard.js"></script>
-<script src="api/error.js"></script>
-<script src="api/playlist.js"></script>
-<script src="api/request.js"></script>
-<script src="api/screen.js"></script>
-<script src="api/subtitles.js"></script>
-<script src="api/thumbnail/cache.js"></script>
-<script src="api/thumbnail/canvas.js"></script>
-<script src="api/video.js"></script>
-<script src="api/audio.js"></script>
-<script src="api/visualisations.js"></script>
+<!-- Debug mode: - ->
+	<script src="tools/utils.js"></script>
+	<script src="dom.js"></script>
+	<script src="api/main.js"></script>
+	<script src="api/file.js"></script>
+	<script src="api/fullscreen.js"></script>
+	<script src="api/keyboard.js"></script>
+	<script src="api/error.js"></script>
+	<script src="api/playlist.js"></script>
+	<script src="api/request.js"></script>
+	<script src="api/screen.js"></script>
+	<script src="api/subtitles.js"></script>
+	<script src="api/thumbnail/cache.js"></script>
+	<script src="api/thumbnail/canvas.js"></script>
+	<script src="api/video.js"></script>
+	<script src="api/audio.js"></script>
+	<script src="api/visualisations.js"></script>
+	<script src="ui/actionDesc.js"></script>
+	<script src="ui/brightness.js"></script>
+	<script src="ui/currentTimeDuration.js"></script>
+	<script src="ui/fileDetach.js"></script>
+	<script src="ui/fileSelect.js"></script>
+	<script src="ui/fullscreen.js"></script>
+	<script src="ui/listAdd.js"></script>
+	<script src="ui/listDragOver.js"></script>
+	<script src="ui/listOpen.js"></script>
+	<script src="ui/listUpdate.js"></script>
+	<script src="ui/listWidth.js"></script>
+	<script src="ui/loading.js"></script>
+	<script src="ui/playPause.js"></script>
+	<script src="ui/repeat.js"></script>
+	<script src="ui/scrollToSelection.js"></script>
+	<script src="ui/seeking.js"></script>
+	<script src="ui/shuffle.js"></script>
+	<script src="ui/speed.js"></script>
+	<script src="ui/stop.js"></script>
+	<script src="ui/subtitles.js"></script>
+	<script src="ui/visualisations.js"></script>
+	<script src="ui/volume.js"></script>
+	<script src="player/data-binding.js"></script>
+	<script src="player/events/capture.js"></script>
+	<script src="player/events/controls.js"></script>
+	<script src="player/events/subtitles.js"></script>
+	<script src="player/events/thumbnail.js"></script>
+	<script src="player/events/position.js"></script>
+	<script src="player/events/playpausestop.js"></script>
+	<script src="player/events/volume.js"></script>
+	<script src="player/events/speed.js"></script>
+	<script src="player/events/fullscreen.js"></script>
+	<script src="player/events/brightness.js"></script>
+	<script src="player/events/visualisations.js"></script>
+	<script src="playlist/events/container.js"></script>
+	<script src="playlist/events/prevnextloop.js"></script>
+	<script src="playlist/events/scroll.js"></script>
+	<script src="playlist/events/inputfile.js"></script>
+	<script src="playlist/events/inputtext.js"></script>
+<!-- -->
 
-<!-- All the UI functions to update the front -->
-<script src="ui/actionDesc.js"></script>
-<script src="ui/brightness.js"></script>
-<script src="ui/currentTimeDuration.js"></script>
-<script src="ui/fileDetach.js"></script>
-<script src="ui/fileSelect.js"></script>
-<script src="ui/fullscreen.js"></script>
-<script src="ui/listAdd.js"></script>
-<script src="ui/listDragOver.js"></script>
-<script src="ui/listOpen.js"></script>
-<script src="ui/listUpdate.js"></script>
-<script src="ui/listWidth.js"></script>
-<script src="ui/loading.js"></script>
-<script src="ui/playPause.js"></script>
-<script src="ui/repeat.js"></script>
-<script src="ui/scrollToSelection.js"></script>
-<script src="ui/seeking.js"></script>
-<script src="ui/shuffle.js"></script>
-<script src="ui/speed.js"></script>
-<script src="ui/stop.js"></script>
-<script src="ui/subtitles.js"></script>
-<script src="ui/visualisations.js"></script>
-<script src="ui/volume.js"></script>
-
-<!-- All DOM treatment and events binding for the Player -->
-<script src="player/data-binding.js"></script>
-<script src="player/events/capture.js"></script>
-<script src="player/events/controls.js"></script>
-<script src="player/events/subtitles.js"></script>
-<script src="player/events/thumbnail.js"></script>
-<script src="player/events/position.js"></script>
-<script src="player/events/playpausestop.js"></script>
-<script src="player/events/volume.js"></script>
-<script src="player/events/speed.js"></script>
-<script src="player/events/fullscreen.js"></script>
-<script src="player/events/brightness.js"></script>
-<script src="player/events/visualisations.js"></script>
-
-<!-- All DOM treatment and events binding for the Playlist -->
-<script src="playlist/events/container.js"></script>
-<script src="playlist/events/prevnextloop.js"></script>
-<script src="playlist/events/scroll.js"></script>
-<script src="playlist/events/inputfile.js"></script>
-<script src="playlist/events/inputtext.js"></script>
-
-<!-- Audio visualisations -->
+<!-- Initialisation -->
 <script src="../visualisations/oscilloscope.js"></script>
 <script src="../visualisations/frequencebars.js"></script>
-
-<!-- Initialisation (no function call before that) -->
 <script src="init.js"></script>
 
 </body>

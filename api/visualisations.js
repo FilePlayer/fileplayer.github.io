@@ -7,7 +7,6 @@ var
 	requestId,
 	jqOldVisu = dom.empty,
 	visu = {},
-	nbVisu = 0,
 	selectedVisu = $.noop,
 	analyser = api.audio.analyser,
 	ctxAudio = api.audio.ctx,

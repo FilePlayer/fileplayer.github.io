@@ -13,7 +13,6 @@ var
 
 function speed( dir ) {
 	var
-		a, b,
 		newSpd,
 		i = 1,
 		spd = api.video.playbackRate()
