@@ -4,12 +4,10 @@
 if [[ -z $1 || $1 == "css" ]]; then
 	echo "Compressing CSS...";
 	cd css;
-	cp style.scss _style.scss;
 	# Removing temporarely the Jekyll's frontmatter of the main SCSS file.
-	tail -n +3 _style.scss > style.scss;
-	sass style.scss style.css;
-	rm style.scss;
-	mv _style.scss style.scss;
+	tail -n +3 style.scss > _style.scss;
+	sass _style.scss style.css;
+	rm _style.scss;
 	cd ..;
 fi
 
