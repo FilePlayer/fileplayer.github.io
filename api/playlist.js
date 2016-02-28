@@ -153,7 +153,7 @@ api.playlist = that = {
 					filename: fWrap.name,
 					format: fWrap.extension
 				});
-				that.next();
+				api.video.stop();
 			}
 		}
 		return that;
