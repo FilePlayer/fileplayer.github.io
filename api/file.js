@@ -29,13 +29,15 @@ api.file = function( file ) {
 	);
 
 	// Extension / type.
-	if ( indB >= 0 ){
+	if ( indB >= 0 ) {
 		this.extension = ext = path.substr( indB + 1 ).toLowerCase();
 	}
 	this.isText = extText.indexOf( ext ) > -1;
 	this.isMedia = extMedia.indexOf( ext ) > -1;
-	this.mediaType = extAudio.indexOf( ext ) > -1 ? "audio" : "video";
 	this.isSupported = this.isText || this.isMedia;
+	if ( this.isSupported ) {
+		this.mediaType = extAudio.indexOf( ext ) > -1 ? "audio" : "video";
+	}
 
 	if ( this.isLocal ) {
 		this.dataFile = file;

@@ -3,21 +3,17 @@
 $.extend( ui, {
 	listAdd: function( filesWrapper ) {
 		var
-			jqFiles = filesWrapper,
 			html = "",
-			icon
+			jqFiles = filesWrapper
 		;
 
 		if ( !filesWrapper.jquery ) {
 			$.each( filesWrapper, function() {
-				icon = this.mediaType === "audio" ? "music" : "film";
 				html +=
 					"<a class='file' href='/' draggable='true'>" +
 						"<div class='content textOverflow'>"+
-							"<i class='fa fa-fw fa-" +
-								( this.isSupported ? icon : "times" ) +
-							"'></i>" +
-							"<span>" + this.name + "</span>" +
+							"<span class='filename' data-type='" +
+								this.mediaType + "'>" + this.name + "</span>" +
 						"</div>" +
 					"</a>"
 				;

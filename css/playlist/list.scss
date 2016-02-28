@@ -62,16 +62,14 @@
 			display: inline-block;
 			counter-increment: section;
 			content: counter( section );
-			min-width: 11px;
+			min-width: 12px;
 			text-align: center;
 			font-size: 10px;
 			font-weight: bold;
+			margin-right: .5em;
 			opacity: .5;
 		}
-		.fa {
-			margin: 0 .5em;
-		}
-		&:not(.selected) .fa {
+		&:not(.selected) .filename:before {
 			color: #666;
 		}
 	}

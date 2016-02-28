@@ -1,12 +1,12 @@
 .ctrl,
-.filename,
+.filenameWrapper,
 .shortcutDesc {
 	transition-property: opacity, visibility;
 	transition-duration: .25s;
 }
 
 .playing.video.ctrlHiding .ctrl,
-.playing.video.ctrlHiding .filename,
+.playing.video.ctrlHiding .filenameWrapper,
 .shortcutDesc.hidden {
 	transition-duration: 2s;
 	visibility: hidden;

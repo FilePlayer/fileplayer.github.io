@@ -21,8 +21,8 @@ window.dom = {
 				screenCanvas: $( ".screen canvas" ),
 		
 		// Filename, subtitle's cues, shortcut description
-		screenFilename: $( ".screen .filename" ),
-		screenFilenameText: $( ".screen .filename span" ),
+		screenFilename: $( ".screen .filenameWrapper" ),
+			screenFilenameText: $( ".screen .filename" ),
 		screenShortcutText: $( ".screen .shortcutDesc" ),
 		screenCue: $( ".screen .cues > *" ),
 		numVersion: $( ".screen .num" ),

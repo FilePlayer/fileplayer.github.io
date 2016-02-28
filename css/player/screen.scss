@@ -140,7 +140,7 @@ $backLightWidth: 35%;
 			}
 		}
 	}
-	.filename {
+	.filenameWrapper {
 		display: none;
 		box-sizing: border-box;
 		position: relative;
@@ -150,16 +150,6 @@ $backLightWidth: 35%;
 
 		.playing & {
 			display: block;
-		}
-		.fa {
-			margin-right: .5em;
-
-			.playing.audio &:before {
-				content: "\f001"; /* fa-music */
-			}
-			.playing.video &:before {
-				content: "\f008"; /* fa-film */
-			}
 		}
 	}
 }

@@ -14,6 +14,7 @@ $.extend( ui, {
 			.addClass( "playing " + file.mediaType )
 		;
 		dom.screenFilenameText
+			.attr( "data-type", file.mediaType )
 			.add( dom.title )
 				.text( file.name )
 		;

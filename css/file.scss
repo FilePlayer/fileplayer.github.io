@@ -1,0 +1,17 @@
+.filename {
+
+	// The icon preceding the filename.
+	&:before {
+		content: "\f00d";
+		font-family: "FontAwesome";
+		margin-right: .5em;
+	}
+	&[data-type="video"]:before { content: "\f008"; }
+	&[data-type="audio"]:before { content: "\f001"; }
+
+	// In the case where the file doesn't has a name.
+	&:empty:after {
+		content: "No name";
+		font-style: italic;
+	}
+}
