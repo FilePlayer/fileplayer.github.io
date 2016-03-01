@@ -11,7 +11,7 @@ api.screen = that = {
 
 	resize: function() {
 		var
-			r = api.video.ratio,
+			r = api.imageRatio,
 			w = that.width  = dom.screenVideo.width(),
 			h = that.height = dom.screenVideo.height(),
 			rElem = w / h

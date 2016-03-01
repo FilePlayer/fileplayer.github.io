@@ -6,12 +6,11 @@ dom.playlistForm.submit( function() {
 
 	dom.playlistInputURL.val( "" ).blur();
 	api.request.checkCORS( url, function( okCORS ) {
-		if ( okCORS ) {
-			ui.listDragOver( dom.screen );
-			api.playlist.addFiles( [ url ], true );
-		} else {
-			lg( "URL not supported (probably a CORS issue)." );
-		}
+		ui.listDragOver( dom.screen );
+		api.playlist.addFiles( [ {
+			url: url,
+			cors: okCORS
+		}], true );
 	});
 	return false;
 });

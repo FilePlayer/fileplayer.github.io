@@ -13,7 +13,7 @@ api.file = function( file ) {
 		indA,
 		indB,
 		ext,
-		path = file.name || file
+		path = file.name || file.url
 	;
 
 	this.isLocal = !!file.name;
@@ -42,7 +42,8 @@ api.file = function( file ) {
 	if ( this.isLocal ) {
 		this.dataFile = file;
 	} else {
-		this.url = file;
+		this.url = path;
+		this.cors = file.cors;
 	}
 };
 

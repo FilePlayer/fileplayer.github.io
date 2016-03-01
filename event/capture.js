@@ -16,7 +16,7 @@ dom.ctrlCaptureBtn.click( function() {
 		hr = ~~( sec / 3600 ),
 		mn = ~~( sec / 60 ) % 60,
 		sc = sec % 60,
-		wasPlaying = api.video.isPlaying()
+		wasPlaying = api.video.isPlaying
 	;
 
 	if ( w && h ) {

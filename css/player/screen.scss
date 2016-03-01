@@ -103,13 +103,15 @@ $backLightWidth: 35%;
 	}
 	.brightnessWrapper {
 		transition: opacity .5s;
-	}
-	canvas {
-		display: none;
 
-		.fileplayer.playing.audio & {
-			display: block;
+		* {
+			display: none;
 		}
+	}
+	.fileplayer.video.webaudio & video.webaudio,
+	.fileplayer.video:not(.webaudio) & video:not(.webaudio),
+	.fileplayer.audio & canvas {
+		display: block;
 	}
 	.seeking {
 		position: absolute;

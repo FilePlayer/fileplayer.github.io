@@ -2,55 +2,21 @@
 
 (function() {
 
-var
-	that,
-	isStopped = true,
-	isLoaded = false,
-	isLoading = false,
-	video = dom.screenVideo[ 0 ],
-	jqVideo = dom.screenVideo,
-	jqVideoThumb = dom.ctrlThumbnailVideo
-;
+var that;
 
-video.crossOrigin = "anonymous";
-jqVideoThumb[ 0 ].crossOrigin = "anonymous";
+dom.screenVideo[ 0 ].crossOrigin = "anonymous";
 
 api.video = that = {
+	isStopped: true,
+	isPlaying: false,
 
-	// Manipulating the src="" attribute.
-	load: function( url ) {
-		isLoaded = false;
-		isLoading = true;
-		jqVideo.attr( "src", url );
-		that.mediaType = api.playlist.selectedFile().mediaType;
-		if ( that.mediaType === "video" ) {
-			jqVideoThumb.attr( "src", url );
-		}
-		ui
-			.loading()
-			.seeking()
-		;
-		return that;
-	},
-	loaded: function() {
-		isLoaded = true;
-		isLoading = false;
-		that.ratio = video.videoWidth / video.videoHeight;
-		api.screen.resize();
-		ui.subtitlesResizeUpdate();
-		return that;
-	},
-	isLoaded: function() {
-		return isLoaded;
-	},
-
-	// Playing: play/pause/stop.
 	play: function() {
-		if ( !that.isPlaying() ) {
+		if ( !that.isPlaying ) {
 			var file = api.playlist.selectedFile();
-			if ( isLoaded || isLoading ) {
-				isStopped = false;
-				video.play();
+			if ( api.isLoaded || api.isLoading ) {
+				that.isStopped = false;
+				that.isPlaying = true;
+				api.videoElement.play();
 				ui.play();
 			} else if ( file ) {
 				api.playlist.select( file.element );
@@ -61,33 +27,29 @@ api.video = that = {
 		return that;
 	},
 	pause: function() {
-		if ( that.isPlaying() ) {
-			video.pause();
+		if ( that.isPlaying ) {
+			that.isPlaying = false;
+			api.videoElement.pause();
 			ui.pause();
 		}
 		return that;
 	},
-	isPlaying: function() {
-		return !isStopped && !video.paused;
-	},
-	isStopped: function() {
-		return isStopped;
-	},
 	playToggle: function( b ) {
 		if ( typeof b !== "boolean" ) {
-			b = !that.isPlaying();
+			b = !that.isPlaying;
 		}
 		return b ? that.play() : that.pause();
 	},
 	stop: function() {
-		if ( !isStopped ) {
+		if ( !that.isStopped ) {
 			that
 				.pause()
 				.currentTime( 0 )
 			;
-			isStopped = true;
-			isLoaded = false;
-			jqVideoThumb[ 0 ].pause();
+			api.isLoaded =
+			that.isPlaying = false;
+			that.isStopped = true;
+			dom.ctrlThumbnailVideo[ 0 ].pause();
 			ui.stop();
 		}
 		return that;
@@ -95,33 +57,34 @@ api.video = that = {
 
 	// Position: currentTime/duration.
 	duration: function() {
-		return video.duration || 0;
+		return api.videoElement.duration || 0;
 	},
 	currentTime: function( sec ) {
 		if ( arguments.length === 0 ) {
-			return video.currentTime;
+			return api.videoElement.currentTime;
 		}
-		video.currentTime = utils.range(
+		api.videoElement.currentTime = utils.range(
 			0, sec,
-			video.duration,
-			video.currentTime
+			api.videoElement.duration,
+			api.videoElement.currentTime
 		);
 		return that;
 	},
 	loop: function( b ) {
 		if ( arguments.length === 0 ) {
-			return video.loop;
+			return api.videoElement.loop;
 		}
-		video.loop = !!b;
+		api.videoElement.loop = !!b;
 		return that;
 	},
 
 	// Speed: playbackRate.
 	playbackRate: function( rate ) {
 		if ( arguments.length === 0 ) {
-			return video.playbackRate;
+			return api.videoElement.playbackRate;
 		}
-		video.playbackRate = rate;
+		api.videoElement.playbackRate = rate;
+		ui.speed( rate );
 		return that;
 	}
 };

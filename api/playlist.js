@@ -143,11 +143,8 @@ api.playlist = that = {
 			}
 			jqFileSelected = elFile.jqThis;
 			if ( fWrap.isSupported ) {
-				api.video
-					.pause()
-					.load( fWrap.url )
-					.play()
-				;
+				api.loadFile( fWrap );
+				api.video.play();
 			} else {
 				api.error.throw( fWrap.extension ? "INVALID_FORMAT" : "UNKNOWN_EXT", {
 					filename: fWrap.name,
@@ -219,15 +216,5 @@ api.playlist = that = {
 		return that;
 	}
 };
-
-// What to do at the end of the file.
-// Note: the "loopOne" mode desn't have an end (cf: the loop attribute).
-dom.screenVideo.on( "ended", function() {
-	if ( playMode === "loopAll" || playMode === true && jqFileSelected.next().length ) {
-		that.next();
-		return;
-	}
-	api.video.stop();
-});
 
 })();

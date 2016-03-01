@@ -5,7 +5,7 @@
 var loaded = false;
 
 window.api = {
-	version: "0.7.10",
+	version: "0.8.1",
 	thumbnail: {}
 };
 

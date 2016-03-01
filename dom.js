@@ -17,7 +17,8 @@ window.dom = {
 		// Image
 		screenImage: $( ".screen .image" ),
 			screenBrightness: $( ".screen .brightnessWrapper" ),
-				screenVideo: $( ".screen video" ),
+				screenVideo: $( ".screen video.webaudio" ),
+				screenVideoDistant: $( ".screen video:not(.webaudio)" ),
 				screenCanvas: $( ".screen canvas" ),
 		
 		// Filename, subtitle's cues, shortcut description

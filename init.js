@@ -42,24 +42,9 @@ if ( plMode !== "loopAll" ) {
 // Initialisation:
 ui.actionDescEnable = false;
 
-api.screen
-	.brightness( brightness )
-;
-
-api.audio
-	.volume( vol )
-;
-
-api.video
-	// Force the change (data-binding).
-	.playbackRate( .5 )
-	.playbackRate( 1 )
-;
-
-api.playlist
-	.repeat( plMode )
-;
-
+api.screen.brightness( brightness );
+api.audio.volume( vol );
+api.playlist.repeat( plMode );
 api.visualisations
 	.select( "Oscilloscope" )
 	.toggle( !!window.AudioContext )
@@ -72,6 +57,7 @@ ui
 	.totalFiles()
 	.currentTime( 0 )
 	.duration( 0 )
+	.speed( 1 )
 	.listWidth( listWidth )
 	.listOpenToggle( listOpen )
 	.shuffle( false )
@@ -82,6 +68,6 @@ ui
 // The onratechange event is fired after this line.
 setTimeout( function() {
 	ui.actionDescEnable = true;
-}, 100 );
+}, 500 );
 
 })();

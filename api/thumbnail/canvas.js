@@ -10,6 +10,7 @@ var
 	canvasCtx = elCanvas.getContext( "2d" ),
 	canvasW = jqCanvas.width(),
 	canvasH = jqCanvas.height(),
+	canvasRatio = canvasW / canvasH,
 	currentImg = null
 ;
 
@@ -33,17 +34,14 @@ api.thumbnail.canvas = that = {
 		return that;
 	},
 	drawFromVideo: function() {
-		var
-			x, y, w, h,
-			ratio = api.video.ratio
-		;
-		if ( ratio > 1 ) {
+		var x, y, w, h;
+		if ( api.imageRatio > canvasRatio ) {
 			w = canvasW;
-			h = canvasW / ratio;
+			h = canvasW / api.imageRatio;
 			x = 0;
 			y = ( canvasH - h ) / 2;
 		} else {
-			w = canvasH * ratio;
+			w = canvasH * api.imageRatio;
 			h = canvasH;
 			x = ( canvasW - w ) / 2;
 			y = 0;

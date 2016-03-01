@@ -4,7 +4,7 @@
 
 // Change the currentTime by using the long slider.
 dom.ctrlInputRangePosition.change( function() {
-	if ( !api.video.isStopped() ) {
+	if ( !api.video.isStopped ) {
 		api.video.currentTime( this.value );
 	}
 });
@@ -15,7 +15,7 @@ dom.ctrlTimeText.click( function() {
 });
 
 function pos( p ) {
-	if ( !api.video.isStopped() ) {
+	if ( !api.video.isStopped ) {
 		api.video.currentTime( p );
 		var sec = api.video.currentTime();
 		ui

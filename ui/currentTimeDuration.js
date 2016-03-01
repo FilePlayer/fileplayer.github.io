@@ -7,7 +7,7 @@ $.extend( ui, {
 		dom.ctrlTimeCurrent.text( utils.secondsToString( sec ) );
 		dom.ctrlTimeRemaining.text( utils.secondsToString( api.video.duration() - sec ) );
 		clearTimeout( ui.seekTimeout );
-		if ( api.video.isPlaying() ) {
+		if ( api.video.isPlaying ) {
 			ui.seekTimeout = setTimeout( ui.seeking, 700 );
 		}
 		return ui;

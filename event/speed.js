@@ -31,7 +31,7 @@ function speed( dir ) {
 }
 
 dom.ctrlSpeedSlider.change( function() {
-	api.video.playbackRate( this.value );
+	api.video.playbackRate( +this.value );
 });
 
 // Reset the speed by clicking on the icon.

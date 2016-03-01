@@ -26,8 +26,11 @@ function loading( b ) {
 
 dom.ctrlThumbnailVideo.on( "timeupdate", function() {
 	loading( false );
+	var fwrap = api.playlist.selectedFile();
 	if (
-		api.video.isLoaded() && api.video.mediaType === "video" &&
+		api.isLoaded &&
+		fwrap.mediaType === "video" &&
+		( fwrap.isLocal || fwrap.cors ) &&
 		!api.thumbnail.cache.getImage( ~~elVideo.currentTime )
 	) {
 		api.thumbnail.canvas.drawFromVideo();
@@ -44,7 +47,7 @@ jqSliderTime
 	.mouseenter( play.bind( null, true ) )
 	.mouseleave( play.bind( null, false ) )
 	.mousemove( function( e ) {
-		if ( !api.video.isStopped() ) {
+		if ( !api.video.isStopped ) {
 			var
 				margin = jqSliderTime.offset().left,
 				left = ( e.pageX - margin )
