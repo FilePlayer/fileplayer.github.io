@@ -2,9 +2,7 @@
 
 (function() {
 
-var
-	timeoutId
-;
+var timeoutId;
 
 dom.playlist
 	.mouseenter( function() {

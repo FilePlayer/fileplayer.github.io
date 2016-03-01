@@ -1,27 +1,5 @@
 "use strict";
 
-(function() {
-
-dom.doc.on(
-	      "fullscreenchange " +
-	    "MSFullscreenChange " +
-	   "mozfullscreenchange " +
-	"webkitfullscreenchange",
-	function() {
-		lg( "ON: fullscreenchange" );
-		ui.fullscreenToggle( document.isFullscreen() );
-	}
-);
-
-dom.window.resize( function() {
-	// Be careful with changing this order:
-	api.screen.resize();
-	ui.listResize();
-	api.screen.resizeFilename();
-	api.visualisations.resize();
-	ui.subtitlesResizeUpdate();
-});
-
 dom.screenVideo.on( {
 	loadedmetadata: function() {
 		lg( "ON: loadedmetadata" );
@@ -51,5 +29,3 @@ dom.screenVideo.on( {
 		ui.speed( this.playbackRate );
 	}
 });
-
-})();

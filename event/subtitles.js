@@ -1,7 +1,5 @@
 "use strict";
 
-(function() {
-
 dom.ctrlSubtitlesToggle
 	.add( dom.ctrlSubtitlesIcon )
 		.click( api.subtitles.toggle )
@@ -22,5 +20,3 @@ api.keyboard
 	.shortcut( "ctrl+g",  del( "-=5" ) )
 	.shortcut( "ctrl+h",  del( "+=5" ) )
 ;
-
-})();

@@ -14,4 +14,15 @@ api.keyboard.shortcut( "F11", fsToggle );
 // Toggle fullscreen by double clicking on the video.
 dom.screen.dblclick( fsToggle );
 
+dom.doc.on(
+	      "fullscreenchange " +
+	    "MSFullscreenChange " +
+	   "mozfullscreenchange " +
+	"webkitfullscreenchange",
+	function() {
+		lg( "ON: fullscreenchange" );
+		ui.fullscreenToggle( document.isFullscreen() );
+	}
+);
+
 })();

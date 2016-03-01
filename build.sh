@@ -18,7 +18,7 @@ if [[ -z $1 || $1 == "js" ]]; then
 		tools/*.js \
 		dom.js \
 		api/main.js \
-		`find api ui player playlist -name "*.js" -not -name "main.js"` \
+		`find api ui event -name "*.js" -not -name "main.js"` \
 		-o main.js \
 		--compress \
 		--mangle

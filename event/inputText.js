@@ -1,16 +1,10 @@
 "use strict";
 
-(function() {
-
-var
-	jqURL = dom.playlistInputURL
-;
-
 // When we press Enter in the input.
 dom.playlistForm.submit( function() {
-	var url = jqURL.val();
+	var url = dom.playlistInputURL.val();
 
-	jqURL.val( "" ).blur();
+	dom.playlistInputURL.val( "" ).blur();
 	api.request.checkCORS( url, function( okCORS ) {
 		if ( okCORS ) {
 			ui.listDragOver( dom.screen );
@@ -23,8 +17,6 @@ dom.playlistForm.submit( function() {
 });
 
 // Don't interfere with all the keyboard's shorcuts.
-jqURL.keydown( function( e ) {
+dom.playlistInputURL.keydown( function( e ) {
 	e.stopPropagation();
 });
-
-})();

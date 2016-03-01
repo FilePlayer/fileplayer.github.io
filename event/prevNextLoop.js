@@ -2,9 +2,7 @@
 
 (function() {
 
-var
-	modes = [ false, true, "loopOne", "loopAll" ]
-;
+var modes = [ false, true, "loopOne", "loopAll" ];
 
 dom.playlistShuffleBtn.click( api.playlist.shuffle );
 

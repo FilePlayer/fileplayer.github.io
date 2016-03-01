@@ -2,13 +2,10 @@
 
 (function() {
 
-var
-	loaded = false
-;
+var loaded = false;
 
 window.api = {
-	version: "0.7.9",
-
+	version: "0.7.10",
 	thumbnail: {}
 };
 
@@ -25,7 +22,7 @@ document.body.onload = function() {
 	}
 };
 
-// A timeout to the body loading.
+// A timeout to the body loading (just in case...).
 setTimeout( document.body.onload, 3000 );
 
 })();
