@@ -4,6 +4,7 @@
 	&:before {
 		content: "\f00d";
 		font-family: "FontAwesome";
+		font-weight: normal;
 		margin-right: .5em;
 	}
 	&[data-type="video"]:before { content: "\f008"; }

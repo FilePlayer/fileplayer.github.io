@@ -3,6 +3,7 @@
 	position: absolute;
 	width: 100%;
 	text-align: center;
+	padding-bottom: .3em;
 
 	> span {
 		color: #fff;
@@ -14,5 +15,5 @@
 }
 
 .ctrlVisible .cues.isUnderCtrl {
-	bottom: 80px !important;
+	bottom: 55px !important;
 }
