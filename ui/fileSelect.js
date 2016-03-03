@@ -10,7 +10,7 @@ $.extend( ui, {
 			file = file && file.fileWrapper;
 			btn[ 0 ].dataset.tooltipContent = !file ? "" :
 				str + "&nbsp;: <span class='filename' data-type='" +
-				file.mediaType + "'>" + file.name + "</span>"
+				file.type + "'>" + file.name + "</span>"
 			;
 		}
 

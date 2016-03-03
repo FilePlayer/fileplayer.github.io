@@ -13,7 +13,7 @@ $.extend( ui, {
 					"<a class='file' href='/' draggable='true'>" +
 						"<div class='content textOverflow'>"+
 							"<span class='filename' data-type='" +
-								this.mediaType + "'>" + this.name + "</span>" +
+								this.type + "'>" + this.name + "</span>" +
 						"</div>" +
 					"</a>"
 				;

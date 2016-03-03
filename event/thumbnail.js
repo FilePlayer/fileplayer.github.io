@@ -29,7 +29,7 @@ dom.ctrlThumbnailVideo.on( "timeupdate", function() {
 	var fwrap = api.playlist.selectedFile();
 	if (
 		api.isLoaded &&
-		fwrap.mediaType === "video" &&
+		fwrap.type === "video" &&
 		( fwrap.isLocal || fwrap.cors ) &&
 		!api.thumbnail.cache.getImage( ~~elVideo.currentTime )
 	) {
@@ -38,7 +38,7 @@ dom.ctrlThumbnailVideo.on( "timeupdate", function() {
 });
 
 function play( b ) {
-	if ( api.video.mediaType === "video" ) {
+	if ( api.video.type === "video" ) {
 		b ? elVideo.play() : elVideo.pause();
 	}
 }
@@ -63,7 +63,7 @@ jqSliderTime
 					"data-tooltip-content",
 					utils.secondsToString( sec )
 				);
-				if ( api.video.mediaType === "video" ) {
+				if ( api.video.type === "video" ) {
 					loading( true );
 					if ( elVideo.paused ) {
 						elVideo.play();

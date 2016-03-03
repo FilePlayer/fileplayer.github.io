@@ -11,10 +11,10 @@ $.extend( ui, {
 		var file = api.playlist.selectedFile();
 		dom.fileplayer
 			.removeClass( "audio video" )
-			.addClass( "playing " + file.mediaType )
+			.addClass( "playing " + file.type )
 		;
 		dom.screenFilenameText
-			.attr( "data-type", file.mediaType )
+			.attr( "data-type", file.type )
 			.add( dom.title )
 				.text( file.name )
 		;

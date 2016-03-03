@@ -15,12 +15,12 @@ $.extend( api, {
 		api.video.pause();
 		api.isLoading = true;
 		api.isLoaded = false;
-		api.video.mediaType = fwrap.mediaType; // TODO: remove this line...
+		api.video.type = fwrap.type; // TODO: remove this line...
 		dom.fileplayer.toggleClass( "webaudio", cors );
 		api.videoElement = ( cors ? dom.screenVideo : dom.screenVideoDistant )[ 0 ];		
 		api.videoElement.src = fwrap.url;
 		api.video.loop( wasLooping );
-		if ( fwrap.mediaType === "video" ) {
+		if ( fwrap.type === "video" ) {
 			dom.ctrlThumbnailVideo.attr( {
 				crossOrigin: cors ? "anonymous" : null,
 				src: fwrap.url

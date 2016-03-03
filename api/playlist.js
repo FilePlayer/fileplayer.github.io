@@ -48,9 +48,11 @@ api.playlist = that = {
 			;
 
 			fileWrapper.index = index;
-			if ( fileWrapper.isText ) {
+			if ( fileWrapper.type === "text" ) {
 				fTextWraps.push( fileWrapper );
-			} else if ( !fileWrapper.isMedia &&
+			} else if (
+				fileWrapper.type !== "audio" &&
+				fileWrapper.type !== "video" &&
 				window.isFirefox && ( reader = new FileReader( this ) )
 			) {
 				promisesList.push( sortFiles( index, reader, fileWrapper, this ) );

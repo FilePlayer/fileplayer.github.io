@@ -3,47 +3,42 @@
 (function() {
 
 var
-	extText = "srt-vtt",
-	extMedia = "mp3-mp4-mpeg-ogg-wav-webm-mpg-weba-ogm",
-	extAudio = "mp3-ogg-wav-weba"
+	extAudio = "mp3-ogg-wav-weba",
+	extVideo = "mp4-ogm-mpeg-mpg-webm",
+	extArray = "mp3-mp4-mpeg-ogg-wav-webm-mpg-weba-ogm-srt-vtt".split( "-" )
 ;
 
 api.file = function( file ) {
 	var
-		indA,
-		indB,
-		ext,
-		path = file.name || file.url
+		ind,
+		url = file.name || file.url,
+		reg = url.match( /([^/?#]*)\.([^./?#]+)/g )
 	;
 
+	this.name = url;
+	if ( reg ) {
+		reg = reg[ reg.length - 1 ];
+		ind = reg.lastIndexOf( "." );
+		this.name = reg;
+		if ( ind >= 0 ) {
+			this.name = reg.substr( 0, ind );
+			this.extension = reg.substr( ind + 1 ).toLowerCase();
+		}
+	}
+
+	this.isSupported = $.inArray( this.extension, extArray ) > -1;
 	this.isLocal = !!file.name;
 
-	// Name.
-	indA = path.lastIndexOf( "/" );
-	indB = path.lastIndexOf( "." );
-	this.name = path.substr(
-		indA + 1,
-		indB >= 0
-			? indB - indA - 1
-			: undefined
-	);
-
-	// Extension / type.
-	if ( indB >= 0 ) {
-		this.extension = ext = path.substr( indB + 1 ).toLowerCase();
-	}
-	this.isText = extText.indexOf( ext ) > -1;
-	this.isMedia = extMedia.indexOf( ext ) > -1;
-	this.isSupported = this.isText || this.isMedia;
 	if ( this.isSupported ) {
-		this.mediaType = extAudio.indexOf( ext ) > -1 ? "audio" : "video";
-	}
-
-	if ( this.isLocal ) {
-		this.dataFile = file;
-	} else {
-		this.url = path;
-		this.cors = file.cors;
+		this.type =
+			extAudio.indexOf( this.extension ) > -1 ? "audio" :
+			extVideo.indexOf( this.extension ) > -1 ? "video" : "text";
+		if ( this.isLocal ) {
+			this.dataFile = file;
+		} else {
+			this.url = url;
+			this.cors = file.cors;
+		}
 	}
 };
 
