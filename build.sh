@@ -15,6 +15,7 @@ fi
 if [[ -z $1 || $1 == "js" ]]; then
 	echo "Compressing JS...";
 	uglifyjs \
+		forceHTTP.js \
 		tools/*.js \
 		dom.js \
 		api/main.js \
