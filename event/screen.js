@@ -2,6 +2,8 @@
 
 (function() {
 
+dom.window.resize( ui.windowResize );
+
 function fsToggle() {
 	document.toggleFullscreen( document.documentElement );
 }

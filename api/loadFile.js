@@ -36,9 +36,11 @@ $.extend( api, {
 		api.isLoading = false;
 		api.isLoaded = true;
 		api.imageRatio = api.videoElement.videoWidth / api.videoElement.videoHeight;
-		api.screen.resize();
 		api.video.playbackRate( 1 );
-		ui.subtitlesResizeUpdate();
+		ui
+			.updimVideo()
+			.updimSubtitles()
+		;
 		return api;
 	}
 });

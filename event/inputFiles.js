@@ -67,7 +67,7 @@ dom.body.on({
 			dragY = y;
 
 			// Drag on the player.
-			if ( !ui.listIsOpen() || x < ( 1 - ui.listWidth() / 100 ) * api.screen.width ) {
+			if ( !ui.listIsOpen() || x < ( 1 - ui.percListWidth / 100 ) * ui.pxScreenWidth ) {
 				autoplay = true;
 				ui.listDragOver( dom.screen );
 

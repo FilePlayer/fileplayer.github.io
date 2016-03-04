@@ -29,7 +29,7 @@ dom.doc
 	.mousemove( function( e ) {
 		if ( mousedown ) {
 			ui.listWidth(
-				100 - e.originalEvent.pageX / api.screen.width * 100
+				100 - e.originalEvent.pageX / ui.pxScreenWidth * 100
 			);
 		}
 	})

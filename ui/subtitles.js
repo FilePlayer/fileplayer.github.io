@@ -3,25 +3,10 @@
 (function() {
 
 var
-	currentCue,
-	jqSubtitlesCueParent = dom.screenCue.parent()
+	currentCue
 ;
 
 $.extend( ui, {
-	subtitlesResizeUpdate: function() {
-		var
-			imgW = api.video.width,
-			btm = ( api.screen.height - api.video.height ) / 2
-		;
-		jqSubtitlesCueParent
-			.toggleClass( "isUnderCtrl", btm < 80 ) // 80: dom.ctrl.outerHeight()
-			.css({
-				bottom: btm,
-				fontSize: Math.max( 10, imgW / 100 * 2.5 ) + "px"
-			})
-		;
-		return ui;
-	},
 	subtitlesToggle: function( b ) {
 		ui.subtitlesCue( b
 			? api.subtitles.findCue()

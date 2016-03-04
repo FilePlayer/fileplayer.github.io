@@ -25,7 +25,7 @@ var
 	brightness = cookies.brightness,
 	plMode = cookies.playlistmode,
 	listOpen = cookies.playlistshow === "true",
-	listWidth = cookies.playlistwidth || ( dom.playlist.width() / api.screen.width * 100 )
+	listWidth = cookies.playlistwidth || ( dom.playlist.width() / ui.pxScreenWidth * 100 )
 ;
 if ( vol === undefined ) {
 	vol = 1;

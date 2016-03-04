@@ -18,7 +18,7 @@ $.extend( ui, {
 		open = true;
 		dom.playlist.addClass( "show" );
 		dom.ctrlPlaylistBtn[ 0 ].dataset.tooltipContent = "Hide playlist";
-		api.screen.resizeFilename();
+		ui.updimFilename();
 		Cookies.set( "playlistshow", open, { expires: 365 } );
 		return ui;
 	},
@@ -27,7 +27,7 @@ $.extend( ui, {
 		dom.playlist.removeClass( "show" );
 		dom.playlistInputURL.blur();
 		dom.ctrlPlaylistBtn[ 0 ].dataset.tooltipContent = "Show playlist";
-		api.screen.resizeFilename();
+		ui.updimFilename();
 		Cookies.set( "playlistshow", open, { expires: 365 } );
 		return ui;
 	}

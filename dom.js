@@ -25,7 +25,8 @@ window.dom = {
 		screenFilename: $( ".screen .filenameWrapper" ),
 			screenFilenameText: $( ".screen .filename" ),
 		screenShortcutText: $( ".screen .shortcutDesc" ),
-		screenCue: $( ".screen .cues > *" ),
+		screenCueWrapper: $( ".screen .cues" ),
+			screenCue: $( ".screen .cues > *" ),
 		numVersion: $( ".screen .num" ),
 
 	// Playlist

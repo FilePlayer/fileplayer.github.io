@@ -8,27 +8,6 @@ var
 ;
 
 api.screen = that = {
-
-	resize: function() {
-		var
-			r = api.imageRatio,
-			w = that.width  = dom.screenVideo.width(),
-			h = that.height = dom.screenVideo.height(),
-			rElem = w / h
-		;
-		api.video.width  = r > rElem ? w : h * r;
-		api.video.height = r < rElem ? h : w / r;
-		return that;
-	},
-	resizeFilename: function() {
-		dom.screenFilename.css(
-			"width", ui.listIsOpen()
-			? 100 - ui.listWidth() + "%"
-			: "100%"
-		);
-		return that;
-	},
-
 	brightness: function( o ) {
 		if ( arguments.length === 0 ) {
 			return brightness;
