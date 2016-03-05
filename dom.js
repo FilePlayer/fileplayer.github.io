@@ -52,7 +52,8 @@ window.dom = {
 		// Slider position
 			// CurrentTime
 			ctrlCutesliderPosition: $( ".ctrl .cuteslider.position" ),
-			ctrlInputRangePosition: $( ".ctrl .cuteslider.position input" ),
+				ctrlSliderPosTrack: $( ".ctrl .cuteslider.position .cuteslider-track" ),
+				ctrlInputRangePosition: $( ".ctrl .cuteslider.position input" ),
 			// Thumbnail
 			ctrlThumbnail: $( ".ctrl .thumbnail" ),
 			ctrlThumbnailVideo: $( ".ctrl .thumbnail video" ),

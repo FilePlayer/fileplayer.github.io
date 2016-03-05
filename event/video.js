@@ -20,6 +20,7 @@ dom.screenVideo
 			ui
 				.seeked()
 				.currentTime( this.currentTime )
+				.buffered()
 			;
 		},
 

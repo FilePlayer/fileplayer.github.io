@@ -5,6 +5,25 @@
 	.cuteslider.position {
 		width: 100%;
 		padding-bottom: 10px;
+
+		.cuteslider-track {
+			&-lower {
+				background: #f00;
+			}
+			.buffer {
+				position: absolute;
+				top: 0;
+				box-sizing: border-box;
+				border: 0 solid #000;
+				border-width: 0 1px;
+				height: 100%;
+				background: rgba( 255, 255, 255, .13 );
+
+				.fileplayer:not(.playing) & {
+					display: none !important;
+				}
+			}
+		}
 	}
 	.thumbnail,
 	.thumbnail video,
