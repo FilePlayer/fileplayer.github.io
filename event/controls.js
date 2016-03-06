@@ -7,40 +7,45 @@ var
 	timeoutHidden
 ;
 
-function showCtrl() {
+ui.showCtrl = function() {
 	clearTimeout( timeoutHiding );
 	clearTimeout( timeoutHidden );
 	dom.fileplayer
 		.removeClass( "ctrlHiding ctrlHidden" )
 		.addClass( "ctrlVisible" )
 	;
-}
+	return ui;
+};
 
-function hideCtrl() {
+ui.hideCtrl = function() {
+	var clazz = dom.fileplayer[ 0 ].className;
 	clearTimeout( timeoutHiding );
-	dom.fileplayer.addClass( "ctrlHiding" );
-	timeoutHidden = setTimeout( function() {
-		dom.fileplayer
-			.removeClass( "ctrlVisible" )
-			.addClass( "ctrlHidden" )
-		;
-	}, 2000 );
+	if ( clazz.indexOf( "list-open" ) < 0 ) {
+		dom.fileplayer.addClass( "ctrlHiding" );
+		timeoutHidden = setTimeout( function() {
+			dom.fileplayer
+				.removeClass( "ctrlVisible" )
+				.addClass( "ctrlHidden" )
+			;
+		}, 2000 );
+	}
+	return ui;
 }
 
 dom.fileplayer
 	// Start hiding the controls just after the mouse leave the window.
-	.mouseleave( hideCtrl )
+	.mouseleave( ui.hideCtrl )
 
 	// Never hide the controls when the mouse is on it.
 	.add( dom.ctrl )
-		.mouseenter( showCtrl )
+		.mouseenter( ui.showCtrl )
 ;
 
 // Show the controls when the mouse move.
 // The controls will hide again after the mouse stop moving.
-dom.screenVideo.mousemove( function() {
-	showCtrl();
-	timeoutHiding = setTimeout( hideCtrl, 500 );
+dom.screen.mousemove( function() {
+	ui.showCtrl();
+	timeoutHiding = setTimeout( ui.hideCtrl, 500 );
 });
 
 })();

@@ -10,7 +10,7 @@ $.extend( ui, {
 			b = !document.isFullscreen();
 		}
 		if ( b ) {
-			listWasOpen = ui.listIsOpen();
+			listWasOpen = ui.listIsOpen;
 			ui.listClose();
 		} else if ( listWasOpen ) {
 			ui.listOpen();

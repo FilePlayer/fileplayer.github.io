@@ -2,7 +2,7 @@
 
 ui.updimFilename = function() {
 	dom.screenFilename.css(
-		"width", ui.listIsOpen()
+		"width", ui.listIsOpen
 		? 100 - ui.percListWidth + "%"
 		: "100%"
 	);

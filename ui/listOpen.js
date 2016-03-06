@@ -1,36 +1,29 @@
 "use strict";
 
-(function() {
-
-var open = false;
-
 $.extend( ui, {
-	listIsOpen: function() {
-		return open;
-	},
+	listIsOpen: false,
 	listOpenToggle: function( b ) {
 		if ( typeof b !== "boolean" ) {
-			b = !open;
+			b = !ui.listIsOpen;
 		}
-		return b ? ui.listOpen() : ui.listClose();
+		ui.listIsOpen = b;
+		dom.fileplayer.toggleClass( "list-open", b );
+		if ( b ) {
+			ui.showCtrl();
+			// Update the Width of the Filename *after* the playlist is open.
+			setTimeout( ui.updimFilename, 250 );
+		} else {
+			ui.hideCtrl().updimFilename();
+			dom.playlistInputURL.blur();
+		}
+		dom.ctrlPlaylistBtn[ 0 ].dataset.tooltipContent = b ? "Hide playlist" : "Show playlist";
+		Cookies.set( "playlistshow", b, { expires: 365 } );
+		return ui;
 	},
 	listOpen: function() {
-		open = true;
-		dom.playlist.addClass( "show" );
-		dom.ctrlPlaylistBtn[ 0 ].dataset.tooltipContent = "Hide playlist";
-		ui.updimFilename();
-		Cookies.set( "playlistshow", open, { expires: 365 } );
-		return ui;
+		return ui.listOpenToggle( true );
 	},
 	listClose: function() {
-		open = false;
-		dom.playlist.removeClass( "show" );
-		dom.playlistInputURL.blur();
-		dom.ctrlPlaylistBtn[ 0 ].dataset.tooltipContent = "Show playlist";
-		ui.updimFilename();
-		Cookies.set( "playlistshow", open, { expires: 365 } );
-		return ui;
+		return ui.listOpenToggle( false );
 	}
 });
-
-})();

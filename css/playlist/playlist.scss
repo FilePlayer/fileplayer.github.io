@@ -10,7 +10,7 @@
 	opacity: 0;
 	visibility: hidden;
 
-	&.show {
+	.fileplayer.list-open & {
 		right: 0;
 		opacity: 1;
 		visibility: visible;
