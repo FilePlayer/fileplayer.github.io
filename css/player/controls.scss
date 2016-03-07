@@ -5,8 +5,8 @@
 	transition-duration: .25s;
 }
 
-.playing.video.ctrlHiding .ctrl,
-.playing.video.ctrlHiding .filenameWrapper,
+.fileplayer.playing.ctrlHiding .ctrl,
+.fileplayer.playing.ctrlHiding .filenameWrapper,
 .shortcutDesc.hidden {
 	transition-duration: 2s;
 	visibility: hidden;

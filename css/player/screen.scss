@@ -27,7 +27,7 @@ $backLightWidth: 35%;
 }
 
 .screen {
-	.fileplayer.playing.video.ctrlHidden & {
+	.fileplayer.playing.ctrlHidden & {
 		cursor: none;
 	}
 	.placeholder {
