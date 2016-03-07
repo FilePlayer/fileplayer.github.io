@@ -18,9 +18,8 @@ ui.showCtrl = function() {
 };
 
 ui.hideCtrl = function() {
-	var clazz = dom.fileplayer[ 0 ].className;
 	clearTimeout( timeoutHiding );
-	if ( clazz.indexOf( "list-open" ) < 0 ) {
+	if ( !ui.listIsOpen ) {
 		dom.fileplayer.addClass( "ctrlHiding" );
 		timeoutHidden = setTimeout( function() {
 			dom.fileplayer
