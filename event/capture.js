@@ -3,39 +3,45 @@
 (function() {
 
 var
-	video = dom.screenVideo[ 0 ],
-	canvas = document.createElement( "canvas" ),
-	ctx = canvas.getContext( "2d" )
+	canvasCapture = document.createElement( "canvas" ),
+	ctx = canvasCapture.getContext( "2d" )
 ;
 
 dom.ctrlCaptureBtn.click( function() {
 	var
-		w = video.videoWidth,
-		h = video.videoHeight,
-		sec = api.video.currentTime(),
-		hr = ~~( sec / 3600 ),
-		mn = ~~( sec / 60 ) % 60,
-		sc = sec % 60,
-		wasPlaying = api.video.isPlaying
+		w, h,
+		dur, hr, mn, sc,
+		file, canvas
 	;
 
-	if ( w && h ) {
+	if ( api.isLoaded ) {
+		file = api.playlist.selectedFile();
+
+		if ( file.type === "audio" ) {
+			canvas = dom.screenCanvas[ 0 ];
+		} else {
+			canvas = canvasCapture;
+			w = canvas.width = api.videoElement.videoWidth;
+			h = canvas.height = api.videoElement.videoHeight;
+			ctx.drawImage( api.videoElement, 0, 0, w, h );
+		}
+
+		// Write the specific time in the screenshot's name.
+		// Be careful by not adding any forbidden char like ":>/" etc.
+		dur = api.video.currentTime();
+		hr = ~~( dur / 3600 );
+		mn = ~~( dur / 60 ) % 60;
+		sc = dur % 60;
 		if ( mn < 10 ) {
 			mn = "0" + mn;
 		}
 		sc = ( sc < 10 ? "0" : "" ) + sc.toFixed( 2 );
-		canvas.width = w;
-		canvas.height = h;
 
-		// Pause the video to avoid any conflict and accelerate the screenshot.
-		api.video.pause();
-		ctx.drawImage( video, 0, 0, w, h );
 		dom.ctrlCaptureBtn.attr( {
 			href: canvas.toDataURL(),
-			download: api.playlist.selectedFile().name.replace( /\s/g, "_" ) +
+			download: file.name.replace( /\s/g, "_" ) +
 				"__at_" + hr + "h" + mn + "m" + sc + "s.png"
 		});
-		api.video.playToggle( wasPlaying );
 	}
 });
 
