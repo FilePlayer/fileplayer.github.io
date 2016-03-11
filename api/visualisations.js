@@ -5,10 +5,9 @@
 var
 	that,
 	obj,
-	enable = false,
+	selectedVisu,
 	visu = {},
 	jqOldVisu = dom.empty,
-	selectedVisu = $.noop,
 	analyser = api.audio.analyser
 ;
 
@@ -21,6 +20,7 @@ if ( analyser ) {
 }
 
 api.visualisations = that = {
+	enable: false,
 	add: function( name, fn ) {
 		visu[ name ] = fn;
 		$( "<li data-name='" + name + "'>" + name + "</li>" )
@@ -31,29 +31,26 @@ api.visualisations = that = {
 	},
 	select: function( name ) {
 		if ( selectedVisu !== visu[ name ] ) {
-			selectedVisu = visu[ name ] || $.noop;
 			jqOldVisu.removeClass( "selected" );
 			jqOldVisu = dom.ctrlVisualList.find( "[data-name='" + name + "']" ).addClass( "selected" );
-			if ( enable ) {
-				that.toggle( true );
-			}
+			selectedVisu = visu[ name ];
+			ui.canvasRender( selectedVisu, obj );
 		}
 		return that;
 	},
 	toggle: function( b ) {
 		if ( typeof b !== "boolean" ) {
-			b = !enable;
+			b = !that.enable;
 		}
 		if ( b && !api.audio.ctx ) {
 			b = false;
 			api.error.throw( "WEBAUDIO" );
 		}
-		ui
-			.canvasToggle( b )
-			.canvasRender( b && selectedVisu, obj )
-			.visualisationsToggle( b )
-		;
-		enable = b;
+		if ( api.video.type === "audio" ) {
+			ui.canvasToggle( b );
+		}
+		ui.visualisationsToggle( b );
+		that.enable = b;
 		return that;
 	}
 };
