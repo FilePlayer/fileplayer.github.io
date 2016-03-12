@@ -14,10 +14,11 @@ var
 ;
 
 function vol( v ) {
+	var vEase = v * v * v;
 	if ( ctx ) {
-		gainNode.gain.value = v;
+		gainNode.gain.value = vEase;
 	} else {
-		video.volume = v;
+		video.volume = vEase;
 	}
 	ui.volume( volume = v );
 	Cookies.set( "volume", v, { expires: 365 } );
