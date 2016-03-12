@@ -2,7 +2,6 @@
 
 var
 	that,
-	video,
 	canvas = document.createElement( 'canvas' ),
 	ctxCanvas = canvas.getContext( '2d' ),
 	scene = new THREE.Scene(),
@@ -19,20 +18,11 @@ var
 ;
 
 video360 = that = {
-	create: function( v ) {
-		video = v;
-		// FILEPLAYER : remove the previous line
-		// Remove 'v' param 
-		// Uncomment the line below
-		// video = api.videoElement;
-
+	create: function() {
 		// Renderer
-		renderer.setPixelRatio( window.devicePixelRatio );
-		renderer.setSize( window.innerWidth, window.innerHeight );
 		document.body.appendChild( renderer.domElement );
 
 		// Camera
-		camera.position.z = 20;
 		camera.rotation.y += -Math.PI / 2;
 		scene.add( camera );
 
@@ -40,38 +30,24 @@ video360 = that = {
 		// Init video canvas
 		canvas.width = 854;
 		canvas.height = 480;
-	
-		ctxCanvas.fillStyle = '#0000ff';
-		ctxCanvas.fillRect( 0, 0, canvas.width, canvas.height );
 
 		// Init sphere texture ( associate with canvas )
 		texture.minFilter = THREE.LinearFilter;
-		texture.magFilter = THREE.LinearFilter;
 
 		// Init sphere mesh
-		sphere.position.set( 0, 0, 0 );
 		scene.add( sphere );
 
 		requestAnimationFrame( that.animate );
 		return that;
 	},
 	animate: function() {
-		function render() {
-			if ( video.readyState === video.HAVE_ENOUGH_DATA ) {
+		// Horizontally flip
+		ctxCanvas.scale( -1, 1 );
 
-				// Horizontally flip
-				ctxCanvas.scale( -1, 1 );
-
-				// Change texture and load the next video frame
-				ctxCanvas.drawImage( video, -canvas.width, 0, canvas.width, canvas.height );
-
-				if ( texture ) 
-					texture.needsUpdate = true;
-			}
-			renderer.render( scene, camera );
-		};
-
-		render();
+		// Change texture and load the next video frame
+		ctxCanvas.drawImage( video, -canvas.width, 0, canvas.width, canvas.height );
+		texture.needsUpdate = true;
+		renderer.render( scene, camera );
 		requestAnimationFrame( that.animate );
 		return that;
 	}
