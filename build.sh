@@ -18,9 +18,13 @@ if [[ -z $1 || $1 == "js" ]]; then
 		forceHTTP.js \
 		tools/*.js \
 		dom.js \
-		api/main.js \
-		`find api ui event -name "*.js" -not -name "main.js"` \
-		-o main.js \
+		main.js \
+		api/*.js \
+		api/thumbnail/*.js \
+		ui/*.js \
+		ui/updim/*.js \
+		event/*.js \
+		-o compressed.js \
 		--compress \
 		--mangle
 fi
