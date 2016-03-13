@@ -4,6 +4,7 @@
 dom.playlistForm.submit( function() {
 	var url = dom.playlistInputURL.val();
 
+	ui.seeking();
 	dom.playlistInputURL.val( "" ).blur();
 	api.request.checkCORS( url, function( okCORS ) {
 		ui.listDragOver( dom.screen );

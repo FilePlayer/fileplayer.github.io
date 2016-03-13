@@ -136,6 +136,7 @@ api.playlist = that = {
 				jqFileSelected[ 0 ].fileWrapper.revokeURL();
 			}
 			ui
+				.seeking()
 				.fileSelect( elFile.jqThis )
 				.indexFile()
 			;

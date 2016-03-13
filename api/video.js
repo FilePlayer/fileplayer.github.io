@@ -60,7 +60,7 @@ api.video = that = {
 
 	// Position: currentTime/duration.
 	duration: function() {
-		return api.videoElement.duration || 0;
+		return !that.isStopped && api.videoElement.duration || 0;
 	},
 	currentTime: function( sec ) {
 		if ( arguments.length === 0 ) {
