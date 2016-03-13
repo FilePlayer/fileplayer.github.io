@@ -10,14 +10,15 @@ $.extend( api, {
 	loadFile: function( fwrap ) {
 		var
 			cors = fwrap.isLocal || fwrap.cors,
+			webaudio = cors && !!api.audio.ctx,
 			wasLooping = api.video.loop()
 		;
 		api.video.pause();
 		api.isLoading = true;
 		api.isLoaded = false;
 		api.video.type = fwrap.type; // TODO: remove this line...
-		dom.fileplayer.toggleClass( "webaudio", cors );
-		api.videoElement = ( cors ? dom.screenVideo : dom.screenVideoDistant )[ 0 ];		
+		dom.fileplayer.toggleClass( "webaudio", webaudio );
+		api.videoElement = ( webaudio ? dom.screenVideo : dom.screenVideoDistant )[ 0 ];		
 		api.videoElement.src = fwrap.url;
 		api.video.loop( wasLooping );
 		if ( fwrap.type === "video" ) {

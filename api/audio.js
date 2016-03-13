@@ -10,28 +10,27 @@ var
 	gainNode,
 	volume,
 	volSave,
-	video = dom.screenVideo[ 0 ]
+	videoWebaudio = dom.screenVideo[ 0 ],
+	videoDistant = dom.screenVideoDistant[ 0 ]
 ;
 
 function vol( v ) {
-	var vEase = v * v * v;
 	if ( ctx ) {
-		gainNode.gain.value = vEase;
-	} else {
-		video.volume = vEase;
+		gainNode.gain.value = v * v * v;
 	}
+	videoDistant.volume = v * v * v;
 	ui.volume( volume = v );
 	Cookies.set( "volume", v, { expires: 365 } );
 }
 
-video.volume = 1;
+videoWebaudio.volume = 1;
 
 if ( window.AudioContext ) {
 	ctx = new AudioContext();
 	analyser = ctx.createAnalyser();
 	gainNode = ctx.createGain();
 	gainNode.gain.value = 1;
-	src = ctx.createMediaElementSource( video );
+	src = ctx.createMediaElementSource( videoWebaudio );
 	src.connect( analyser );
 	analyser.connect( gainNode );
 	gainNode.connect( ctx.destination );
