@@ -1,26 +1,21 @@
 "use strict";
 
-(function() {
+ui.seekTimeout = null;
+ui.isSeeking = false;
 
-var isSeeking = false;
-
-$.extend( ui, {
-	seekTimeout: null,
-	seeking: function() {
-		if ( !isSeeking ) {
-			isSeeking = true;
-			dom.fileplayer.addClass( "seeking" );
-		}
-		return ui;
-	},
-	seeked: function() {
-		clearTimeout( ui.seekTimeout );
-		if ( isSeeking ) {
-			isSeeking = false;
-			dom.fileplayer.removeClass( "seeking" );
-		}
-		return ui;
+ui.seeking = function() {
+	if ( !ui.isSeeking ) {
+		ui.isSeeking = true;
+		dom.fileplayer.addClass( "seeking" );
 	}
-});
+	return ui;
+};
 
-})();
+ui.seeked = function() {
+	clearTimeout( ui.seekTimeout );
+	if ( ui.isSeeking ) {
+		ui.isSeeking = false;
+		dom.fileplayer.removeClass( "seeking" );
+	}
+	return ui;
+};

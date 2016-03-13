@@ -10,7 +10,7 @@ var
 api.keyboard.shortcut( "ctrl+l", ui.listOpenToggle );
 
 dom.ctrlPlaylistBtn.click( ui.listOpenToggle );
-dom.playlistCloseBtn.click( ui.listClose );
+dom.playlistCloseBtn.click( ui.listOpenToggle.bind( ui, false ) );
 
 jqExtend
 	.mousedown( function() {

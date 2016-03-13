@@ -18,32 +18,32 @@ function frame( timestamp ) {
 	}
 }
 
-$.extend( ui, {
-	canvasDisplayed: false,
-	canvasToggle: function( b ) {
-		if ( typeof b !== "boolean" ) {
-			b = !ui.canvasDisplayed;
-		}
-		ui.canvasDisplayed = b;
-		ctx.clearRect( 0, 0, canvas.width, canvas.height );
-		dom.fileplayer.toggleClass( "canvas-displayed", b );
-		if ( b ) {
-			if ( !requestId ) {
-				requestId = requestAnimationFrame( frame );
-			}
-		} else {
-			cancelAnimationFrame( requestId );
-			requestId = null;
-		}
-		return ui;
-	},
-	canvasRender: function( fn, obj ) {
-		frameFn = fn || $.noop;
-		frameObj = $.extend( obj, {
-			ctxCanvas: ctx
-		});
-		return ui;
+ui.canvasDisplayed = false;
+
+ui.canvasToggle = function( b ) {
+	if ( typeof b !== "boolean" ) {
+		b = !ui.canvasDisplayed;
 	}
-});
+	ui.canvasDisplayed = b;
+	ctx.clearRect( 0, 0, canvas.width, canvas.height );
+	dom.fileplayer.toggleClass( "canvas-displayed", b );
+	if ( b ) {
+		if ( !requestId ) {
+			requestId = requestAnimationFrame( frame );
+		}
+	} else {
+		cancelAnimationFrame( requestId );
+		requestId = null;
+	}
+	return ui;
+};
+
+ui.canvasRender = function( fn, obj ) {
+	frameFn = fn || $.noop;
+	frameObj = $.extend( obj, {
+		ctxCanvas: ctx
+	});
+	return ui;
+};
 
 })();
