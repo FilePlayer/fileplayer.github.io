@@ -23,8 +23,13 @@ video360 = that = {
 		document.body.appendChild( renderer.domElement );
 
 		// Camera
+		// camera.position.set( 60, 60, 60 );
 		camera.rotation.y += -Math.PI / 2;
+		// camera.lookAt( scene.position );
 		scene.add( camera );
+
+		// var axes = new THREE.AxisHelper(100);
+		// scene.add( axes );
 
 		// Init Sphere video
 		// Init video canvas
@@ -42,10 +47,11 @@ video360 = that = {
 	},
 	animate: function() {
 		// Horizontally flip
+		ctxCanvas.save();
 		ctxCanvas.scale( -1, 1 );
-
-		// Change texture and load the next video frame
 		ctxCanvas.drawImage( video, -canvas.width, 0, canvas.width, canvas.height );
+		ctxCanvas.restore();
+
 		texture.needsUpdate = true;
 		renderer.render( scene, camera );
 		requestAnimationFrame( that.animate );
