@@ -50,10 +50,8 @@ api.video = that = {
 			that.isPlaying = false;
 			that.isStopped = true;
 			dom.ctrlThumbnailVideo[ 0 ].pause();
-			ui
-				.canvasToggle( false )
-				.stop()
-			;
+			ui.canvas2d.toggle( false );
+			ui.stop();
 		}
 		return that;
 	},

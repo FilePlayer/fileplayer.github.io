@@ -109,8 +109,7 @@ $backLightWidth: 35%;
 		}
 	}
 	.fileplayer.video.webaudio & video.webaudio,
-	.fileplayer.video:not(.webaudio) & video:not(.webaudio),
-	.fileplayer.canvas-displayed & canvas {
+	.fileplayer.video:not(.webaudio) & video:not(.webaudio) {
 		display: block;
 	}
 	.seeking {

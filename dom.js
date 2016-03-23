@@ -19,7 +19,8 @@ window.dom = {
 			screenBrightness: $( ".screen .brightnessWrapper" ),
 				screenVideo: $( ".screen video.webaudio" ),
 				screenVideoDistant: $( ".screen video:not(.webaudio)" ),
-				screenCanvas: $( ".screen canvas" ),
+				screenCanvas2d: $( ".screen canvas.2d" ),
+				screenCanvasWebgl: $( ".screen canvas.webgl" ),
 		
 		// Filename, subtitle's cues, shortcut description
 		screenFilename: $( ".screen .filenameWrapper" ),

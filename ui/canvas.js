@@ -2,48 +2,50 @@
 
 (function() {
 
-var
-	requestId,
-	frameObj,
-	frameFn = $.noop,
-	canvas = dom.screenCanvas[ 0 ],
-	ctx = canvas.getContext( "2d" )
-;
-
-function frame( timestamp ) {
-	frameObj.timestamp = timestamp;
-	frameFn( frameObj );
-	if ( ui.canvasDisplayed ) {
-		requestId = requestAnimationFrame( frame );
-	}
+function Canvas( jqCanvas, ctxType ) {
+	this.displayed = false;
+	this.ctxType = ctxType;
+	this.jqCanvas = jqCanvas;
+	this.canvas = jqCanvas[ 0 ];
+	this.ctx = jqCanvas[ 0 ].getContext( ctxType );
+	this.render( null );
 }
 
-ui.canvasDisplayed = false;
-
-ui.canvasToggle = function( b ) {
-	if ( typeof b !== "boolean" ) {
-		b = !ui.canvasDisplayed;
-	}
-	ui.canvasDisplayed = b;
-	ctx.clearRect( 0, 0, canvas.width, canvas.height );
-	dom.fileplayer.toggleClass( "canvas-displayed", b );
-	if ( b ) {
-		if ( !requestId ) {
-			requestId = requestAnimationFrame( frame );
+Canvas.prototype = {
+	render: function( fn, obj ) {
+		this.frameFn = fn || $.noop;
+		this.frameObj = $.extend( obj, {
+			ctxCanvas: this.ctx
+		});
+		return this;
+	},
+	frame: function( timestamp ) {
+		this.frameObj.timestamp = timestamp;
+		this.frameFn( this.frameObj );
+		if ( this.displayed ) {
+			this.requestId = requestAnimationFrame( this.frame.bind( this ) );
 		}
-	} else {
-		cancelAnimationFrame( requestId );
-		requestId = null;
+	},
+	toggle: function( b ) {
+		if ( typeof b !== "boolean" ) {
+			b = !this.displayed;
+		}
+		this.displayed = b;
+		if ( this.ctxType === "2d" ) {
+			this.ctx.clearRect( 0, 0, this.canvas.width, this.canvas.height );
+		}
+		if ( !b ) {
+			cancelAnimationFrame( this.requestId );
+			this.requestId = null;
+		} else if ( !this.requestId ) {
+			this.requestId = requestAnimationFrame( this.frame.bind( this ) );
+		}
+		this.jqCanvas.css( "display", b ? "block" : "none" );
+		return this;
 	}
-	return ui;
 };
 
-ui.canvasRender = function( fn, obj ) {
-	frameFn = fn || $.noop;
-	frameObj = $.extend( obj, {
-		ctxCanvas: ctx
-	});
-	return ui;
-};
+ui.canvas2d = new Canvas( dom.screenCanvas2d, "2d" );
+ui.canvasWebgl = new Canvas( dom.screenCanvasWebgl, "webgl" );
 
 })();

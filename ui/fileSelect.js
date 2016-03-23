@@ -22,6 +22,6 @@ ui.fileSelect = function( jqFile ) {
 	ui.jqFileSelected = jqFile.addClass( "selected" );
 
 	// Display or not the canvas.
-	ui.canvasToggle( fwrap.type === "audio" && api.visualisations.enable );
+	ui.canvas2d.toggle( fwrap.type === "audio" && api.visualisations.enable );
 	return ui;
 };

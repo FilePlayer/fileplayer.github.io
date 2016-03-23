@@ -34,7 +34,7 @@ api.visualisations = that = {
 			jqOldVisu.removeClass( "selected" );
 			jqOldVisu = dom.ctrlVisualList.find( "[data-name='" + name + "']" ).addClass( "selected" );
 			selectedVisu = visu[ name ];
-			ui.canvasRender( selectedVisu, obj );
+			ui.canvas2d.render( selectedVisu, obj );
 		}
 		return that;
 	},
@@ -47,7 +47,7 @@ api.visualisations = that = {
 			api.error.throw( "WEBAUDIO" );
 		}
 		if ( api.video.type === "audio" ) {
-			ui.canvasToggle( b );
+			ui.canvas2d.toggle( b );
 		}
 		ui.visualisationsToggle( b );
 		that.enable = b;
