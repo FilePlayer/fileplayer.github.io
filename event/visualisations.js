@@ -2,5 +2,5 @@
 
 dom.ctrlVisualToggle
 	.add( dom.ctrlVisualIcon )
-		.click( api.visualisations.toggle )
+		.click( ui.visualizerToggle )
 ;

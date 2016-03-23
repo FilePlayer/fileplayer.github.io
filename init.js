@@ -45,12 +45,10 @@ ui.actionDescEnable = false;
 api.screen.brightness( brightness );
 api.audio.volume( vol );
 api.playlist.repeat( plMode );
-api.visualisations
-	.select( "Oscilloscope" )
-	.toggle( !!window.AudioContext )
-;
 
 ui
+	.visualizerSelect( "Oscilloscope" )
+	.visualizerToggle( !!window.AudioContext )
 	.pause()
 	.listUpdate()
 	.indexFile()
