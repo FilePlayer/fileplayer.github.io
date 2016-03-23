@@ -3,16 +3,16 @@
 (function() {
 
 var
-	obj,
+	frameObj,
+	canvasUsed,
 	selectedVisu,
-	visu = {},
-	jqOldVisu = dom.empty,
+	arrayVisu = {},
 	analyser = api.audio.analyser
 ;
 
 if ( analyser ) {
 	analyser.fftSize = 4096;
-	obj = {
+	frameObj = {
 		analyser: analyser,
 		data: new Uint8Array( analyser.frequencyBinCount )
 	}
@@ -21,23 +21,31 @@ if ( analyser ) {
 ui.visualizerIsOn = false;
 
 ui.visualizerAdd = function( name, ctxType, fn ) {
-	visu[ name ] = fn;
-	$( "<li data-name='" + name + "'>" + name + "</li>" )
-		.appendTo( dom.ctrlVisualList )
-		.click( ui.visualizerSelect.bind( null, name ) )
-	;
+	arrayVisu[ name ] = {
+		ctxType: ctxType,
+		frame: fn,
+		jqLi: $( "<li>" + name + "</li>" )
+			.appendTo( dom.ctrlVisualList )
+			.click( ui.visualizerSelect.bind( null, name ) )
+	};
 	return ui;
 };
 
 ui.visualizerSelect = function( name ) {
-	if ( selectedVisu !== visu[ name ] ) {
-		jqOldVisu.removeClass( "selected" );
-		jqOldVisu = dom.ctrlVisualList
-			.find( "[data-name='" + name + "']" )
-			.addClass( "selected" )
-		;
-		selectedVisu = visu[ name ];
-		ui.canvas2d.render( selectedVisu, obj );
+	if ( selectedVisu !== arrayVisu[ name ] ) {
+		if ( selectedVisu ) {
+			selectedVisu.jqLi.removeClass( "selected" );
+		}
+		selectedVisu = arrayVisu[ name ];
+		selectedVisu.jqLi.addClass( "selected" );
+		var newCanvas = selectedVisu.ctxType === "2d" ? ui.canvas2d : ui.canvasWebgl;
+		if ( canvasUsed !== newCanvas ) {
+			if ( canvasUsed ) {
+				canvasUsed.toggle( false );
+			}
+			canvasUsed = newCanvas;
+		}
+		canvasUsed.render( selectedVisu.frame, frameObj );
 	}
 	return ui;
 };
@@ -51,7 +59,7 @@ ui.visualizerToggle = function( b ) {
 		api.error.throw( "WEBAUDIO" );
 	}
 	if ( api.video.type === "audio" ) {
-		ui.canvas2d.toggle( b );
+		canvasUsed.toggle( b );
 	}
 	dom.ctrlVisualBtn.toggleClass( "disable", !b );
 	dom.ctrlVisualCheckbox.attr( "checked", b ? "checked" : null );
