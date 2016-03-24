@@ -2,15 +2,10 @@
 
 (function() {
 
-var
-	canvasCapture = document.createElement( "canvas" ),
-	ctx = canvasCapture.getContext( "2d" )
-;
-
 $.extend( api, {
 	capture: function() {
 		var
-			canvas, w, h,
+			canvas,
 			dur = api.video.currentTime(),
 			hr = ~~( dur / 3600 ),
 			mn = ~~( dur / 60 ) % 60,
@@ -26,10 +21,7 @@ $.extend( api, {
 		if ( file.type === "audio" ) {
 			canvas = ui.visualizerCanvas();
 		} else {
-			canvas = canvasCapture;
-			w = canvas.width = api.videoElement.videoWidth;
-			h = canvas.height = api.videoElement.videoHeight;
-			ctx.drawImage( api.videoElement, 0, 0, w, h );
+			canvas = canvasTmp( api.videoElement );
 		}
 
 		return {
