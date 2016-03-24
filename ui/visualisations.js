@@ -48,6 +48,9 @@ ui.visualizerSelect = function( name ) {
 				canvasUsed.toggle( false );
 			}
 			canvasUsed = newCanvas;
+			if ( ui.visualizerIsOn ) {
+				canvasUsed.toggle( true );
+			}
 		}
 		canvasUsed.render( selectedVisu.frame, frameObj );
 	}
