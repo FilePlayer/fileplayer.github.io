@@ -20,6 +20,10 @@ if ( analyser ) {
 
 ui.visualizerIsOn = false;
 
+ui.visualizerCanvas = function() {
+	return ui.visualizerIsOn && canvasUsed.canvas;
+};
+
 ui.visualizerAdd = function( name, ctxType, fn ) {
 	arrayVisu[ name ] = {
 		ctxType: ctxType,

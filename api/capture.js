@@ -24,7 +24,7 @@ $.extend( api, {
 		sc = ( sc < 10 ? "0" : "" ) + sc.toFixed( 2 );
 
 		if ( file.type === "audio" ) {
-			canvas = dom.screenCanvas[ 0 ];
+			canvas = ui.visualizerCanvas();
 		} else {
 			canvas = canvasCapture;
 			w = canvas.width = api.videoElement.videoWidth;
