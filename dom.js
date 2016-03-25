@@ -77,6 +77,8 @@ window.dom = {
 			ctrlTimeDuration: $( ".ctrl .position .duration" ),
 
 		// Right
+			// Video 360
+			ctrl360Btn: $( ".ctrl .btn.video360" ),
 			// Frame capture
 			ctrlCaptureBtn: $( ".ctrl .btn.capture" ),
 			// Visualisations

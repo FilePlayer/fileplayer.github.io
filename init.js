@@ -47,6 +47,7 @@ api.audio.volume( vol );
 api.playlist.repeat( plMode );
 
 ui
+	.video360Toggle( false )
 	.visualizerSelect( "Oscilloscope" )
 	.visualizerToggle( !!window.AudioContext )
 	.pause()
