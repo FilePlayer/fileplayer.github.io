@@ -21,7 +21,8 @@ ui.fileSelect = function( jqFile ) {
 	ui.jqFileSelected.removeClass( "selected" );
 	ui.jqFileSelected = jqFile.addClass( "selected" );
 
-	// Display or not the canvas.
+	// Display or not the canvases.
 	ui.canvas2d.toggle( fwrap.type === "audio" && ui.visualizerIsOn );
+	ui.video360Toggle( false );
 	return ui;
 };
