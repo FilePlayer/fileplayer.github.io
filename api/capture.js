@@ -1,9 +1,12 @@
 "use strict";
 
-(function() {
+api.capture = function() {
+	var
+		canvasCapture = document.createElement( "canvas" ),
+		canvasCtx = canvasCapture.getContext( "2d" )
+	;
 
-$.extend( api, {
-	capture: function() {
+	return function() {
 		var
 			canvas,
 			dur = api.video.currentTime(),
@@ -13,16 +16,22 @@ $.extend( api, {
 			file = api.playlist.selectedFile()
 		;
 
+		if ( file.type === "audio" ) {
+			canvas = ui.visualizerCanvas();
+		} else {
+			canvas = canvasCapture;
+			canvasCtx.drawImage(
+				api.videoElement,
+				0, 0,
+				canvas.width = api.videoElement.videoWidth,
+				canvas.height = api.videoElement.videoHeight
+			);
+		}
+
 		if ( mn < 10 ) {
 			mn = "0" + mn;
 		}
 		sc = ( sc < 10 ? "0" : "" ) + sc.toFixed( 2 );
-
-		if ( file.type === "audio" ) {
-			canvas = ui.visualizerCanvas();
-		} else {
-			canvas = canvasTmp( api.videoElement );
-		}
 
 		return {
 			href: canvas.toDataURL(),
@@ -30,6 +39,4 @@ $.extend( api, {
 				"__at_" + hr + "h" + mn + "m" + sc + "s.png"
 		};
 	}
-});
-
-})();
+}();
