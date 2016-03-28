@@ -18,11 +18,12 @@ api.capture = function() {
 
 		if ( file.type === "audio" ) {
 			canvas = ui.visualizerCanvas();
+		} else if ( ui.video360Enabled ) {
+			canvas = ui.canvasWebgl.canvas;
 		} else {
 			canvas = canvasCapture;
 			canvasCtx.drawImage(
-				api.videoElement,
-				0, 0,
+				api.videoElement, 0, 0,
 				canvas.width = api.videoElement.videoWidth,
 				canvas.height = api.videoElement.videoHeight
 			);

@@ -7,7 +7,9 @@ function Canvas( jqCanvas, ctxType ) {
 	this.ctxType = ctxType;
 	this.jqCanvas = jqCanvas;
 	this.canvas = jqCanvas[ 0 ];
-	this.ctx = jqCanvas[ 0 ].getContext( ctxType );
+	this.ctx = jqCanvas[ 0 ].getContext( ctxType, ctxType === "2d" ? {} : {
+		preserveDrawingBuffer: true
+	});
 	this.render( null );
 }
 
