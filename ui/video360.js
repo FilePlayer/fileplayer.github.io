@@ -92,7 +92,7 @@ ui.video360Toggle = function( b ) {
 			createScene();
 			sceneCreated = true;
 		}
-		ui.video360LookAt( 0, Math.PI / 2 );
+		ui.video360LookAt( Math.PI, Math.PI / 2 );
 		ui.canvasWebgl.render( frame );
 	}
 	ui.canvasWebgl.toggle( b );
