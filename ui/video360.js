@@ -4,8 +4,6 @@
 
 var
 	sceneCreated,
-	canvas,
-	canvasCtx,
 	scene,
 	renderer,
 	texture,
@@ -28,40 +26,25 @@ function createScene() {
 	scene.add( camera );
 
 	// Sphere's texture:
-	canvas = document.createElement( "canvas" );
-	canvasCtx = canvas.getContext( "2d" );
-	texture = new THREE.Texture( canvas );
+	texture = new THREE.Texture();
 	texture.minFilter = THREE.LinearFilter;
 	
 	// Sphere, texture:
 	sphere = new THREE.Mesh(
 		new THREE.SphereGeometry( 1, 32, 32, 0, Math.PI * 2, 0, Math.PI ),
-		new THREE.MeshBasicMaterial({
-			map: texture,
-			overdraw: true,
-			side: THREE.BackSide
-		})
+		new THREE.MeshBasicMaterial( { map: texture } )
 	);
+	sphere.scale.x = -1;
 	scene.add( sphere );
 }
 
 function frame( obj ) {
 	if ( !ui.isSeeking ) {
-		// Update the renderer's dimensions:
 		renderer.setSize( window.innerWidth, window.innerHeight );
 		camera.aspect = window.innerWidth / window.innerHeight;
 		camera.updateProjectionMatrix();
-
-		// Sphere's texture:
-		canvas.width = api.videoElement.videoWidth;
-		canvas.height = api.videoElement.videoHeight;
-		canvasCtx.save();
-			canvasCtx.scale( -1, 1 );
-				canvasCtx.drawImage( api.videoElement, -canvas.width, 0, canvas.width, canvas.height );
-		canvasCtx.restore();	
+		texture.image = api.videoElement;
 		texture.needsUpdate = true;
-
-		// Render:
 		renderer.render( scene, camera );
 	}
 }
