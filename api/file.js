@@ -8,27 +8,23 @@ var
 	extArray = "mp3-mp4-mpeg-ogg-wav-webm-mpg-weba-ogm-srt-vtt".split( "-" )
 ;
 
-api.file = function( file ) {
-	var
-		ind,
-		url = file.name || file.url,
-		reg = url.match( /([^/?#]*)\.([^./?#]+)/g )
-	;
+function cutName( that, s ) {
+	s = s || "";
+	var i = s.lastIndexOf( "." );
+	that.name = i < 0 ? s : s.substr( 0, i );
+	that.extension = i < 0 ? "" : s.substr( i + 1 ).toLowerCase();
+}
 
-	this.name = url;
-	if ( reg ) {
-		reg = reg[ reg.length - 1 ];
-		ind = reg.lastIndexOf( "." );
-		this.name = reg;
-		if ( ind >= 0 ) {
-			this.name = reg.substr( 0, ind );
-			this.extension = reg.substr( ind + 1 ).toLowerCase();
-		}
+api.file = function( file ) {
+	var name = file.name || file.url;
+	this.isLocal = !!file.name;
+	if ( !this.isLocal ) {
+		name = name.match( /([^/?#]*)\.([^./?#]+)/g );
+		name = name && name[ name.length - 1 ];
 	}
+	cutName( this, name );
 
 	this.isSupported = $.inArray( this.extension, extArray ) > -1;
-	this.isLocal = !!file.name;
-
 	if ( this.isSupported ) {
 		this.type =
 			extAudio.indexOf( this.extension ) > -1 ? "audio" :
@@ -36,7 +32,7 @@ api.file = function( file ) {
 		if ( this.isLocal ) {
 			this.dataFile = file;
 		} else {
-			this.url = url;
+			this.url = file.url;
 			this.cors = file.cors;
 		}
 	}
